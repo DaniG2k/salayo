@@ -1,3 +1,14 @@
+// Grid styling:
+$padding: 60px 0px;
+
+// Colors:
+$blue: #02b3e4;
+$magenta: #ff5483;
 $body-gray: #f7f7f7;
 
-$padding: 60px 0px;
+.blue {
+  color: $blue;
+}
+.magenta {
+  color: $magenta;
+}
