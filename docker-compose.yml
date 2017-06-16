@@ -1,0 +1,11 @@
+version: "2"
+services:
+  postgres:
+    image: postgres:9.6
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: salayo_development
+      POSTGRES_PASSWORD: # Blank password
+    volumes:
+      - ./sql:/sql

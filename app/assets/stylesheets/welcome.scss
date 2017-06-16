@@ -1,0 +1,45 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.hero-header {
+  background-image: linear-gradient(138deg, #4FC3F7 0%, #27D3DD 60%, #00E3C3 100%);
+  padding: 150px 0px;
+  h1, h2 {
+    color: white;
+  }
+}
+
+.gray-section {
+  padding: 60px 0px;
+  background-color: $body-gray;
+}
+
+@mixin nav-box-shadow($size, $blur) {
+  -webkit-box-shadow: $size $size $size $size $blur;
+  -moz-box-shadow: $size $size $size $size $blur;
+  box-shadow: $size $size $size $size $blur;
+}
+@mixin nav-transition($ease) {
+  -webkit-transition: all $ease ease-out;
+  -moz-transition: all $ease ease-out;
+  -o-transition: all $ease ease-out;
+  -ms-transition: all $ease ease-out;
+  transition: all $ease ease-out;
+}
+
+.salayo-nav {
+  @include nav-box-shadow(1px, rgba(0, 0, 0, 0.2));
+  @include nav-transition(0.4s);
+}
+.transparent {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+footer {
+  padding: 60px 0px;
+  background-color: #212121;
+  color: #DADADA;
+}

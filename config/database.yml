@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: postgres
+
+development:
+  <<: *default
+  database: salayo_development
+  host: <%= ENV['SALAYO_DATABASE_HOST'] || 'localhost' %>
+  port: <%= ENV['SALAYO_DATABASE_PORT'] || 5432 %>
+  password: <%= ENV['SALAYO_DATABASE_PASSWORD'] %>
+
+test:
+  <<: *default
+  database: salayo_test
+  host: <%= ENV['SALAYO_DATABASE_HOST'] || 'localhost' %>
+  port: <%= ENV['SALAYO_DATABASE_PORT'] || 5432 %>
+
+production:
+  <<: *default
+  database: salayo_production
+  password: <%= ENV['SALAYO_DATABASE_PASSWORD'] %>
