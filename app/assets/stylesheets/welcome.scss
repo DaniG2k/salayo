@@ -35,11 +35,15 @@
   width: 100%;
   background-color: white;
 }
+
 .transparent {
   background-color: transparent;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  .navbar-brand {
+    color: white;
+  }
 }
 
 .how-it-works {
