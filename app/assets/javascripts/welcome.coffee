@@ -9,3 +9,19 @@ $(window).scroll ->
     $('nav').addClass 'transparent'
     $('nav').removeClass 'bg-faded'
   return
+
+# Typed.js strings
+$ ->
+  $('.typed-element').typed
+    strings: [
+      "room mates in <strong>New York</strong>."
+      "flatmates in <strong>London</strong>."
+      "룸메이트 in <strong>Seoul</strong>."
+      "ルームメイト in <strong>Tokyo</strong>."
+    ]
+    typeSpeed: 100
+    shuffle: true
+    loopCount: 3
+    startDelay: 100
+    backDelay: 600
+  return
