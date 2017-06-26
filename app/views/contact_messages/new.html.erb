@@ -1,0 +1,29 @@
+<div class="container">
+  <h2 class="text-center blue">Contact us</h2>
+  <%= form_for @message, url: create_message_url do |f| %>
+    <%= notice %>
+    <%= @message.errors.full_messages.join(', ') %>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <%= f.text_area :body, placeholder: 'Message body', class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.submit 'Send', class: 'btn btn-primary' %>
+  <% end %>
+</div>
