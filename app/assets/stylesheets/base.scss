@@ -6,4 +6,10 @@ footer {
   padding: $padding;
   background-color: #212121;
   color: #DADADA;
+  a {
+    color: #DADADA;
+    &:hover {
+      color: white;
+    }
+  }
 }

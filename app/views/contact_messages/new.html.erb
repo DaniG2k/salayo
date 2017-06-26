@@ -1,8 +1,24 @@
 <div class="container">
   <h2 class="text-center blue">Contact us</h2>
   <%= form_for @message, url: create_message_url do |f| %>
-    <%= notice %>
-    <%= @message.errors.full_messages.join(', ') %>
+
+    <% if notice.present? %>
+      <div class="alert alert-success" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if @message.errors.present? %>
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Oops!</h4>
+        <ul>
+        <% @message.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="row">
       <div class="col">
         <div class="form-group">
@@ -24,6 +40,6 @@
       </div>
     </div>
 
-    <%= f.submit 'Send', class: 'btn btn-primary' %>
+    <%= f.submit 'Send', class: 'btn btn-primary', data: {disable_with: 'Submitting...'} %>
   <% end %>
 </div>
