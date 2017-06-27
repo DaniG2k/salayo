@@ -9,9 +9,16 @@
         <%= render partial: 'common/errors', locals: {obj: @register_email} %>
 
         <div class="pill">
-          <%= form_for @register_email, url: {action: 'register', anchor: 'subscribe'} do |f| %>
-            <%= f.email_field :email, placeholder: 'Your email' %>
-            <%= f.submit 'Subscribe', data: {disable_with: 'Submitting...'} %>
+          <%= form_for @register_email, class: 'form-inline', url: {action: 'register', anchor: 'subscribe'} do |f| %>
+            <div class="row">
+              <div class="col">
+                <%= f.email_field :email, placeholder: 'your@email.com', class: 'form-control' %>
+              </div>
+
+              <div class="col">
+                <%= f.submit 'Subscribe', class: 'pill-btn', data: {disable_with: 'Submitting...'} %>
+              </div>
+            </div>
           <% end %>
         </div>
 

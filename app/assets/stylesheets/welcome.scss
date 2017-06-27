@@ -102,13 +102,11 @@
 #subscribe {
   .alert {
     margin-top: 2em;
+
   }
 }
 
 .pill {
-  h1, h2, h3, h4, h5 {
-    margin-bottom: 0;
-  }
   margin: 3em 0 1em 0;
   padding: 1.5em;
   background-color: #50d2f9;
@@ -118,5 +116,27 @@
   @include nav-transition(0.4s);
   &:hover {
     background-color: $blue;
+  }
+  .form-control {
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    letter-spacing: 1px;
+  }
+  .form-control {
+    color: white;
+    &::placeholder {
+      color: white;
+      opacity: 0.5;
+    }
+  }
+  .pill-btn {
+    position: absolute;
+    right: 1em;
+    border: 2px solid white;
+    border-radius: 2em;
+    color: white;
+    background-color: transparent;
+    padding: 5px 15px;
   }
 }
