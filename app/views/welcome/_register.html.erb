@@ -1,0 +1,21 @@
+<section class="gray-section" id="subscribe">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 offset-md-3">
+        <h2 class="text-center">Interested? We'll keep you posted</h2>
+
+        <%= render 'common/notice' %>
+
+        <%= render partial: 'common/errors', locals: {obj: @register_email} %>
+
+        <div class="pill">
+          <%= form_for @register_email, url: register_email_url do |f| %>
+            <%= f.email_field :email, placeholder: 'Your email' %>
+            <%= f.submit 'Subscribe', data: {disable_with: 'Submitting...'} %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

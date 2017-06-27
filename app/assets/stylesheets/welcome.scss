@@ -21,11 +21,11 @@
   box-shadow: $size $size $size $size $blur;
 }
 @mixin nav-transition($ease) {
-  -webkit-transition: all $ease ease-out;
-  -moz-transition: all $ease ease-out;
-  -o-transition: all $ease ease-out;
-  -ms-transition: all $ease ease-out;
-  transition: all $ease ease-out;
+  -webkit-transition: all $ease ease-in-out;
+  -moz-transition: all $ease ease-in-out;
+  -o-transition: all $ease ease-in-out;
+  -ms-transition: all $ease ease-in-out;
+  transition: all $ease ease-in-out;
 }
 
 .salayo-nav {
@@ -96,5 +96,21 @@
     margin-right: auto;
     left: 0;
     right: 0;
+  }
+}
+
+.pill {
+  h1, h2, h3, h4, h5 {
+    margin-bottom: 0;
+  }
+  margin: 3em 0 1em 0;
+  padding: 1.5em;
+  background-color: #50d2f9;
+  border-radius: 3em;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
+  color: white;
+  @include nav-transition(0.4s);
+  &:hover {
+    background-color: $blue;
   }
 }
