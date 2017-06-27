@@ -9,7 +9,7 @@
         <%= render partial: 'common/errors', locals: {obj: @register_email} %>
 
         <div class="pill">
-          <%= form_for @register_email, url: register_email_url do |f| %>
+          <%= form_for @register_email, url: {action: 'register', anchor: 'subscribe'} do |f| %>
             <%= f.email_field :email, placeholder: 'Your email' %>
             <%= f.submit 'Subscribe', data: {disable_with: 'Submitting...'} %>
           <% end %>
