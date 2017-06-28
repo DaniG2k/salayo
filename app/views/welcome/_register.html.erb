@@ -11,11 +11,11 @@
         <div class="pill">
           <%= form_for @register_email, class: 'form-inline', url: {action: 'register', anchor: 'subscribe'} do |f| %>
             <div class="row">
-              <div class="col">
+              <div class="col-8">
                 <%= f.email_field :email, placeholder: 'your@email.com', class: 'form-control' %>
               </div>
 
-              <div class="col">
+              <div class="col-4">
                 <%= f.submit 'Subscribe', class: 'pill-btn', data: {disable_with: 'Submitting...'} %>
               </div>
             </div>
