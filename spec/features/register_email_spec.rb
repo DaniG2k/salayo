@@ -5,7 +5,7 @@ describe 'Registering users emails', type: :feature do
 
   it 'has a subscribe form' do
     within(".pill") do
-      fill_in 'registration_email', with: 'test@email.com'
+      fill_in 'subscription_email', with: 'test@email.com'
       click_button 'Subscribe'
     end
 
@@ -14,7 +14,7 @@ describe 'Registering users emails', type: :feature do
 
   it "doesn't allow blank emails" do
     within(".pill") do
-      fill_in 'registration_email', with: ' '
+      fill_in 'subscription_email', with: ' '
       click_button 'Subscribe'
     end
 
@@ -24,7 +24,7 @@ describe 'Registering users emails', type: :feature do
   it "doesn't allow dupliacte emails" do
     2.times do
       within(".pill") do
-        fill_in 'registration_email', with: 'test@email.com'
+        fill_in 'subscription_email', with: 'test@email.com'
         click_button 'Subscribe'
       end
     end
