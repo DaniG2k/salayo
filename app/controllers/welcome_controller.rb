@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
     @register_email = Registration.new(registration_params)
 
     if @register_email.save
-      redirect_to root_path(anchor: 'subscribe'), notice: 'Thanks for subscribing!'
+      redirect_to root_path(anchor: 'subscribe'), notice: "Thanks for subscribing! We'll let you know when we officially go live."
     else
       render :index
     end
