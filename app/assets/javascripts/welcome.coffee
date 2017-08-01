@@ -14,12 +14,9 @@ $(window).scroll ->
 $ ->
   $('.typed-element').typed
     strings: [
-      "room mates in <strong>New York</strong>."
-      "flatmates in <strong>London</strong>."
-      "룸메이트 in <strong>Seoul</strong>."
-      "ルームメイト in <strong>Tokyo</strong>."
+      "The easiest way to find housing in <strong>South Korea</strong>."
     ]
-    typeSpeed: 100
+    typeSpeed: 50
     shuffle: true
     loopCount: 3
     startDelay: 100
