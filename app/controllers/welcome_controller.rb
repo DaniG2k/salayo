@@ -1,20 +1,20 @@
 class WelcomeController < ApplicationController
   def index
-    @register_email = Registration.new
+    @subscribe_email = Subscription.new
   end
 
-  def register
-    @register_email = Registration.new(registration_params)
+  def subscribe
+    @subscribe_email = Subscription.new(subscription_params)
 
-    if @register_email.save
-      redirect_to root_path(anchor: 'subscribe'), notice: "Thanks for subscribing! We'll let you know when we officially go live."
+    if @subscribe_email.save
+      redirect_to root_path(anchor: 's_form'), notice: "Thanks for subscribing! We'll let you know when we officially go live."
     else
       render :index
     end
   end
 
   private
-    def registration_params
-      params.require(:registration).permit(:email)
+    def subscription_params
+      params.require(:subscription).permit(:email)
     end
 end
