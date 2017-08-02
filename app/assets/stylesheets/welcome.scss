@@ -10,6 +10,10 @@
   }
 }
 
+.top-padded {
+  padding-top: 100px;
+}
+
 .gray-section {
   padding: $padding;
   background-color: $body-gray;
@@ -46,7 +50,7 @@
   }
 }
 
-.how-it-works, #subscribe {
+.how-it-works, #s_form {
   padding: $padding;
 }
 
@@ -102,10 +106,9 @@
   }
 }
 
-#subscribe {
+#s_form {
   .alert {
     margin-top: 2em;
-
   }
 }
 

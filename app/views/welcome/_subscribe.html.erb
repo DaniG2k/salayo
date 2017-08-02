@@ -1,4 +1,4 @@
-<section id="subscribe">
+<section id="s_form">
   <div class="container">
     <div class="row justify-content-md-center">
       <div class="col-md-7">
@@ -7,10 +7,10 @@
 
         <%= render 'common/notice' %>
 
-        <%= render partial: 'common/errors', locals: {obj: @register_email} %>
+        <%= render partial: 'common/errors', locals: {obj: @subscribe_email} %>
 
         <div class="pill">
-          <%= form_for @register_email, class: 'form-inline', url: {action: 'register', anchor: 'subscribe'} do |f| %>
+          <%= form_for @subscribe_email, class: 'form-inline', url: {action: 'subscribe', anchor: 's_form'} do |f| %>
             <div class="row">
               <div class="col-8">
                 <%= f.email_field :email, placeholder: 'your@email.com', class: 'form-control' %>
