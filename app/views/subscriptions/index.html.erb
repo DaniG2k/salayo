@@ -3,9 +3,9 @@
     <div class="col-8">
       <h1>Subscriptions</h1>
       <% @subscriptions.each do |subscription| %>
-        <p>
-          <%= subscription.email %>
-        </p>
+        <ul>
+          <li><%= subscription.email %></li>
+        </ul>
       <% end %>
     </div>
   </div>
