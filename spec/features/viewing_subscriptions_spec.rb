@@ -5,7 +5,7 @@ RSpec.describe 'Viewing subscriptions', type: :feature do
   let!(:subscriber) {FactoryGirl.create(:subscription)}
 
   before :each do
-    login_as :admin
+    login_as admin
     visit subscriptions_path
   end
 
