@@ -20,5 +20,5 @@ test:
 
 production:
   <<: *default
-  database: salayo_production
+  database: <%= ENV['SALAYO_DATABASE_NAME'] %>
   password: <%= ENV['SALAYO_DATABASE_PASSWORD'] %>
