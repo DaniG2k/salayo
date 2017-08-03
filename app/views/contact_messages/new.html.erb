@@ -2,9 +2,9 @@
   <h2 class="text-center blue">Contact us</h2>
   <%= form_for(@message, url: create_message_url) do |f| %>
 
-    <%= render 'common/notice' %>
+    <%= render 'common/notices' %>
 
-    <%= render partial: 'common/errors', locals: {obj: @message} %>
+    <%= render partial: 'common/form_errors', locals: {obj: @message} %>
 
     <div class="row">
       <div class="col">
