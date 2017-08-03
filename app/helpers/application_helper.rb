@@ -1,7 +1,13 @@
 module ApplicationHelper
   def title(*parts)
     if parts.present?
-      content_for(:title) { (parts << t('website')).join(' - ') }
+      content_for(:title) do
+        if Rails.env.development?
+          (parts.unshift('🚧 DEV') << t('website')).join(' - ')
+        else
+          (parts << t('website')).join(' - ')
+        end
+      end
     end
   end
 

@@ -43,5 +43,5 @@
 }
 .column-layout-right {
   @include column-layout-mixin;
-  background-color: #eff2f5;
+  background-color: $body-gray;
 }
