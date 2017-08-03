@@ -9,7 +9,7 @@ describe 'Registering users emails', type: :feature do
       click_button 'Subscribe'
     end
 
-    expect(page).to have_content 'Thanks for subscribing!'
+    expect(page).to have_content 'Thanks for subscribing'
   end
 
   it "doesn't allow blank emails" do
