@@ -1,0 +1,18 @@
+<div class="column-layout-top">
+
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <%= link_to t('website'), dashboard_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to(fa_icon('dashboard', text: 'Dashboard'), dashboard_path, class: 'nav-link active') %>
+    </li>
+    <li class="nav-item">
+      <%= link_to(fa_icon('plug', text: 'Elsewhere'), dashboard_path, class: 'nav-link') %>
+    </li>
+    <li class="nav-item">
+      <%= link_to(fa_icon('unlock', text: 'Log out'), destroy_user_session_path, method: :delete, class: 'nav-link') %>
+    </li>
+  </ul>
+
+</div>

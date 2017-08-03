@@ -33,7 +33,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'devise'
-gem 'faker'
+gem 'font-awesome-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -41,6 +42,7 @@ group :development, :test do
   gem 'capybara'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :development do
