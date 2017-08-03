@@ -9,10 +9,18 @@
   </head>
 
   <body>
-    <%= render 'common/top_nav' %>
-    <%= render 'common/notices' %>
-    <%= yield %>
-    <%= link_to('Log out', destroy_user_session_path, method: :delete) %>
+
+    <div class="column-layout">
+
+      <div class="column-layout-left">
+        <%= render 'dashboard/sidebar' %>
+      </div>
+
+      <div class="column-layout-right">
+        <%= render 'common/notices' %>
+        <%= yield %>
+      </div>
+    </div>
     <%= render 'common/footer' %>
   </body>
 </html>
