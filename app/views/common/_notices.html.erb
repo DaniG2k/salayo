@@ -1,0 +1,26 @@
+<% if flash[:notice].present? %>
+  <div class="alert alert-success" role="alert">
+    <strong>Excellent!</strong>
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:success].present? %>
+  <div class="alert alert-success" role="alert">
+    <strong>Excellent!</strong>
+    <%= flash[:success] %>
+  </div>
+<% elsif flash[:info].present? %>
+  <div class="alert alert-info" role="alert">
+    <strong>Heads up!</strong>
+    <%= flash[:info] %>
+  </div>
+<% elsif flash[:warning].present? %>
+  <div class="alert alert-warning" role="alert">
+    <strong>Warning!</strong>
+    <%= flash[:warning] %>
+  </div>
+<% elsif flash[:danger].present? %>
+  <div class="alert alert-danger" role="alert">
+    <strong>Oops!</strong>
+    <%= flash[:danger] %>
+  </div>
+<% end %>

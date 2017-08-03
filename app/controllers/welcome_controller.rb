@@ -7,7 +7,8 @@ class WelcomeController < ApplicationController
     @subscribe_email = Subscription.new(subscription_params)
 
     if @subscribe_email.save
-      redirect_to root_path(anchor: 's_form'), notice: "Thanks for subscribing! We'll let you know when we officially go live."
+      flash[:success] = "Thanks for subscribing. We'll let you know when we officially go live."
+      redirect_to root_path(anchor: 's_form')
     else
       render :index
     end
