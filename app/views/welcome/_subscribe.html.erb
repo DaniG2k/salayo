@@ -5,9 +5,8 @@
         <h2 class="text-center blue">Interested?</h2>
         <h3 class="text-center blue">We'll keep you posted ✌️</h3>
 
-        <%= render 'common/notice' %>
-
-        <%= render partial: 'common/errors', locals: {obj: @subscribe_email} %>
+        <%= render 'common/notices' %>
+        <%= render partial: 'common/form_errors', locals: {obj: @subscribe_email} %>
 
         <div class="pill">
           <%= form_for @subscribe_email, class: 'form-inline', url: {action: 'subscribe', anchor: 's_form'} do |f| %>

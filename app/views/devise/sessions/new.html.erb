@@ -1,9 +1,11 @@
 <div class="container-fluid top-padded">
   <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-5">
       <h2>Welcome back</h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render 'common/notices', obj: resource %>
+
         <div class="form-group">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, class: 'form-control' %>
