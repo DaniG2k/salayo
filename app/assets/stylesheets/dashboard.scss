@@ -18,6 +18,14 @@
   z-index: 3;
 }
 
+@mixin dashboard-blue-links {
+  transition: color .2s ease-in-out;
+  &:hover {
+    color: $baby-blue;
+    text-decoration: none;
+  }
+}
+
 .column-layout-left {
   @include column-layout-mixin;
   color: #f2f5f7;
@@ -35,15 +43,29 @@
   }
   a {
     color: #f2f5f7;
-    transition: color .2s ease-in-out;
-    &:hover {
-      color: $baby-blue;
-    }
+    @include dashboard-blue-links;
   }
 }
 .column-layout-right {
   @include column-layout-mixin;
   background-color: $body-gray;
+}
+
+.dashboard-topbar {
+  background-color: #FFFFFF;
+  .row {
+    margin-right: 0;
+  }
+  a {
+    color: $dark-blue;
+    display: block;
+    padding: 1em 2em;
+    @include dashboard-blue-links;
+  }
+}
+
+.dashboard-main-content {
+  padding: 1em;
 }
 
 #map {
