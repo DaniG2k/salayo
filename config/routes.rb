@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   post 'subscribe', to: 'welcome#subscribe', as: 'subscribe_email'
   get 'subscriptions', to: 'subscriptions#index'
   get 'dashboard', to: 'dashboard#index'
+  get 'search', to: 'dashboard#search'
 end
