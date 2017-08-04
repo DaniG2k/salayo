@@ -6,7 +6,6 @@
     <div class="col-12">
       <h1>Search listings</h1>
       <div id="map"></div>
-
     </div>
   </div>
 
@@ -14,13 +13,13 @@
 
 <script>
   function initMap() {
-    var uluru = {lat: -25.363, lng: 131.044};
+    var seoul = {lat: 37.5665, lng: 126.9780};
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
-      center: uluru
+      zoom: 6,
+      center: seoul
     });
     var marker = new google.maps.Marker({
-      position: uluru,
+      position: seoul,
       map: map
     });
   }
