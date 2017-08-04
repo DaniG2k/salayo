@@ -45,3 +45,9 @@
   @include column-layout-mixin;
   background-color: $body-gray;
 }
+
+#map {
+  width: 100%;
+  height: 400px;
+  background-color: grey;
+}

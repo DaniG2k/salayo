@@ -5,13 +5,10 @@
       <%= link_to t('website'), dashboard_path, class: 'nav-link' %>
     </li>
     <li class="nav-item">
-      <%= link_to(fa_icon('dashboard', text: 'Dashboard'), dashboard_path, class: 'nav-link active') %>
+      <%= link_to(fa_icon('dashboard', text: 'Dashboard'), dashboard_path, class: "nav-link #{active_if(dashboard_path)}") %>
     </li>
     <li class="nav-item">
-      <%= link_to(fa_icon('search', text: 'Search listings'), dashboard_path, class: 'nav-link') %>
-    </li>
-    <li class="nav-item">
-      <%= link_to(fa_icon('plug', text: 'Elsewhere'), dashboard_path, class: 'nav-link') %>
+      <%= link_to(fa_icon('search', text: 'Search listings'), search_path, class: "nav-link #{active_if(search_path)}") %>
     </li>
     <li class="nav-item">
       <%= link_to(fa_icon('unlock', text: 'Log out'), destroy_user_session_path, method: :delete, class: 'nav-link') %>
