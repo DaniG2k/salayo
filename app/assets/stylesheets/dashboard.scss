@@ -52,6 +52,7 @@
 }
 
 .dashboard-topbar {
+  position: relative;
   background-color: #FFFFFF;
   .row {
     margin-right: 0;
@@ -75,14 +76,13 @@
 }
 
 #dropdown_box {
-  margin-top: 12px;
+  margin: 12px;
   position: absolute;
+  right: 0;
   width: 300px;
-  max-width: calc(100vw - 32px);
   padding: 8px;
   background-color: white;
-  border: 0 solid #e2e6e8;
+  border: 0 solid $body-gray;
   box-shadow: 0 20px 66px 0 rgba(34,48,73,0.2);
-  float: left;
   display: none;
 }
