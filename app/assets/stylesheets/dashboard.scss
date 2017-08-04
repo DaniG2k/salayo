@@ -29,15 +29,15 @@
   }
 
   .active {
-    color: #00b9ff;
-    border-left: 3px solid #00b9ff;
+    color: $baby-blue;
+    border-left: 3px solid $baby-blue;
     background-color: #2e4369;
   }
   a {
     color: #f2f5f7;
     transition: color .2s ease-in-out;
     &:hover {
-      color: #00b9ff;
+      color: $baby-blue;
     }
   }
 }
