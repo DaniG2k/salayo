@@ -4,5 +4,14 @@
       <img src="https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
       <%= t('website') %>
     <% end %>
+
+    <ul>
+      <% if user_signed_in? %>
+      <li>
+        <%= link_to(fa_icon('unlock', text: 'Log out'), destroy_user_session_path, method: :delete, class: 'navbar-link float-right') %>
+      </li>
+      <% end %>
+    </ul>
+
   </div>
 </nav>
