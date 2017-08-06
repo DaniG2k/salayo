@@ -67,6 +67,9 @@
 
 .dashboard-main-content {
   padding: 1em;
+  h1 {
+    color: $dark-blue;
+  }
 }
 
 #map {
