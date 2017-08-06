@@ -3,13 +3,14 @@
 
     <div class="col-12">
       <div id="dropdown_box">
-        Hide and show this box!
-        <br />
-        More text here
-        <br />
-        More text here
-        <br />
-        More text here
+        <ul>
+          <li>
+            <%= link_to fa_icon('gear', text: 'Settings'), '#' %>
+          </li>
+          <li>
+            <%= link_to fa_icon('unlock', text: 'Log out'), destroy_user_session_path, method: :delete %>
+          </li>
+        </ul>
       </div>
       <%= link_to fa_icon('chevron-down', text: current_user.name, right: true), '#', class: 'float-right', id: 'show_box' %>
     </div>
