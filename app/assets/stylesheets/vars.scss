@@ -18,3 +18,9 @@ $dark-blue: #2E4369;
 .magenta {
   color: $magenta;
 }
+
+@mixin dashboard-shadow {
+  -webkit-box-shadow: 0px 5px 20px -12px rgba(157,170,179,0.73);
+  -moz-box-shadow: 0px 5px 20px -12px rgba(157,170,179,0.73);
+  box-shadow: 0px 5px 20px -12px rgba(157,170,179,0.73);
+}

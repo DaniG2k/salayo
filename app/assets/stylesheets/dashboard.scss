@@ -80,6 +80,8 @@
 }
 
 #dropdown_box {
+  @include dashboard-shadow;
+  border-radius: 3px;
   margin: 12px;
   position: absolute;
   right: 0;
@@ -87,7 +89,6 @@
   padding: 8px;
   background-color: white;
   border: 0 solid $body-gray;
-  box-shadow: 0 20px 66px 0 rgba(34,48,73,0.2);
   display: none;
   z-index: 1;
   ul {margin: 0; padding: 0;}
