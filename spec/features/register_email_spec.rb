@@ -5,7 +5,7 @@ describe 'Registering users emails', type: :feature do
 
   it 'has a subscribe form' do
     within(".pill") do
-      fill_in 'subscription_email', with: 'test@email.com'
+      fill_in 'subscription_email', with: Faker::Internet.unique.email
       click_button 'Subscribe'
     end
 
