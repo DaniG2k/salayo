@@ -10,6 +10,11 @@
     <li class="nav-item">
       <%= link_to(fa_icon('search', text: 'Search listings'), search_path, class: "nav-link #{active_if(search_path)}") %>
     </li>
+
+    <li class="nav-item">
+      <%= link_to(fa_icon('paper-plane', text: 'Messages'), '#', class: "nav-link") %>
+    </li>
+
     <li class="nav-item">
       <%= link_to(fa_icon('unlock', text: 'Log out'), destroy_user_session_path, method: :delete, class: 'nav-link') %>
     </li>
