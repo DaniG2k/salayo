@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Viewing Listings' do
   let(:user) {FactoryGirl.create(:user)}
-  let(:listing) {FactoryGirl.create(:listing, owner: user)}
+  let!(:listing) {FactoryGirl.create(:listing, owner: user)}
 
   before do
     visit '/login'
