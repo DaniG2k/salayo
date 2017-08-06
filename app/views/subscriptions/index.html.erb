@@ -1,12 +1,18 @@
-<div class="container top-padded">
-  <div class="row justify-content-center">
-    <div class="col-8">
-      <h1>Subscriptions</h1>
-      <% @subscriptions.each do |subscription| %>
-        <ul>
-          <li><%= subscription.email %></li>
-        </ul>
-      <% end %>
+<% title('Subscriptions') %>
+
+<div class="dashboard-main-content">
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12">
+        <h1>Subscriptions</h1>
+        <% @subscriptions.each do |subscription| %>
+          <ul>
+            <li><%= subscription.email %></li>
+          </ul>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
