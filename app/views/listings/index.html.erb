@@ -1,0 +1,13 @@
+<% title('My listings') %>
+
+<div class="dashboard-main-content">
+
+  <div class="container-fluid">
+    <h1>My listings</h1>
+    <% @listings.each do |listing| %>
+      <ul>
+        <li><%= listing.name %></li>
+      </ul>
+    <% end %>
+  </div>
+</div>
