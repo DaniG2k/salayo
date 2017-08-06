@@ -3,13 +3,13 @@
 <div class="dashboard-main-content">
 
   <div class="container-fluid">
-    
+
     <div class="row">
       <div class="col-12">
         <h1>Hello, <%= current_user.name %>!</h1>
 
         <div class="card dashboard-card">
-          <%= image_tag('seoul-apartment', class: 'card-img-top') %>
+          <%= image_tag('seoul-apartment', class: 'card-img-top opaque') %>
           <div class="card-block">
             <h4 class="card-title"><%= fa_icon('star-o', text: 'Favorites') %></h4>
             This is some text within a card block.
