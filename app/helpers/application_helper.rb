@@ -21,11 +21,7 @@ module ApplicationHelper
   end
 
   def user_locale
-    if current_user.present?
-      current_user.locale
-    else
-      'en'
-    end
+    current_user.present? ? current_user.locale : 'en'
   end
 
   def owners_only &block
