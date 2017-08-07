@@ -8,9 +8,11 @@
       <%= link_to(fa_icon('dashboard', text: 'Dashboard'), dashboard_path, class: "nav-link #{active_if(dashboard_path)}") %>
     </li>
 
-    <li class="nav-item">
-      <%= link_to(fa_icon('home', text: 'My listings'), listings_path, class: "nav-link #{active_if(listings_path)}") %>
-    </li>
+    <% owners_only do %>
+      <li class="nav-item">
+        <%= link_to(fa_icon('home', text: 'My listings'), listings_path, class: "nav-link #{active_if(listings_path)}") %>
+      </li>
+    <% end %>
 
     <li class="nav-item">
       <%= link_to(fa_icon('plus', text: 'Add listing'), new_listing_path, class: "nav-link #{active_if(new_listing_path)}") %>
@@ -24,9 +26,11 @@
       <%= link_to(fa_icon('paper-plane', text: 'Messages'), '#', class: "nav-link") %>
     </li>
 
-    <li class="nav-item">
-      <%= link_to(fa_icon('check', text: 'Subscriptions'), admin_subscriptions_path, class: "nav-link #{active_if(admin_subscriptions_path)}") %>
-    </li>
+    <% admins_only do %>
+      <li class="nav-item">
+        <%= link_to(fa_icon('check', text: 'Subscriptions'), admin_subscriptions_path, class: "nav-link #{active_if(admin_subscriptions_path)}") %>
+      </li>
+    <% end %>
   </ul>
 
 </div>
