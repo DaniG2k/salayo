@@ -19,4 +19,20 @@ module ApplicationHelper
     end
     "&copy; #{t('website')} #{years_since_foundation}".html_safe
   end
+
+  def admin?
+    current_user.has_role?(:admin)
+  end
+
+  def owner?
+    current_user.has_role?(:owner)
+  end
+
+  def owners_only &block
+    block.call if owner?
+  end
+
+  def admins_only &block
+    block.call if admin?
+  end
 end
