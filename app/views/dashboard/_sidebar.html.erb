@@ -4,6 +4,17 @@
     <li class="nav-item">
       <%= link_to t('website'), dashboard_path, class: 'nav-link' %>
     </li>
+
+    <% admins_only do %>
+      <li class="nav-item">
+        <%= link_to(fa_icon('hashtag', text: 'Admin area'), admin_root_path, class: "nav-link #{active_if(admin_root_path)}") %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to(fa_icon('check', text: 'Subscriptions'), admin_subscriptions_path, class: "nav-link #{active_if(admin_subscriptions_path)}") %>
+      </li>
+    <% end %>
+
     <li class="nav-item">
       <%= link_to(fa_icon('dashboard', text: 'Dashboard'), dashboard_path, class: "nav-link #{active_if(dashboard_path)}") %>
     </li>
@@ -26,11 +37,6 @@
       <%= link_to(fa_icon('paper-plane', text: 'Messages'), '#', class: "nav-link") %>
     </li>
 
-    <% admins_only do %>
-      <li class="nav-item">
-        <%= link_to(fa_icon('check', text: 'Subscriptions'), admin_subscriptions_path, class: "nav-link #{active_if(admin_subscriptions_path)}") %>
-      </li>
-    <% end %>
   </ul>
 
 </div>
