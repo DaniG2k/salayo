@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 20170807035945) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|
@@ -53,7 +51,6 @@ ActiveRecord::Schema.define(version: 20170807035945) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false
     t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -67,5 +64,4 @@ ActiveRecord::Schema.define(version: 20170807035945) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "listings", "users"
 end

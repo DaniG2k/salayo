@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Users can only see the appropriate links' do
   let(:user) {FactoryGirl.create(:user)}
+  let(:owner) {FactoryGirl.create(:user, :owner)}
   let(:admin) {FactoryGirl.create(:user, :admin)}
 
   context 'anonymous users' do
@@ -31,7 +32,7 @@ RSpec.feature 'Users can only see the appropriate links' do
   end
 
   context 'listing owners' do
-    before { login_as(user) }
+    before { login_as(owner) }
 
     scenario 'can see the Dashboard link' do
       visit dashboard_path

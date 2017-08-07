@@ -4,8 +4,16 @@ FactoryGirl.define do
     password 'supersecurep@ss'
     name Faker::Name.name
 
+    trait :owner do
+      after(:create) do |instance|
+        instance.add_role :owner
+      end
+    end
+
     trait :admin do
-    	admin true
+      after(:create) do |instance|
+        instance.add_role :admin
+      end
     end
   end
 end

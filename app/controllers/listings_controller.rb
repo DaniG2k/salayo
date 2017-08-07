@@ -4,7 +4,7 @@ class ListingsController < ApplicationController
   layout 'dashboard'
 
   def index
-    @listings = Listing.where(user_id: current_user.id)
+    @listings = Listing.with_roles(:owner, current_user)
   end
 
   def new
