@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
-  layout 'dashboard'
+  before_action :authenticate_user!
   before_action :set_listing, only: [:show, :edit, :update]
+  layout 'dashboard'
 
   def index
     @listings = Listing.where(user_id: current_user.id)
