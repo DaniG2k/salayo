@@ -10,7 +10,8 @@ class Admin::ApplicationController < ApplicationController
       authenticate_user!
 
       unless current_user.has_role?(:admin)
-        redirect_to dashboard_path, alert: 'You must be an admin to access that resource.'
+        flash[:alert] = 'You must be an admin to access that resource.'
+        redirect_to dashboard_path
       end
     end
 end
