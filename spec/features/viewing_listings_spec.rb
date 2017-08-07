@@ -5,10 +5,8 @@ RSpec.feature 'Viewing Listings' do
   let!(:listing) {FactoryGirl.create(:listing, owner: user)}
 
   before do
-    visit '/login'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: 'supersecurep@ss'
-    click_button 'Log in'
+    login_as user
+    visit dashboard_path
   end
 
   it "shows the logged in user's listings" do
