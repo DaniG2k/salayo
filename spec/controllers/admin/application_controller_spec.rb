@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin::ApplicationController, type: :controller do
-  let(user) {FactoryGirl.create(:user)}
+  let(:user) {FactoryGirl.create(:user)}
 
   before do
     allow(controller).to receive(:authenticate_user!)
