@@ -20,6 +20,10 @@ module ApplicationHelper
     "&copy; #{t('website')} #{years_since_foundation}".html_safe
   end
 
+  def user_locale
+    current_user.present? ? current_user.locale : 'en'
+  end
+
   def owners_only &block
     if admin? || Listing.with_roles(:owner, current_user).present?
       block.call
