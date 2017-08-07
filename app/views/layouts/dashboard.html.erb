@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head lang="<%= user_locale %>">
+    <%= render 'common/meta_tags' %>
     <%= content_tag :title, (content_for?(:title) ? yield(:title) : t(:website)) %>
     <%= csrf_meta_tags %>
 
