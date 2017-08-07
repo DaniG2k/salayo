@@ -4,6 +4,45 @@
 
   <div class="container-fluid">
     <h1>Admin Lounge</h1>
-    <p>Find me in app/views/admin/application/index.html.erb</p>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card dashboard-card">
+          <div class="card-block">
+            <h4 class="card-title"><%= fa_icon('home', text: 'Listings') %></h4>
+            This is some text within a card block.
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-6 col-xs-12">
+
+        <div class="card dashboard-card">
+          <div class="card-block">
+            <h4 class="card-title"><%= fa_icon('users', text: 'Manage users') %></h4>
+            This is some text within a card block.
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-6 col-xs-12">
+
+        <div class="card dashboard-card">
+          <div class="card-block">
+            <h4 class="card-title"><%= fa_icon('check', text: 'Subscriptions') %></h4>
+            This is some text within a card block.
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </div>
