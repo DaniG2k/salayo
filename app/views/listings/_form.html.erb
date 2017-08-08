@@ -1,0 +1,42 @@
+<%= form_for @listing do |f| %>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <strong><%= f.label :name %></strong><br>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <strong><%= f.label :property_type %></strong><br>
+        <%= f.select(:property_type, options_for_select(@property_types, @listing.property_type), class: 'form-control') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <strong><%= f.label :lat, 'Latitude' %></strong><br>
+        <%= f.text_field :lat, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <strong><%= f.label :lng, 'Longitude' %></strong><br>
+        <%= f.text_field :lng, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="actions">
+        <%= f.submit class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+<% end %>

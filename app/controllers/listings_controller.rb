@@ -9,6 +9,7 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
+    @property_types = Listing::PROPERTY_TYPES.map.with_index {|type, i| [type.titleize, i] }
   end
 
   def create
