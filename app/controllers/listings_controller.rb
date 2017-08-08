@@ -28,12 +28,13 @@ class ListingsController < ApplicationController
   end
 
   def edit
+    authorize @listing, :edit?
   end
 
   def update
     if @listing.update(listing_params)
       current_user.add_role(:owner, @listing)
-      
+
       flash[:notice] = 'Listing has been updated!'
       redirect_to @listing
     else
