@@ -1,2 +1,8 @@
-<h1>Listings#edit</h1>
-<p>Find me in app/views/listings/edit.html.erb</p>
+<% title('Edit listing') %>
+
+<div class="dashboard-main-content">
+  <div class="container-fluid">
+    <h1>Edit listing</h1>
+    <%= render 'form', listing: @listing %>
+  </div>
+</div>
