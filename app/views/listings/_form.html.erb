@@ -1,4 +1,15 @@
-<%= form_for @listing do |f| %>
+<%= form_for(listing) do |f| %>
+  <% if listing.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <strong><%= pluralize(listing.errors.count, 'error') %>
+      prohibited this listing from being saved:</strong>
+      <ul>
+        <% listing.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="row">
     <div class="col">
       <div class="form-group">
@@ -12,7 +23,7 @@
     <div class="col">
       <div class="form-group">
         <strong><%= f.label :property_type %></strong><br>
-        <%= f.select(:property_type, options_for_select(@property_types, @listing.property_type), class: 'form-control') %>
+        <%= f.select(:property_type, options_for_select(Listing::PROPERTY_TYPES.map {|type| [type.titleize, type]}, listing.property_type), class: 'form-control') %>
       </div>
     </div>
   </div>
@@ -21,13 +32,13 @@
     <div class="col-6">
       <div class="form-group">
         <strong><%= f.label :lat, 'Latitude' %></strong><br>
-        <%= f.text_field :lat, class: 'form-control' %>
+        <%= f.number_field :lat, in: -90.0..90.0, class: 'form-control' %>
       </div>
     </div>
     <div class="col-6">
       <div class="form-group">
         <strong><%= f.label :lng, 'Longitude' %></strong><br>
-        <%= f.text_field :lng, class: 'form-control' %>
+        <%= f.number_field :lng, in: -180.0..180.0, class: 'form-control' %>
       </div>
     </div>
   </div>

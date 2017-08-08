@@ -1,15 +1,17 @@
 class Listing < ApplicationRecord
   resourcify
+
+  belongs_to :owner, optional: true
+
+  validates :name, uniqueness: true
   validates(
     :name,
     :property_type,
     :lat,
     :lng,
     presence: true)
-  validates :lat, inclusion: (-90..90)
-  validates :lng, inclusion: (-180..180)
+  validates :lat, inclusion: {in: (-90.0..90.0), message: 'is not in the range -90 to 90'}
+  validates :lng, inclusion: {in: (-180.0..180.0), message: 'is not in the range -180 to 180'}
 
-  belongs_to :owner, optional: true
-
-  PROPERTY_TYPES = %w(apartment house bnb loft cabin villa castle dorm treehouse boat plane rv igloo lighthouse yurt tipi cave island chalet earthhouse hut train tent loft townhouse condominium other).sort.freeze
+  PROPERTY_TYPES = %w(apartment house bnb cabin villa castle dorm treehouse igloo lighthouse yurt tipi cave island chalet earthhouse hut tent loft townhouse condominium other).sort.freeze
 end
