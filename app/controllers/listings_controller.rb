@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_listing, only: [:show, :edit, :update]
+  before_action :set_listing, only: [:show, :edit, :update, :destroy]
   layout 'dashboard'
 
   def index
@@ -44,7 +44,7 @@ class ListingsController < ApplicationController
   def destroy
     if @listing.destroy
       # TODO remove owner role from listing
-      redirect_to dashboard_path, notice: 'Listing was successfully destroyed!'
+      redirect_to listings_path, notice: 'Listing was successfully deleted!'
     else
       flash.now[:notice] = 'ArtiListingcle was not destroyed.'
     end
