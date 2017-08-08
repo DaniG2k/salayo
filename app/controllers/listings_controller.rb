@@ -15,7 +15,9 @@ class ListingsController < ApplicationController
     @listing = Listing.new listing_params
 
     if @listing.save
-      flash[:notice] = 'Listing was successfully created!'
+      current_user.add_role :owner, @listing
+
+      flash[:notice] = 'Listing was created successfully!'
       redirect_to listing_path(@listing)
     else
       render :new
@@ -29,10 +31,13 @@ class ListingsController < ApplicationController
   end
 
   def update
+    # TODO
+    current_user.add_role :owner, @listing
   end
 
   def destroy
     if @listing.destroy
+      # TODO remove owner role from listing
       redirect_to dashboard_path, notice: 'Listing was successfully destroyed!'
     else
       flash.now[:notice] = 'ArtiListingcle was not destroyed.'
@@ -40,6 +45,11 @@ class ListingsController < ApplicationController
   end
 
   private
+
+    def listing_params
+      params.require(:listing).permit(:name, :property_type, :lat, :lng)
+    end
+
     def set_listing
       @listing = Listing.find(params[:id])
     end

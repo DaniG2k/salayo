@@ -1,2 +1,8 @@
-<h1>Listings#new</h1>
-<p>Find me in app/views/listings/new.html.erb</p>
+<% title('Add listing') %>
+
+<div class="dashboard-main-content">
+  <div class="container-fluid">
+    <h1>Add listing</h1>
+    <%= render 'form', listing: @listing %>
+  </div>
+</div>
