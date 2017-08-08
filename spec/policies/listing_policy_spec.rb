@@ -39,11 +39,59 @@ RSpec.describe ListingPolicy do
   end
 
   permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    let(:user) {FactoryGirl.create(:user)}
+    let(:listing) {FactoryGirl.create(:listing)}
+
+    it 'blocks anonymous users' do
+      expect(subject).not_to permit(nil, listing)
+    end
+
+    it 'blocks registered users' do
+      expect(subject).not_to permit(user, listing)
+    end
+
+    it "blocks owner who doesn't own the listing" do
+      assign_role!(user, :owner)
+      expect(subject).not_to permit(user, listing)
+    end
+
+    it 'allows listing owner' do
+      assign_role!(user, :owner, listing)
+      expect(subject).to permit(user, listing)
+    end
+
+    it 'allows admins' do
+      assign_role!(user, :admin)
+      expect(subject).to permit(user, listing)
+    end
   end
 
   permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    let(:user) {FactoryGirl.create(:user)}
+    let(:listing) {FactoryGirl.create(:listing)}
+
+    it 'blocks anonymous users' do
+      expect(subject).not_to permit(nil, listing)
+    end
+
+    it 'blocks registered users' do
+      expect(subject).not_to permit(user, listing)
+    end
+
+    it "blocks owner who doesn't own the listing" do
+      assign_role!(user, :owner)
+      expect(subject).not_to permit(user, listing)
+    end
+
+    it 'allows listing owner' do
+      assign_role!(user, :owner, listing)
+      expect(subject).to permit(user, listing)
+    end
+
+    it 'allows admins' do
+      assign_role!(user, :admin)
+      expect(subject).to permit(user, listing)
+    end
   end
 
   permissions :destroy? do

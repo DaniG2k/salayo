@@ -9,7 +9,23 @@ class ListingPolicy < ApplicationPolicy
     user.present?
   end
 
+  def create?
+    destroy?
+  end
+
+  def new?
+    show? && (user.has_role?(:admin) || user.has_role?(:owner))
+  end
+
+  def update?
+    destroy?
+  end
+
+  def edit?
+    destroy?
+  end
+
   def destroy?
-    user.present? && (user.has_role?(:admin) || Listing.find_roles(:owner, user).present?)
+    show? && (user.has_role?(:admin) || Listing.find_roles(:owner, user).present?)
   end
 end
