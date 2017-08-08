@@ -47,7 +47,7 @@ class ListingsController < ApplicationController
     if @listing.destroy
       redirect_to listings_path, notice: 'Listing was successfully deleted!'
     else
-      flash.now[:notice] = 'ArtiListingcle was not destroyed.'
+      flash.now[:notice] = 'Listing was not destroyed.'
     end
   end
 
