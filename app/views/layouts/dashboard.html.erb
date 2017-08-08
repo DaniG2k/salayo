@@ -19,7 +19,15 @@
 
       <div class="column-layout-right">
         <%= render 'dashboard/topbar' %>
-        <%= render 'common/notices' %>
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <%= render 'common/notices' %>
+            </div>
+          </div>
+        </div>
+
         <%= yield %>
       </div>
     </div>
