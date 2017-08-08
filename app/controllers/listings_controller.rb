@@ -31,8 +31,14 @@ class ListingsController < ApplicationController
   end
 
   def update
-    # TODO
-    current_user.add_role :owner, @listing
+    if @listing.update(listing_params)
+      current_user.add_role :owner, @listing
+      flash[:notice] = 'Listing has been updated!'
+      redirect_to @listing
+    else
+      flash.now[:alert] = 'Listing has not been updated.'
+      render :edit
+    end
   end
 
   def destroy
