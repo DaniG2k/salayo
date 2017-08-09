@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature 'Viewing Listings' do
+
   let(:user) {FactoryGirl.create(:user)}
-  let(:listing) {FactoryGirl.create(:listing)}
+  let!(:listing) {FactoryGirl.create(:listing)}
 
   it "doesn't show My listings for users without listings" do
     login_as user
@@ -22,7 +23,6 @@ RSpec.feature 'Viewing Listings' do
   end
 
   it 'shows admins all listings' do
-    user.remove_role :owner
     assign_role!(user, :admin)
     login_as user
     visit dashboard_path
