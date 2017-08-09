@@ -5,6 +5,7 @@ class Listing < ApplicationRecord
 
   validates :name, uniqueness: true
   validates(
+    :owner,
     :name,
     :property_type,
     :lat,
