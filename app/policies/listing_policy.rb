@@ -5,10 +5,6 @@ class ListingPolicy < ApplicationPolicy
     end
   end
 
-  def index?
-    destroy?
-  end
-
   def show?
     user.present?
   end
