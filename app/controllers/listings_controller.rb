@@ -4,7 +4,11 @@ class ListingsController < ApplicationController
   layout 'dashboard'
 
   def index
-    @listings = Listing.with_roles(:owner, current_user)
+    @listings = if current_user.has_role?(:admin)
+      Listing.all
+    else
+      Listing.with_roles(:owner, current_user)
+    end
   end
 
   def new
