@@ -4,11 +4,12 @@ class ListingsController < ApplicationController
   layout 'dashboard'
 
   def index
-    @listings = if current_user.has_role?(:admin)
-      Listing.all
-    else
-      Listing.with_roles(:owner, current_user)
-    end
+    @listings = policy_scope Listing
+    # @listings = if current_user.has_role?(:admin)
+    #   Listing.all
+    # else
+    #   Listing.with_roles(:owner, current_user)
+    # end
   end
 
   def new
@@ -17,6 +18,7 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new listing_params
+    @listing.owner = current_user
 
     if @listing.save
       current_user.add_role(:owner, @listing)
@@ -36,6 +38,8 @@ class ListingsController < ApplicationController
   end
 
   def update
+    @listing.owner = current_user
+
     if @listing.update(listing_params)
       current_user.add_role(:owner, @listing)
 

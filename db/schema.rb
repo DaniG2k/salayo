@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808080513) do
+ActiveRecord::Schema.define(version: 20170809082416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20170808080513) do
     t.string "property_type"
     t.float "lat"
     t.float "lng"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|
@@ -68,4 +70,5 @@ ActiveRecord::Schema.define(version: 20170808080513) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "listings", "users"
 end
