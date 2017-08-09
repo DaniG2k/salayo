@@ -19,6 +19,7 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new listing_params
     @listing.owner = current_user
+    #authorize @listing, :create?
 
     if @listing.save
       current_user.add_role(:owner, @listing)
@@ -31,6 +32,7 @@ class ListingsController < ApplicationController
   end
 
   def show
+    authorize @listing, :show?
   end
 
   def edit
@@ -38,6 +40,7 @@ class ListingsController < ApplicationController
   end
 
   def update
+    authorize @listing, :update?
     @listing.owner = current_user
 
     if @listing.update(listing_params)
@@ -52,6 +55,7 @@ class ListingsController < ApplicationController
   end
 
   def destroy
+    authorize @listing, :destroy?
     if @listing.destroy
       redirect_to listings_path, notice: 'Listing was successfully deleted!'
     else
