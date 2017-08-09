@@ -94,34 +94,38 @@ RSpec.describe ListingPolicy do
       expect(subject).to permit(user1, listing2)
     end
   end
-  #
-  # permissions :update? do
-  #   let(:user) {FactoryGirl.create(:user)}
-  #   let(:listing) {FactoryGirl.create(:listing)}
-  #
-  #   it 'blocks anonymous users' do
-  #     expect(subject).not_to permit(nil, listing)
-  #   end
-  #
-  #   it 'blocks registered users' do
-  #     expect(subject).not_to permit(user, listing)
-  #   end
-  #
-  #   it "blocks owner who doesn't own the listing" do
-  #     assign_role!(user, :owner)
-  #     expect(subject).not_to permit(user, listing)
-  #   end
-  #
-  #   it 'allows listing owner' do
-  #     assign_role!(user, :owner, listing)
-  #     expect(subject).to permit(user, listing)
-  #   end
-  #
-  #   it 'allows admins' do
-  #     assign_role!(user, :admin)
-  #     expect(subject).to permit(user, listing)
-  #   end
-  # end
+
+  permissions :update? do
+    let(:regular_user) {FactoryGirl.create(:user)}
+    let(:user1) {FactoryGirl.create(:user)}
+    let(:user2) {FactoryGirl.create(:user)}
+    let(:listing1) {FactoryGirl.create(:listing, owner: user1)}
+    let(:listing2) {FactoryGirl.create(:listing, owner: user2)}
+
+    it 'blocks anonymous users' do
+      expect(subject).not_to permit(nil, listing1)
+    end
+
+    it 'blocks registered users' do
+      expect(subject).not_to permit(regular_user, listing1)
+    end
+
+    it "blocks owner who doesn't own the listing" do
+      assign_role!(user1, :owner, listing1)
+      assign_role!(user2, :owner, listing2)
+      expect(subject).not_to permit(user1, listing2)
+    end
+
+    it 'allows listing owner' do
+      assign_role!(user1, :owner, listing1)
+      expect(subject).to permit(user1, listing1)
+    end
+
+    it 'allows admins' do
+      assign_role!(user1, :admin)
+      expect(subject).to permit(user1, listing2)
+    end
+  end
 
   permissions :destroy? do
     let(:user1) {FactoryGirl.create(:user)}
