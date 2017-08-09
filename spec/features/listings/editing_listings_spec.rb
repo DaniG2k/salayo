@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature 'Listing owners can edit existing listings' do
-  let(:owner) {FactoryGirl.create(:user)}
-  let(:listing) {FactoryGirl.create(:listing)}
+  let(:user) {FactoryGirl.create(:user)}
+  let(:listing) {FactoryGirl.create(:listing, owner: user)}
 
   before do
-    owner.add_role(:owner, listing)
-    login_as owner
+    user.add_role(:owner, listing)
+    login_as user
     visit edit_listing_path(listing)
   end
 
