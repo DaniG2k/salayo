@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe ListingsController, type: :controller do
   it 'handles permission errors by redirecting to a safe place' do
-    binding.pry
     allow(controller).to receive(:current_user)
 
     listing = FactoryGirl.create(:listing)

@@ -24,14 +24,14 @@ module ApplicationHelper
     current_user.present? ? current_user.locale : 'en'
   end
 
+  def admins_only &block
+    block.call if admin?
+  end
+
   def owners_only &block
     if admin? || Listing.with_roles(:owner, current_user).present?
       block.call
     end
-  end
-
-  def admins_only &block
-    block.call if admin?
   end
 
   def admin?
