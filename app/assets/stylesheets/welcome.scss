@@ -44,8 +44,10 @@
   ul {
     margin: 0;
     list-style: none;
+    display: inherit;
     a {
       display: block;
+      text-align: center;
       &:hover {
         text-decoration: underline;
       }
