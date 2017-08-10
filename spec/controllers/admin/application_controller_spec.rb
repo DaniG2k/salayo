@@ -13,8 +13,7 @@ RSpec.describe Admin::ApplicationController, type: :controller do
       get :index
 
       expect(response).to redirect_to dashboard_path
-      expect(flash[:alert]).to eq 'You must be an admin to access that resource.'
+      #expect(flash[:warning]).to eq 'You must be an admin to access that resource.'
     end
   end
-
 end
