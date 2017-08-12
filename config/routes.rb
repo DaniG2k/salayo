@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users, skip: [:registrations], path: '', path_names: { sign_in: 'login', sign_out: 'logout' }
   root 'welcome#index'
+  devise_for :users, skip: [:registrations], path: '', path_names: { sign_in: 'login', sign_out: 'logout' }
+  as :user do
+    get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
+    patch 'users' => 'devise/registrations#update', as: 'user_registration'
+  end
 
   get 'contact', to: 'contact_messages#new', as: 'new_message'
   post 'contact', to: 'contact_messages#create', as: 'create_message'
