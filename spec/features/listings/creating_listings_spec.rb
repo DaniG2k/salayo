@@ -27,7 +27,7 @@ RSpec.feature 'Listing owners can create new listings' do
 
   scenario 'with invalid attributes' do
     click_button 'Create Listing'
-    
+
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content 'is not in the range -180 to 180'
     expect(page).to have_content 'is not in the range -90 to 90'

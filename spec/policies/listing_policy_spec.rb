@@ -37,7 +37,7 @@ RSpec.describe ListingPolicy do
     let(:user2) {FactoryGirl.create(:user)}
     let(:listing1) {FactoryGirl.create(:listing, owner: user1)}
     let(:listing2) {FactoryGirl.create(:listing, owner: user2)}
-
+    
     it 'blocks anonymous users' do
       expect(subject).not_to permit(nil, listing1)
     end
