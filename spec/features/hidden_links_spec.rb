@@ -41,7 +41,7 @@ RSpec.feature 'Users can only see the appropriate links' do
 
     scenario 'can see the My listings link' do
       visit dashboard_path
-      expect(page).not_to have_link 'My listings'
+      expect(page).to have_link 'My listings'
     end
 
     scenario 'cannot see the Subscriptions link' do

@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def owners_only &block
-    if admin? || Listing.with_roles(:owner, current_user).present?
+    if admin? || current_user.roles.pluck(:name).include?('owner')
       block.call
     end
   end
