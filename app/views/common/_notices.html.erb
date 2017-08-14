@@ -1,41 +1,17 @@
-<% if flash[:notice].present? %>
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>Excellent!</strong>
-    <%= flash[:notice] %>
-  </div>
-<% elsif flash[:success].present? %>
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>Excellent!</strong>
-    <%= flash[:success] %>
-  </div>
-<% elsif flash[:info].present? %>
-  <div class="alert alert-info alert-dismissible fade show" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>Heads up!</strong>
-    <%= flash[:info] %>
-  </div>
-<% elsif flash[:warning].present? %>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>Warning!</strong>
-    <%= flash[:warning] %>
-  </div>
-<% elsif flash[:danger].present? %>
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>Oops!</strong>
-    <%= flash[:danger] %>
-  </div>
+<% {
+  notice: 'Excellent!',
+  success: 'Excellent!',
+  info: 'Heads up!',
+  warning: 'Warning!',
+  danger: 'Oops!'
+}.each do |k, v| %>
+  <% if flash[k].present? %>
+    <div class="alert alert-<%= k.to_s %> alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <%= content_tag(:strong, v) %>
+      <%= flash[k] %>
+    </div>
+  <% end %>
 <% end %>
