@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/show'
+
   root 'welcome#index'
   devise_for(
     :users,
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
     get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
     patch 'users' => 'devise/registrations#update', as: 'user_registration'
   end
+  resources :users, only: [:show]
 
   get 'contact', to: 'contact_messages#new', as: 'new_message'
   post 'contact', to: 'contact_messages#create', as: 'create_message'
