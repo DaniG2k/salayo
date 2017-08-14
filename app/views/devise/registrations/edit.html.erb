@@ -1,10 +1,10 @@
-<% title("Edit #{resource_name.to_s.humanize}") %>
+<% title('Edit account') %>
 
 <div class="dashboard-main-content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <h1>Edit <%= resource_name.to_s.humanize %></h1>
+        <h1>Edit account</h1>
 
           <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :patch }) do |f| %>
             <%= devise_error_messages! %>
