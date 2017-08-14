@@ -8,4 +8,7 @@ services:
       POSTGRES_DB: "${SALAYO_DATABASE_NAME}"
       POSTGRES_PASSWORD: "${SALAYO_DATABASE_PASSWORD}"
     volumes:
-      - ./sql:/sql
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:
+    driver: local
