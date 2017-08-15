@@ -10,7 +10,7 @@ RSpec.feature 'Viewing Listings' do
 
   it "doesn't show My listings for users without listings" do
     login_as regular_user
-    visit dashboard_path
+    visit dashboard_path(locale: regular_user.locale)
 
     expect(page).not_to have_link('My listings')
   end
@@ -18,7 +18,7 @@ RSpec.feature 'Viewing Listings' do
   it "shows the logged in user's listings" do
     assign_role!(user1, :owner, listing1)
     login_as user1
-    visit dashboard_path
+    visit dashboard_path(locale: user1.locale)
 
     click_link 'My listings'
 
@@ -28,7 +28,7 @@ RSpec.feature 'Viewing Listings' do
   it 'shows admins all listings' do
     assign_role!(user2, :admin)
     login_as user2
-    visit dashboard_path
+    visit dashboard_path(locale: user2.locale)
 
     click_link 'My listings'
 
