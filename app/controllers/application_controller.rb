@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_locale
 
   def after_sign_in_path_for(resource)
     dashboard_path
@@ -21,5 +22,13 @@ class ApplicationController < ActionController::Base
     def not_authorized
       flash[:warning] = 'You are not allowed to access that resource.'
       redirect_to dashboard_path
+    end
+
+    def set_locale
+      I18n.locale = current_user.try(:locale) || params[:locale] || I18n.default_locale
+    end
+
+    def default_url_options
+      { locale: I18n.locale }
     end
 end
