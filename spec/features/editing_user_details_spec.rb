@@ -5,7 +5,7 @@ RSpec.feature 'Registered users can edit their details' do
 
   before do
     login_as(user)
-    visit '/users/edit'
+    visit "/#{user.locale}/users/edit"
   end
 
   scenario 'with valid credentials' do
@@ -18,7 +18,7 @@ RSpec.feature 'Registered users can edit their details' do
     click_button 'Update'
 
     expect(page).to have_content('Your account has been updated successfully.')
-    expect(page).to have_current_path(/\/dashboard/)
+    expect(page).to have_current_path(/#{user.locale}\/dashboard/)
   end
 
   scenario 'with invalid credentials' do
