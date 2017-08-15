@@ -1,6 +1,8 @@
+require 'rails_helper'
+
 describe 'Registering users emails', type: :feature do
   before :each do
-    visit root_path
+    visit root_path locale: 'en'
   end
 
   it 'has a subscribe form' do
