@@ -10,9 +10,9 @@ RSpec.describe Admin::ApplicationController, type: :controller do
 
   context 'non-admin users' do
     it 'are not able to access the index action' do
-      get :index
+      get :index, params: {locale: user.locale}
 
-      expect(response).to redirect_to dashboard_path
+      expect(response).to redirect_to dashboard_path(locale: user.locale)
       #expect(flash[:warning]).to eq 'You must be an admin to access that resource.'
     end
   end
