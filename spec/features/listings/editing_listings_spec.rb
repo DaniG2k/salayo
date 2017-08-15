@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Listing owners can edit existing listings' do
-  let(:user) {FactoryGirl.create(:user)}
+  let(:user) {FactoryGirl.create(:user, locale: 'en')}
   let(:listing) {FactoryGirl.create(:listing, owner: user)}
 
   before do
