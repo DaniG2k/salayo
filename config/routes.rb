@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  get '' => redirect("/#{I18n.default_locale}")
   scope "/:locale", locale: /en|ko/ do
-    root 'welcome#index'
+    root to: 'welcome#index'
     devise_for(
       :users,
       path: '',
