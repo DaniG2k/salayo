@@ -7,7 +7,7 @@ RSpec.feature 'Listing owners can edit existing listings' do
   before do
     user.add_role(:owner, listing)
     login_as user
-    visit edit_listing_path(listing)
+    visit edit_listing_path(locale: user.locale, id: listing)
   end
 
   scenario 'with valid attributes' do
