@@ -6,7 +6,7 @@ RSpec.describe 'Viewing subscriptions', type: :feature do
 
   before :each do
     login_as admin
-    visit admin_subscriptions_path
+    visit admin_subscriptions_path(locale: admin.locale)
   end
 
   it 'list subscribed emails' do
