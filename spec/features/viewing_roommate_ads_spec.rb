@@ -8,12 +8,13 @@ RSpec.describe 'Viewing roommate ads', type: :feature do
   before do
     login_as adam
     visit dashboard_path(locale: 'en')
-    click_link 'Roommates'
+    click_link 'Roommate ads'
   end
 
   it 'shows available roommate ads' do
     within('.card') do
       expect(page).to have_content(bob.name)
+      expect(page).to have_content(advertisement.title)
       expect(page).to have_content(advertisement.body)
     end
   end

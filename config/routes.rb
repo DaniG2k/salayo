@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     post 'subscribe', to: 'welcome#subscribe', as: 'subscribe_email'
     get 'dashboard', to: 'dashboard#index'
     get 'search', to: 'dashboard#search'
-    get 'roommates', to: 'roommates#index'
+    get 'roommate_ads', to: 'roommates#ads'
 
     namespace :admin do
       root 'application#index'
