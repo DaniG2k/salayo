@@ -23,6 +23,8 @@ module Salayo
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :en
     I18n.available_locales = [:en, :ko]
+    config.i18n.load_path += Dir["#{Rails.root.to_s}/config/locales/**/*.{rb,yml}"]
+    
     config.to_prepare do
       Devise::RegistrationsController.layout 'dashboard'
     end

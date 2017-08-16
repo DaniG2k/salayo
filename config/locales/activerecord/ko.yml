@@ -3,6 +3,8 @@ ko:
     models:
       listing: '리스팅'
     attributes:
-      name: '이름'
-      lat: '위도'
-      lng: '경도'
+      user:
+        name: '이름'
+        lat: '위도'
+        lng: '경도'
+        locale: '언어'

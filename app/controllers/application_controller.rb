@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
       devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :locale])
     end
 
   private
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_locale
-      I18n.locale = current_user.try(:locale) || params[:locale] || I18n.default_locale
+      I18n.locale = current_user.try(:locale) || I18n.default_locale
     end
 
     def default_url_options

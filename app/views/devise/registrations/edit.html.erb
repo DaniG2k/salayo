@@ -3,7 +3,7 @@
 <div class="dashboard-main-content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
+      <div class="col-7">
         <h1><%= t('.title', resource: resource_class.model_name.human) %></h1>
           <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :patch }) do |f| %>
             <%= devise_error_messages! %>
@@ -39,6 +39,11 @@
             <div class="form-group">
               <%= f.label :name %><br />
               <%= f.text_field :name, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :locale %><br />
+              <%= f.select(:locale, [['English', 'en'], ['한국어', 'ko']], {}, {selected: current_user.locale, class: 'custom-select'}) %>
             </div>
 
             <div class="actions">
