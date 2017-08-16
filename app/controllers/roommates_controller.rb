@@ -2,7 +2,7 @@ class RoommatesController < ApplicationController
   before_action :authenticate_user!
   layout 'dashboard'
 
-  def index
+  def ads
     @advertisements = Advertisement.all.includes(:user)
   end
 end
