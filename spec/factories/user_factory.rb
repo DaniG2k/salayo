@@ -3,6 +3,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password 'supersecurep@ss'
     name Faker::Name.name
+    locale I18n.available_locales.sample
 
     trait :owner do
       after(:create) do |instance|

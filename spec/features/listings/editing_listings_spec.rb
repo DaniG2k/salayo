@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.feature 'Listing owners can edit existing listings' do
-  let(:user) {FactoryGirl.create(:user)}
+  let(:user) {FactoryGirl.create(:user, locale: 'en')}
   let(:listing) {FactoryGirl.create(:listing, owner: user)}
 
   before do
     user.add_role(:owner, listing)
     login_as user
-    visit edit_listing_path(listing)
+    visit edit_listing_path(locale: user.locale, id: listing)
   end
 
   scenario 'with valid attributes' do
