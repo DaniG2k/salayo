@@ -14,6 +14,7 @@ RSpec.describe 'Viewing roommate ads', type: :feature do
   it 'shows available roommate ads' do
     within('.card') do
       expect(page).to have_content(bob.name)
+      expect(page).to have_content(advertisement.ad_type)
       expect(page).to have_content(advertisement.title)
       expect(page).to have_content(advertisement.body)
     end
