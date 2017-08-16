@@ -1,4 +1,4 @@
-module RoommatesHelper
+module AdvertisementsHelper
   def display_ad_type(advertisement)
     type = advertisement.ad_type
 

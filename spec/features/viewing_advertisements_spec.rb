@@ -11,12 +11,18 @@ RSpec.describe 'Viewing roommate ads', type: :feature do
     click_link 'Roommate ads'
   end
 
-  it 'shows available roommate ads' do
+  it 'shows a list of available roommate ads' do
     within('.card') do
       expect(page).to have_content(bob.name)
       expect(page).to have_content(advertisement.ad_type)
       expect(page).to have_content(advertisement.title)
       expect(page).to have_content(advertisement.body)
     end
+  end
+
+  it 'displays a show page' do
+    click_link "#{bob.name} - #{advertisement.title}"
+
+    expect(page).to have_content(advertisement.body)
   end
 end
