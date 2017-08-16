@@ -3,7 +3,7 @@
 <div class="dashboard-main-content">
 
   <div class="container-fluid">
-    <h1>My listings</h1>
+    <h1><%= fa_icon('home', text: 'My listings') %></h1>
 
     <% @listings.in_groups_of(2) do |group| %>
       <div class="row">

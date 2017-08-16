@@ -5,11 +5,6 @@ class ListingsController < ApplicationController
 
   def index
     @listings = policy_scope Listing
-    # @listings = if current_user.has_role?(:admin)
-    #   Listing.all
-    # else
-    #   Listing.with_roles(:owner, current_user)
-    # end
   end
 
   def new
