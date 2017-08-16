@@ -15,6 +15,7 @@ RSpec.feature 'Registered users can edit their details' do
     fill_in 'Password confirmation', with: pass
     fill_in 'Current password', with: 'supersecurep@ss'
     fill_in 'Name', with: 'Bob'
+    select 'English'
     click_button 'Update'
 
     expect(page).to have_content('Your account has been updated successfully.')
