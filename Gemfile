@@ -32,7 +32,9 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'rails-i18n', '~> 5.0.0'
 gem 'devise'
+gem 'devise-i18n'
 gem 'font-awesome-rails'
 gem 'rolify'
 gem 'pundit'

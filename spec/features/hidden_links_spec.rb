@@ -7,64 +7,64 @@ RSpec.feature 'Users can only see the appropriate links' do
 
   context 'anonymous users' do
     scenario 'cannot see the Dashboard link' do
-      visit dashboard_path
+      visit dashboard_path(locale: 'en')
       expect(page).not_to have_link 'Dashboard'
     end
   end
 
   context 'regular users' do
-    before { login_as(user) }
+    before do
+      login_as(user)
+      visit '/en/dashboard'
+    end
 
     scenario 'can see the Dashboard link' do
-      visit dashboard_path
       expect(page).to have_link 'Dashboard'
     end
 
     scenario 'cannot see the My listings link' do
-      visit dashboard_path
       expect(page).not_to have_link 'My listings'
     end
 
     scenario 'cannot see the Subscriptions link' do
-      visit dashboard_path
       expect(page).not_to have_link 'Subscriptions'
     end
   end
 
   context 'listing owners' do
-    before { login_as(owner) }
+    before do
+      login_as(owner)
+      visit '/en/dashboard'
+    end
 
     scenario 'can see the Dashboard link' do
-      visit dashboard_path
       expect(page).to have_link 'Dashboard'
     end
 
     scenario 'can see the My listings link' do
-      visit dashboard_path
       expect(page).to have_link 'My listings'
     end
 
     scenario 'cannot see the Subscriptions link' do
-      visit dashboard_path
       expect(page).not_to have_link 'Subscriptions'
     end
   end
 
   context 'admin users' do
-    before { login_as(admin) }
+    before do
+      login_as(admin)
+      visit '/en/dashboard'
+    end
 
     scenario 'can see the Dashboard link' do
-      visit dashboard_path
       expect(page).to have_link 'Dashboard'
     end
 
     scenario 'can see the My listings link' do
-      visit dashboard_path
       expect(page).to have_link 'My listings'
     end
 
     scenario 'can see the Subscriptions link' do
-      visit dashboard_path
       expect(page).to have_link 'Subscriptions'
     end
   end

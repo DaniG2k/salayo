@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    attributes:
+      user:
+        lat: Latitude
+        lng: Longitude
+        locale: Language

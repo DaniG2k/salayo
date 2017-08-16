@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature 'Listing owners can create new listings' do
-  let(:owner) {FactoryGirl.create(:user, :owner)}
+  let(:owner) {FactoryGirl.create(:user, :owner, locale: 'en')}
 
   before do
     login_as owner
-    visit dashboard_path
+    visit dashboard_path(locale: owner.locale)
     click_link 'Add listing'
   end
 
@@ -21,7 +21,7 @@ RSpec.feature 'Listing owners can create new listings' do
 
     listing = Listing.find_by(name: listing_name)
 
-    expect(page.current_url).to eq(listing_url(listing))
+    expect(page.current_url).to eq(listing_url(locale: owner.locale, id: listing))
     expect(Listing.with_role(:owner, owner).first).to eq(listing)
   end
 
