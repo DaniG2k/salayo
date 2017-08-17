@@ -13,3 +13,20 @@ footer {
     }
   }
 }
+
+// Bootstrap overrides
+.btn {
+  cursor: pointer;
+}
+.login {
+  background-color: $body-gray;
+  padding-bottom: 3em;
+}
+.login-container {
+  padding: 2em;
+  border-radius: 6px;
+  background-color: #fff;
+  .btn-primary {
+    width: 100%;
+  }
+}
