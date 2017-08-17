@@ -1,34 +1,58 @@
 require 'rails_helper'
 
 RSpec.describe 'Viewing roommate ads', type: :feature do
-  let(:adam) {FactoryGirl.create(:user)}
+  let(:alice) {FactoryGirl.create(:user)}
   let(:bob) {FactoryGirl.create(:user)}
-  let!(:advertisement) {FactoryGirl.create(:advertisement, user: bob)}
+  let!(:advertisement1) {FactoryGirl.create(:advertisement, user: alice)}
+  let!(:advertisement2) {FactoryGirl.create(:advertisement, user: bob)}
 
-  before do
-    login_as adam
-    visit dashboard_path(locale: 'en')
-    click_link 'Roommate ads'
-  end
+  context "a user's own ads" do
+    before do
+      login_as alice
+      visit dashboard_path(locale: 'en')
+      click_link 'My ads'
+    end
 
-  it 'shows a list of available roommate ads' do
-    within('.card') do
-      expect(page).to have_content(bob.name)
-      expect(page).to have_content(advertisement.ad_type)
-      expect(page).to have_content(advertisement.title)
-      expect(page).to have_content(advertisement.body)
+    it 'shows a list of the currently logged in user\'s ads' do
+      within('.card') do
+        expect(page).to have_content(advertisement1.ad_type)
+        expect(page).to have_content(advertisement1.title)
+        expect(page).to have_content(advertisement1.body)
+      end
     end
   end
 
-  it 'displays a show page' do
-    click_link "#{bob.name} - #{advertisement.title}"
+  context "other users' ads" do
+    before do
+      login_as alice
+      visit dashboard_path(locale: 'en')
+      click_link 'Roommate ads'
+    end
 
-    expect(page).to have_content(advertisement.body)
-  end
+    it 'shows a list of available roommate ads' do
+      within('.card') do
+        expect(page).not_to have_content(alice.name)
+        expect(page).not_to have_content(advertisement1.ad_type)
+        expect(page).not_to have_content(advertisement1.title)
+        expect(page).not_to have_content(advertisement1.body)
 
-  it 'redirects safely on non-existing advertisements' do
-    visit '/en/advertisements/10000'
+        expect(page).to have_content(bob.name)
+        expect(page).to have_content(advertisement2.ad_type)
+        expect(page).to have_content(advertisement2.title)
+        expect(page).to have_content(advertisement2.body)
+      end
+    end
 
-    expect(page).to have_content('That advertisement does not appear to exist.')
+    it 'displays a show page' do
+      click_link "#{bob.name} - #{advertisement2.title}"
+
+      expect(page).to have_content(advertisement2.body)
+    end
+
+    it 'redirects safely on non-existing advertisements' do
+      visit '/en/advertisements/10000'
+
+      expect(page).to have_content('That advertisement does not appear to exist.')
+    end
   end
 end

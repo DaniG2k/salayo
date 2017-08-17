@@ -26,6 +26,11 @@ Rails.application.routes.draw do
     end
 
     resources :listings
-    resources :advertisements
+    resources :advertisements do
+      collection do
+        get 'mine', as: :my
+      end
+    end
+    
   end
 end

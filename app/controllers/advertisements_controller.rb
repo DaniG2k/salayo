@@ -4,7 +4,7 @@ class AdvertisementsController < ApplicationController
   layout 'dashboard'
 
   def index
-    @advertisements = Advertisement.all.includes(:user)
+    @advertisements = Advertisement.where.not(user: current_user).includes(:user)
   end
 
   def show
@@ -39,6 +39,10 @@ class AdvertisementsController < ApplicationController
   def destroy
     @advertisement.destroy
     redirect_to advertisements_url, notice: 'Advertisement was successfully destroyed.'
+  end
+
+  def mine
+    @advertisements = Advertisement.where(user: current_user).includes(:user)
   end
 
   private
