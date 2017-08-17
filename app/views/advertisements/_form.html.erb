@@ -1,0 +1,47 @@
+<%= form_for(advertisement) do |f| %>
+  <% if advertisement.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <strong><%= pluralize(advertisement.errors.count, 'error') %>
+      prohibited this advertisement from being saved:</strong>
+      <ul>
+        <% advertisement.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <strong><%= f.label :title %></strong><br>
+        <%= f.text_field :title, autofocus: true, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <strong><%= f.label :body %></strong><br>
+        <%= f.text_area :body, class: 'form-control', rows: 6 %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <strong><%= f.label :ad_type %></strong><br>
+        <%= f.select(:ad_type, options_for_select(Advertisement::ALLOWED_TYPES.map {|t| [t.titleize, t]}.sort), {}, class: 'custom-select') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="actions">
+        <%= f.submit class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+<% end %>

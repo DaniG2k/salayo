@@ -7,7 +7,7 @@
 
     <% admins_only do %>
       <li class="nav-item">
-        <%= link_to(fa_icon('hashtag', text: 'Admin area'), admin_root_path, class: "nav-link #{active_if(admin_root_path)}") %>
+        <%= link_to(fa_icon('hashtag', text: 'Admin lounge'), admin_root_path, class: "nav-link #{active_if(admin_root_path)}") %>
       </li>
 
       <li class="nav-item">
@@ -31,6 +31,10 @@
 
     <li class="nav-item">
       <%= link_to(fa_icon('search', text: 'Search listings'), search_path, class: "nav-link #{active_if(search_path)}") %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to(fa_icon('address-card', text: 'Roommate ads'), advertisements_path, class: "nav-link #{active_if(advertisements_path)}") %>
     </li>
 
     <li class="nav-item">
