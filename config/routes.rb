@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'chatroom_users/create'
+
+  get 'chatroom_users/destroy'
+
   get '' => redirect("/#{I18n.default_locale}")
   scope "/:locale", locale: /en|ko/ do
     root to: 'welcome#index'
@@ -31,7 +35,9 @@ Rails.application.routes.draw do
         get 'mine', as: :my
       end
     end
-    resources :chatrooms
+    resources :chatrooms do
+      resource :chatroom_users
+    end
     get 'messages', to: 'chatrooms#messages'
   end
 end

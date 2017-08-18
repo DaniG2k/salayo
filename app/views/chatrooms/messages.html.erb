@@ -3,6 +3,32 @@
 <div class="dashboard-main-content">
 
   <div class="container-fluid">
-    <h1><%= fa_icon('paper-plane', text: 'Messages') %></h1>
+    <div class="row">
+      <div class="col">
+        <h1><%= fa_icon('paper-plane', text: 'Messages') %></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @chatrooms.each do |chatroom| %>
+              <tr>
+                <td><%= chatroom.name %></td>
+                <td><%= link_to 'Join', chatroom_chatroom_users_path(chatroom), method: :post %></td>
+                <td><%= link_to 'Leave', chatroom_chatroom_users_path(chatroom), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
   </div>
 </div>
