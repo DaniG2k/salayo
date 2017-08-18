@@ -22,7 +22,7 @@
 
     <div class="row">
       <div class="col-12">
-        <%= form_for [@chatroom, Message.new], remote: true do |f| %>
+        <%= form_for [@chatroom, Message.new] do |f| %>
           <div class="form-group">
             <%= f.text_area :body, class: 'form-control', autofocus: true %>
           </div>
