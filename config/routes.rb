@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'messages/create'
+
   get 'chatroom_users/create'
 
   get 'chatroom_users/destroy'
@@ -37,6 +39,7 @@ Rails.application.routes.draw do
     end
     resources :chatrooms do
       resource :chatroom_users
+      resources :messages
     end
     get 'messages', to: 'chatrooms#messages'
   end

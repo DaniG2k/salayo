@@ -13,7 +13,6 @@
 
         <table>
           <thead>
-            <tr>
               <th>Name</th>
             </tr>
           </thead>
@@ -27,6 +26,15 @@
             <% end %>
           </tbody>
         </table>
+        <br />
+        <h4>Joined</h4>
+        <ul>
+          <% current_user.chatrooms.each do |chatroom| %>
+            <li>
+              <%= link_to chatroom.name, chatroom, data: { behavior: "chatroom-link", chatroom_id: chatroom.id } %>
+            </li>
+          <% end %>
+        </ul>
 
       </div>
     </div>
