@@ -37,14 +37,19 @@
   width: 100%;
   background-color: white;
   padding: 0 !important;
+  .navbar-item {
+    line-height: 40px;
+  }
   .navbar-brand, .navbar-link { padding: 0.5rem 1rem; }
-  .navbar-link { color: black; }
+  .navbar-link {
+    display: inline-block;
+    color: black;
+  }
   ul {
     margin: 0;
     list-style: none;
     display: inherit;
     a {
-      display: block;
       text-align: center;
       &:hover {
         text-decoration: underline;
