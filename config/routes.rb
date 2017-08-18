@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         get 'mine', as: :my
       end
     end
-    
+    resources :chatrooms
+    get 'messages', to: 'chatrooms#messages'
   end
 end
