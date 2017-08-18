@@ -1,16 +1,16 @@
 <nav class="navbar sticky-top navbar-light bg-faded salayo-nav transparent">
   <div class="container">
-    <%= link_to root_path, class: 'navbar-brand' do %>
+    <%= link_to root_path, class: 'navbar-brand navbar-item' do %>
       <img src="https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
       <%= t('website') %>
     <% end %>
 
     <ul>
       <% if user_signed_in? %>
-      <li>
+      <li class="navbar-item">
         <%= link_to(fa_icon('dashboard', text: 'Dashboard'), dashboard_path, class: 'navbar-link') %>
       </li>
-      <li>
+      <li class="navbar-item">
         <%= link_to(fa_icon('unlock', text: 'Log out'), destroy_user_session_path, method: :delete, class: 'navbar-link float-right') %>
       </li>
       <% end %>
