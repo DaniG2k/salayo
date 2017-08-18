@@ -64,6 +64,7 @@ class ChatroomsController < ApplicationController
   end
 
   def messages
+    @chatrooms = Chatroom.all
   end
 
   private
