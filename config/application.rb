@@ -24,9 +24,10 @@ module Salayo
     config.i18n.default_locale = :en
     I18n.available_locales = [:en, :ko]
     config.i18n.load_path += Dir["#{Rails.root.to_s}/config/locales/**/*.{rb,yml}"]
-    
+
     config.to_prepare do
       Devise::RegistrationsController.layout 'dashboard'
     end
+    config.active_job.queue_adapter = :sidekiq
   end
 end
