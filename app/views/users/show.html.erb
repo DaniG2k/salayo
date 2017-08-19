@@ -6,19 +6,23 @@
 
     <div class="row">
       <div class="col-12">
+
         <div class="card dashboard-card">
           <div class="card-block">
             <h4 class="card-title"><%= fa_icon('envelope', text: "#{t('.email')}: #{@user.email}") %></h4>
             This is some text within a card block.
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <hr />
             <h4 class="card-title"><%= fa_icon('map-marker', text: "#{t('.location')}: Earth") %></h4>
             This is some text within a card block.
             <hr />
             <h4 class="card-title"><%= fa_icon('globe', text: "#{t('.language')}: #{t('language')}") %></h4>
             This is some text within a card block.
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Profile last updated <%= time_ago_in_words(current_user.updated_at) %> ago</small>
           </div>
         </div>
+
       </div>
     </div>
 
