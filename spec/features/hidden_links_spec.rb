@@ -7,7 +7,7 @@ RSpec.feature 'Users can only see the appropriate links' do
 
   context 'anonymous users' do
     scenario 'cannot see the Dashboard link' do
-      visit dashboard_path(locale: 'en')
+      visit dashboard_path
       expect(page).not_to have_link 'Dashboard'
     end
   end
@@ -15,7 +15,7 @@ RSpec.feature 'Users can only see the appropriate links' do
   context 'regular users' do
     before do
       login_as(user)
-      visit '/en/dashboard'
+      visit dashboard_path
     end
 
     scenario 'can see the Dashboard link' do
@@ -34,7 +34,7 @@ RSpec.feature 'Users can only see the appropriate links' do
   context 'listing owners' do
     before do
       login_as(owner)
-      visit '/en/dashboard'
+      visit dashboard_path
     end
 
     scenario 'can see the Dashboard link' do
@@ -53,7 +53,7 @@ RSpec.feature 'Users can only see the appropriate links' do
   context 'admin users' do
     before do
       login_as(admin)
-      visit '/en/dashboard'
+      visit dashboard_path
     end
 
     scenario 'can see the Dashboard link' do

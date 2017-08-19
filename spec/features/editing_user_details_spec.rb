@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature 'Registered users can edit their details' do
-  let!(:user) {FactoryGirl.create(:user, locale: 'en')}
+  let!(:user) {FactoryGirl.create(:user)}
 
   before do
     login_as(user)
-    visit "/#{user.locale}/users/edit"
+    visit "/users/edit"
   end
 
   scenario 'with valid credentials' do
@@ -19,7 +19,7 @@ RSpec.feature 'Registered users can edit their details' do
     click_button 'Update'
 
     expect(page).to have_content('Your account has been updated successfully.')
-    expect(page).to have_current_path(/#{user.locale}\/dashboard/)
+    expect(page).to have_current_path(/\/dashboard/)
   end
 
   scenario 'with invalid credentials' do

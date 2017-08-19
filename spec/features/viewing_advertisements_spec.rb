@@ -9,7 +9,7 @@ RSpec.describe 'Viewing roommate ads', type: :feature do
   context "a user's own ads" do
     before do
       login_as alice
-      visit dashboard_path(locale: 'en')
+      visit dashboard_path
       click_link 'My ads'
     end
 
@@ -25,7 +25,7 @@ RSpec.describe 'Viewing roommate ads', type: :feature do
   context "other users' ads" do
     before do
       login_as alice
-      visit dashboard_path(locale: 'en')
+      visit dashboard_path
       click_link 'Roommate ads'
     end
 
@@ -50,7 +50,7 @@ RSpec.describe 'Viewing roommate ads', type: :feature do
     end
 
     it 'redirects safely on non-existing advertisements' do
-      visit '/en/advertisements/10000'
+      visit '/advertisements/10000'
 
       expect(page).to have_content('That advertisement does not appear to exist.')
     end
