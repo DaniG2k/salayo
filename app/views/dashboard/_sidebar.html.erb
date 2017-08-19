@@ -34,6 +34,10 @@
     </li>
 
     <li class="nav-item">
+      <%= link_to(fa_icon('file-text', text: 'My ads'), my_advertisements_path, class: "nav-link #{active_if(my_advertisements_path)}") %>
+    </li>
+
+    <li class="nav-item">
       <%= link_to(fa_icon('address-card', text: 'Roommate ads'), advertisements_path, class: "nav-link #{active_if(advertisements_path)}") %>
     </li>
 
