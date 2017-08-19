@@ -5,7 +5,7 @@
       <div id="dropdown_box">
         <ul>
           <li>
-            <%= link_to(fa_icon('user-circle', text: 'My profile'), user_path(current_user)) %>
+            <%= link_to(fa_icon('user-circle', text: t('users.show.title')), user_path(current_user)) %>
           </li>
           <li>
             <%= link_to(fa_icon('gear', text: 'Edit account'), edit_user_registration_path) %>
