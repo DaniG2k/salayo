@@ -1,0 +1,42 @@
+<% title('Messages') %>
+
+<div class="dashboard-main-content">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <h1><%= fa_icon('paper-plane', text: 'Messages') %></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+
+        <table>
+          <thead>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @chatrooms.each do |chatroom| %>
+              <tr>
+                <td><%= chatroom.name %></td>
+                <td><%= link_to 'Join', chatroom_chatroom_users_path(chatroom), method: :post %></td>
+                <td><%= link_to 'Leave', chatroom_chatroom_users_path(chatroom), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br />
+        <h4>Joined</h4>
+        <ul>
+          <% current_user.chatrooms.each do |chatroom| %>
+            <li>
+              <%= link_to chatroom.name, chatroom, data: { behavior: "chatroom-link", chatroom_id: chatroom.id } %>
+            </li>
+          <% end %>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
