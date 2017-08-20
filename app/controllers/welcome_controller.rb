@@ -14,6 +14,12 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def privacy_policy
+  end
+
+  def terms
+  end
+
   private
     def subscription_params
       params.require(:subscription).permit(:email)

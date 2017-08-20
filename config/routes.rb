@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   post 'subscribe', to: 'welcome#subscribe', as: 'subscribe_email'
   get 'dashboard', to: 'dashboard#index'
   get 'search', to: 'dashboard#search'
+  get 'privacy_policy', to: 'welcome#privacy_policy'
+  get 'terms', to: 'welcome#terms'
 
   namespace :admin do
     root 'application#index'

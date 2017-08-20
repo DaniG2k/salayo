@@ -6,9 +6,15 @@ footer {
   padding: $padding;
   background-color: #212121;
   color: #DADADA;
+  li {
+    list-style: none;
+    margin-top: 12px;
+  }
   a {
     color: #DADADA;
+    display: block;
     &:hover {
+      text-decoration: none;
       color: white;
     }
   }

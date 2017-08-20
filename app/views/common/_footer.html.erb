@@ -5,7 +5,17 @@
         <p><%= copyright %></p>
       </div>
       <div class="col-xs-12 col-sm-3">
-        <p><%= link_to 'Contact', new_message_path %></p>
+        <ul>
+          <li>
+            <%= link_to 'Contact', new_message_path %>
+          </li>
+          <li>
+            <%= link_to 'Privacy Policy', privacy_policy_path %>
+          </li>
+          <li>
+            <%= link_to 'Terms & Conditions', terms_path %>
+          </li>
+        </ul>
       </div>
       <div class="col-xs-12 col-sm-6">
         <p>Some footer content</p>
