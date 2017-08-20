@@ -19,6 +19,13 @@
   background-color: $body-gray;
 }
 
+.gray-tiles-section {
+  padding: $padding;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('gray-tiles.svg');
+}
+
 @mixin nav-transition($ease) {
   -webkit-transition: all $ease ease-in-out;
   -moz-transition: all $ease ease-in-out;
