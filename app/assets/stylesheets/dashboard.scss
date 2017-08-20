@@ -30,16 +30,17 @@
   @include column-layout-mixin;
   color: #f2f5f7;
   width: 264px;
-  background-color: #37517e;
-
+  background-color: $dashboard-sidebar-bg;
+  
   .nav-link {
     padding: 1em 2em;
+    border-left: 3px solid $dashboard-sidebar-bg;
   }
 
   .active {
     color: $baby-blue;
     border-left: 3px solid $baby-blue;
-    background-color: #2e4369;
+    background-color: $dark-blue;
   }
   a {
     color: #f2f5f7;
