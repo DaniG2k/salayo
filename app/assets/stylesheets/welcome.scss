@@ -24,7 +24,7 @@
   padding: $padding;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('gray-tiles.svg');
+  background-image: image-url('gray-hexagons.svg');
 }
 
 @mixin nav-transition($ease) {
