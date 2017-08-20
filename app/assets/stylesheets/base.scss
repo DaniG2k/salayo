@@ -5,13 +5,16 @@ body {
 footer {
   padding: $padding;
   background-color: #212121;
-  color: #DADADA;
-  li {
-    list-style: none;
-    margin-top: 12px;
+  color: $footer-link;
+  ul {
+    @include media-breakpoint-up(sm) { padding: 0; }
+    li {
+      list-style: none;
+      margin-top: 12px;
+    }
   }
   a {
-    color: #DADADA;
+    color: $footer-link;
     display: block;
     &:hover {
       text-decoration: none;
