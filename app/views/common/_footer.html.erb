@@ -2,23 +2,21 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-3">
-        <p><%= copyright %></p>
+        <ul>
+          <%= content_tag :li, copyright %>
+        </ul>
       </div>
       <div class="col-xs-12 col-sm-3">
         <ul>
-          <li>
-            <%= link_to 'Contact', new_message_path %>
-          </li>
-          <li>
-            <%= link_to 'Privacy Policy', privacy_policy_path %>
-          </li>
-          <li>
-            <%= link_to 'Terms & Conditions', terms_path %>
-          </li>
+          <%= content_tag :li, link_to('Contact', new_message_path) %>
+          <%= content_tag :li, link_to('Privacy Policy', privacy_policy_path) %>
+          <%= content_tag :li, link_to('Terms & Conditions', terms_path) %>
         </ul>
       </div>
       <div class="col-xs-12 col-sm-6">
-        <p>Some footer content</p>
+        <ul>
+          <%= content_tag :li, 'Team' %>
+        </ul>
       </div>
     </div>
   </div>

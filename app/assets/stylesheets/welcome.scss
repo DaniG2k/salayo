@@ -17,6 +17,7 @@
 .gray-section {
   padding: $padding;
   background-color: $body-gray;
+  @include media-breakpoint-down(sm) { padding: 60px 2.5em; }
 }
 
 .gray-tiles-section {
@@ -91,7 +92,19 @@
   padding: $padding;
 }
 
+.timeline-sm {
+  @include media-breakpoint-up(md) { display: none; }
+  background-color: white;
+  position: relative;
+  p {
+    margin: 0 2em 1em 2em;
+  }
+  .row {
+    padding: 30px 0px;
+  }
+}
 .timeline {
+  @include media-breakpoint-down(sm) { display: none; }
   background-color: white;
   position: relative;
   margin: 60px 0px;
