@@ -76,20 +76,20 @@ end
 namespace :puma do
   desc "Start the application"
   task :start do
-    queue 'echo "-----> Start Puma"'
-    queue "cd /var/www/salayo.com/ && RAILS_ENV=production && /bin/puma.sh start", :pty => false
+    comment 'Starting Puma"'
+    command 'sudo /bin/puma.sh start', pty: false
   end
 
   desc "Stop the application"
   task :stop do
-    queue 'echo "-----> Stop Puma"'
-    queue "cd /var/www/salayo.com/ && RAILS_ENV=production && /bin/puma.sh stop"
+    comment 'Stopping Puma"'
+    command 'sudo /bin/puma.sh stop'
   end
 
   desc "Restart the application"
   task :restart do
-    queue 'echo "-----> Restart Puma"'
-    queue "cd /var/www/salayo.com/ && RAILS_ENV=production && /bin/puma.sh restart"
+    comment 'Restarting Puma"'
+    command 'sudo /bin/puma.sh restart'
   end
 end
 
