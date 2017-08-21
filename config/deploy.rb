@@ -65,16 +65,32 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
-      invoke :'puma:phased_restart'
-      # in_path(fetch(:current_path)) do
-      #   command %{mkdir -p tmp/}
-      #   command %{touch tmp/restart.txt}
-      # end
+      invoke :'puma:restart'
     end
   end
 
   # you can use `run :local` to run tasks on local machine before of after the deploy scripts
   # run(:local){ say 'done' }
+end
+
+namespace :puma do
+  desc "Start the application"
+  task :start do
+    queue 'echo "-----> Start Puma"'
+    queue "cd #{app_path} && RAILS_ENV=production && /bin/puma.sh start", :pty => false
+  end
+
+  desc "Stop the application"
+  task :stop do
+    queue 'echo "-----> Stop Puma"'
+    queue "cd #{app_path} && RAILS_ENV=production && /bin/puma.sh stop"
+  end
+
+  desc "Restart the application"
+  task :restart do
+    queue 'echo "-----> Restart Puma"'
+    queue "cd #{app_path} && RAILS_ENV=production && /bin/puma.sh restart"
+  end
 end
 
 # For help in making your deploy script, see the Mina documentation:
