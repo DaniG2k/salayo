@@ -1,18 +1,36 @@
 <% {
-  notice: 'Excellent!',
-  success: 'Success!',
-  info: 'Heads up!',
-  warning: 'Warning!',
-  danger: 'Oops!'
-}.each do |k, v| %>
-  <% if flash[k].present? %>
-    <% flash_type = k == :notice ? 'success' : k.to_s %>
-    <div class="alert alert-<%= flash_type %> alert-dismissible fade show" role="alert">
+  notice: {
+    type: 'success',
+    msg: 'Excellent!'
+  },
+  success: {
+    type: 'success',
+    msg: 'Success!'
+  },
+  info: {
+    type: 'info',
+    msg: 'Heads up!'
+  },
+  warning: {
+    type: 'warning',
+    msg: 'Warning!'
+  },
+  alert: {
+    type: 'danger',
+    msg: 'Error:'
+  },
+  danger: {
+    type: 'danger',
+    msg: 'Oops!'
+  }
+}.each do |key, val| %>
+  <% if flash[key].present? %>
+    <div class="alert alert-<%= val[:type] %> alert-dismissible fade show" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <%= content_tag(:strong, v) %>
-      <%= flash[k] %>
+      <strong><%= val[:msg] %></strong>
+      <%= flash[key] %>
     </div>
   <% end %>
 <% end %>
