@@ -2,27 +2,25 @@
 
 <div class="dashboard-main-content">
   <div class="container-fluid">
+    <h1><%= fa_icon('file-text-o', text: 'My ads') %></h1>
+
     <div class="row">
-      <div class="col-12">
-        <h1><%= fa_icon('file-text-o', text: 'My ads') %></h1>
+      <% @advertisements.each do |ad| %>
+        <div class="col-lg-6">
+          <div class="card dashboard-card">
+            <div class="card-block">
+              <h4 class="card-title"><%= fa_icon('user') %> <%= link_to("#{ad.user.name} - #{ad.title}", advertisement_path(ad)) %></h4>
+              <%= display_ad_type(ad) %>
+              <%= ad.body %>
+            </div>
 
-        <% @advertisements.each do |ad| %>
-          <div class="col">
-            <div class="card dashboard-card">
-              <div class="card-block">
-                <h4 class="card-title"><%= fa_icon('user') %> <%= link_to("#{ad.user.name} - #{ad.title}", advertisement_path(ad)) %></h4>
-                <%= display_ad_type(ad) %>
-                <%= ad.body %>
-              </div>
-
-              <div class="card-footer">
-                <small class="text-muted">Posted <%= time_ago_in_words(ad.created_at) %> ago</small>
-              </div>
+            <div class="card-footer">
+              <small class="text-muted">Posted <%= time_ago_in_words(ad.created_at) %> ago</small>
             </div>
           </div>
-        <% end %>
-
-      </div>
+        </div>
+      <% end %>
     </div>
+
   </div>
 </div>
