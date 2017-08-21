@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'mina', require: false
+gem 'mina-puma', require: false, github: 'untitledkingdom/mina-puma'
+
 gem 'rails-i18n', '~> 5.0.0'
 gem 'devise'
 gem 'devise-i18n'
