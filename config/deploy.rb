@@ -1,7 +1,7 @@
 require 'mina/rails'
 require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
-# require 'mina/rvm'    # for rvm support. (https://rvm.io)
+require 'mina/rvm'    # for rvm support. (https://rvm.io)
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -35,17 +35,15 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  # invoke :'rvm:use', 'ruby-2.4.1'
+  invoke :'rvm:use', 'ruby-2.4.1@default'
 end
 
 # Put any custom commands you need to run at setup
 # All paths in `shared_dirs` and `shared_paths` will be created on their own.
 task :setup do
   # command %{rbenv install 2.3.0}
-  %w(database.yml secrets.yml puma.rb).each do |f|
-    command %[touch "#{fetch(:shared_path)}/config/#{f}"]
-  end
-  comment "Be sure to edit '#{fetch(:shared_path)}/config/database.yml', 'secrets.yml' and puma.rb."
+  %w(database.yml secrets.yml puma.rb).each { |f| command %[touch "#{fetch(:shared_path)}/config/#{f}"] }
+  comment "Be sure to edit #{fetch(:shared_path)}/config/database.yml, secrets.yml and puma.rb."
 end
 
 desc "Deploys the current version to the server."
@@ -59,38 +57,26 @@ task :deploy do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
+    comment 'Cleaning up Docker builds'
+    command 'docker-compose build'
+    command 'docker stop $(docker ps -qa)'
+    command 'docker rm $(docker ps -qa)'
+    comment 'Stopping Docker'
+    command 'docker-compose stop'
+    comment 'Starting Docker'
+    command 'docker-compose up -d; sleep 5'
     invoke :'rails:db_migrate'
     # command %{#{fetch(:rails)} db:seed}
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
     on :launch do
-      invoke :'puma:restart'
+      command "passenger-config restart-app $(#{fetch(:deploy_to}/current/)"
     end
   end
 
   # you can use `run :local` to run tasks on local machine before of after the deploy scripts
   # run(:local){ say 'done' }
-end
-
-namespace :puma do
-  desc "Start the application"
-  task :start do
-    comment 'Starting Puma"'
-    command 'sudo /bin/puma.sh start', pty: false
-  end
-
-  desc "Stop the application"
-  task :stop do
-    comment 'Stopping Puma"'
-    command 'sudo /bin/puma.sh stop'
-  end
-
-  desc "Restart the application"
-  task :restart do
-    comment 'Restarting Puma"'
-    command 'sudo /bin/puma.sh restart'
-  end
 end
 
 # For help in making your deploy script, see the Mina documentation:
