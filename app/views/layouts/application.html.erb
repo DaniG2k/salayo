@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head lang="<%= user_locale %>">
-    <%= render 'common/meta_tags' %>
-    <%= action_cable_meta_tag %>
     <%= content_tag :title, (content_for?(:title) ? yield(:title) : t(:website)) %>
     <%= csrf_meta_tags %>
+    <%= render 'common/meta_tags' %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>

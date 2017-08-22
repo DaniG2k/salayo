@@ -2,3 +2,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="<%= t('description', scope: 'meta') %>">
 <meta name="keywords" content="<%= t('keywords', scope: 'meta') %>">
+
+<% if user_signed_in? %>
+  <%= action_cable_meta_tag %>
+  <%= tag :meta, name: 'current-user', data: {id: current_user.id} %>
+<% end %>
