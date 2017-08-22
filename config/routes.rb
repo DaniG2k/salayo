@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get 'chatroom_users/destroy'
 
   root to: 'welcome#index'
+
+  mount ActionCable.server => '/cable'
+
   devise_for(
     :users,
     path: '',
