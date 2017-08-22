@@ -7,7 +7,7 @@ class ContactMessagesController < ApplicationController
     @message = ContactMessage.new(contact_message_params)
 
     if @message.valid?
-      redirect_to new_message_path, notice: 'Message received, thanks!'
+      redirect_to new_contact_message_path, notice: 'Message received, thanks!'
     else
       render :new
     end

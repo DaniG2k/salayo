@@ -1,32 +1,39 @@
-<div class="container">
-  <h2 class="text-center blue">Contact us</h2>
-  <%= form_for(@message, url: create_message_url) do |f| %>
+<section class="gray-tiles-section">
 
-    <%= render 'common/notices' %>
+  <div class="container">
+    <h2 class="text-center blue">Contact us</h2>
+    <%= form_for(@message, url: create_message_url) do |f| %>
 
-    <%= render partial: 'common/form_errors', locals: {obj: @message} %>
-
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <%= render 'common/notices' %>
+          <%= render partial: 'common/form_errors', locals: {obj: @message} %>
         </div>
       </div>
-      <div class="col">
-        <div class="form-group">
-          <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
+
+      <div class="row justify-content-center">
+        <div class="col-3">
+          <div class="form-group">
+            <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <%= f.text_area :body, placeholder: 'Message body', class: 'form-control' %>
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <div class="form-group">
+            <%= f.text_area :body, placeholder: 'Message body', class: 'form-control' %>
+          </div>
+
+          <%= f.button fa_icon('send', text: 'Send'), type: 'submit', class: 'btn btn-primary', data: {disable_with: 'Submitting...'} %>
         </div>
       </div>
-    </div>
 
-    <%= f.submit 'Send', class: 'btn btn-primary', data: {disable_with: 'Submitting...'} %>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+</section>

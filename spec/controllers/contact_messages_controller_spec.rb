@@ -20,7 +20,7 @@ RSpec.describe ContactMessagesController, type: :controller do
         }
       }
 
-      expect(response).to redirect_to(new_message_path)
+      expect(response).to redirect_to(new_contact_message_path)
     end
   end
 end
