@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
-  get 'messages/create'
-
-  get 'chatroom_users/create'
-
-  get 'chatroom_users/destroy'
-
   root to: 'welcome#index'
-
+  
   mount ActionCable.server => '/cable'
   require 'sidekiq/web'
   Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
