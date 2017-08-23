@@ -10,3 +10,10 @@ ko:
       email: 이메일
       location: 위치
       language: 언어
+  contact_messages:
+    new:
+      title: 문의하기
+      name: '이름'
+      email: '이메일'
+      message: '메시지'
+      send: '보내기'

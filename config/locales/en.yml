@@ -10,3 +10,10 @@ en:
       email: Email
       location: Location
       language: Language
+  contact_messages:
+    new:
+      title: Contact us
+      name: 'Name'
+      email: 'Email'
+      message: 'Message'
+      send: 'Send'

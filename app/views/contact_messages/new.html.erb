@@ -1,7 +1,9 @@
+<% title t('.title') %>
+
 <section class="gray-tiles-section">
 
   <div class="container">
-    <h2 class="text-center blue">Contact us</h2>
+    <h2 class="text-center blue"><%= t('.title') %></h2>
     <%= form_for(@message, url: create_message_url) do |f| %>
 
       <div class="row justify-content-center">
@@ -14,12 +16,12 @@
       <div class="row justify-content-center">
         <div class="col-lg-3 col-md-6">
           <div class="form-group">
-            <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+            <%= f.text_field :name, placeholder: t('.name'), class: 'form-control' %>
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="form-group">
-            <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
+            <%= f.email_field :email, placeholder: t('.email'), class: 'form-control' %>
           </div>
         </div>
       </div>
@@ -27,10 +29,10 @@
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-12">
           <div class="form-group">
-            <%= f.text_area :body, placeholder: 'Message...', class: 'form-control' %>
+            <%= f.text_area :body, placeholder: t('.message'), class: 'form-control' %>
           </div>
 
-          <%= f.button fa_icon('send', text: 'Send'), type: 'submit', class: 'btn btn-primary', data: {disable_with: 'Submitting...'} %>
+          <%= f.button fa_icon('send', text: t('.send')), type: 'submit', class: 'btn btn-primary', data: {disable_with: 'Submitting...'} %>
         </div>
       </div>
 
