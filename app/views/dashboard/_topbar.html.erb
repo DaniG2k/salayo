@@ -4,15 +4,12 @@
     <div class="col-12">
       <div id="dropdown_box">
         <ul>
-          <li>
-            <%= link_to(fa_icon('user-circle', text: t('users.show.title')), user_path(current_user)) %>
-          </li>
-          <li>
-            <%= link_to(fa_icon('gear', text: 'Edit account'), edit_user_registration_path) %>
-          </li>
-          <li>
-            <%= link_to(fa_icon('unlock', text: 'Sign out'), destroy_user_session_path, method: :delete) %>
-          </li>
+          <%= content_tag(:li, link_to(fa_icon('user-circle', text: t('users.show.title')), user_path(current_user))) %>
+          <%= content_tag(:li, link_to(fa_icon('gear', text: 'Edit account'), edit_user_registration_path)) %>
+          <% admins_only do %>
+            <%= content_tag(:li, link_to(fa_icon('bolt', text: 'Sidekiq'), sidekiq_web_path))%>
+          <% end %>
+          <%= content_tag(:li, link_to(fa_icon('unlock', text: 'Sign out'), destroy_user_session_path, method: :delete)) %>
         </ul>
       </div>
       <%= link_to fa_icon('chevron-down', text: current_user.name, right: true), '#', class: 'float-right', id: 'show_box' %>

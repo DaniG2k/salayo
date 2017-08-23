@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   mount ActionCable.server => '/cable'
+  require 'sidekiq/web'
+  Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
+  authenticate :user, lambda {|u| u.has_role?(:admin)} do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   devise_for(
     :users,

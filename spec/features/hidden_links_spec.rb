@@ -6,9 +6,16 @@ RSpec.feature 'Users can only see the appropriate links' do
   let(:admin) {FactoryGirl.create(:user, :admin)}
 
   context 'anonymous users' do
-    scenario 'cannot see the Dashboard link' do
+    before do
       visit dashboard_path
+    end
+
+    scenario 'cannot see the Dashboard link' do
       expect(page).not_to have_link 'Dashboard'
+    end
+
+    scenario 'cannot see the Sidekiq link' do
+      expect(page).not_to have_link 'Sidekiq'
     end
   end
 
@@ -29,6 +36,10 @@ RSpec.feature 'Users can only see the appropriate links' do
     scenario 'cannot see the Subscriptions link' do
       expect(page).not_to have_link 'Subscriptions'
     end
+
+    scenario 'cannot see the Sidekiq link' do
+      expect(page).not_to have_link 'Sidekiq'
+    end
   end
 
   context 'listing owners' do
@@ -48,6 +59,10 @@ RSpec.feature 'Users can only see the appropriate links' do
     scenario 'cannot see the Subscriptions link' do
       expect(page).not_to have_link 'Subscriptions'
     end
+
+    scenario 'cannot see the Sidekiq link' do
+      expect(page).not_to have_link 'Sidekiq'
+    end
   end
 
   context 'admin users' do
@@ -66,6 +81,10 @@ RSpec.feature 'Users can only see the appropriate links' do
 
     scenario 'can see the Subscriptions link' do
       expect(page).to have_link 'Subscriptions'
+    end
+
+    scenario 'can see the Sidekiq link' do
+      expect(page).to have_link 'Sidekiq'
     end
   end
 end
