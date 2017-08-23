@@ -8,7 +8,7 @@
       </div>
       <div class="col-xs-12 col-sm-3">
         <ul>
-          <%= content_tag :li, link_to('Contact', new_contact_message_path) %>
+          <%= content_tag :li, link_to(t('contact_messages.new.title'), new_contact_message_path) %>
           <%= content_tag :li, link_to('Privacy Policy', privacy_policy_path) %>
           <%= content_tag :li, link_to('Terms & Conditions', terms_path) %>
         </ul>
