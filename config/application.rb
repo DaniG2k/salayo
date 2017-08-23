@@ -28,6 +28,7 @@ module Salayo
     config.to_prepare do
       Devise::RegistrationsController.layout 'dashboard'
     end
+    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
     config.active_job.queue_adapter = :sidekiq
   end
 end
