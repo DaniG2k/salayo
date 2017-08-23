@@ -13,7 +13,7 @@
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <strong><%= f.label :title %></strong><br>
+        <strong><%= f.label :title %></strong>
         <%= f.text_field :title, autofocus: true, class: 'form-control' %>
       </div>
     </div>
@@ -22,7 +22,7 @@
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <strong><%= f.label :body %></strong><br>
+        <strong><%= f.label :body %></strong>
         <%= f.text_area :body, class: 'form-control', rows: 6 %>
       </div>
     </div>
@@ -31,7 +31,7 @@
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <strong><%= f.label :ad_type %></strong><br>
+        <strong><%= f.label :ad_type %></strong>
         <%= f.select(:ad_type, options_for_select(Advertisement::ALLOWED_TYPES.map {|t| [t.titleize, t]}.sort), {}, class: 'custom-select') %>
       </div>
     </div>
