@@ -5,7 +5,7 @@
     <%= form_for(@message, url: create_message_url) do |f| %>
 
       <div class="row justify-content-center">
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12">
           <%= render 'common/notices' %>
           <%= render partial: 'common/form_errors', locals: {obj: @message} %>
         </div>
