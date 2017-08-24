@@ -31,7 +31,7 @@
   color: #f2f5f7;
   width: 264px;
   background-color: $dashboard-sidebar-bg;
-  
+
   .nav-link {
     padding: 1em 2em;
     border-left: 3px solid $dashboard-sidebar-bg;
@@ -67,7 +67,7 @@
 }
 
 .dashboard-main-content {
-  margin-top: 1.25em;
+  margin: 1.25em 0;
 
   h1, h2, h3, h4, h5 {
     color: $dark-blue;
