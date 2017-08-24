@@ -14,8 +14,9 @@
   padding-top: 100px;
 }
 
-#contact-us {
-  margin-top: 2.5em;
+#contact-us, #terms, #privacy-policy {
+  margin-top: 70px;
+  padding: $padding;
 }
 
 .gray-section {
@@ -25,7 +26,6 @@
 }
 
 .gray-tiles-section {
-  padding: $padding;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: image-url('gray-hexagons.svg');
