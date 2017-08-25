@@ -1,12 +1,30 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+
+$ ->
+  $('input[name="map_search"]').change ->
+    if $(this).val() is 'address'
+      $('fieldset[name="address"]').prop('disabled', false)
+      $('fieldset[name="coords"]').prop('disabled', true)
+      $('fieldset[name="coords"]').slideUp()
+      $('fieldset[name="address"]').slideDown()
+    else if $(this).val() is 'coords'
+      $('fieldset[name="address"]').prop('disabled', true)
+      $('fieldset[name="coords"]').prop('disabled', false)
+      $('fieldset[name="address"]').slideUp()
+      $('fieldset[name="coords"]').slideDown()
+
+
 window.ListingForm =
   els:
     form: "#new_listing"
     defaultLatLong: {lat: 37.5665, lng: 126.9780} # Coords for Seoul
   init: ->
-    window.loadExternalJs("https://maps.googleapis.com/maps/api/js?key=#{gon.google_maps_api_key}", (-> google?), @initMap)
+    window.loadExternalJs("https://maps.googleapis.com/maps/api/js?key=#{gon.google_maps_api_key}", @mapsLoaded, @initMap)
+
+  mapsLoaded: ->
+    typeof google is 'object' and typeof google.maps is 'object'
 
   initMap: ->
     if gon.lat && gon.lng
@@ -21,7 +39,7 @@ window.ListingForm =
       lng: locationLng
 
     map = new (google.maps.Map)(document.getElementById('location-map'),
-      zoom: 12
+      zoom: 15
       center: locations
       scrollwheel: false
       disableDoubleClickZoom: true
