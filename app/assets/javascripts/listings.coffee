@@ -7,8 +7,8 @@ $ ->
     if $(this).val() is 'address'
       $('fieldset[name="address"]').prop('disabled', false)
       $('fieldset[name="coords"]').prop('disabled', true)
-      $('fieldset[name="coords"]').slideUp()
       $('fieldset[name="address"]').slideDown()
+      $('fieldset[name="coords"]').slideUp()
     else if $(this).val() is 'coords'
       $('fieldset[name="address"]').prop('disabled', true)
       $('fieldset[name="coords"]').prop('disabled', false)
