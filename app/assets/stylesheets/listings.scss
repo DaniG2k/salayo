@@ -2,5 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #location-map {
-  height: 12em;
+  height: 250px;
+}
+
+#map-container {
+  padding: 15px 0;
 }

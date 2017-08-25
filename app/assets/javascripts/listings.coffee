@@ -4,7 +4,7 @@
 window.ListingForm =
   els:
     form: "#new_listing"
-    defaultLatLong: {lat: 37.532600, lng: 127.024612} # Coords for Seoul
+    defaultLatLong: {lat: 37.5665, lng: 126.9780} # Coords for Seoul
   init: ->
     window.loadExternalJs("https://maps.googleapis.com/maps/api/js?key=#{gon.google_maps_api_key}", (-> google?), @initMap)
 
@@ -37,7 +37,7 @@ window.ListingForm =
     geocoder = new google.maps.Geocoder({types: ["geocode"]})
 
     $('#listing_address, #listing_city, #listing_state').on "change", () ->
-      OwnersListingForm.updateLocationMap(map, marker, geocoder)
+      ListingForm.updateLocationMap(map, marker, geocoder)
 
   updateLocationMap: (map, marker, geocoder) ->
     keyWork = "#{$('#listing_address').val()} #{$('#listing_city').val()} #{$('#listing_state').val()}"
@@ -52,5 +52,6 @@ window.ListingForm =
         ListingForm.setValueLatLngField(null, null)
 
   setValueLatLngField: (lat, lng) ->
-    $('#listing_lat').val(lat).valid()
-    $('#listing_lng').val(lng).valid()
+    $('#listing_lat').val(lat)
+    $('#listing_lng').val(lng)
+    return
