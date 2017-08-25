@@ -9,6 +9,9 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
+    gon.push({
+      google_maps_api_key: ENV['GOOGLE_MAPS_API_KEY']
+    })
   end
 
   def create
@@ -32,6 +35,12 @@ class ListingsController < ApplicationController
 
   def edit
     authorize @listing, :edit?
+
+    gon.push({
+      lat: @listing.lat,
+      lng: @listing.lng,
+      google_maps_api_key: ENV['GOOGLE_MAPS_API_KEY']
+    })
   end
 
   def update

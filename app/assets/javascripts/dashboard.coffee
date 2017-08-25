@@ -1,4 +1,4 @@
-$(document).ready ->
+$ ->
   $('#show_box').click ->
     $('#dropdown_box').fadeIn(100)
     return
