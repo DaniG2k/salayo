@@ -16,7 +16,6 @@ public/assets/*
 
 vendor/
 
-# Ignore Byebug command history file.
+# Ignore hidden files.
 .byebug_history
-
 .env
