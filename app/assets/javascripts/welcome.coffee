@@ -4,19 +4,19 @@
 $ ->
   unless $('nav').data('transparent')
     $('nav').removeClass 'transparent'
-
-$(window).scroll ->
-  if $('nav').data('transparent')
-    if $(document).scrollTop() > 50
-      $('nav').addClass 'bg-faded'
-      $('nav').removeClass 'transparent'
-    else
-      $('nav').addClass 'transparent'
-      $('nav').removeClass 'bg-faded'
     return
 
-# Typed.js strings
-$ ->
+  $(window).scroll ->
+    if $('nav').data('transparent')
+      if $(document).scrollTop() > 50
+        $('nav').addClass 'bg-faded'
+        $('nav').removeClass 'transparent'
+      else
+        $('nav').addClass 'transparent'
+        $('nav').removeClass 'bg-faded'
+      return
+
+  # Typed.js strings
   $('.typed-element').typed
     strings: [
       "The easiest way to find housing in <strong>South Korea</strong>."
