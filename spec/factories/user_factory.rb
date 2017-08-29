@@ -1,11 +1,11 @@
 FactoryGirl.define do
   factory :user do
+    name { Faker::Name.name }
     email { Faker::Internet.email }
     password 'supersecurep@ss'
-    name Faker::Name.name
     #locale I18n.available_locales.sample
     locale 'en'
-    
+
     trait :owner do
       after(:create) do |instance|
         instance.add_role :owner

@@ -10,10 +10,12 @@ RSpec.describe 'Viewing roommate ads', type: :feature do
     before do
       login_as alice
       visit dashboard_path
-      click_link 'My ads'
+      within('.nav') do
+        click_link 'My ads'
+      end
     end
 
-    it 'shows a list of the currently logged in user\'s ads' do
+    it "shows a list of the currently logged in user's ads" do
       within('.card') do
         expect(page).to have_content(advertisement1.ad_type)
         expect(page).to have_content(advertisement1.title)
@@ -26,15 +28,14 @@ RSpec.describe 'Viewing roommate ads', type: :feature do
     before do
       login_as alice
       visit dashboard_path
-      click_link 'Roommate ads'
+      within('.nav') do
+        click_link 'Roommate ads'
+      end
     end
 
     it 'shows a list of available roommate ads' do
-      within('.card') do
+      within('.dashboard-main-content') do
         expect(page).not_to have_content(alice.name)
-        expect(page).not_to have_content(advertisement1.ad_type)
-        expect(page).not_to have_content(advertisement1.title)
-        expect(page).not_to have_content(advertisement1.body)
 
         expect(page).to have_content(bob.name)
         expect(page).to have_content(advertisement2.ad_type)
