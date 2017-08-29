@@ -16,6 +16,7 @@ RSpec.feature 'Listing owners can create new listings' do
     fill_in 'Address', with: 'Gangnam-gu, Yeoksam-ro 165'
     fill_in 'City', with: 'Seoul'
     fill_in 'State', with: 'South Korea'
+    # These get autopopulated via JS
     #fill_in 'Latitude', with: 37.517235
     #fill_in 'Longitude', with: 127.047325
     click_button 'Create Listing'
@@ -25,7 +26,7 @@ RSpec.feature 'Listing owners can create new listings' do
 
     listing = Listing.find_by(name: listing_name)
 
-    expect(current_path).to eq(listing_path(listing))
+    expect(current_path).to eq(listing_url(listing))
     expect(Listing.with_role(:owner, owner).first).to eq(listing)
   end
 
