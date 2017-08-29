@@ -9,15 +9,19 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
+
+    authorize @listing, :new?
+
     gon.push({
       google_maps_api_key: ENV['GOOGLE_MAPS_API_KEY']
     })
   end
 
   def create
-    #authorize @listing, :create?
     @listing = Listing.new listing_params
     @listing.owner = current_user
+
+    authorize @listing, :create?
 
     if @listing.save
       current_user.add_role(:owner, @listing)
