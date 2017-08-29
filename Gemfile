@@ -45,6 +45,8 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.5'
   gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'faker'

@@ -5,13 +5,19 @@
 $ ->
   $('input[name="map_search"]').change ->
     if $(this).val() is 'address'
-      $('fieldset[name="address"]').prop('disabled', false)
-      $('fieldset[name="coords"]').prop('disabled', true)
+      $('#listing_city').prop('readonly', false)
+      $('#listing_state').prop('readonly', false)
+      $('#listing_address').prop('readonly', false)
+      $('#listing_lat').prop('readonly', true)
+      $('#listing_lng').prop('readonly', true)
       $('fieldset[name="address"]').slideDown()
       $('fieldset[name="coords"]').slideUp()
     else if $(this).val() is 'coords'
-      $('fieldset[name="address"]').prop('disabled', true)
-      $('fieldset[name="coords"]').prop('disabled', false)
+      $('#listing_city').prop('readonly', true)
+      $('#listing_state').prop('readonly', true)
+      $('#listing_address').prop('readonly', true)
+      $('#listing_lat').prop('readonly', false)
+      $('#listing_lng').prop('readonly', false)
       $('fieldset[name="address"]').slideUp()
       $('fieldset[name="coords"]').slideDown()
 

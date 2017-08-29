@@ -15,9 +15,9 @@ class ListingsController < ApplicationController
   end
 
   def create
+    #authorize @listing, :create?
     @listing = Listing.new listing_params
     @listing.owner = current_user
-    #authorize @listing, :create?
 
     if @listing.save
       current_user.add_role(:owner, @listing)
@@ -70,7 +70,14 @@ class ListingsController < ApplicationController
   private
 
     def listing_params
-      params.require(:listing).permit(:name, :property_type, :lat, :lng)
+      params.require(:listing).permit(
+        :name,
+        :property_type,
+        :address,
+        :city,
+        :state,
+        :lat,
+        :lng)
     end
 
     def set_listing

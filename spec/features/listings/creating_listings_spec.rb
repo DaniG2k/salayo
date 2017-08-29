@@ -9,19 +9,23 @@ RSpec.feature 'Listing owners can create new listings' do
     click_link 'Add listing'
   end
 
-  scenario 'with valid attributes' do
+  scenario 'with valid attributes', js: true do
     listing_name = 'Gangnam house'
     fill_in 'Name', with: listing_name
     select "Apartment", from: "listing_property_type"
-    fill_in 'Latitude', with: 37.517235
-    fill_in 'Longitude', with: 127.047325
+    fill_in 'Address', with: 'Gangnam-gu, Yeoksam-ro 165'
+    fill_in 'City', with: 'Seoul'
+    fill_in 'State', with: 'South Korea'
+    #fill_in 'Latitude', with: 37.517235
+    #fill_in 'Longitude', with: 127.047325
     click_button 'Create Listing'
+
 
     expect(page).to have_content 'Listing was created successfully!'
 
     listing = Listing.find_by(name: listing_name)
 
-    expect(page.current_url).to eq(listing_url(listing))
+    expect(current_path).to eq(listing_path(listing))
     expect(Listing.with_role(:owner, owner).first).to eq(listing)
   end
 

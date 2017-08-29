@@ -76,18 +76,18 @@
     </div>
   </fieldset>
 
-  <fieldset name="coords" disabled>
+  <fieldset name="coords" >
     <div class="row">
       <div class="col-6">
         <div class="form-group">
           <strong><%= f.label :lat, 'Latitude' %></strong><br>
-          <%= f.number_field :lat, in: -90.0..90.0, step: :any, class: 'form-control' %>
+          <%= f.number_field :lat, in: -90.0..90.0, step: :any, class: 'form-control', readonly: true %>
         </div>
       </div>
       <div class="col-6">
         <div class="form-group">
           <strong><%= f.label :lng, 'Longitude' %></strong><br>
-          <%= f.number_field :lng, in: -180.0..180.0, step: :any, class: 'form-control' %>
+          <%= f.number_field :lng, in: -180.0..180.0, step: :any, class: 'form-control', readonly: true %>
         </div>
       </div>
     </div>
