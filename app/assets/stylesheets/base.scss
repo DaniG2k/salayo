@@ -24,16 +24,6 @@ footer {
 }
 
 // Bootstrap overrides
-.btn {
-  cursor: pointer;
-}
-.btn-primary {
-  background-color: $btn-primary-blue;
-  border: 0;
-  &:hover {
-    background-color: $blue;
-  }
-}
 .login {
   background-color: $body-gray;
   padding-bottom: 3em;
