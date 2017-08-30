@@ -5,12 +5,14 @@
     <div class="row">
       <div class="col-12">
         <h1><%= fa_icon('address-card', text: 'Roommate ads') %></h1>
-
-        <% @advertisements.each do |ad| %>
-          <%= render 'card', ad: ad %>
-        <% end %>
-
       </div>
     </div>
+
+    <div class="row">
+      <% @advertisements.each do |ad| %>
+        <%= render 'card', ad: ad %>
+      <% end %>
+    </div>
+    
   </div>
 </div>
