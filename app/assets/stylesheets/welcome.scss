@@ -3,7 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .hero-header {
-  background-image: linear-gradient(138deg, #4FC3F7 0%, #27D3DD 60%, #00E3C3 100%);
+  background: linear-gradient(138deg, rgba(79, 195, 247, 0.6) 0%, rgba(39, 211, 221, 0.6) 60%, rgba(0, 227, 195, 0.6) 100%), image-url('seoul-apt-hero.jpg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   padding: 150px 0px;
   h1, h2 {
     color: white;
