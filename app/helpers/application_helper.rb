@@ -2,10 +2,11 @@ module ApplicationHelper
   def title(*parts)
     if parts.present?
       content_for(:title) do
+        title_with_slogan = "#{t('website')} | #{t('slogan')}"
         if Rails.env.development?
-          (parts.unshift('🚧 DEV') << t('website')).join(' - ')
+          (parts.unshift('🚧 DEV') << title_with_slogan).join(' - ')
         else
-          (parts << t('website')).join(' - ')
+          (parts << title_with_slogan).join(' - ')
         end
       end
     end
