@@ -8,6 +8,7 @@ class AdvertisementsController < ApplicationController
                                   .not(user: current_user)
                                   .order(created_at: :desc)
                                   .includes(:user)
+    @mine = false
   end
 
   def show
@@ -46,6 +47,7 @@ class AdvertisementsController < ApplicationController
 
   def mine
     @advertisements = Advertisement.where(user: current_user).includes(:user)
+    @mine = true
   end
 
   private
