@@ -31,6 +31,9 @@
   color: #f2f5f7;
   width: 264px;
   background-color: $dashboard-sidebar-bg;
+  background-image: image-url('salayo-dark.svg');
+  background-repeat: no-repeat;
+  background-position: center top;
 
   .nav-link {
     padding: 1em 2em;
