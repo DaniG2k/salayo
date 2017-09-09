@@ -3,6 +3,19 @@
 <div class="dashboard-main-content">
   <div class="container-fluid">
     <h1><%= fa_icon('plus', text: 'Add listing') %></h1>
+
+    <div class="row">
+      <div class="col">
+        <!-- progressbar -->
+      	<ul class="text-center" id="listing-progressbar">
+      		<li class="active">Basics</li>
+      		<li>Location</li>
+          <li>Amenities</li>
+          <li>Images</li>
+      	</ul>
+      </div>
+    </div>
+
     <%= render 'form', listing: @listing %>
   </div>
 </div>
