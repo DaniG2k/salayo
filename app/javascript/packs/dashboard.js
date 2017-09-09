@@ -30,28 +30,27 @@
 // </div>
 
 import Vue from 'vue/dist/vue.esm'
-//import App from './app.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
-  Vue.component('step-item', {
-    props: ['step', 'active'],
-    template: '<li :class="{active}">{{ step.text }}</li>'
-  })
 
-  const progress = new Vue({
-    el: '#vue-listing',
-    data: {
-      activeStep: 0,
-      stepList: [
-        {id: 0, text: 'Basics'},
-        {id: 1, text: 'Location'},
-        {id: 2, text: 'Amenities'},
-        {id: 3, text: 'Images'}
-      ]
-    },
-    methods: {
-      addProgress: function() {return true},
-      delProgress: function() {return true}
-    }
-  })
+  if(document.getElementById("vue-listing")) {
+    Vue.component('step-item', {
+      props: ['step', 'active'],
+      template: '<li :class="{active}">{{ step.text }}</li>'
+    })
+
+    const progress = new Vue({
+      el: '#vue-listing',
+      data: {
+        activeStep: 0,
+        stepList: [
+          {id: 0, text: 'Basics'},
+          {id: 1, text: 'Location'},
+          {id: 2, text: 'Amenities'},
+          {id: 3, text: 'Images'}
+        ]
+      }
+    })
+  }
+
 })
