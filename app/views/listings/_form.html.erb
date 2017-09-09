@@ -11,8 +11,9 @@
     </div>
   <% end %>
 
-  <fieldset class="listing-step">
+  <fieldset class="listing-step" v-if="activeStep === 0">
     <h2>Basics</h2>
+
     <div class="row">
       <div class="col">
         <div class="form-group">
@@ -31,11 +32,11 @@
       </div>
     </div>
 
-    <input type="button" name="next" class="next btn btn-secondary" value="Next" />
+    <input type='button' value="Next" name='next' @click="activeStep++" :disabled="activeStep === stepList.length - 1" class="btn btn-secondary" />
 
   </fieldset>
 
-  <fieldset class="listing-step">
+  <fieldset class="listing-step" v-if="activeStep === 1">
     <h2>Location</h2>
     <div class="row">
       <div class="col">
@@ -110,7 +111,39 @@
       </div>
     </div>
 
-    <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
+    <input type='button' value="Previous" name='prev' @click="activeStep--" :disabled="activeStep === 0"  class="btn btn-secondary" />
+    <input type='button' value="Next" name='next' @click="activeStep++" :disabled="activeStep === stepList.length - 1"  class="btn btn-secondary" />
+
+  </fieldset>
+
+  <fieldset class="listing-step" v-if="activeStep === 2">
+    <h2>Amenities</h2>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <strong>Amenities</strong><br>
+          ...
+        </div>
+      </div>
+    </div>
+
+    <input type='button' value="Previous" name='prev' @click="activeStep--" :disabled="activeStep === 0"  class="btn btn-secondary" />
+    <input type='button' value="Next" name='next' @click="activeStep++" :disabled="activeStep === stepList.length - 1"  class="btn btn-secondary" />
+    
+  </fieldset>
+
+  <fieldset class="listing-step" v-if="activeStep === 3">
+    <h2>Images</h2>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <strong>Amenities</strong><br>
+          ...
+        </div>
+      </div>
+    </div>
+
+    <input type='button' value="Previous" name='prev' @click="activeStep--" :disabled="activeStep === 0"  class="btn btn-secondary" />
 
     <div class="row">
       <div class="col">
@@ -119,8 +152,5 @@
         </div>
       </div>
     </div>
-
   </fieldset>
 <% end %>
-
-<script>ListingForm.init();</script>
