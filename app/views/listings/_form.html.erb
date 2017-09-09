@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <fieldset class="step">
+  <fieldset class="listing-step">
     <h2>Basics</h2>
     <div class="row">
       <div class="col">
@@ -30,9 +30,12 @@
         </div>
       </div>
     </div>
+
+    <input type="button" name="next" class="next btn btn-secondary" value="Next" />
+
   </fieldset>
 
-  <fieldset class="step">
+  <fieldset class="listing-step">
     <h2>Location</h2>
     <div class="row">
       <div class="col">
@@ -106,15 +109,18 @@
         </div>
       </div>
     </div>
-  </fieldset>
 
-  <div class="row">
-    <div class="col">
-      <div class="actions">
-        <%= f.submit class: 'btn btn-success' %>
+    <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
+
+    <div class="row">
+      <div class="col">
+        <div class="actions">
+          <%= f.submit class: 'btn btn-success' %>
+        </div>
       </div>
     </div>
-  </div>
+
+  </fieldset>
 <% end %>
 
 <script>ListingForm.init();</script>
