@@ -29,9 +29,8 @@
           <strong><%= f.label :property_type %></strong><br>
           <%= f.select(:property_type, options_for_select(Listing::PROPERTY_TYPES.map do |type|
             [type.titleize, type]
-          end, listing.property_type), class: 'form-control', 'v-model': 'propertyType') %>
+          end, listing.property_type), {}, {class: 'form-control', 'v-model': 'propertyType'}) %>
         </div>
-        <span>Selected: {{ propertyType }}</span>
       </div>
     </div>
   </fieldset>
