@@ -42,14 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  if(document.getElementById("vue-listing")) {
+  if(document.getElementById("listing-multistep")) {
     Vue.component('step-item', {
       props: ['step', 'active'],
       template: '<li :class="{active}">{{ step.text }}</li>'
     })
 
     const progress = new Vue({
-      el: '#vue-listing',
+      el: '#listing-multistep',
       data: {
         activeStep: 0,
         stepList: [

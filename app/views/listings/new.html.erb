@@ -1,12 +1,12 @@
 <% title('Add listing') %>
 
 <div class="dashboard-main-content">
-  <div class="container-fluid" id="vue-listing">
+  <div class="container-fluid" id="listing-multistep">
     <h1><%= fa_icon('plus', text: 'Add listing') %></h1>
 
     <div class="row">
       <div class="col">
-        <!-- progressbar -->
+        <!-- Progressbar -->
       	<ul class="text-center" id="listing-progressbar">
           <step-item v-for="(item, idx) in stepList"
               :step="item"

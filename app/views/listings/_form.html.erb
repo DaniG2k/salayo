@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col">
         <div class="form-group">
-          <strong><%= f.label :name %></strong><br>
+          <strong><%= f.label :name, 'Property name' %></strong><br>
           <%= f.text_field :name, class: 'form-control', 'v-model': 'name' %>
         </div>
       </div>
@@ -27,8 +27,11 @@
       <div class="col">
         <div class="form-group">
           <strong><%= f.label :property_type %></strong><br>
-          <%= f.select(:property_type, options_for_select(Listing::PROPERTY_TYPES.map {|type| [type.titleize, type, {'v-bind:value': "{type : 123}"}] }, listing.property_type), class: 'form-control', 'v-model': 'propertyType') %>
+          <%= f.select(:property_type, options_for_select(Listing::PROPERTY_TYPES.map do |type|
+            [type.titleize, type]
+          end, listing.property_type), class: 'form-control', 'v-model': 'propertyType') %>
         </div>
+        <span>Selected: {{ propertyType }}</span>
       </div>
     </div>
   </fieldset>
