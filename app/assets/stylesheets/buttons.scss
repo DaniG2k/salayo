@@ -19,4 +19,9 @@
     border: 1px solid #ccc;
   }
   margin-bottom: 10px;
+  &:disabled {
+    background-color: #ccc;
+    border-color: #ccc;
+    cursor: not-allowed;
+  }
 }

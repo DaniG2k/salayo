@@ -33,6 +33,16 @@ import Vue from 'vue/dist/vue.esm'
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  if(document.getElementById("dashboard-topbar")) {
+    const dashboard = new Vue({
+      el: '#dashboard-topbar',
+      data: {
+        showDropdown: false
+      }
+    })
+  }
+
+
   if(document.getElementById("vue-listing")) {
     Vue.component('step-item', {
       props: ['step', 'active'],
@@ -49,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
           {id: 2, text: 'Amenities'},
           {id: 3, text: 'Images'}
         ],
-        by_address: true
+        byAddress: true
       }
     })
   }

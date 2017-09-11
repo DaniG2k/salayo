@@ -34,6 +34,7 @@ gem 'devise-i18n'
 gem 'font-awesome-rails'
 gem 'rolify'
 gem 'pundit'
+gem 'rails-ujs'
 # Use Redis adapter to run Action Cable in production
 gem 'redis'
 gem 'sidekiq'

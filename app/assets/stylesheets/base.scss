@@ -23,6 +23,8 @@ footer {
   }
 }
 
+[v-cloak] { display: none; }
+
 #logo {
   padding: 4px 9px 0 0;
 }
@@ -44,8 +46,7 @@ footer {
 
 // For Vue.js transitions
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-  animation-name: slidein;
+  transition: opacity .2s;
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;

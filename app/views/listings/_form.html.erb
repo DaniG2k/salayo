@@ -14,7 +14,7 @@
   <fieldset class="listing-step" v-if="activeStep === 0">
     <h2>Basics</h2>
 
-    <input type='button' value="Next" name='next' @click="activeStep++" :disabled="activeStep === stepList.length - 1" class="btn btn-secondary" />
+    <%= render 'prev_next_buttons' %>
 
     <div class="row">
       <div class="col">
@@ -38,22 +38,20 @@
   <fieldset class="listing-step" v-if="activeStep === 1">
     <h2>Location</h2>
 
-    <input type='button' value="Previous" name='prev' @click="activeStep--" :disabled="activeStep === 0"  class="btn btn-secondary" />
-    <input type='button' value="Next" name='next' @click="activeStep++" :disabled="activeStep === stepList.length - 1"  class="btn btn-secondary" />
-
+    <%= render 'prev_next_buttons' %>
 
     <div class="row">
       <div class="col">
 
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="map_search" id="map_search_address" value="address" v-on:click="by_address = true" checked>
+            <input class="form-check-input" type="radio" name="map_search" id="map_search_address" value="address" v-on:click="byAddress = true" checked>
             Set by address
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="map_search" id="map_search_coords" value="coords" v-on:click="by_address = false">
+            <input class="form-check-input" type="radio" name="map_search" id="map_search_coords" value="coords" v-on:click="byAddress = false">
             Set by coordinates
           </label>
         </div>
@@ -63,18 +61,18 @@
 
     <div id="listing-location">
       <transition name="fade">
-        <fieldset id="listing-location-child" name="address" v-if="by_address">
+        <fieldset id="listing-location-child" name="address" v-show="byAddress">
           <div class="row">
             <div class="col">
               <div class="form-group">
                 <strong><%= f.label :city %></strong><br>
-                <%= f.text_field :city, class: 'form-control', data: {'v-bind:readonly' => '!by_address'} %>
+                <%= f.text_field :city, class: 'form-control', 'v-bind:readonly': '!byAddress' %>
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <strong><%= f.label :state %></strong><br>
-                <%= f.text_field :state, class: 'form-control', data: {'v-bind:readonly' => '!by_address'} %>
+                <%= f.text_field :state, class: 'form-control', 'v-bind:readonly': '!byAddress' %>
               </div>
             </div>
           </div>
@@ -83,7 +81,7 @@
             <div class="col">
               <div class="form-group">
                 <strong><%= f.label :address %></strong><br>
-                <%= f.text_field :address, class: 'form-control', data: {'v-bind:readonly' => '!by_address'} %>
+                <%= f.text_field :address, class: 'form-control', 'v-bind:readonly': '!byAddress' %>
               </div>
             </div>
           </div>
@@ -91,18 +89,18 @@
       </transition>
 
       <transition name="fade">
-        <fieldset id="listing-location-child" name="coords" v-if="!by_address">
+        <fieldset id="listing-location-child" name="coords" v-show="!byAddress">
           <div class="row">
             <div class="col">
               <div class="form-group">
                 <strong><%= f.label :lat, 'Latitude' %></strong><br>
-                <%= f.number_field :lat, in: -90.0..90.0, step: :any, class: 'form-control', data: {'v-bind:readonly' => 'by_address'} %>
+                <%= f.number_field :lat, in: -90.0..90.0, step: :any, class: 'form-control', 'v-bind:readonly': 'byAddress' %>
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <strong><%= f.label :lng, 'Longitude' %></strong><br>
-                <%= f.number_field :lng, in: -180.0..180.0, step: :any, class: 'form-control', data: {'v-bind:readonly' => 'by_address'} %>
+                <%= f.number_field :lng, in: -180.0..180.0, step: :any, class: 'form-control', 'v-bind:readonly': 'byAddress' %>
               </div>
             </div>
           </div>
@@ -125,8 +123,7 @@
   <fieldset class="listing-step" v-if="activeStep === 2">
     <h2>Amenities</h2>
 
-    <input type='button' value="Previous" name='prev' @click="activeStep--" :disabled="activeStep === 0"  class="btn btn-secondary" />
-    <input type='button' value="Next" name='next' @click="activeStep++" :disabled="activeStep === stepList.length - 1"  class="btn btn-secondary" />
+    <%= render 'prev_next_buttons' %>
 
     <div class="row">
       <div class="col">
@@ -141,7 +138,7 @@
   <fieldset class="listing-step" v-if="activeStep === 3">
     <h2>Images</h2>
 
-    <input type='button' value="Previous" name='prev' @click="activeStep--" :disabled="activeStep === 0"  class="btn btn-secondary" />
+    <%= render 'prev_next_buttons' %>
 
     <div class="row">
       <div class="col">

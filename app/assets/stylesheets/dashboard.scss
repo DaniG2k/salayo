@@ -55,7 +55,7 @@
   background-color: $body-gray;
 }
 
-.dashboard-topbar {
+#dashboard-topbar {
   position: relative;
   background-color: #FFFFFF;
   .row {
@@ -93,7 +93,6 @@
   padding: 8px;
   background-color: white;
   border: 0 solid $body-gray;
-  display: none;
   z-index: 1;
   ul {margin: 0; padding: 0;}
   li {
