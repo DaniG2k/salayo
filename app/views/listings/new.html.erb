@@ -9,9 +9,9 @@
         <!-- progressbar -->
       	<ul class="text-center" id="listing-progressbar">
           <step-item v-for="(item, idx) in stepList"
-                    :step="item"
-                    :key="item.id"
-                    :active="idx <= activeStep">
+              :step="item"
+              :key="item.id"
+              :active="idx <= activeStep">
           </step-item>
       	</ul>
 

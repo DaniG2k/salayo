@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
           {id: 1, text: 'Location'},
           {id: 2, text: 'Amenities'},
           {id: 3, text: 'Images'}
-        ]
+        ],
+        by_address: true
       }
     })
   }
