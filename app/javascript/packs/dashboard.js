@@ -29,7 +29,7 @@
 //   <app></app>
 // </div>
 
-import Vue from 'vue/dist/vue.esm'
+import Vue from 'vue/dist/vue.esm';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   }
-
 
   if(document.getElementById("vue-listing")) {
     Vue.component('step-item', {
@@ -59,9 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
           {id: 2, text: 'Amenities'},
           {id: 3, text: 'Images'}
         ],
-        byAddress: true
+        byAddress: true,
+        propertyType: undefined,
+        name: '',
+        city: '',
+        state: '',
+        address: '',
+        lat: undefined,
+        lng: undefined
       }
     })
   }
-
 })

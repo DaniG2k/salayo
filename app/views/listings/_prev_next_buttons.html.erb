@@ -1,2 +1,6 @@
-<input type='button' value="Previous" name='prev' @click="activeStep--" :disabled="activeStep === 0" class="btn btn-secondary" />
-<input type='button' value="Next" name='next' @click="activeStep++" :disabled="activeStep === stepList.length - 1" class="btn btn-secondary" />
+<button type="reset" @click="activeStep--" :disabled="activeStep === 0" class="btn btn-secondary" />
+  <i class="fa fa-chevron-left"></i> Previous
+</button>
+<button type="reset" @click="activeStep++" :disabled="activeStep === stepList.length - 1" class="btn btn-secondary" />
+  Next <i class="fa fa-chevron-right"></i>
+</button>
