@@ -14,7 +14,9 @@
   background-color: #fff;
   border: 1px solid #ccc;
   &:hover {
+    color: #292b2c;
     background-color: $body-gray;
+    border: 1px solid #ccc;
   }
   margin-bottom: 10px;
 }
