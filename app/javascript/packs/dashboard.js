@@ -33,7 +33,7 @@ import Vue from 'vue/dist/vue.esm';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  if(document.getElementById("dashboard-topbar")) {
+  if(document.getElementById('dashboard-topbar')) {
     const dashboard = new Vue({
       el: '#dashboard-topbar',
       data: {
@@ -42,10 +42,29 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  if(document.getElementById("listing-multistep")) {
+  if(document.getElementById('listing-multistep')) {
     Vue.component('step-item', {
       props: ['step', 'active'],
       template: '<li :class="{active}">{{ step.text }}</li>'
+    })
+
+    Vue.directive('map', {
+      // When the bound element is inserted into the DOM:
+      inserted: function (el, binding) {
+        var map = new google.maps.Map(document.getElementById('location-map'), {
+          zoom: 15,
+          draggable: false,
+          panControl: false,
+          scrollwheel: false,
+          streetViewControl: false,
+          center: binding.value,
+          disableDoubleClickZoom: true
+        });
+        var marker = new google.maps.Marker({
+          map: map,
+          position: binding.value
+        });
+      }
     })
 
     const progress = new Vue({
