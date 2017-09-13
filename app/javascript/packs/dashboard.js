@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
           panControl: false,
           scrollwheel: false,
           streetViewControl: false,
+          fullscreenControl: false,
           center: binding.value,
           disableDoubleClickZoom: true
         });
@@ -85,6 +86,43 @@ document.addEventListener('DOMContentLoaded', () => {
         address: '',
         lat: undefined,
         lng: undefined
+      },
+      methods: {
+        setDefaultLocation: function() {
+          return {lat: 37.5665, lng: 126.9780}
+        },
+        updateLocation: function() {
+          var fullAddress = this.address
+          if(this.city.length > 1) {
+            if(fullAddress.length > 1) {
+              fullAddress += ', ' + this.city
+            } else {
+              fullAddress += this.city
+            }
+          }
+          if(this.state.length > 1) {
+            if(fullAddress.length > 1) {
+              fullAddress += ', ' + this.state
+            } else {
+              fullAddress += this.state
+            }
+          }
+
+          var geocoder = new google.maps.Geocoder({types: ["geocode"]});
+          geocoder.geocode({'address': this.address + ', ' + this.city + ', ' + this.state }, function(response, status) {
+            if (status == 'OK'){
+              marker.setVisible(true);
+              map.setCenter(response[0].geometry.location);
+              marker.setPosition(response[0].geometry.location);
+              this.lat = response[0].geometry.location.lat();
+              this.lng = response[0].geometry.location.lng();
+            } else {
+              marker.setVisible(false)
+              this.lat = null;
+              this.lng = null;
+            }
+          });
+        }
       }
     })
   }

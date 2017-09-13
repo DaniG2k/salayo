@@ -61,13 +61,13 @@
             <div class="col">
               <div class="form-group">
                 <strong><%= f.label :city %></strong><br>
-                <%= f.text_field :city, class: 'form-control', 'v-model': 'city', 'v-bind:readonly': '!byAddress' %>
+                <%= f.text_field :city, class: 'form-control', 'v-model': 'city', 'v-bind:readonly': '!byAddress', 'v-on:change': 'updateLocation' %>
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <strong><%= f.label :state %></strong><br>
-                <%= f.text_field :state, class: 'form-control', 'v-model': 'state', 'v-bind:readonly': '!byAddress' %>
+                <%= f.text_field :state, class: 'form-control', 'v-model': 'state', 'v-bind:readonly': '!byAddress', 'v-on:change': 'updateLocation' %>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
             <div class="col">
               <div class="form-group">
                 <strong><%= f.label :address %></strong><br>
-                <%= f.text_field :address, class: 'form-control', 'v-model': 'address', 'v-bind:readonly': '!byAddress' %>
+                <%= f.text_field :address, class: 'form-control', 'v-model': 'address', 'v-bind:readonly': '!byAddress', 'v-on:change': 'updateLocation' %>
               </div>
             </div>
           </div>
@@ -107,7 +107,7 @@
       <div class="col-12">
         <div class="form-group">
           <strong>Map</strong><br>
-          <div id="map-container" v-map="{lat: 37.5665, lng: 126.9780}">
+          <div id="map-container" v-map="setDefaultLocation()">
             <div id='location-map'></div>
           </div>
         </div>
