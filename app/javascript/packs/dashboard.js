@@ -58,12 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
           scrollwheel: false,
           streetViewControl: false,
           fullscreenControl: false,
-          center: binding.value,
+          center: {lat: 37.5665, lng: 126.9780},
           disableDoubleClickZoom: true
         });
         var marker = new google.maps.Marker({
           map: map,
-          position: binding.value
+          position: {lat: 37.5665, lng: 126.9780}
         });
       }
     })
@@ -84,14 +84,26 @@ document.addEventListener('DOMContentLoaded', () => {
         city: '',
         state: '',
         address: '',
-        lat: undefined,
-        lng: undefined
+        lat: 37.5665,
+        lng: 126.9780
       },
       methods: {
-        setDefaultLocation: function() {
-          return {lat: 37.5665, lng: 126.9780}
-        },
         updateLocation: function() {
+          var map = new google.maps.Map(document.getElementById('location-map'), {
+            zoom: 15,
+            draggable: false,
+            panControl: false,
+            scrollwheel: false,
+            streetViewControl: false,
+            fullscreenControl: false,
+            center: {lat: this.lat, lng: this.lng},
+            disableDoubleClickZoom: true
+          });
+          var marker = new google.maps.Marker({
+            map: map,
+            position: {lat: this.lat, lng: this.lng}
+          });
+
           var fullAddress = this.address
           if(this.city.length > 1) {
             if(fullAddress.length > 1) {
@@ -107,21 +119,25 @@ document.addEventListener('DOMContentLoaded', () => {
               fullAddress += this.state
             }
           }
-
           var geocoder = new google.maps.Geocoder({types: ["geocode"]});
+          var newLat = undefined;
+          var newLng = undefined;
           geocoder.geocode({'address': this.address + ', ' + this.city + ', ' + this.state }, function(response, status) {
             if (status == 'OK'){
               marker.setVisible(true);
-              map.setCenter(response[0].geometry.location);
-              marker.setPosition(response[0].geometry.location);
-              this.lat = response[0].geometry.location.lat();
-              this.lng = response[0].geometry.location.lng();
+              newLat = parseFloat(response[0].geometry.location.lat());
+              newLng = parseFloat(response[0].geometry.location.lng());
+              var newLatLng = new google.maps.LatLng(newLat, newLng);
+              map.setCenter(newLatLng);
+              marker.setPosition(newLatLng);
             } else {
               marker.setVisible(false)
-              this.lat = null;
-              this.lng = null;
+              newLat = null;
+              newLng = null;
             }
           });
+          this.lat = newLat
+          this.lng = newLng
         }
       }
     })
