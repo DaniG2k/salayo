@@ -58,12 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
           scrollwheel: false,
           streetViewControl: false,
           fullscreenControl: false,
-          center: {lat: 37.5665, lng: 126.9780},
+          center: binding.value,
           disableDoubleClickZoom: true
         });
         var marker = new google.maps.Marker({
           map: map,
-          position: {lat: 37.5665, lng: 126.9780}
+          position: binding.value
         });
       }
     })
@@ -84,10 +84,17 @@ document.addEventListener('DOMContentLoaded', () => {
         city: '',
         state: '',
         address: '',
-        lat: 37.5665,
-        lng: 126.9780
+        lat: '',
+        lng: ''
       },
       methods: {
+        getCoords: function() {
+          if(this.lat === '' && this.lng === '') {
+            return {lat: 37.5665, lng: 126.9780}
+          } else {
+            return {lat: this.lat, lng: this.lng}
+          }
+        },
         updateLocation: function() {
           var map = new google.maps.Map(document.getElementById('location-map'), {
             zoom: 15,
@@ -119,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
               fullAddress += this.state
             }
           }
+
           var geocoder = new google.maps.Geocoder({types: ["geocode"]});
           var newLat = undefined;
           var newLng = undefined;
