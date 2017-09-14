@@ -90,10 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
       methods: {
         getCoords: function() {
           if(this.lat === '' && this.lng === '') {
-            return {lat: 37.5665, lng: 126.9780}
-          } else {
-            return {lat: this.lat, lng: this.lng}
+            this.lat = 37.5665
+            this.lng = 126.9780
           }
+          return {lat: this.lat, lng: this.lng}
         },
         updateLocation: function() {
           var map = new google.maps.Map(document.getElementById('location-map'), {
@@ -126,26 +126,29 @@ document.addEventListener('DOMContentLoaded', () => {
               fullAddress += this.state
             }
           }
+          function defaultMarker() {
+            marker.setVisible(false)
+            this.lat = 37.5665;
+            this.lng = 126.9780;
+          }
 
           var geocoder = new google.maps.Geocoder({types: ["geocode"]});
-          var newLat = undefined;
-          var newLng = undefined;
-          geocoder.geocode({'address': this.address + ', ' + this.city + ', ' + this.state }, function(response, status) {
-            if (status == 'OK'){
-              marker.setVisible(true);
-              newLat = parseFloat(response[0].geometry.location.lat());
-              newLng = parseFloat(response[0].geometry.location.lng());
-              var newLatLng = new google.maps.LatLng(newLat, newLng);
-              map.setCenter(newLatLng);
-              marker.setPosition(newLatLng);
-            } else {
-              marker.setVisible(false)
-              newLat = null;
-              newLng = null;
-            }
-          });
-          this.lat = newLat
-          this.lng = newLng
+          if (this.address == '' && this.city == '' && this.state == '') {
+            defaultMarker();
+          } else {
+            geocoder.geocode({'address': this.address + ', ' + this.city + ', ' + this.state }, function(response, status) {
+              if (status == 'OK'){
+                marker.setVisible(true);
+                this.lat = parseFloat(response[0].geometry.location.lat());
+                this.lng = parseFloat(response[0].geometry.location.lng());
+                var newLatLng = new google.maps.LatLng(this.lat, this.lng);
+                map.setCenter(newLatLng);
+                marker.setPosition(newLatLng);
+              } else {
+                defaultMarker();
+              }
+            });
+          }
         }
       }
     })
