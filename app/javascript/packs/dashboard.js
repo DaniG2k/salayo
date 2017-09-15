@@ -61,10 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
           center: binding.value,
           disableDoubleClickZoom: true
         });
-        var marker = new google.maps.Marker({
-          map: map,
-          position: binding.value
-        });
       }
     })
 
@@ -78,6 +74,28 @@ document.addEventListener('DOMContentLoaded', () => {
           {id: 2, text: 'Amenities'},
           {id: 3, text: 'Images'}
         ],
+        amenities: [
+          {id: 0, text: "Air conditioning"},
+          {id: 1, text: "Buzzer/wireless intercom"},
+          {id: 2, text: "Cable TV"},
+          {id: 3, text: "Doorman"},
+          {id: 4, text: "Dryer"},
+          {id: 5, text: "Elevator"},
+          {id: 6, text: "Essentials"},
+          {id: 7, text: "Gym"},
+          {id: 8, text: "Hair dryer"},
+          {id: 9, text: "Hangers"},
+          {id: 10, text: "Heating"},
+          {id: 11, text: "Hot tub"},
+          {id: 12, text: "Internet"},
+          {id: 13, text: "Iron"},
+          {id: 14, text: "Kitchen"},
+          {id: 15, text: "Parking"},
+          {id: 16, text: "Pool"},
+          {id: 17, text: "TV"},
+          {id: 18, text: "Washer"}
+        ],
+        checkedAmenities: [],
         byAddress: true,
         propertyType: undefined,
         name: '',
@@ -127,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
           function defaultMarker() {
-            marker.setVisible(false)
+            marker.setVisible(false);
             this.lat = 37.5665;
             this.lng = 126.9780;
           }
