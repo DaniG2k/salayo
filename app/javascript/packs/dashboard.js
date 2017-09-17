@@ -30,10 +30,13 @@
 // </div>
 
 import Vue from 'vue/dist/vue.esm';
+import VueResource from 'vue-resource';
+
+Vue.use(VueResource);
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  if(document.getElementById('dashboard-topbar')) {
+  if(document.getElementById('dashboard-topbar') != null) {
     const dashboard = new Vue({
       el: '#dashboard-topbar',
       data: {
@@ -42,7 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  if(document.getElementById('listing-multistep')) {
+  if(document.getElementById('listing-multistep') != null) {
+    Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    var listingForm = document.getElementsByClassName('listing_form')[0];
+    var id = listingForm.dataset.id;
+    var listing = JSON.parse(listingForm.dataset.listing);
+
     Vue.component('step-item', {
       props: ['step', 'active'],
       template: '<li :class="{active}">{{ step.text }}</li>'
@@ -67,6 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const progress = new Vue({
       el: '#listing-multistep',
       data: {
+        id: id,
+        listing: listing,
         activeStep: 0,
         stepList: [
           {id: 0, text: 'Basics'},
@@ -105,6 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
         lat: '',
         lng: ''
       },
+      // saveListing: function() {
+      //   this.$http.post('/listings', listing: {this.listing}).then( response => {
+      //
+      //   })
+      // },
       methods: {
         getCoords: function() {
           if(this.lat === '' && this.lng === '') {
@@ -163,7 +178,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 map.setCenter(newLatLng);
                 marker.setPosition(newLatLng);
               } else {
-                defaultMarker();
+                marker.setVisible(false);
+                this.lat = null;
+                this.lng = null;
               }
             });
           }

@@ -22,14 +22,16 @@ class ListingsController < ApplicationController
     @listing.owner = current_user
 
     authorize @listing, :create?
+    respond_to do |format|
+      if @listing.save
+        current_user.add_role(:owner, @listing)
 
-    if @listing.save
-      current_user.add_role(:owner, @listing)
-
-      flash[:notice] = 'Listing was created successfully!'
-      redirect_to listing_path(@listing)
-    else
-      render :new
+        format.html { redirect_to listing_path(@listing), notice: 'Listing was created successfully!' }
+        format.json { render :show, status: :created, location: @listing }
+      else
+        format.html { render :new }
+        format.json { render json: @listing.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -51,23 +53,28 @@ class ListingsController < ApplicationController
     authorize @listing, :update?
     @listing.owner = current_user
 
-    if @listing.update(listing_params)
-      current_user.add_role(:owner, @listing)
+    respond_to do |format|
+      if @listing.update(listing_params)
+        current_user.add_role(:owner, @listing)
 
-      flash[:notice] = 'Listing has been updated!'
-      redirect_to @listing
-    else
-      flash.now[:alert] = 'Listing has not been updated.'
-      render :edit
+        format.html { redirect_to @listing, notice: 'Listing has been updated!' }
+        format.json { render :show, status: :ok, location: @listing }
+      else
+        format.html { render :edit }
+        format.json { render @team.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
     authorize @listing, :destroy?
-    if @listing.destroy
-      redirect_to listings_path, notice: 'Listing was successfully deleted!'
-    else
-      flash.now[:notice] = 'Listing was not destroyed.'
+    respond_to do |format|
+      if @listing.destroy
+        format.html { redirect_to listings_path, notice: 'Listing was successfully deleted!' }
+        format.json { head :no_content }
+      else
+        flash.now[:notice] = 'Listing was not destroyed.'
+      end
     end
   end
 
