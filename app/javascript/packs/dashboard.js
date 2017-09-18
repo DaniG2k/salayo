@@ -56,23 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
       template: '<li :class="{active}">{{ step.text }}</li>'
     })
 
-    Vue.directive('map', {
-      // When the bound element is inserted into the DOM:
-      inserted: function (el, binding) {
-        var map = new google.maps.Map(document.getElementById('location-map'), {
-          zoom: 15,
-          draggable: false,
-          panControl: false,
-          scrollwheel: false,
-          streetViewControl: false,
-          fullscreenControl: false,
-          center: binding.value,
-          disableDoubleClickZoom: true
-        });
-      }
-    })
+    // Vue.directive('map', {
+    //   // When the bound element is inserted into the DOM:
+    //   inserted: function (el, binding) {
+    //     var map = new google.maps.Map(document.getElementById('location-map'), {
+    //       zoom: 15,
+    //       draggable: false,
+    //       panControl: false,
+    //       scrollwheel: false,
+    //       streetViewControl: false,
+    //       fullscreenControl: false,
+    //       center: binding.value,
+    //       disableDoubleClickZoom: true
+    //     });
+    //   }
+    // })
 
-    const progress = new Vue({
+    const listingForm = new Vue({
       el: '#listing-multistep',
       data: {
         id: id,
@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         checkedAmenities: [],
         byAddress: true,
         propertyType: undefined,
+        displayMap: false,
         name: '',
         city: '',
         state: '',
@@ -121,66 +122,58 @@ document.addEventListener('DOMContentLoaded', () => {
       //   })
       // },
       methods: {
-        getCoords: function() {
-          if(this.lat === '' && this.lng === '') {
-            this.lat = 37.5665
-            this.lng = 126.9780
-          }
-          return {lat: this.lat, lng: this.lng}
-        },
+        // getCoords: function() {
+        //   return {lat: this.lat, lng: this.lng}
+        // },
         updateLocation: function() {
-          var map = new google.maps.Map(document.getElementById('location-map'), {
-            zoom: 15,
-            draggable: false,
-            panControl: false,
-            scrollwheel: false,
-            streetViewControl: false,
-            fullscreenControl: false,
-            center: {lat: this.lat, lng: this.lng},
-            disableDoubleClickZoom: true
-          });
-          var marker = new google.maps.Marker({
-            map: map,
-            position: {lat: this.lat, lng: this.lng}
-          });
-
-          var fullAddress = this.address
+          var fullAddress = this.address;
           if(this.city.length > 1) {
-            if(fullAddress.length > 1) {
-              fullAddress += ', ' + this.city
-            } else {
-              fullAddress += this.city
-            }
+            fullAddress += (fullAddress.length > 1) ? `, ${this.city}` : this.city
           }
           if(this.state.length > 1) {
-            if(fullAddress.length > 1) {
-              fullAddress += ', ' + this.state
-            } else {
-              fullAddress += this.state
-            }
-          }
-          function defaultMarker() {
-            marker.setVisible(false);
-            this.lat = 37.5665;
-            this.lng = 126.9780;
+            fullAddress += (fullAddress.length > 1) ?  `, ${this.state}` : this.state
           }
 
-          var geocoder = new google.maps.Geocoder({types: ["geocode"]});
-          if (this.address == '' && this.city == '' && this.state == '') {
-            defaultMarker();
+          if (fullAddress === '') {
+            this.lat = null;
+            this.lng = null;
+            this.displayMap = false
           } else {
-            geocoder.geocode({'address': this.address + ', ' + this.city + ', ' + this.state }, function(response, status) {
+            var geocoder = new google.maps.Geocoder({types: ["geocode"]});
+            geocoder.geocode({'address': fullAddress }, (response, status) => {
               if (status == 'OK'){
-                marker.setVisible(true);
                 this.lat = parseFloat(response[0].geometry.location.lat());
                 this.lng = parseFloat(response[0].geometry.location.lng());
+                this.displayMap = true;
+                var mapDiv = document.getElementById('location-map');
+
+                var map = new google.maps.Map(mapDiv, {
+                  zoom: 15,
+                  draggable: false,
+                  panControl: false,
+                  scrollwheel: false,
+                  streetViewControl: false,
+                  fullscreenControl: false,
+                  center: {lat: this.lat, lng: this.lng},
+                  disableDoubleClickZoom: true
+                });
+
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: {lat: this.lat, lng: this.lng}
+                });
+
                 var newLatLng = new google.maps.LatLng(this.lat, this.lng);
+
                 map.setCenter(newLatLng);
+                marker.setVisible(true);
                 marker.setPosition(newLatLng);
               } else {
+                console.log(`Status: ${status}`)
                 marker.setVisible(false);
                 this.lat = null;
                 this.lng = null;
+                this.displayMap = false;
               }
             });
           }

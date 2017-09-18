@@ -1,12 +1,24 @@
 // Place all the styles related to the Listings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 #location-map {
-  height: 250px;
+  height: $map-height;
 }
 
 #map-container {
   padding: 15px 0;
+}
+
+#no-map {
+  border: 5px dashed #CCC;
+  border-radius: 5px;
+  padding: 2em;
+  margin: 15px 0;
+  height: $map-height;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 165px;
 }
 
 #listing-progressbar {

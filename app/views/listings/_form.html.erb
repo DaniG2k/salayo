@@ -107,8 +107,13 @@
       <div class="col-12">
         <div class="form-group">
           <strong>Map</strong><br>
-          <div id="map-container" v-map="getCoords()">
-            <div id='location-map'></div>
+          <div v-show="displayMap == true">
+            <div id="map-container"><!-- v-map="getCoords" -->
+              <div id='location-map'></div>
+            </div>
+          </div>
+          <div id="no-map" v-show="displayMap == false">
+            No map to display
           </div>
         </div>
       </div>
