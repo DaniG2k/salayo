@@ -35,7 +35,6 @@ import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
 document.addEventListener('DOMContentLoaded', () => {
-
   if(document.getElementById('dashboard-topbar') != null) {
     const dashboard = new Vue({
       el: '#dashboard-topbar',
@@ -134,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fullAddress += (fullAddress.length > 1) ?  `, ${this.state}` : this.state
           }
 
-          if (fullAddress === '') {
+          if (fullAddress == '') {
             this.lat = null;
             this.lng = null;
             this.displayMap = false
