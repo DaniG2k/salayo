@@ -60,7 +60,7 @@ class ListingsController < ApplicationController
         format.json { render :show, status: :ok, location: @listing }
       else
         format.html { render :edit }
-        format.json { render jdons: @team.errors, status: :unprocessable_entity }
+        format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end
   end
