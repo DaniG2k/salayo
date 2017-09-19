@@ -45,37 +45,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if(document.getElementById('listing-multistep') != null) {
-    Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('input[name="authenticity_token"]').getAttribute('value');
     var listingForm = document.getElementsByClassName('listing_form')[0];
     var id = listingForm.dataset.id;
-    var listing = JSON.parse(listingForm.dataset.listing);
 
     Vue.component('step-item', {
       props: ['step', 'active'],
       template: '<li :class="{active}">{{ step.text }}</li>'
     })
 
-    // Vue.directive('map', {
-    //   // When the bound element is inserted into the DOM:
-    //   inserted: function (el, binding) {
-    //     var map = new google.maps.Map(document.getElementById('location-map'), {
-    //       zoom: 15,
-    //       draggable: false,
-    //       panControl: false,
-    //       scrollwheel: false,
-    //       streetViewControl: false,
-    //       fullscreenControl: false,
-    //       center: binding.value,
-    //       disableDoubleClickZoom: true
-    //     });
-    //   }
-    // })
-
     const listingForm = new Vue({
       el: '#listing-multistep',
       data: {
         id: id,
-        listing: listing,
         activeStep: 0,
         stepList: [
           {id: 0, text: 'Basics'},
@@ -115,15 +97,41 @@ document.addEventListener('DOMContentLoaded', () => {
         lat: '',
         lng: ''
       },
-      // saveListing: function() {
-      //   this.$http.post('/listings', listing: {this.listing}).then( response => {
-      //
-      //   })
-      // },
       methods: {
-        // getCoords: function() {
-        //   return {lat: this.lat, lng: this.lng}
-        // },
+        submitListing: function() {
+          var amenityNames = []
+          var checkedIndices = []
+
+          this.checkedAmenities.forEach((elt, idx) => {
+            if(elt === true){ checkedIndices.push(idx) }
+          });
+
+          this.amenities.map((amenity) => {
+            if(checkedIndices.includes(amenity.id)){
+              amenityNames.push(amenity.text);
+            }
+          });
+
+          var listingObj = {
+            id: id,
+            name: this.name,
+            property_type: this.propertyType,
+            city: this.city,
+            state: this.state,
+            address: this.address,
+            lat: this.lat,
+            lng: this.lng,
+            amenities: amenityNames
+          }
+
+          this.$http.post('/listings', {listing: listingObj}).then(
+            response => {
+              console.log(response)
+              window.location = `/listings/${response.body.id}`
+          }, response => {
+            console.log(response)
+          })
+        },
         updateLocation: function() {
           var fullAddress = this.address;
           if(this.city.length > 1) {
