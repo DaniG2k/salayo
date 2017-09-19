@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
 
           var listingObj = {
-            id: id,
+            id: this.id,
             name: this.name,
             property_type: this.propertyType,
             city: this.city,
@@ -124,13 +124,23 @@ document.addEventListener('DOMContentLoaded', () => {
             amenities: amenityNames
           }
 
-          this.$http.post('/listings', {listing: listingObj}).then(
-            response => {
+          if(this.id == null) {
+            // POST if it's a new listing
+            this.$http.post('/listings', {listing: listingObj}).then(
+              response => {
+                window.location = `/listings/${response.body.id}`
+            }, response => {
               console.log(response)
-              window.location = `/listings/${response.body.id}`
-          }, response => {
-            console.log(response)
-          })
+            })
+          } else {
+            // PUT if it's an existing listing
+            this.$http.put(`/listings/${this.id}`, {listing: listingObj}).then(
+              response => {
+                window.location = `/listings/${response.body.id}`
+            }, response => {
+              console.log(response)
+            })
+          }
         },
         updateLocation: function() {
           var fullAddress = this.address;

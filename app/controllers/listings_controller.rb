@@ -25,7 +25,6 @@ class ListingsController < ApplicationController
     respond_to do |format|
       if @listing.save
         current_user.add_role(:owner, @listing)
-
         format.html { redirect_to listing_path(@listing), notice: 'Listing was created successfully!' }
         format.json { render :show, status: :created, location: @listing }
       else
@@ -61,7 +60,7 @@ class ListingsController < ApplicationController
         format.json { render :show, status: :ok, location: @listing }
       else
         format.html { render :edit }
-        format.json { render @team.errors, status: :unprocessable_entity }
+        format.json { render jdons: @team.errors, status: :unprocessable_entity }
       end
     end
   end
