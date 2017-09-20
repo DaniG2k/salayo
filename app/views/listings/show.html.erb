@@ -4,5 +4,13 @@
   <div class="container-fluid">
     <h1><%= @listing.name %></h1>
     <p>Find me in app/views/listings/show.html.erb</p>
+    <strong>Property type:</strong> <%= @listing.property_type %><br />
+    <strong>Address:</strong> <%= "#{@listing.address}, #{@listing.city}, #{@listing.state}" %><br />
+    <strong>Amenities:</strong>
+    <ul>
+      <% @listing.amenities.each do |amenity| %>
+        <li><%= amenity %></li>
+      <% end %>
+    </ul>
   </div>
 </div>

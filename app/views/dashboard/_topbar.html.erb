@@ -1,18 +1,21 @@
-<div class="dashboard-topbar">
+<div id="dashboard-topbar">
   <div class="row">
 
     <div class="col-12">
-      <div id="dropdown_box">
-        <ul>
-          <%= content_tag(:li, link_to(fa_icon('user-circle', text: t('users.show.title')), user_path(current_user))) %>
-          <%= content_tag(:li, link_to(fa_icon('gear', text: 'Edit account'), edit_user_registration_path)) %>
-          <% admins_only do %>
-            <%= content_tag(:li, link_to(fa_icon('bolt', text: 'Sidekiq'), sidekiq_web_path))%>
-          <% end %>
-          <%= content_tag(:li, link_to(fa_icon('unlock', text: 'Sign out'), destroy_user_session_path, method: :delete)) %>
-        </ul>
-      </div>
-      <%= link_to fa_icon('chevron-down', text: current_user.name, right: true), '#', class: 'float-right', id: 'show_box' %>
+      <transition name="fade">
+        <div id="dropdown_box" v-show="showDropdown" v-cloak>
+          <ul>
+            <%= content_tag(:li, link_to(fa_icon('user-circle', text: t('users.show.title')), user_path(current_user))) %>
+            <%= content_tag(:li, link_to(fa_icon('gear', text: 'Edit account'), edit_user_registration_path)) %>
+            <% admins_only do %>
+              <%= content_tag(:li, link_to(fa_icon('bolt', text: 'Sidekiq'), sidekiq_web_path))%>
+            <% end %>
+            <%= content_tag(:li, link_to(fa_icon('unlock', text: 'Sign out'), destroy_user_session_path, method: :delete)) %>
+          </ul>
+        </div>
+      </transition>
+
+      <%= link_to(fa_icon('chevron-down', text: current_user.name, right: true), '#', class: 'float-right', 'v-on:blur': 'showDropdown = false', 'v-on:click.prevent': 'showDropdown = true') %>
     </div>
 
   </div>
