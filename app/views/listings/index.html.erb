@@ -24,7 +24,7 @@
               </div>
 
               <div class="card-footer">
-                <small class="text-muted">Added <%= time_ago_in_words(listing.created_at) %> ago</small>
+                <small class="text-muted">Added <%= "#{time_ago_in_words(listing.created_at)} #{t('time.ago')}" %></small>
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="card-footer">
-                  <small class="text-muted">Added <%= time_ago_in_words(listing.created_at) %> ago</small>
+                  <small class="text-muted">Added <%= "#{time_ago_in_words(listing.created_at)} #{t('time.ago')}" %></small>
                 </div>
               </div>
             </div>

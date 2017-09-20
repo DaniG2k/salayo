@@ -13,7 +13,7 @@
     <% end %>
 
     <div class="card-footer">
-      <small class="text-muted">Posted <%= time_ago_in_words(ad.created_at) %> ago</small>
+      <small class="text-muted">Posted <%= "#{time_ago_in_words(ad.created_at)} #{t('time.ago')}" %></small>
     </div>
   </div>
 </div>

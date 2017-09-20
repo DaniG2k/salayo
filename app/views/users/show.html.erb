@@ -18,7 +18,7 @@
             <h4 class="card-title"><%= fa_icon('globe', text: "#{t('.language')}: #{t('language')}") %></h4>
           </div>
           <div class="card-footer">
-            <small class="text-muted">Profile last updated <%= time_ago_in_words(current_user.updated_at) %> ago</small>
+            <small class="text-muted">Profile last updated <%= "#{time_ago_in_words(current_user.updated_at)} #{t('time.ago')}" %></small>
           </div>
         </div>
 
