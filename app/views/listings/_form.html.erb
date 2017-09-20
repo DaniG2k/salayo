@@ -1,4 +1,11 @@
-<%= form_for(listing, html: { id: listing.id, class: 'listing_form' }) do |f| %>
+<%= form_for(
+  listing,
+  html: {
+    id: 'listing_form',
+    data: {
+      listing: listing.to_json(except: [:user_id, :created_at, :updated_at])
+    }
+  }) do |f| %>
   <% if listing.errors.any? %>
     <div class="alert alert-danger" role="alert">
       <strong><%= pluralize(listing.errors.count, 'error') %>

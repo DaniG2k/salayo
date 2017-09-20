@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if(document.getElementById('listing-multistep') != null) {
     Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('input[name="authenticity_token"]').getAttribute('value');
-    var listingForm = document.getElementsByClassName('listing_form')[0];
-    var id = listingForm.dataset.id;
+    var listingForm = document.getElementById('listing_form');
+    var listing = JSON.parse(listingForm.dataset.listing);
 
     Vue.component('step-item', {
       props: ['step', 'active'],
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const listingForm = new Vue({
       el: '#listing-multistep',
       data: {
-        id: id,
+        id: listing.id,
         activeStep: 0,
         stepList: [
           {id: 0, text: 'Basics'},
@@ -86,16 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
           {id: 17, text: "TV"},
           {id: 18, text: "Washer"}
         ],
-        checkedAmenities: [],
+        checkedAmenities: listing.amenities,
         byAddress: true,
-        propertyType: undefined,
+        propertyType: listing.property_type,
         displayMap: false,
-        name: '',
-        city: '',
-        state: '',
-        address: '',
-        lat: '',
-        lng: ''
+        name: listing.name,
+        city: listing.city,
+        state: listing.state,
+        address: listing.address,
+        lat: listing.lat,
+        lng: listing.lng
       },
       methods: {
         submitListing: function() {
@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
               console.log(response)
             })
           } else {
+            console.log(`id is not null: ${this.id}`)
             // PUT if it's an existing listing
             this.$http.put(`/listings/${this.id}`, {listing: listingObj}).then(
               response => {

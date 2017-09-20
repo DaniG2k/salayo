@@ -38,7 +38,6 @@ gem 'rails-ujs'
 # Use Redis adapter to run Action Cable in production
 gem 'redis'
 gem 'sidekiq'
-gem 'gon'
 gem 'webpacker', '~> 3.0'
 
 group :development, :test do

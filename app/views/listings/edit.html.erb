@@ -1,8 +1,32 @@
 <% title('Edit listing') %>
 
 <div class="dashboard-main-content">
-  <div class="container-fluid">
-    <h1>Edit listing</h1>
+  <div class="container-fluid" id="listing-multistep">
+    <h1><%= fa_icon('pencil', text: 'Edit listing') %></h1>
+
+    <div class="row">
+      <div class="col">
+        <!-- Progressbar -->
+      	<ul class="text-center" id="listing-progressbar">
+          <step-item v-for="(item, idx) in stepList"
+              :step="item"
+              :key="item.id"
+              :active="idx <= activeStep">
+          </step-item>
+      	</ul>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-center">
+        <%= render 'prev_next_buttons' %>
+      </div>
+    </div>
+
     <%= render 'form', listing: @listing %>
+
   </div>
 </div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>"></script>

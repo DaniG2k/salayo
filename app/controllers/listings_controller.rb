@@ -36,17 +36,12 @@ class ListingsController < ApplicationController
 
   def edit
     authorize @listing, :edit?
-
-    gon.push({
-      lat: @listing.lat,
-      lng: @listing.lng
-    })
   end
 
   def update
     authorize @listing, :update?
     @listing.owner = current_user
-
+    
     respond_to do |format|
       if @listing.update(listing_params)
         current_user.add_role(:owner, @listing)
