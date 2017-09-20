@@ -10,6 +10,8 @@ ko:
     description: The easiest way to find housing or roommates in South Korea.
     keywords: '아파트, 숙소, 숙박 시설, 주택, 주택 상가, 원룸, 오피스텔, 투룸, 쓰리룸, 단기임대, 월세, 전세 임대 정보, 한국, 서울, 부산, 룸 메이트, 룸메이트'
   users:
+    logout: '로그 아웃'
+    edit_account: '사용자 정보 수정'
     show:
       title: '내 프로필'
       email: 이메일

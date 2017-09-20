@@ -10,6 +10,8 @@ en:
     description: The easiest way to find housing or roommates in South Korea.
     keywords: 'apartments, housing, accomodation, South Korea, Seoul, Busan, room mate, roommate, flatmate, house mate, housemate'
   users:
+    logout: Log out
+    edit_account: Edit account
     show:
       title: My profile
       email: Email

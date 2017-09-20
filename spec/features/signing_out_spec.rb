@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Signed-in users can sign out' do
+RSpec.feature 'Signed-in users can log out' do
   let!(:user) { FactoryGirl.create(:user, locale: 'en') }
 
   before do
@@ -9,7 +9,7 @@ RSpec.feature 'Signed-in users can sign out' do
 
   scenario 'with valid credentials' do
     visit dashboard_path(locale: 'en')
-    click_link 'Sign out'
+    click_link 'Log out'
 
     expect(page).to have_content 'Signed out successfully'
   end
