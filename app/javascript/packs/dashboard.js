@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           if(this.id == null) {
+            console.log(listingObj)
             // POST if it's a new listing
             this.$http.post('/listings', {listing: listingObj}).then(
               response => {

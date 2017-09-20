@@ -55,7 +55,6 @@ class ListingsController < ApplicationController
     respond_to do |format|
       if @listing.update(listing_params)
         current_user.add_role(:owner, @listing)
-
         format.html { redirect_to @listing, notice: 'Listing has been updated!' }
         format.json { render :show, status: :ok, location: @listing }
       else
@@ -83,11 +82,12 @@ class ListingsController < ApplicationController
       params.require(:listing).permit(
         :name,
         :property_type,
-        :address,
         :city,
         :state,
+        :address,
         :lat,
-        :lng)
+        :lng,
+        :amenities => [])
     end
 
     def set_listing

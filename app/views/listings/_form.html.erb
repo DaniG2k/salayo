@@ -124,16 +124,19 @@
     <h2>Amenities</h2>
 
     <div class="row">
-      <div class="col">
-
+      <div class="col-5">
         <div class="form-group">
-          <div v-for="(amenity, idx) in amenities">
-            <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" v-model="checkedAmenities[idx]" :value="amenity.id">
-              {{ amenity.text }}
-            </label>
-          </div><br />
+          <div class="custom-controls-stacked">
 
+            <div v-for="(amenity, idx) in amenities">
+              <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" v-model="checkedAmenities[idx]" :value="amenity.id">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">{{ amenity.text }}</span>
+              </label>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
