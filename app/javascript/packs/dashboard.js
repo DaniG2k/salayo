@@ -31,6 +31,7 @@
 
 import Vue from 'vue/dist/vue.esm';
 import VueResource from 'vue-resource';
+import Dropzone from 'vue2-dropzone';
 
 Vue.use(VueResource);
 
@@ -56,6 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const listingForm = new Vue({
       el: '#listing-multistep',
+      props: [
+        'max-number-of-files',
+        'use-font-awesome'
+      ],
       data: {
         id: listing.id,
         activeStep: 0,
@@ -196,7 +201,13 @@ document.addEventListener('DOMContentLoaded', () => {
               }
             });
           }
+        },
+        showSuccess: function (file) {
+          console.log('A file was successfully uploaded')
         }
+      },
+      components: {
+        Dropzone
       }
     })
   }
