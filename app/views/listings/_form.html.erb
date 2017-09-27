@@ -4,8 +4,7 @@
     id: 'listing_form',
     data: {
       listing: listing.to_json(except: [:user_id, :created_at, :updated_at])
-    },
-    multipart: true
+    }
   }) do |f| %>
   <% if listing.errors.any? %>
     <div class="alert alert-danger" role="alert">
@@ -156,14 +155,7 @@
     <div class="row">
       <div class="col">
         <div class="form-group">
-          <dropzone
-            id="myVueDropzone"
-            url="https://httpbin.org/post"
-            v-on:vdropzone-success="showSuccess"
-            :auto-process-queue="false"
-            :max-number-of-files="12"
-            :use-font-awesome="true"
-            ref="imageDrop"></dropzone>
+          <!-- Image uploader -->
           <p>(Max. 12 images)</p>
         </div>
       </div>
