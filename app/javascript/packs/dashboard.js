@@ -102,6 +102,18 @@ document.addEventListener('DOMContentLoaded', () => {
         lat: listing.lat,
         lng: listing.lng
       },
+      mounted: function() {
+        // Reinitialize checkedAmenities with values from amenities.
+        var newArray = []
+        for(var i = 0; i < this.amenities.length; i++){
+          if(this.checkedAmenities.includes(this.amenities[i].text)) {
+            newArray.push(true)
+          } else {
+            newArray.push(false)
+          }
+        }
+        this.checkedAmenities = newArray
+      },
       methods: {
         submitListing: function() {
           var amenityNames = []
@@ -130,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           if(this.id == null) {
-            console.log(listingObj)
             // POST if it's a new listing
             this.$http.post('/listings', {listing: listingObj}).then(
               response => {
@@ -139,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
               console.log(response)
             })
           } else {
-            console.log(`id is not null: ${this.id}`)
+            // console.log(`id is not null: ${this.id}`)
             // PUT if it's an existing listing
             this.$http.put(`/listings/${this.id}`, {listing: listingObj}).then(
               response => {
@@ -148,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
               console.log(response)
             })
           }
+          vm.$refs.imageDrop.processQueue();
         },
         updateLocation: function() {
           var fullAddress = this.address;

@@ -41,7 +41,7 @@ class ListingsController < ApplicationController
   def update
     authorize @listing, :update?
     @listing.owner = current_user
-    
+
     respond_to do |format|
       if @listing.update(listing_params)
         current_user.add_role(:owner, @listing)
@@ -77,7 +77,9 @@ class ListingsController < ApplicationController
         :address,
         :lat,
         :lng,
-        :amenities => [])
+        :amenities => [],
+        :listing_images => []
+      )
     end
 
     def set_listing

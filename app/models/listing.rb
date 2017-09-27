@@ -15,4 +15,6 @@ class Listing < ApplicationRecord
   validates :lng, inclusion: {in: (-180.0..180.0), message: 'is not in the range -180 to 180'}
 
   PROPERTY_TYPES = %w(apartment house bnb cabin villa castle dorm treehouse igloo lighthouse yurt tipi cave island chalet earthhouse hut tent loft townhouse condominium other).sort.freeze
+
+  mount_uploaders :listing_images, ListingImageUploader
 end
