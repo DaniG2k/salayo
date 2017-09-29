@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8 col-sm-8 col-xs-12">
       <div class="login-container">
-        <h2>Welcome back</h2>
+        <h2 class="text-center">Welcome back!</h2>
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <%= render 'common/notices', obj: resource %>
@@ -15,16 +15,26 @@
             <%= f.password_field :password, placeholder: 'Password', autocomplete: 'off', class: 'form-control' %>
           </div>
 
-          <% if devise_mapping.rememberable? -%>
-            <div class="form-check">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
+          <div class="row justify-content-center">
+            <div class="col actions">
+              <%= button_tag(class: 'w-100 btn btn-primary', data: {disable_with: t('common.actions.submitting')}) do %>
+                <%= fa_icon 'lock', text: t('.sign_in') %>
+              <% end %>
             </div>
-          <% end -%>
+          </div>
 
-          <div class="actions">
-            <%= f.submit t('.sign_in'), class: 'btn btn-primary' %>
-            <%= render "devise/shared/links" %>
+          <div class="row">
+            <div class="col-6">
+              <% if devise_mapping.rememberable? -%>
+                <div id="remember_me" class="form-check">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+              <% end -%>
+            </div>
+            <div id="forgot_password" class="text-right col-6">
+              <%= render "devise/shared/links" %>
+            </div>
           </div>
         <% end %>
       </div>

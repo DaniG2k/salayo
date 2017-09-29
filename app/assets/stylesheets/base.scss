@@ -29,19 +29,24 @@ footer {
   padding: 4px 9px 0 0;
 }
 
+#remember_me, #forgot_password, #reset_password {
+  margin-top: 2em;
+}
+
 // Bootstrap overrides
-.login {
+a {
+  color: $btn-primary-blue;
+  &:hover { color: $blue; }
+}
+
+.login, .forgot_password {
   background-color: $body-gray;
   padding-bottom: 3em;
 }
-.login-container {
+.login-container, .forgot_password_container {
   padding: 2em;
   border-radius: 6px;
-  background-color: #fff;
-}
-.forgot-password {
-  float: right;
-  margin-top: 0.48em;
+  background-color: white;
 }
 
 // For Vue.js transitions
