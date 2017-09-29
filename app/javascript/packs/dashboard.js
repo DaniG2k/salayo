@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
           {id: 2, text: 'Amenities'},
           {id: 3, text: 'Images'}
         ],
+        imageRows: [],
         amenities: [
           {id: 0, text: "Air conditioning"},
           {id: 1, text: "Buzzer/wireless intercom"},
@@ -110,6 +111,22 @@ document.addEventListener('DOMContentLoaded', () => {
         this.checkedAmenities = newArray
       },
       methods: {
+        addRow: function() {
+          var elem = document.createElement('tr');
+          this.imageRows.push({
+            description: '',
+            file: {
+              name: 'Choose file'
+            }
+          });
+        },
+        removeElement: function(idx) {
+          this.imageRows.splice(idx, 1);
+        },
+        setFilename: function(event, row) {
+          var file = event.target.files[0];
+          row.file = file
+        },
         submitListing: function() {
           var amenityNames = []
           var checkedIndices = []
