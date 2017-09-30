@@ -31,6 +31,7 @@
 
 import Vue from 'vue/dist/vue.esm';
 import VueResource from 'vue-resource';
+import dropzone from 'components/dropzone';
 
 Vue.use(VueResource);
 
@@ -54,8 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
       template: '<li :class="{active}">{{ step.text }}</li>'
     })
 
-    const listingForm = new Vue({
+    const myForm = new Vue({
       el: '#listing-multistep',
+      components: { dropzone },
       data: {
         id: listing.id,
         activeStep: 0,
@@ -65,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
           {id: 2, text: 'Amenities'},
           {id: 3, text: 'Images'}
         ],
-        imageRows: [],
         amenities: [
           {id: 0, text: "Air conditioning"},
           {id: 1, text: "Buzzer/wireless intercom"},
@@ -111,22 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
         this.checkedAmenities = newArray
       },
       methods: {
-        addRow: function() {
-          var elem = document.createElement('tr');
-          this.imageRows.push({
-            description: '',
-            file: {
-              name: 'Choose file'
-            }
-          });
-        },
-        removeElement: function(idx) {
-          this.imageRows.splice(idx, 1);
-        },
-        setFilename: function(event, row) {
-          var file = event.target.files[0];
-          row.file = file
-        },
         submitListing: function() {
           var amenityNames = []
           var checkedIndices = []

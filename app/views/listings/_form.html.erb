@@ -114,12 +114,12 @@
       <div class="col-12">
         <div class="form-group">
           <strong>Map</strong><br>
-          <div v-show="displayMap == true">
+          <div v-show="displayMap">
             <div id="map-container">
               <div id='location-map'></div>
             </div>
           </div>
-          <div id="no-map" v-show="displayMap == false">
+          <div id="no-map" v-show="!displayMap">
             No map to display
           </div>
         </div>
@@ -156,34 +156,7 @@
       <div class="col">
         <div class="form-group">
 
-          <button type="reset" @click.prevent="addRow" class="btn btn-secondary" />
-            <i class="fa fa-plus"></i> Add image
-          </button>
-
-          <table class="table">
-            <thead class="thead-inverse">
-              <tr>
-                <td><strong>Description</strong></td>
-                <td><strong>File</strong></td>
-                <td></td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(row, index) in imageRows">
-                <td><input type="text" class="form-control" v-model="row.description"></td>
-                <td>
-                  <label class="fileContainer">
-                    <input type="file" @change="setFilename($event, row)" :id="index">
-                  </label>
-                </td>
-                <td>
-                  <a @click="removeElement(index)" style="cursor: pointer">
-                    <%= fa_icon('trash', text: 'Remove') %>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <dropzone></dropzone>
 
           <p>(Max. 12 images)</p>
         </div>
