@@ -63,12 +63,6 @@
   }
 }
 
-fieldset.listing-step {
-  &:not(:first-of-type) {
-    display: none;
-  }
-}
-
 #listing-location {
   position: relative;
   width: 100%;
