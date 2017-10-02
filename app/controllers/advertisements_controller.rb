@@ -52,7 +52,6 @@ class AdvertisementsController < ApplicationController
   end
 
   def mine
-    authorize @advertisement, :show?
     @advertisements = Advertisement.where(user: current_user).includes(:user)
     @mine = true
   end
