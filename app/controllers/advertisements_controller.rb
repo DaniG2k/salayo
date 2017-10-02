@@ -12,19 +12,23 @@ class AdvertisementsController < ApplicationController
   end
 
   def show
+    authorize @advertisement, :show?
   end
 
   def new
     @advertisement = Advertisement.new
+    authorize @advertisement, :new?
   end
 
   def edit
+    authorize @advertisement, :edit?
   end
 
   def create
     @advertisement = Advertisement.new(advertisement_params)
     @advertisement.user = current_user
 
+    authorize @advertisement, :create?
     if @advertisement.save
       redirect_to @advertisement, notice: 'Advertisement was successfully created.'
     else
@@ -33,6 +37,7 @@ class AdvertisementsController < ApplicationController
   end
 
   def update
+    authorize @advertisement, :update?
     if @advertisement.update(advertisement_params)
       redirect_to @advertisement, notice: 'Advertisement was successfully updated.'
     else
@@ -41,11 +46,13 @@ class AdvertisementsController < ApplicationController
   end
 
   def destroy
+    authorize @advertisement, :destroy?
     @advertisement.destroy
     redirect_to my_advertisements_path, notice: 'Advertisement was successfully destroyed.'
   end
 
   def mine
+    authorize @advertisement, :show?
     @advertisements = Advertisement.where(user: current_user).includes(:user)
     @mine = true
   end
