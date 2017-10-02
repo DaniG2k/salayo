@@ -4,18 +4,29 @@
 
 <script>
   export default {
-    data() {
-      return {
-      }
-    },
+    props: ['csrf'],
     mounted: function() {
-       new Dropzone(this.$el, {
-         url: "https://httpbin.org/post",
-         maxFiles: 15,
-         acceptedFiles: 'image/*',
-         addRemoveLinks: true,
-         autoProcessQueue: false
-       })
+      new Dropzone(this.$el, {
+        url: '/upload_images',
+        maxFiles: 15,
+        parallelUploads: 15,
+        acceptedFiles: 'image/*',
+        addRemoveLinks: true,
+        uploadMultiple: true,
+        //autoProcessQueue: false,
+        headers: { 'X-CSRF-Token': this.csrf },
+        init: function() {
+          this.on("removedfile", function(file) {
+            //console.log(`${file.name} was removed`);
+            $.ajax({
+              url: '/rm_image',
+              type: 'POST',
+              data: { 'rm_image' : file.name }
+            });
+          });
+        }
+
+      });
     }
   }
 </script>

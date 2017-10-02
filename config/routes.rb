@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   end
 
   resources :listings
+  post 'upload_images', to: 'listings#upload_tmp_images'
+  post 'rm_image', to: 'listings#rm_tmp_image'
+
   resources :advertisements do
     collection do
       get 'mine', as: :my

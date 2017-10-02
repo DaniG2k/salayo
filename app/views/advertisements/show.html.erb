@@ -3,9 +3,24 @@
 <div class="dashboard-main-content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <h4><%= @advertisement.title %></h4>
-        <%= @advertisement.body %>
+      <div class="col">
+
+        <div class="card dashboard-card">
+          <div class="card-block">
+            <h4 class="card-title"><%= link_to(fa_icon('user', text: "#{@advertisement.user.name} - #{@advertisement.title}"), advertisement_path(@advertisement)) %></h4>
+            <%= display_ad_type(@advertisement) %>
+            <%= @advertisement.body %>
+          </div>
+
+          <div class="card-block">
+            <%= link_to fa_icon('trash', text: 'Delete'), advertisement_path(@advertisement), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+
+          <div class="card-footer">
+            <small class="text-muted"><%= "Posted on #{@advertisement.created_at}" %></small>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

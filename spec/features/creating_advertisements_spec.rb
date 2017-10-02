@@ -5,7 +5,7 @@ RSpec.describe 'Creating advertisements', type: :feature do
 
   before do
     login_as user
-    visit dashboard_path(locale: 'en')
+    visit dashboard_path
     click_link 'Create ad'
   end
 

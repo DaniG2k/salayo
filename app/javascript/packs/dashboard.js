@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
       el: '#listing-multistep',
       components: { dropzone },
       data: {
+        csrf: Vue.http.headers.common['X-CSRF-Token'],
         id: listing.id,
         activeStep: 0,
         stepList: [
@@ -147,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
               console.log(response)
             })
           } else {
-            // console.log(`id is not null: ${this.id}`)
             // PUT if it's an existing listing
             this.$http.put(`/listings/${this.id}`, {listing: listingObj}).then(
               response => {

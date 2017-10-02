@@ -66,6 +66,21 @@ class ListingsController < ApplicationController
     end
   end
 
+  def upload_tmp_images
+    params[:file].each do |num, pic|
+      File.open(Rails.root.join('public', 'uploads', 'tmp', pic.original_filename), 'wb') do |file|
+        file.write(pic.read)
+        File.rename(file, "public/uploads/tmp/#{params[:hex]}_uid_#{current_user.id}_#{pic.original_filename}")
+      end
+    end
+    render json: nil, status: :ok
+  end
+
+  def rm_tmp_image
+    File.delete(Rails.root.join('public', 'uploads', 'tmp', "#{params[:hex]}_uid_#{current_user.id}_#{params[:rm_image]}"))
+    render json: nil, status: :ok
+  end
+
   private
 
     def listing_params

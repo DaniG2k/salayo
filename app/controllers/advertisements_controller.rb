@@ -42,7 +42,7 @@ class AdvertisementsController < ApplicationController
 
   def destroy
     @advertisement.destroy
-    redirect_to advertisements_url, notice: 'Advertisement was successfully destroyed.'
+    redirect_to my_advertisements_path, notice: 'Advertisement was successfully destroyed.'
   end
 
   def mine
