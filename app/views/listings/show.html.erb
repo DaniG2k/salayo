@@ -27,6 +27,9 @@
       <li>
         <strong>Bathrooms</strong> <%= @listing.bathrooms %>
       </li>
+      <li>
+        <strong>Description</strong> <%= @listing.description %>
+      </li>
     </ul>
 
     <%= link_to fa_icon('pencil', text: 'Edit listing'), edit_listing_path(@listing) %>

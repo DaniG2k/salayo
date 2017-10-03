@@ -80,6 +80,7 @@ class ListingsController < ApplicationController
         :address,
         :lat,
         :lng,
+        :description,
         :amenities => []
       )
     end

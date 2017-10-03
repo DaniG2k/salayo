@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         stepList: [
           {id: 0, text: 'Basics'},
           {id: 1, text: 'Location'},
-          {id: 2, text: 'Amenities'}
-          //{id: 3, text: 'Images'}
+          {id: 2, text: 'Amenities'},
+          {id: 3, text: 'Description'}
         ],
         amenities: [
           {id: 0, text: "Air conditioning"},
@@ -98,7 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
         state: listing.state,
         address: listing.address,
         lat: listing.lat,
-        lng: listing.lng
+        lng: listing.lng,
+        description: listing.description
       },
       mounted: function() {
         // Reinitialize checkedAmenities with values from amenities.
@@ -139,7 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
             address: this.address,
             lat: this.lat,
             lng: this.lng,
-            amenities: amenityNames
+            amenities: amenityNames,
+            description: this.description
           }
 
           if(this.id == null) {

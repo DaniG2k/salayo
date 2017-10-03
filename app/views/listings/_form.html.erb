@@ -3,8 +3,7 @@
   html: {
     id: 'listing_form',
     data: {
-      listing: listing.to_json(except: [:user_id, :created_at, :updated_at]),
-      hex: SecureRandom.hex(4)
+      listing: listing.to_json(except: [:user_id, :created_at, :updated_at])
     }
   }) do |f| %>
   <% if listing.errors.any? %>
@@ -169,6 +168,19 @@
             </div>
 
           </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="listing-step" v-show="activeStep === 3">
+    <h2>Description</h2>
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <strong><%= f.label :description, 'Property description' %></strong><br>
+          <%= f.text_area :description, rows: 4, class: 'form-control', 'v-model': 'description' %>
         </div>
       </div>
     </div>
