@@ -29,12 +29,36 @@
           <%= f.text_field :name, class: 'form-control', 'v-model': 'name' %>
         </div>
       </div>
-      <div class="col">
+      <div class="col-6">
         <div class="form-group">
           <strong><%= f.label :property_type %></strong><br>
           <%= f.select(:property_type, options_for_select(Listing::PROPERTY_TYPES.map do |type|
             [type.titleize, type]
           end, listing.property_type), {}, {class: 'form-control', 'v-model': 'propertyType'}) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <strong><%= f.label :bedrooms %></strong><br>
+          <%= f.number_field :bedrooms, in: (0..10), class: 'form-control', 'v-model': 'bedrooms' %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <strong><%= f.label :beds %></strong><br>
+          <%= f.number_field :beds, in: (0..10), class: 'form-control', 'v-model': 'beds' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <strong><%= f.label :bathrooms %></strong><br>
+          <%= f.number_field :bathrooms, in: (0..10), class: 'form-control', 'v-model': 'bathrooms' %>
         </div>
       </div>
     </div>

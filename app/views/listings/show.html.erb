@@ -3,14 +3,32 @@
 <div class="dashboard-main-content">
   <div class="container-fluid">
     <h1><%= @listing.name %></h1>
-    <strong>Property type:</strong> <%= @listing.property_type %><br />
-    <strong>Address:</strong> <%= "#{@listing.address}, #{@listing.city}, #{@listing.state}" %><br />
-    <strong>Amenities:</strong>
     <ul>
-      <% @listing.amenities.each do |amenity| %>
-        <li><%= amenity %></li>
-      <% end %>
+      <li>
+        <strong>Property type:</strong> <%= @listing.property_type %>
+      </li>
+      <li>
+        <strong>Address:</strong> <%= "#{@listing.address}, #{@listing.city}, #{@listing.state}" %>
+      </li>
+      <li>
+        <strong>Amenities:</strong>
+        <ul>
+          <% @listing.amenities.each do |amenity| %>
+            <li><%= amenity %></li>
+          <% end %>
+        </ul>
+      </li>
+      <li>
+        <strong>Bedrooms</strong> <%= @listing.bedrooms %>
+      </li>
+      <li>
+        <strong>Beds</strong> <%= @listing.beds %>
+      </li>
+      <li>
+        <strong>Bathrooms</strong> <%= @listing.bathrooms %>
+      </li>
     </ul>
+
     <%= link_to fa_icon('pencil', text: 'Edit listing'), edit_listing_path(@listing) %>
 
     <hr />
