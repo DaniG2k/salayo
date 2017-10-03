@@ -45,7 +45,7 @@ RSpec.describe 'Viewing roommate ads', type: :feature do
     end
 
     it 'displays a show page' do
-      click_link "#{bob.name} - #{advertisement2.title}"
+      find("a[title='Show']").click
 
       expect(page).to have_content(advertisement2.body)
     end

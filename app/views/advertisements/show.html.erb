@@ -12,12 +12,6 @@
             <%= @advertisement.body %>
           </div>
 
-          <% if policy(@advertisement).destroy? %>
-            <div class="card-block">
-              <%= link_to fa_icon('trash', text: 'Delete'), advertisement_path(@advertisement), method: :delete, data: { confirm: 'Are you sure you would like to delete this advertisement?' } %>
-            </div>
-          <% end %>
-
           <div class="card-footer">
             <small class="text-muted"><%= "Posted on #{@advertisement.created_at}" %></small>
           </div>
