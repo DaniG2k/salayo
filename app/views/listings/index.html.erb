@@ -17,6 +17,9 @@
               </div>
 
               <div class="card-block">
+                <%= link_to(fa_icon('eye', text: 'Show'), listing_path(listing)) %>
+              </div>
+              <div class="card-block">
                 <%= link_to fa_icon('pencil', text: 'Edit'), edit_listing_path(listing) %>
               </div>
               <div class="card-block">
@@ -37,6 +40,9 @@
                   This is some text within a card block.
                 </div>
 
+                <div class="card-block">
+                  <%= link_to(fa_icon('eye', text: 'Show'), listing_path(listing)) %>
+                </div>
                 <div class="card-block">
                   <%= link_to fa_icon('pencil', text: 'Edit'), edit_listing_path(listing) %>
                 </div>
