@@ -35,4 +35,11 @@ RSpec.feature 'Viewing Listings' do
     expect(page).to have_content(listing1.name)
     expect(page).to have_content(listing2.name)
   end
+
+  it 'redirects to a safe place when a listing id is not found' do
+    login_as regular_user
+    visit '/listings/abc'
+
+    expect(page).to have_content('That listing does not appear to exist.')
+  end
 end

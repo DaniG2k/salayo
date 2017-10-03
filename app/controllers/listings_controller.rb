@@ -99,5 +99,8 @@ class ListingsController < ApplicationController
 
     def set_listing
       @listing = Listing.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:warning] = 'That listing does not appear to exist.'
+      redirect_to listings_path
     end
 end

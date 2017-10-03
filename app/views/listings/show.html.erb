@@ -19,10 +19,12 @@
       <%= f.hidden_field :image %>
     <% end %>
 
-    <hr />
-    <h3>Uploaded images</h3>
-    <% @listing.pictures.each do |pic| %>
-      <%= image_tag pic.image_url, width: '150px' %>
+    <% if @listing.pictures.present? %>
+      <hr />
+      <h3>Uploaded images</h3>
+      <% @listing.pictures.each do |pic| %>
+        <%= image_tag pic.image_url, width: '150px' %>
+      <% end %>
     <% end %>
   </div>
 </div>
