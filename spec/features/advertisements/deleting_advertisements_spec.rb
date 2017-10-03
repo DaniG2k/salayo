@@ -6,8 +6,8 @@ RSpec.describe 'Deleting advertisements', type: :feature do
   let(:user2){FactoryGirl.create(:user)}
   let!(:advert){FactoryGirl.create(:advertisement, user: user1)}
 
-  context "one's own ads" do
-    scenario 'successfully' do
+  context 'regular users' do
+    it 'can destroy their own ads' do
       login_as user1
       visit dashboard_path
       within('.column-layout-left') do
@@ -20,9 +20,7 @@ RSpec.describe 'Deleting advertisements', type: :feature do
       expect(page).to have_content('Advertisement was successfully destroyed.')
       expect(current_path).to eq('/advertisements/mine')
     end
-  end
 
-  context 'regular users' do
     it "other people's ads don't have a delete link" do
       login_as user2
       visit dashboard_path
