@@ -130,9 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
           var listingObj = {
             id: this.id,
             name: this.name,
-            bedrooms: parseInt(listing.bedrooms),
-            beds: parseInt(listing.beds),
-            bathrooms: parseInt(listing.bathrooms),
+            bedrooms: this.bedrooms,
+            beds: this.beds,
+            bathrooms: this.bathrooms,
             property_type: this.propertyType,
             city: this.city,
             state: this.state,
