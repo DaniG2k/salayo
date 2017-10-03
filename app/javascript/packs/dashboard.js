@@ -31,7 +31,6 @@
 
 import Vue from 'vue/dist/vue.esm';
 import VueResource from 'vue-resource';
-import dropzone from 'components/dropzone';
 
 Vue.use(VueResource);
 
@@ -57,16 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const myForm = new Vue({
       el: '#listing-multistep',
-      components: { dropzone },
       data: {
-        csrf: Vue.http.headers.common['X-CSRF-Token'],
         id: listing.id,
         activeStep: 0,
         stepList: [
           {id: 0, text: 'Basics'},
           {id: 1, text: 'Location'},
-          {id: 2, text: 'Amenities'},
-          {id: 3, text: 'Images'}
+          {id: 2, text: 'Amenities'}
+          //{id: 3, text: 'Images'}
         ],
         amenities: [
           {id: 0, text: "Air conditioning"},

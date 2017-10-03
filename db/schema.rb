@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925082012) do
+ActiveRecord::Schema.define(version: 20171003092659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20170925082012) do
     t.string "city"
     t.string "state"
     t.text "amenities", default: [], array: true
-    t.json "listing_images"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
@@ -64,6 +63,14 @@ ActiveRecord::Schema.define(version: 20170925082012) do
     t.datetime "updated_at", null: false
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image"
+    t.bigint "listing_id"
+    t.index ["listing_id"], name: "index_pictures_on_listing_id"
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|
@@ -116,4 +123,5 @@ ActiveRecord::Schema.define(version: 20170925082012) do
   add_foreign_key "listings", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "pictures", "listings"
 end

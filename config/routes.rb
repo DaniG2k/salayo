@@ -33,9 +33,9 @@ Rails.application.routes.draw do
     get 'subscriptions', to: 'subscriptions#index'
   end
 
-  resources :listings
-  post 'upload_images', to: 'listings#upload_tmp_images'
-  post 'rm_image', to: 'listings#rm_tmp_image'
+  resources :listings do
+    resources :pictures
+  end
 
   resources :advertisements do
     collection do

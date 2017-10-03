@@ -74,3 +74,11 @@
   left: 0;
   width: 100%;
 }
+
+#picture-dropzone {
+  border: 5px dashed #CCC;
+  border-radius: 5px;
+  padding: 2em;
+  margin: 15px 0;
+  min-height: 140px;
+}
