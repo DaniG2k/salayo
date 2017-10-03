@@ -47,8 +47,9 @@ class AdvertisementsController < ApplicationController
 
   def destroy
     authorize @advertisement, :destroy?
+    ad_redirect_path = @advertisement.user == current_user ? my_advertisements_path : advertisements_path
     @advertisement.destroy
-    redirect_to my_advertisements_path, notice: 'Advertisement was successfully destroyed.'
+    redirect_to ad_redirect_path, notice: 'Advertisement was successfully destroyed.'
   end
 
   def mine

@@ -12,9 +12,9 @@
             <%= @advertisement.body %>
           </div>
 
-          <% if own(@advertisement) %>
+          <% if policy(@advertisement).destroy? %>
             <div class="card-block">
-              <%= link_to fa_icon('trash', text: 'Delete'), advertisement_path(@advertisement), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to fa_icon('trash', text: 'Delete'), advertisement_path(@advertisement), method: :delete, data: { confirm: 'Are you sure you would like to delete this advertisement?' } %>
             </div>
           <% end %>
 
