@@ -12,9 +12,11 @@
             <%= @advertisement.body %>
           </div>
 
-          <div class="card-block">
-            <%= link_to fa_icon('trash', text: 'Delete'), advertisement_path(@advertisement), method: :delete, data: { confirm: 'Are you sure?' } %>
-          </div>
+          <% if own(@advertisement) %>
+            <div class="card-block">
+              <%= link_to fa_icon('trash', text: 'Delete'), advertisement_path(@advertisement), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          <% end %>
 
           <div class="card-footer">
             <small class="text-muted"><%= "Posted on #{@advertisement.created_at}" %></small>

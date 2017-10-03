@@ -6,4 +6,8 @@ module AdvertisementsHelper
       type
     end.html_safe
   end
+
+  def own(advertisement)
+    advertisement.user == current_user
+  end
 end
