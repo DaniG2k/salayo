@@ -102,3 +102,12 @@
     }
   }
 }
+
+.card-icon-group {
+  padding: 0 10px;
+  margin: 0 10px;
+  opacity: 0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+  background-color: $body-gray;
+  border-radius: 3px;
+}
