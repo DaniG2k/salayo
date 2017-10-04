@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   end
 
   resources :listings do
-    resources :pictures
+    resources :pictures, only: [:create]
   end
 
   resources :advertisements do

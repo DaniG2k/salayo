@@ -4,7 +4,7 @@ class Listing < ApplicationRecord
   resourcify
 
   belongs_to :owner, class_name: 'User', foreign_key: 'user_id'
-  has_many :pictures, dependent: :destroy
+  has_many :pictures, as: :imageable, dependent: :destroy
 
   validates :name, uniqueness: true
   validates(

@@ -5,4 +5,5 @@ class Advertisement < ApplicationRecord
   validates :ad_type, inclusion: { in: ALLOWED_TYPES }
 
   belongs_to :user
+  has_many :pictures, as: :imageable, dependent: :destroy
 end

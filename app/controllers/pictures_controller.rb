@@ -1,25 +1,25 @@
 class PicturesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  #before_action :set_picture, only: [:show, :edit, :update, :destroy]
   layout 'dashboard'
 
-  def index
-    @pictures = Picture.all
-  end
+  # def index
+  #   @pictures = Picture.all
+  # end
 
   # GET /pictures/1
   # GET /pictures/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /pictures/new
-  def new
-    @picture = Picture.new
-  end
+  # def new
+  #   @picture = Picture.new
+  # end
 
   # GET /pictures/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /pictures
   # POST /pictures.json
@@ -33,24 +33,24 @@ class PicturesController < ApplicationController
 
   # PATCH/PUT /pictures/1
   # PATCH/PUT /pictures/1.json
-  def update
-    respond_to do |format|
-      if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @picture }
-      else
-        format.html { render :edit }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @picture.update(picture_params)
+  #       format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @picture }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @picture.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /pictures/1
   # DELETE /pictures/1.json
-  def destroy
-    @picture.destroy
-    render nothing: true
-  end
+  # def destroy
+  #   @picture.destroy
+  #   render nothing: true
+  # end
 
   private
 
@@ -59,6 +59,11 @@ class PicturesController < ApplicationController
     end
 
     def picture_params
-      params.require(:picture).permit(:listing_id, :image)
+      params.require(:picture).permit(
+        :description,
+        :image,
+        :imageable_type,
+        :imageable_id
+      )
     end
 end

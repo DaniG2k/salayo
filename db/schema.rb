@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003150031) do
+ActiveRecord::Schema.define(version: 20171004083535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,8 +73,10 @@ ActiveRecord::Schema.define(version: 20171003150031) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.bigint "listing_id"
-    t.index ["listing_id"], name: "index_pictures_on_listing_id"
+    t.string "description"
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|
@@ -127,5 +129,4 @@ ActiveRecord::Schema.define(version: 20171003150031) do
   add_foreign_key "listings", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "pictures", "listings"
 end

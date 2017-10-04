@@ -35,14 +35,14 @@
     <%= link_to fa_icon('pencil', text: 'Edit listing'), edit_listing_path(@listing) %>
 
     <hr />
-    <h3>Add images</h3>
-    <%= form_for [@listing, Picture.new], :html => {id: 'picture-dropzone', class: :dropzone, multipart: true} do |f| %>
+    <h3><%= fa_icon('upload', text: 'Add image') %></h3>
+    <%= form_for [@listing, Picture.new], html: {id: 'picture-dropzone', class: :dropzone, multipart: true} do |f| %>
       <%= f.hidden_field :image %>
     <% end %>
 
     <% if @listing.pictures.present? %>
       <hr />
-      <h3>Uploaded images</h3>
+      <h3><%= fa_icon('file-image-o', text: 'Uploaded images')%></h3>
       <% @listing.pictures.each do |pic| %>
         <%= image_tag pic.image_url, width: '150px' %>
       <% end %>
