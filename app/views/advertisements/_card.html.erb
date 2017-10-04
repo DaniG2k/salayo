@@ -7,13 +7,13 @@
     </div>
 
     <div class="card-block d-flex justify-content-center">
-      <% unless @mine %>
-        <%= link_to(fa_icon('eye'), advertisement_path(ad), class: 'card-icon-group', data: {toggle: 'tooltip', placement: 'top'}, title: 'Show') %>
-        <%= link_to(fa_icon('paper-plane'), '#', class: 'card-icon-group', data: {toggle: 'tooltip', placement: 'top'}, title: "Message #{ad.user.name}") %>
-      <% else %>
+      <% if policy(ad).destroy? %>
         <%= link_to(fa_icon('eye'), advertisement_path(ad), class: 'card-icon-group', data: {toggle: 'tooltip', placement: 'top'}, title: 'Show') %>
         <%= link_to(fa_icon('pencil'), edit_advertisement_path(ad), class: 'card-icon-group', data: {toggle: 'tooltip', placement: 'top'}, title: 'Edit') %>
         <%= link_to(fa_icon('trash'), advertisement_path(ad), class: 'card-icon-group', method: :delete, data: {toggle: 'tooltip', placement: 'top', confirm: 'Are you sure you would like to delete this advertisement?'}, title: 'Delete') %>
+      <% else %>
+        <%= link_to(fa_icon('eye'), advertisement_path(ad), class: 'card-icon-group', data: {toggle: 'tooltip', placement: 'top'}, title: 'Show') %>
+        <%= link_to(fa_icon('paper-plane'), '#', class: 'card-icon-group', data: {toggle: 'tooltip', placement: 'top'}, title: "Message #{ad.user.name}") %>
       <% end %>
     </div>
 

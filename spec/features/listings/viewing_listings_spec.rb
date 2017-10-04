@@ -20,7 +20,9 @@ RSpec.feature 'Viewing Listings' do
     login_as user1
     visit dashboard_path(locale: user1.locale)
 
-    click_link 'My listings'
+    within('.column-layout-left') do
+      click_link 'My listings'
+    end
 
     expect(page).to have_content(listing1.name)
   end
@@ -30,7 +32,9 @@ RSpec.feature 'Viewing Listings' do
     login_as user2
     visit dashboard_path(locale: user2.locale)
 
-    click_link 'My listings'
+    within('.column-layout-left') do
+      click_link 'My listings'
+    end
 
     expect(page).to have_content(listing1.name)
     expect(page).to have_content(listing2.name)
