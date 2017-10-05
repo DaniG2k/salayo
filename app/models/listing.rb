@@ -1,6 +1,8 @@
 class Listing < ApplicationRecord
   PROPERTY_TYPES = %w(apartment house bnb cabin villa castle dorm treehouse igloo lighthouse yurt tipi cave island chalet earthhouse hut tent loft townhouse condominium other).sort.freeze
-
+  
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   resourcify
 
   belongs_to :owner, class_name: 'User', foreign_key: 'user_id'

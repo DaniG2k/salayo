@@ -13,13 +13,12 @@
           </div>
 
           <div class="card-block">
-            <% if @advertisement.pictures.present? %>
-              <hr />
-              <h3><%= fa_icon('file-image-o', text: 'Uploaded images')%></h3>
-              <% @advertisement.pictures.each do |pic| %>
-                <%= image_tag pic.image_url, width: '150px' %>
-              <% end %>
+            <h3><%= fa_icon('upload', text: 'Add image') %></h3>
+            <%= form_tag add_picture_advertisement_path, method: 'post', id: 'picture-dropzone', class: :dropzone, multipart: true do |f| %>
+              <%= hidden_field_tag :image %>
             <% end %>
+
+            <%= render 'common/carousel', obj: @advertisement %>
           </div>
 
           <div class="card-footer">

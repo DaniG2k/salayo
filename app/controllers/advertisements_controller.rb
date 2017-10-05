@@ -63,7 +63,7 @@ class AdvertisementsController < ApplicationController
   private
 
     def set_advertisement
-      @advertisement = Advertisement.find(params[:id])
+      @advertisement = Advertisement.friendly.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       flash[:warning] = 'That advertisement does not appear to exist.'
       redirect_to advertisements_path
