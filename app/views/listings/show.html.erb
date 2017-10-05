@@ -5,13 +5,13 @@
     <h1><%= @listing.name %></h1>
     <ul>
       <li>
-        <strong>Property type:</strong> <%= @listing.property_type %>
+        <strong><%= fa_icon 'building', text: 'Property type' %></strong> <%= @listing.property_type %>
       </li>
       <li>
-        <strong>Address:</strong> <%= "#{@listing.address}, #{@listing.city}, #{@listing.state}" %>
+        <strong><%= fa_icon 'location-arrow', text: 'Address' %></strong> <%= "#{@listing.address}, #{@listing.city}, #{@listing.state}" %>
       </li>
       <li>
-        <strong>Amenities:</strong>
+        <strong><%= fa_icon 'cutlery', text: 'Amenities' %></strong>
         <ul>
           <% @listing.amenities.each do |amenity| %>
             <li><%= amenity %></li>
@@ -19,16 +19,16 @@
         </ul>
       </li>
       <li>
-        <strong>Bedrooms</strong> <%= @listing.bedrooms %>
+        <strong><%= fa_icon 'cubes', text: 'Bedrooms' %></strong> <%= @listing.bedrooms %>
       </li>
       <li>
-        <strong>Beds</strong> <%= @listing.beds %>
+        <strong><%= fa_icon 'bed', text: 'Beds' %></strong> <%= @listing.beds %>
       </li>
       <li>
-        <strong>Bathrooms</strong> <%= @listing.bathrooms %>
+        <strong><%= fa_icon 'bath', text: 'Bathroom' %></strong> <%= @listing.bathrooms %>
       </li>
       <li>
-        <strong>Description</strong> <%= @listing.description %>
+        <strong><%= fa_icon 'info-circle', text: 'Description' %></strong> <%= @listing.description %>
       </li>
     </ul>
 
@@ -48,8 +48,6 @@
       <% end %>
     <% end %>
     <hr />
-
-   <%= render 'common/carousel', obj: @listing %>
-  
+    <%= render 'common/carousel', obj: @listing %>
   </div>
 </div>

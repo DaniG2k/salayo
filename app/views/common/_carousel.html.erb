@@ -8,7 +8,7 @@
     <div class="carousel-inner">
       <% obj.pictures.each_with_index do |pic, idx| %>
         <div class="carousel-item <%= idx.zero? ? 'active' : '' %>">
-          <%= image_tag pic.image_url, class: 'd-block w-100' %>
+          <%= image_tag pic.image_url, class: 'd-block' %>
         </div>
       <% end %>
     </div>
