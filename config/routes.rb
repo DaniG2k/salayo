@@ -34,12 +34,18 @@ Rails.application.routes.draw do
   end
 
   resources :listings do
-    resources :pictures, only: [:create]
+    member do
+      post 'add_picture', to: 'listings#add_picture'
+    end
+    #resources :pictures, only: [:create]
   end
 
   resources :advertisements do
     collection do
       get 'mine', as: :my
+    end
+    member do
+      post 'add_picture', to: 'advertisements#add_picture'
     end
   end
   resources :chatrooms do

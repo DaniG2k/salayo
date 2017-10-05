@@ -36,8 +36,8 @@
 
     <hr />
     <h3><%= fa_icon('upload', text: 'Add image') %></h3>
-    <%= form_for [@listing, Picture.new], html: {id: 'picture-dropzone', class: :dropzone, multipart: true} do |f| %>
-      <%= f.hidden_field :image %>
+    <%= form_tag add_picture_listing_path, method: 'post', id: 'picture-dropzone', class: :dropzone, multipart: true do |f| %>
+      <%= hidden_field_tag :image %>
     <% end %>
 
     <% if @listing.pictures.present? %>

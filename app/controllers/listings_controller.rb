@@ -66,6 +66,12 @@ class ListingsController < ApplicationController
     end
   end
 
+  def add_picture
+    @listing = Listing.find params[:id]
+    @picture = @listing.pictures.create(image: params[:file])
+    @picture.save
+  end
+
   private
 
     def listing_params

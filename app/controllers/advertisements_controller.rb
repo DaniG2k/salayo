@@ -54,6 +54,12 @@ class AdvertisementsController < ApplicationController
     @advertisements = Advertisement.where(user: current_user).includes(:user)
   end
 
+  def add_picture
+    @advertisement = Advertisement.find params[:id]
+    @picture = @advertisement.pictures.create(image: params[:file])
+    @picture.save
+  end
+
   private
 
     def set_advertisement
