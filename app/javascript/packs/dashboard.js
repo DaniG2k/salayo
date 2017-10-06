@@ -33,7 +33,7 @@ import Vue from 'vue/dist/vue.esm';
 import VueResource from 'vue-resource';
 
 import Vuelidate from 'vuelidate'
-import { required, minLength } from 'vuelidate/lib/validators'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 Vue.use(Vuelidate)
 
 Vue.use(VueResource);
@@ -65,6 +65,21 @@ document.addEventListener('DOMContentLoaded', () => {
           required,
           minLength: minLength(5)
         },
+        propertyType: {
+          required
+        },
+        bedrooms: {
+          required,
+          between: between(0, 10)
+        },
+        beds: {
+          required,
+          between: between(0, 10)
+        },
+        bathrooms: {
+          required,
+          between: between(0, 10)
+        }
       },
       data: {
         id: listing.id,
