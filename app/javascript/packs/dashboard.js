@@ -60,27 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const myForm = new Vue({
       el: '#listing-multistep',
-      validations: {
-        name: {
-          required,
-          minLength: minLength(5)
-        },
-        propertyType: {
-          required
-        },
-        bedrooms: {
-          required,
-          between: between(0, 10)
-        },
-        beds: {
-          required,
-          between: between(0, 10)
-        },
-        bathrooms: {
-          required,
-          between: between(0, 10)
-        }
-      },
       data: {
         id: listing.id,
         activeStep: 0,
@@ -238,6 +217,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.displayMap = false;
               }
             });
+          }
+        }
+      },
+      validations: {
+        name: {
+          required,
+          minLength: minLength(5)
+        },
+        propertyType: {
+          required
+        },
+        bedrooms: {
+          required,
+          between: between(0, 10)
+        },
+        beds: {
+          required,
+          between: between(0, 10)
+        },
+        bathrooms: {
+          required,
+          between: between(0, 10)
+        }
+      },
+      computed: {
+        validateName: function() {
+          return {
+            'form-control is-invalid': this.$v.name.$error,
+            'form-control is-valid checkmark': (!this.$v.name.$error && this.$v.name.$dirty)
+          }
+        },
+        validatePropertyType: function() {
+          return {
+            'form-control is-invalid': this.$v.propertyType.$error,
+            'form-control is-valid checkmark': (!this.$v.propertyType.$error && this.$v.propertyType.$dirty)
+          }
+        },
+        validateBedrooms: function() {
+          return {
+            'form-control is-invalid': this.$v.bedrooms.$error,
+            'form-control is-valid checkmark': (!this.$v.bedrooms.$error && this.$v.bedrooms.$dirty)
+          }
+        },
+        validateBeds: function() {
+          return {
+            'form-control is-invalid': this.$v.beds.$error,
+            'form-control is-valid checkmark': (!this.$v.beds.$error && this.$v.beds.$dirty)
+          }
+        },
+        validateBathrooms: function() {
+          return {
+            'form-control is-invalid': this.$v.bathrooms.$error,
+            'form-control is-valid checkmark': (!this.$v.bathrooms.$error && this.$v.bathrooms.$dirty)
           }
         }
       }

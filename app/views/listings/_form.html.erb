@@ -15,7 +15,8 @@
         <div class="form-group">
           <strong><%= f.label :name, 'Property name', class: 'required-field' %></strong><br>
           <%= f.text_field(:name,
-            'v-bind:class': "{'form-control': !$v.name.$dirty, 'form-control is-invalid': $v.name.$error, 'form-control is-valid checkmark': (!$v.name.$invalid && $v.name.$dirty)}",
+            class: 'form-control',
+            'v-bind:class': 'validateName',
             'v-model.trim': 'name',
             '@input': "$v.name.$touch()") %>
           <div class="invalid-feedback" v-if="!$v.name.required && $v.name.$dirty">Field is required</div>
@@ -29,7 +30,8 @@
             [type.titleize, type]
           end, listing.property_type), {}, {
             required: true,
-            'v-bind:class': "{'form-control': !$v.propertyType.$dirty, 'form-control is-invalid': $v.propertyType.$error, 'form-control is-valid checkmark': (!$v.propertyType.$invalid && $v.propertyType.$dirty)}",
+            class: 'form-control',
+            'v-bind:class': 'validatePropertyType',
             '@change': "$v.propertyType.$touch()",
             'v-model': 'propertyType'}) %>
           <div class="invalid-feedback" v-if="!$v.propertyType.required && $v.propertyType.$dirty">Field is required</div>
@@ -42,7 +44,8 @@
         <div class="form-group">
           <strong><%= f.label :bedrooms, class: 'required-field' %></strong><br>
           <%= f.number_field :bedrooms, in: (0..10),
-            'v-bind:class': "{'form-control': !$v.bedrooms.$dirty, 'form-control is-invalid': $v.bedrooms.$error, 'form-control is-valid checkmark': (!$v.bedrooms.$invalid && $v.bedrooms.$dirty)}",
+            class: 'form-control',
+            'v-bind:class': 'validateBedrooms',
             'v-model.number': 'bedrooms',
             '@change': "$v.bedrooms.$touch()" %>
           <div class="invalid-feedback" v-if="!$v.bedrooms.required && $v.bedrooms.$dirty">Field is required</div>
@@ -53,7 +56,8 @@
         <div class="form-group">
           <strong><%= f.label :beds, class: 'required-field' %></strong><br>
           <%= f.number_field :beds, in: (0..10),
-            'v-bind:class': "{'form-control': !$v.beds.$dirty, 'form-control is-invalid': $v.beds.$error, 'form-control is-valid checkmark': (!$v.beds.$invalid && $v.beds.$dirty)}",
+            class: 'form-control',
+            'v-bind:class': 'validateBeds',
             'v-model.number': 'beds',
             '@change': "$v.beds.$touch()" %>
           <div class="invalid-feedback" v-if="!$v.beds.required && $v.beds.$dirty">Field is required</div>
@@ -67,7 +71,8 @@
         <div class="form-group">
           <strong><%= f.label :bathrooms, class: 'required-field' %></strong><br>
           <%= f.number_field :bathrooms, in: (0..10),
-            'v-bind:class': "{'form-control': !$v.bathrooms.$dirty, 'form-control is-invalid': $v.bathrooms.$error, 'form-control is-valid checkmark': (!$v.bathrooms.$invalid && $v.bathrooms.$dirty)}",
+            class: 'form-control',
+            'v-bind:class': 'validateBathrooms',
             'v-model.number': 'bathrooms',
             '@change': "$v.bathrooms.$touch()" %>
           <div class="invalid-feedback" v-if="!$v.bathrooms.required && $v.bathrooms.$dirty">Field is required</div>
