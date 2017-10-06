@@ -14,7 +14,12 @@
       <div class="col-6">
         <div class="form-group">
           <strong><%= f.label :name, 'Property name' %></strong><br>
-          <%= f.text_field :name, class: 'form-control', 'v-model': 'name' %>
+          <%= f.text_field(:name,
+            'v-bind:class': "{'form-control': !$v.name.$dirty, 'form-control is-invalid': $v.name.$error, 'form-control is-valid checkmark': (!$v.name.$invalid && $v.name.$dirty)}",
+            'v-model.trim': 'name',
+            '@input': "$v.name.$touch()") %>
+            <div class="invalid-feedback" v-if="!$v.name.required && $v.name.$dirty">Field is required</div>
+            <div class="invalid-feedback" v-if="!$v.name.minLength">Name must have at least {{$v.name.$params.minLength.min}} letters.</div>
         </div>
       </div>
       <div class="col-6">

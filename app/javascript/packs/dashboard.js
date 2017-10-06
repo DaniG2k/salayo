@@ -32,6 +32,10 @@
 import Vue from 'vue/dist/vue.esm';
 import VueResource from 'vue-resource';
 
+import Vuelidate from 'vuelidate'
+import { required, minLength } from 'vuelidate/lib/validators'
+Vue.use(Vuelidate)
+
 Vue.use(VueResource);
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -56,6 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const myForm = new Vue({
       el: '#listing-multistep',
+      validations: {
+        name: {
+          required,
+          minLength: minLength(5)
+        },
+      },
       data: {
         id: listing.id,
         activeStep: 0,
