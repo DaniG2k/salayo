@@ -18,7 +18,7 @@ module ApplicationHelper
     else
       '2017'
     end
-    "&copy; #{t('website')} #{years_since_foundation}".html_safe
+    fa_icon('copyright', text: "#{t('website')} #{years_since_foundation}")
   end
 
   def user_locale

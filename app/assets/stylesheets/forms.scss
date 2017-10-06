@@ -1,0 +1,16 @@
+@mixin validation-cues() {
+  background-repeat: no-repeat;
+  background-position: center right .5625rem;
+  background-size: 1.125rem 1.125rem;
+}
+.checkmark {
+  @include validation-cues;
+  background-image: image-url('checkmark.svg');
+}
+.required-field {
+  &:after {
+    content: '*';
+    color: $pastel-red;
+    margin-left: 0.25rem;
+  }
+}
