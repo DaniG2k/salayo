@@ -46,7 +46,7 @@
             'v-model.number': 'bedrooms',
             '@change': "$v.bedrooms.$touch()" %>
           <div class="invalid-feedback" v-if="!$v.bedrooms.required && $v.bedrooms.$dirty">Field is required</div>
-          <div class="invalid-feedback" v-if="!$v.bedrooms.between">Must be between {{$v.bedrooms.$params.between.min}} and {{$v.bedrooms.$params.between.max}}</div>
+          <div class="invalid-feedback" v-if="!$v.bedrooms.between">Input must be between {{$v.bedrooms.$params.between.min}} and {{$v.bedrooms.$params.between.max}}</div>
         </div>
       </div>
       <div class="col-6">
@@ -57,7 +57,7 @@
             'v-model.number': 'beds',
             '@change': "$v.beds.$touch()" %>
           <div class="invalid-feedback" v-if="!$v.beds.required && $v.beds.$dirty">Field is required</div>
-          <div class="invalid-feedback" v-if="!$v.beds.between">Must be between {{$v.beds.$params.between.min}} and {{$v.beds.$params.between.max}}</div>
+          <div class="invalid-feedback" v-if="!$v.beds.between">Input must be between {{$v.beds.$params.between.min}} and {{$v.beds.$params.between.max}}</div>
         </div>
       </div>
     </div>
@@ -71,7 +71,7 @@
             'v-model.number': 'bathrooms',
             '@change': "$v.bathrooms.$touch()" %>
           <div class="invalid-feedback" v-if="!$v.bathrooms.required && $v.bathrooms.$dirty">Field is required</div>
-          <div class="invalid-feedback" v-if="!$v.bathrooms.between">Must be between {{$v.bathrooms.$params.between.min}} and {{$v.bathrooms.$params.between.max}}</div>
+          <div class="invalid-feedback" v-if="!$v.bathrooms.between">Input must be between {{$v.bathrooms.$params.between.min}} and {{$v.bathrooms.$params.between.max}}</div>
         </div>
       </div>
     </div>
