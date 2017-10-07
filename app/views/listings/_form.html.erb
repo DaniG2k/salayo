@@ -16,7 +16,7 @@
           <strong><%= f.label :name, 'Property name', class: 'required-field' %></strong><br>
           <%= f.text_field(:name,
             class: 'form-control',
-            'v-bind:class': 'validateName',
+            'v-bind:class': 'validateClass($v.name)',
             'v-model.trim': 'name',
             '@input': "$v.name.$touch()") %>
           <div class="invalid-feedback" v-if="!$v.name.required && $v.name.$dirty">Field is required</div>
@@ -31,7 +31,7 @@
           end, listing.property_type), {}, {
             required: true,
             class: 'form-control',
-            'v-bind:class': 'validatePropertyType',
+            'v-bind:class': 'validateClass($v.propertyType)',
             '@change': "$v.propertyType.$touch()",
             'v-model': 'propertyType'}) %>
           <div class="invalid-feedback" v-if="!$v.propertyType.required && $v.propertyType.$dirty">Field is required</div>
@@ -45,7 +45,7 @@
           <strong><%= f.label :bedrooms, class: 'required-field' %></strong><br>
           <%= f.number_field :bedrooms, in: (0..10),
             class: 'form-control',
-            'v-bind:class': 'validateBedrooms',
+            'v-bind:class': 'validateClass($v.bedrooms)',
             'v-model.number': 'bedrooms',
             '@change': "$v.bedrooms.$touch()" %>
           <div class="invalid-feedback" v-if="!$v.bedrooms.required && $v.bedrooms.$dirty">Field is required</div>
@@ -57,7 +57,7 @@
           <strong><%= f.label :beds, class: 'required-field' %></strong><br>
           <%= f.number_field :beds, in: (0..10),
             class: 'form-control',
-            'v-bind:class': 'validateBeds',
+            'v-bind:class': 'validateClass($v.beds)',
             'v-model.number': 'beds',
             '@change': "$v.beds.$touch()" %>
           <div class="invalid-feedback" v-if="!$v.beds.required && $v.beds.$dirty">Field is required</div>
@@ -72,7 +72,7 @@
           <strong><%= f.label :bathrooms, class: 'required-field' %></strong><br>
           <%= f.number_field :bathrooms, in: (0..10),
             class: 'form-control',
-            'v-bind:class': 'validateBathrooms',
+            'v-bind:class': 'validateClass($v.bathrooms)',
             'v-model.number': 'bathrooms',
             '@change': "$v.bathrooms.$touch()" %>
           <div class="invalid-feedback" v-if="!$v.bathrooms.required && $v.bathrooms.$dirty">Field is required</div>

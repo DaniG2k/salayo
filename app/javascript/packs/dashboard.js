@@ -118,6 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
         this.checkedAmenities = newArray
       },
       methods: {
+        validateClass: function(obj) {
+          return {
+            'form-control is-invalid': obj.$error,
+            'form-control is-valid checkmark': (!obj.$error && obj.$dirty)
+          }
+        },
         submitListing: function() {
           var amenityNames = []
           var checkedIndices = []
@@ -239,38 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
         bathrooms: {
           required,
           between: between(0, 10)
-        }
-      },
-      computed: {
-        validateName: function() {
-          return {
-            'form-control is-invalid': this.$v.name.$error,
-            'form-control is-valid checkmark': (!this.$v.name.$error && this.$v.name.$dirty)
-          }
-        },
-        validatePropertyType: function() {
-          return {
-            'form-control is-invalid': this.$v.propertyType.$error,
-            'form-control is-valid checkmark': (!this.$v.propertyType.$error && this.$v.propertyType.$dirty)
-          }
-        },
-        validateBedrooms: function() {
-          return {
-            'form-control is-invalid': this.$v.bedrooms.$error,
-            'form-control is-valid checkmark': (!this.$v.bedrooms.$error && this.$v.bedrooms.$dirty)
-          }
-        },
-        validateBeds: function() {
-          return {
-            'form-control is-invalid': this.$v.beds.$error,
-            'form-control is-valid checkmark': (!this.$v.beds.$error && this.$v.beds.$dirty)
-          }
-        },
-        validateBathrooms: function() {
-          return {
-            'form-control is-invalid': this.$v.bathrooms.$error,
-            'form-control is-valid checkmark': (!this.$v.bathrooms.$error && this.$v.bathrooms.$dirty)
-          }
         }
       }
     })

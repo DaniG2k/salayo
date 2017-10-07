@@ -30,23 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
         email: { required, email },
         body: { required }
       },
-      computed: {
-        validateName: function() {
+      methods: {
+        validateClass: function(obj) {
           return {
-            'form-control is-invalid': this.$v.name.$error,
-            'form-control is-valid checkmark': (!this.$v.name.$error && this.$v.name.$dirty)
-          }
-        },
-        validateEmail: function() {
-          return {
-            'form-control is-invalid': this.$v.email.$error,
-            'form-control is-valid checkmark': (!this.$v.email.$error && this.$v.email.$dirty)
-          }
-        },
-        validateBody: function() {
-          return {
-            'form-control is-invalid': this.$v.body.$error,
-            'form-control is-valid checkmark': (!this.$v.body.$error && this.$v.body.$dirty)
+            'form-control is-invalid': obj.$error,
+            'form-control is-valid checkmark': (!obj.$error && obj.$dirty)
           }
         }
       }

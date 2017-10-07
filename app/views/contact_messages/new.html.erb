@@ -18,7 +18,7 @@
           <div class="form-group">
             <%= f.text_field(:name, placeholder: t('.name'),
               class: 'form-control',
-              'v-bind:class': 'validateName',
+              'v-bind:class': 'validateClass($v.name)',
               'v-model.trim': 'name',
               '@input': "$v.name.$touch()") %>
             <div class="invalid-feedback" v-if="!$v.name.required && $v.name.$dirty">Field is required</div>
@@ -28,7 +28,7 @@
           <div class="form-group">
             <%= f.email_field(:email, placeholder: t('.email'),
               class: 'form-control',
-              'v-bind:class': 'validateEmail',
+              'v-bind:class': 'validateClass($v.email)',
               'v-model': 'email',
               '@input': "$v.email.$touch()") %>
             <div class="invalid-feedback" v-if="!$v.email.required && $v.email.$dirty">Field is required</div>
@@ -42,7 +42,7 @@
           <div class="form-group">
             <%= f.text_area(:body, placeholder: t('.message'),
               class: 'form-control',
-              'v-bind:class': 'validateBody',
+              'v-bind:class': 'validateClass($v.body)',
               'v-model': 'body',
               '@input': "$v.body.$touch()") %>
             <div class="invalid-feedback" v-if="!$v.body.required && $v.body.$dirty">Field is required</div>
