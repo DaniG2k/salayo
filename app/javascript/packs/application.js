@@ -18,15 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if(document.getElementById('contact-us') != null) {
     const contactForm = new Vue({
       el: '#contact-us',
-      data: {
-        name: undefined,
-        email: undefined,
-        body: undefined
+      data() {
+        return {
+          name: undefined,
+          email: undefined,
+          body: undefined
+        }
       },
       validations: {
         name: { required },
         email: { required, email },
-        body: { required },
+        body: { required }
       },
       computed: {
         validateName: function() {

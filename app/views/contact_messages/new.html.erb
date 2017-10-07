@@ -48,10 +48,13 @@
             <div class="invalid-feedback" v-if="!$v.body.required && $v.body.$dirty">Field is required</div>
           </div>
 
-          <%= f.button fa_icon('send', text: t('common.actions.send')), type: 'submit', class: 'w-100 btn btn-primary', data: {disable_with: t('common.actions.submitting')} %>
+          <%= f.button(
+            fa_icon('send', text: t('common.actions.send')),
+            type: 'submit',
+            class: 'w-100 btn btn-primary',
+            data: {disable_with: t('common.actions.submitting')}) %>
         </div>
       </div>
-
     <% end %>
   </div>
 </section>
