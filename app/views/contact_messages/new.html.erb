@@ -16,12 +16,23 @@
       <div class="row justify-content-center">
         <div class="col-lg-3 col-md-6">
           <div class="form-group">
-            <%= f.text_field :name, placeholder: t('.name'), class: 'form-control' %>
+            <%= f.text_field(:name, placeholder: t('.name'),
+              class: 'form-control',
+              'v-bind:class': 'validateName',
+              'v-model.trim': 'name',
+              '@input': "$v.name.$touch()") %>
+            <div class="invalid-feedback" v-if="!$v.name.required && $v.name.$dirty">Field is required</div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="form-group">
-            <%= f.email_field :email, placeholder: t('.email'), class: 'form-control' %>
+            <%= f.email_field(:email, placeholder: t('.email'),
+              class: 'form-control',
+              'v-bind:class': 'validateEmail',
+              'v-model': 'email',
+              '@input': "$v.email.$touch()") %>
+            <div class="invalid-feedback" v-if="!$v.email.required && $v.email.$dirty">Field is required</div>
+            <div class="invalid-feedback" v-if="!$v.email.email && $v.email.$dirty">Not a valid email address</div>
           </div>
         </div>
       </div>
@@ -29,7 +40,12 @@
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-12">
           <div class="form-group">
-            <%= f.text_area :body, placeholder: t('.message'), class: 'form-control' %>
+            <%= f.text_area(:body, placeholder: t('.message'),
+              class: 'form-control',
+              'v-bind:class': 'validateBody',
+              'v-model': 'body',
+              '@input': "$v.body.$touch()") %>
+            <div class="invalid-feedback" v-if="!$v.body.required && $v.body.$dirty">Field is required</div>
           </div>
 
           <%= f.button fa_icon('send', text: t('common.actions.send')), type: 'submit', class: 'w-100 btn btn-primary', data: {disable_with: t('common.actions.submitting')} %>

@@ -8,3 +8,46 @@
 // layout file, like app/views/layouts/application.html.erb
 
 // console.log('Hello World from Webpacker')
+
+import Vue from 'vue/dist/vue.esm';
+import Vuelidate from 'vuelidate'
+import { required, email } from 'vuelidate/lib/validators'
+Vue.use(Vuelidate)
+
+document.addEventListener('DOMContentLoaded', () => {
+  if(document.getElementById('contact-us') != null) {
+    const contactForm = new Vue({
+      el: '#contact-us',
+      data: {
+        name: undefined,
+        email: undefined,
+        body: undefined
+      },
+      validations: {
+        name: { required },
+        email: { required, email },
+        body: { required },
+      },
+      computed: {
+        validateName: function() {
+          return {
+            'form-control is-invalid': this.$v.name.$error,
+            'form-control is-valid checkmark': (!this.$v.name.$error && this.$v.name.$dirty)
+          }
+        },
+        validateEmail: function() {
+          return {
+            'form-control is-invalid': this.$v.email.$error,
+            'form-control is-valid checkmark': (!this.$v.email.$error && this.$v.email.$dirty)
+          }
+        },
+        validateBody: function() {
+          return {
+            'form-control is-invalid': this.$v.body.$error,
+            'form-control is-valid checkmark': (!this.$v.body.$error && this.$v.body.$dirty)
+          }
+        }
+      }
+    })
+  }
+})
