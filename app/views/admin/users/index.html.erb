@@ -1,0 +1,32 @@
+<% title('Users') %>
+
+<div class="dashboard-main-content">
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12">
+        <h1><%= fa_icon('users', text: 'Users') %></h1>
+
+
+        <% @users.in_groups_of(2) do |group| %>
+          <div class="row">
+            <% if group[1].nil? %>
+              <% user = group.first %>
+              <div class="col">
+                <%= render 'card', user: user %>
+              </div>
+            <% else %>
+              <% group.each do |user| %>
+                <div class="col-lg-6 col-xs-12">
+                  <%= render 'card', user: user %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

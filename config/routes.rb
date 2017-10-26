@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'application#index'
     get 'subscriptions', to: 'subscriptions#index'
+    get 'users', to: 'users#index'
   end
 
   resources :listings do
