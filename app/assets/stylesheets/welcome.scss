@@ -119,9 +119,9 @@
   p {
     margin: 0 2em 1em 2em;
   }
-  .row {
-    padding: $padding;
-  }
+  // #.row {
+  //  padding: $padding;
+  // }
   .reverse {
     flex-direction: row-reverse;
   }
@@ -133,8 +133,6 @@
     -webkit-align-items: center;
     -webkit-box-align: center;
     align-items: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
   }
   .timeline-string {
     &:before {
