@@ -31,13 +31,10 @@
 
 import Vue from 'vue/dist/vue.esm'
 import VueResource from 'vue-resource'
-import vue2Dropzone from 'vue2-dropzone'
-import 'vue2-dropzone/dist/vue2Dropzone.css'
 import Vuelidate from 'vuelidate'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 Vue.use(Vuelidate)
-
-Vue.use(VueResource);
+Vue.use(VueResource)
 
 document.addEventListener('DOMContentLoaded', () => {
   if(document.getElementById('dashboard-topbar') != null) {
@@ -111,9 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
           maxFilesize: 0.5,
           headers: { "My-Awesome-Header": "header value" }
         }
-      },
-      components: {
-        vueDropzone: vue2Dropzone
       },
       mounted: function() {
         // Reinitialize checkedAmenities with values from amenities.
