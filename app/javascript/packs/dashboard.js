@@ -29,14 +29,12 @@
 //   <app></app>
 // </div>
 
-import Vue from 'vue/dist/vue.esm';
-import VueResource from 'vue-resource';
-
+import Vue from 'vue/dist/vue.esm'
+import VueResource from 'vue-resource'
 import Vuelidate from 'vuelidate'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 Vue.use(Vuelidate)
-
-Vue.use(VueResource);
+Vue.use(VueResource)
 
 document.addEventListener('DOMContentLoaded', () => {
   if(document.getElementById('dashboard-topbar') != null) {
@@ -103,7 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
         address: listing.address,
         lat: listing.lat,
         lng: listing.lng,
-        description: listing.description
+        description: listing.description,
+        dropzoneOptions: {
+          url: 'https://httpbin.org/post',
+          thumbnailWidth: 150,
+          maxFilesize: 0.5,
+          headers: { "My-Awesome-Header": "header value" }
+        }
       },
       mounted: function() {
         // Reinitialize checkedAmenities with values from amenities.
