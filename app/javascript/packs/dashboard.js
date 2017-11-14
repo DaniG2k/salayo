@@ -29,9 +29,10 @@
 //   <app></app>
 // </div>
 
-import Vue from 'vue/dist/vue.esm';
-import VueResource from 'vue-resource';
-
+import Vue from 'vue/dist/vue.esm'
+import VueResource from 'vue-resource'
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.css'
 import Vuelidate from 'vuelidate'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 Vue.use(Vuelidate)
@@ -103,7 +104,16 @@ document.addEventListener('DOMContentLoaded', () => {
         address: listing.address,
         lat: listing.lat,
         lng: listing.lng,
-        description: listing.description
+        description: listing.description,
+        dropzoneOptions: {
+          url: 'https://httpbin.org/post',
+          thumbnailWidth: 150,
+          maxFilesize: 0.5,
+          headers: { "My-Awesome-Header": "header value" }
+        }
+      },
+      components: {
+        vueDropzone: vue2Dropzone
       },
       mounted: function() {
         // Reinitialize checkedAmenities with values from amenities.

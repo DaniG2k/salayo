@@ -1627,6 +1627,10 @@ domain-browser@^1.1.1:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
 
+dropzone@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.2.0.tgz#2fdf6ac6472f4c62d03d3e9fc22aaa0229d299de"
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -5315,6 +5319,12 @@ vue-template-compiler@^2.4.3:
 vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
+
+vue2-dropzone@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vue2-dropzone/-/vue2-dropzone-3.0.0.tgz#f0635509c5ea9f6c5cf8812fe60f8867ac32f774"
+  dependencies:
+    dropzone "^5.2.0"
 
 vue@^2.4.3:
   version "2.5.2"

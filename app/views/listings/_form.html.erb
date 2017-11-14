@@ -193,6 +193,10 @@
   </fieldset>
 
   <fieldset class="listing-step" v-show="activeStep === 3">
+    <h2>Images</h2>
+
+    <vue-dropzone ref="myVueDropzone" id="dropzone" :include-styling="true" :options="dropzoneOptions">
+
     <h2>Description</h2>
 
     <div class="row">
