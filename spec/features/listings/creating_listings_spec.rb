@@ -4,7 +4,7 @@
 # require 'rails_helper'
 #
 # RSpec.feature 'Listing owners can create new listings' do
-#   let(:owner) {FactoryGirl.create(:user, :owner)}
+#   let(:owner) {FactoryBot.create(:user, :owner)}
 #
 #   before do
 #     login_as owner

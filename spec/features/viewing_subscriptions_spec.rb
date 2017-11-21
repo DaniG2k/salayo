@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Viewing subscriptions', type: :feature do
-  let(:admin) {FactoryGirl.create(:user, :admin)}
-  let!(:subscriber) {FactoryGirl.create(:subscription)}
+  let(:admin) {FactoryBot.create(:user, :admin)}
+  let!(:subscriber) {FactoryBot.create(:subscription)}
 
   before :each do
     login_as admin

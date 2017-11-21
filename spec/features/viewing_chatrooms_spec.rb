@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Registered users can view chatrooms' do
-  let(:user) {FactoryGirl.create(:user)}
+  let(:user) {FactoryBot.create(:user)}
 
   before do
     login_as user

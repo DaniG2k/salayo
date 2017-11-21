@@ -52,7 +52,7 @@ group :development, :test do
   gem 'selenium-webdriver', '2.53.4'
   gem 'database_cleaner'
   gem 'dotenv-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'bullet'
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Signed-in users can log out' do
-  let!(:user) { FactoryGirl.create(:user, locale: 'en') }
+  let!(:user) { FactoryBot.create(:user, locale: 'en') }
 
   before do
     login_as user

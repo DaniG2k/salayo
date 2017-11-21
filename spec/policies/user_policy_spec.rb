@@ -11,9 +11,9 @@ RSpec.describe UserPolicy do
   # end
 
   permissions :show? do
-    let(:user)  {FactoryGirl.create(:user)}
-    let(:owner) {FactoryGirl.create(:user, :owner)}
-    let(:admin) {FactoryGirl.create(:user, :admin)}
+    let(:user)  {FactoryBot.create(:user)}
+    let(:owner) {FactoryBot.create(:user, :owner)}
+    let(:admin) {FactoryBot.create(:user, :admin)}
 
     before do
       assign_role!(owner, :owner)

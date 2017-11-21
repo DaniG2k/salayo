@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Viewing roommate ads', type: :feature do
-  let(:alice) {FactoryGirl.create(:user)}
-  let(:bob) {FactoryGirl.create(:user)}
-  let!(:advertisement1) {FactoryGirl.create(:advertisement, user: alice)}
-  let!(:advertisement2) {FactoryGirl.create(:advertisement, user: bob)}
+  let(:alice) {FactoryBot.create(:user)}
+  let(:bob) {FactoryBot.create(:user)}
+  let!(:advertisement1) {FactoryBot.create(:advertisement, user: alice)}
+  let!(:advertisement2) {FactoryBot.create(:advertisement, user: bob)}
 
   context "a user's own ads" do
     before do

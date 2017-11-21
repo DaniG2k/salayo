@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature 'Listing authorizations' do
-  let(:user) {FactoryGirl.create(:user)}
-  let(:another_user) {FactoryGirl.create(:user)}
-  let(:listing) {FactoryGirl.create(:listing, owner: another_user)}
+  let(:user) {FactoryBot.create(:user)}
+  let(:another_user) {FactoryBot.create(:user)}
+  let(:listing) {FactoryBot.create(:listing, owner: another_user)}
 
   before do
     login_as user

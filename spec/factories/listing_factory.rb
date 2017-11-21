@@ -1,6 +1,6 @@
 require 'securerandom'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :listing do
     name {SecureRandom.hex}
     property_type 'apartment'
