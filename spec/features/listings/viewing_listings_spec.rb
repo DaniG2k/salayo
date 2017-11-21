@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.feature 'Viewing Listings' do
 
-  let(:regular_user) {FactoryGirl.create(:user)}
-  let!(:user1) {FactoryGirl.create(:user)}
-  let!(:user2) {FactoryGirl.create(:user)}
-  let!(:listing1) {FactoryGirl.create(:listing, owner: user1)}
-  let!(:listing2) {FactoryGirl.create(:listing, owner: user2)}
+  let(:regular_user) {FactoryBot.create(:user)}
+  let!(:user1) {FactoryBot.create(:user)}
+  let!(:user2) {FactoryBot.create(:user)}
+  let!(:listing1) {FactoryBot.create(:listing, owner: user1)}
+  let!(:listing2) {FactoryBot.create(:listing, owner: user2)}
 
   it "doesn't show My listings for users without listings" do
     login_as regular_user

@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Deleting advertisements', type: :feature do
-  let(:admin){FactoryGirl.create(:user, :admin)}
-  let(:user1){FactoryGirl.create(:user)}
-  let(:user2){FactoryGirl.create(:user)}
-  let!(:advert){FactoryGirl.create(:advertisement, user: user1)}
+  let(:admin){FactoryBot.create(:user, :admin)}
+  let(:user1){FactoryBot.create(:user)}
+  let(:user2){FactoryBot.create(:user)}
+  let!(:advert){FactoryBot.create(:advertisement, user: user1)}
   let(:delete_link){"a[title='Delete']"}
 
   context 'regular users' do

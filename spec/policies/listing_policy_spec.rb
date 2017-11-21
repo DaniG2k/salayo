@@ -13,8 +13,8 @@ RSpec.describe ListingPolicy do
   permissions 'policy_scope' do
     subject { Pundit.policy_scope(user, Listing) }
 
-    let(:user) {FactoryGirl.create(:user)}
-    let(:listing) {FactoryGirl.create(:listing, owner: user)}
+    let(:user) {FactoryBot.create(:user)}
+    let(:listing) {FactoryBot.create(:listing, owner: user)}
 
     it 'is empty for anonymous users' do
       expect(Pundit.policy_scope(nil, Listing)).to be_empty
@@ -32,11 +32,11 @@ RSpec.describe ListingPolicy do
   end
 
   permissions :show? do
-    let(:regular_user) {FactoryGirl.create(:user)}
-    let(:user1) {FactoryGirl.create(:user)}
-    let(:user2) {FactoryGirl.create(:user)}
-    let(:listing1) {FactoryGirl.create(:listing, owner: user1)}
-    let(:listing2) {FactoryGirl.create(:listing, owner: user2)}
+    let(:regular_user) {FactoryBot.create(:user)}
+    let(:user1) {FactoryBot.create(:user)}
+    let(:user2) {FactoryBot.create(:user)}
+    let(:listing1) {FactoryBot.create(:listing, owner: user1)}
+    let(:listing2) {FactoryBot.create(:listing, owner: user2)}
     
     it 'blocks anonymous users' do
       expect(subject).not_to permit(nil, listing1)
@@ -64,11 +64,11 @@ RSpec.describe ListingPolicy do
   end
 
   permissions :create? do
-    let(:regular_user) {FactoryGirl.create(:user)}
-    let(:user1) {FactoryGirl.create(:user)}
-    let(:user2) {FactoryGirl.create(:user)}
-    let(:listing1) {FactoryGirl.create(:listing, owner: user1)}
-    let(:listing2) {FactoryGirl.create(:listing, owner: user2)}
+    let(:regular_user) {FactoryBot.create(:user)}
+    let(:user1) {FactoryBot.create(:user)}
+    let(:user2) {FactoryBot.create(:user)}
+    let(:listing1) {FactoryBot.create(:listing, owner: user1)}
+    let(:listing2) {FactoryBot.create(:listing, owner: user2)}
 
     it 'blocks anonymous users' do
       expect(subject).not_to permit(nil, listing1)
@@ -96,11 +96,11 @@ RSpec.describe ListingPolicy do
   end
 
   permissions :update? do
-    let(:regular_user) {FactoryGirl.create(:user)}
-    let(:user1) {FactoryGirl.create(:user)}
-    let(:user2) {FactoryGirl.create(:user)}
-    let(:listing1) {FactoryGirl.create(:listing, owner: user1)}
-    let(:listing2) {FactoryGirl.create(:listing, owner: user2)}
+    let(:regular_user) {FactoryBot.create(:user)}
+    let(:user1) {FactoryBot.create(:user)}
+    let(:user2) {FactoryBot.create(:user)}
+    let(:listing1) {FactoryBot.create(:listing, owner: user1)}
+    let(:listing2) {FactoryBot.create(:listing, owner: user2)}
 
     it 'blocks anonymous users' do
       expect(subject).not_to permit(nil, listing1)
@@ -128,10 +128,10 @@ RSpec.describe ListingPolicy do
   end
 
   permissions :destroy? do
-    let(:user1) {FactoryGirl.create(:user)}
-    let(:user2) {FactoryGirl.create(:user)}
-    let(:listing1) {FactoryGirl.create(:listing, owner: user1)}
-    let(:listing2) {FactoryGirl.create(:listing, owner: user2)}
+    let(:user1) {FactoryBot.create(:user)}
+    let(:user2) {FactoryBot.create(:user)}
+    let(:listing1) {FactoryBot.create(:listing, owner: user1)}
+    let(:listing2) {FactoryBot.create(:listing, owner: user2)}
 
     it 'blocks anonymous users' do
       expect(subject).not_to permit(nil, listing1)

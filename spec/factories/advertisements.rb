@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :advertisement do
     user nil
     ad_type %w(rent let wanted).sample

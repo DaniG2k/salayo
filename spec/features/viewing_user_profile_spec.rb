@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature 'Registered users can view their details' do
-  let(:user) {FactoryGirl.create(:user)}
-  let(:owner) {FactoryGirl.create(:user, :owner)}
-  let(:admin) {FactoryGirl.create(:user, :admin)}
+  let(:user) {FactoryBot.create(:user)}
+  let(:owner) {FactoryBot.create(:user, :owner)}
+  let(:admin) {FactoryBot.create(:user, :admin)}
   let(:deny_msg) {'You are not allowed to access that resource.'}
 
   context 'anonymous users' do
