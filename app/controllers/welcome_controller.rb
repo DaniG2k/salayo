@@ -23,11 +23,12 @@ class WelcomeController < ApplicationController
   end
 
   private
+  
     def subscription_params
       params.require(:subscription).permit(:email)
     end
 
     def set_top_bar_transparency
-      @top_bar_transparent = %w(index subscribe).include?(action_name)
+      @top_bar_transparent = %w[index subscribe].include?(action_name)
     end
 end

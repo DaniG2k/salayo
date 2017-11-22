@@ -1,6 +1,6 @@
 class AdvertisementsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
+  before_action :set_advertisement, only: %i[show edit update destroy]
   layout 'dashboard'
 
   def index

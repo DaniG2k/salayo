@@ -11,20 +11,21 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-      devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :locale])
-    end
+  
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name])
+    devise_parameter_sanitizer.permit(:sign_in, keys: %i[name])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name locale])
+  end
 
   private
 
-    def not_authorized
-      flash[:warning] = 'You are not allowed to access that resource.'
-      redirect_to dashboard_path
-    end
+  def not_authorized
+    flash[:warning] = 'You are not allowed to access that resource.'
+    redirect_to dashboard_path
+  end
 
-    def set_locale
-      I18n.locale = current_user.try(:locale) || I18n.default_locale
-    end
+  def set_locale
+    I18n.locale = current_user.try(:locale) || I18n.default_locale
+  end
 end

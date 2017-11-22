@@ -25,11 +25,11 @@ module ApplicationHelper
     current_user.present? ? current_user.locale : 'en'
   end
 
-  def admins_only &block
+  def admins_only(&block)
     block.call if admin?
   end
 
-  def owners_only &block
+  def owners_only(&block)
     if admin? || current_user.roles.pluck(:name).include?('owner')
       block.call
     end

@@ -1,6 +1,6 @@
 class ChatroomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_chatroom, only: [:show, :edit, :update, :destroy]
+  before_action :set_chatroom, only: %i[show edit update destroy]
   layout 'dashboard'
 
   def index
