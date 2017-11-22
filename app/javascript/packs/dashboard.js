@@ -33,6 +33,9 @@ import Vue from 'vue/dist/vue.esm'
 import VueResource from 'vue-resource'
 import Vuelidate from 'vuelidate'
 import { required, minLength, between } from 'vuelidate/lib/validators'
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.css'
+
 Vue.use(Vuelidate)
 Vue.use(VueResource)
 
@@ -58,55 +61,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const myForm = new Vue({
       el: '#listing-multistep',
-      data: {
-        id: listing.id,
-        activeStep: 0,
-        stepList: [
-          {id: 0, text: 'Basics'},
-          {id: 1, text: 'Location'},
-          {id: 2, text: 'Amenities'},
-          {id: 3, text: 'Description'}
-        ],
-        amenities: [
-          {id: 0, text: "Air conditioning"},
-          {id: 1, text: "Buzzer/wireless intercom"},
-          {id: 2, text: "Cable TV"},
-          {id: 3, text: "Doorman"},
-          {id: 4, text: "Dryer"},
-          {id: 5, text: "Elevator"},
-          {id: 6, text: "Essentials"},
-          {id: 7, text: "Gym"},
-          {id: 8, text: "Hair dryer"},
-          {id: 9, text: "Hangers"},
-          {id: 10, text: "Heating"},
-          {id: 11, text: "Hot tub"},
-          {id: 12, text: "Internet"},
-          {id: 13, text: "Iron"},
-          {id: 14, text: "Kitchen"},
-          {id: 15, text: "Parking"},
-          {id: 16, text: "Pool"},
-          {id: 17, text: "TV"},
-          {id: 18, text: "Washer"}
-        ],
-        checkedAmenities: listing.amenities,
-        byAddress: true,
-        propertyType: listing.property_type,
-        displayMap: false,
-        name: listing.name,
-        bedrooms: listing.bedrooms,
-        beds: listing.beds,
-        bathrooms: listing.bathrooms,
-        city: listing.city,
-        state: listing.state,
-        address: listing.address,
-        lat: listing.lat,
-        lng: listing.lng,
-        description: listing.description,
-        dropzoneOptions: {
-          url: 'https://httpbin.org/post',
-          thumbnailWidth: 150,
-          maxFilesize: 0.5,
-          headers: { "My-Awesome-Header": "header value" }
+      components: {
+        vueDropzone: vue2Dropzone
+      },
+      data: function () {
+        return {
+          id: listing.id,
+          activeStep: 0,
+          stepList: [
+            {id: 0, text: 'Basics'},
+            {id: 1, text: 'Location'},
+            {id: 2, text: 'Amenities'},
+            {id: 3, text: 'Description'}
+          ],
+          amenities: [
+            {id: 0, text: "Air conditioning"},
+            {id: 1, text: "Buzzer/wireless intercom"},
+            {id: 2, text: "Cable TV"},
+            {id: 3, text: "Doorman"},
+            {id: 4, text: "Dryer"},
+            {id: 5, text: "Elevator"},
+            {id: 6, text: "Essentials"},
+            {id: 7, text: "Gym"},
+            {id: 8, text: "Hair dryer"},
+            {id: 9, text: "Hangers"},
+            {id: 10, text: "Heating"},
+            {id: 11, text: "Hot tub"},
+            {id: 12, text: "Internet"},
+            {id: 13, text: "Iron"},
+            {id: 14, text: "Kitchen"},
+            {id: 15, text: "Parking"},
+            {id: 16, text: "Pool"},
+            {id: 17, text: "TV"},
+            {id: 18, text: "Washer"}
+          ],
+          checkedAmenities: listing.amenities,
+          byAddress: true,
+          propertyType: listing.property_type,
+          displayMap: false,
+          name: listing.name,
+          bedrooms: listing.bedrooms,
+          beds: listing.beds,
+          bathrooms: listing.bathrooms,
+          city: listing.city,
+          state: listing.state,
+          address: listing.address,
+          lat: listing.lat,
+          lng: listing.lng,
+          description: listing.description,
+          dropzoneOptions: {
+            url: 'https://httpbin.org/post',
+            thumbnailWidth: 150,
+            maxFilesize: 5,
+            dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Drop files here to upload",
+            headers: { "My-Awesome-Header": "header value" }
+          }
         }
       },
       mounted: function() {

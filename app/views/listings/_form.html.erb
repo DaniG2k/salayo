@@ -80,6 +80,17 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col">
+        <h2>Images</h3>
+        <vue-dropzone
+          ref="myVueDropzone"
+          id="dropzone"
+          :options="dropzoneOptions">
+        </vue-dropzone>
+      </div>
+    </div>
   </fieldset>
 
   <fieldset class="listing-step" v-show="activeStep === 1">
@@ -193,10 +204,6 @@
   </fieldset>
 
   <fieldset class="listing-step" v-show="activeStep === 3">
-    <h2>Images</h2>
-
-    <vue-dropzone ref="myVueDropzone" id="dropzone" :include-styling="true" :options="dropzoneOptions">
-
     <h2>Description</h2>
 
     <div class="row">

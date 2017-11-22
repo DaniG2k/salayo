@@ -40,7 +40,7 @@ gem 'carrierwave', '~> 1.0'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
 gem 'sidekiq'
-gem 'webpacker', '~> 3.0'
+gem 'webpacker', github: 'rails/webpacker'
 gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
