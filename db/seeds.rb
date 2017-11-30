@@ -5,3 +5,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+users = [
+  {
+    name: 'Daniele',
+    email: ENV['ADMIN_EMAIL'],
+    password: 'test1234',
+    admin: true
+  },
+  {
+    name: 'Bob',
+    email: 'test@test.com',
+    password: 'test1234',
+    admin: false
+  }
+]
+
+users.each do |user|
+  u = User.new(
+    name: user[:name],
+    email: user[:email],
+    password: user[:password],
+    password_confirmation: user[:password]
+  )
+  u.save
+  u.add_role(:admin) if user[:admin]
+end
