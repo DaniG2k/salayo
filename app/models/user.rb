@@ -13,4 +13,12 @@ class User < ApplicationRecord
   has_many :chatroom_users
   has_many :chatrooms, through: :chatroom_users
   has_many :messages
+
+  after_create :assign_default_role
+
+  private
+  
+  def assign_default_role
+    self.add_role(:normal) if self.roles.blank?
+  end
 end
