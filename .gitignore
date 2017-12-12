@@ -25,3 +25,6 @@ public/uploads/
 
 # Mac finder artifacts
 .DS_Store
+
+# Yarn
+.yarn-error.log
