@@ -22,3 +22,6 @@ public/uploads/
 /public/packs
 /public/packs-test
 /node_modules
+
+# Mac finder artifacts
+.DS_Store
