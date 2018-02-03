@@ -34,7 +34,6 @@ import VueResource from 'vue-resource'
 import Vuelidate from 'vuelidate'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import vue2Dropzone from 'vue2-dropzone'
-import 'vue2-dropzone/dist/vue2Dropzone.css'
 
 Vue.use(Vuelidate)
 Vue.use(VueResource)
@@ -111,6 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
           description: listing.description,
           dropzoneOptions: {
             url: 'https://httpbin.org/post',
+            autoProcessQueue: false,
+            addRemoveLinks: true,
             thumbnailWidth: 150,
             maxFilesize: 5,
             dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Drop files here to upload",
@@ -171,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // POST if it's a new listing
             this.$http.post('/listings', {listing: listingObj}).then(
               response => {
+                this.$refs.myVueDropzone.processQueue()
                 window.location = `/listings/${response.body.id}`
             }, response => {
               console.log(response)
@@ -179,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // PUT if it's an existing listing
             this.$http.put(`/listings/${this.id}`, {listing: listingObj}).then(
               response => {
+                this.$refs.myVueDropzone.processQueue()
                 window.location = `/listings/${response.body.id}`
             }, response => {
               console.log(response)
