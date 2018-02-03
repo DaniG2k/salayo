@@ -6,18 +6,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, #:registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Validations
   validates :name, presence: true
 
+  # Associations
   has_many :listings, dependent: :destroy
   has_many :advertisements, dependent: :destroy
   has_many :chatroom_users
   has_many :chatrooms, through: :chatroom_users
   has_many :messages
 
+  # Callbacks
   after_create :assign_default_role
 
   private
-  
+
   def assign_default_role
     self.add_role(:normal) if self.roles.blank?
   end

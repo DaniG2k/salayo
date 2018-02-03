@@ -36,9 +36,9 @@ gem 'rolify'
 gem 'pundit'
 gem 'rails-ujs'
 gem 'carrierwave', '~> 1.0'
-# gem 'dropzonejs-rails'
+
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 3.0'
+gem 'redis'
 gem 'sidekiq'
 gem 'webpacker', github: 'rails/webpacker'
 gem 'friendly_id', '~> 5.1.0'
