@@ -110,7 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
           description: listing.description,
           dropzoneOptions: {
             url: 'https://httpbin.org/post',
-            autoProcessQueue: false,
+            autoProcessQueue: false, // Dropzone should wait for the user to click a button to upload
+            parallelUploads: 15, // Dropzone should upload all files at once (including the form data) not all files individually
+            maxFiles: 15, // this means that they shouldn't be split up in chunks
+            clickable: false, // Don't make the whole form clickable
+            previewsContainer: '#dropzonePreview',
             addRemoveLinks: true,
             thumbnailWidth: 150,
             maxFilesize: 5,
