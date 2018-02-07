@@ -190,11 +190,10 @@
           <div class="custom-controls-stacked">
 
             <div v-for="(amenity, idx) in amenities">
-              <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" v-model="checkedAmenities[idx]" :value="amenity.id">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">{{ amenity.text }}</span>
-              </label>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" v-bind:id="amenity.text" v-model="checkedAmenities[idx]" :value="amenity.id">
+                <label class="custom-control-label" v-bind="{ 'for': amenity.text }" >{{ amenity.text }}</label>
+              </div>
             </div>
 
           </div>

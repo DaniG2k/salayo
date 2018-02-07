@@ -114,8 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
             autoProcessQueue: false, // Dropzone should wait for the user to click a button to upload
             parallelUploads: 15, // Dropzone should upload all files at once (including the form data) not all files individually
             maxFiles: 15, // this means that they shouldn't be split up in chunks
-            clickable: false, // Don't make the whole form clickable
-            previewsContainer: '#dropzonePreview',
             addRemoveLinks: true,
             thumbnailWidth: 150,
             maxFilesize: 5,
@@ -194,12 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         },
         updateLocation: function() {
-          var fullAddress = this.address;
-          if(this.city.length > 1) {
+          var fullAddress = '';
+          if(this.city !== null && this.city.length > 1) {
             fullAddress += (fullAddress.length > 1) ? `, ${this.city}` : this.city
           }
-          if(this.state.length > 1) {
+          if(this.state !== null && this.state.length > 1) {
             fullAddress += (fullAddress.length > 1) ?  `, ${this.state}` : this.state
+          }
+          if(this.address !== null && this.address.length > 1) {
+            fullAddress += (fullAddress.length > 1) ?  `, ${this.address}` : this.address
           }
 
           if (fullAddress == '') {
@@ -237,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 marker.setVisible(true);
                 marker.setPosition(newLatLng);
               } else {
-                console.log(`Status: ${status}`)
+                // console.log(`Status: ${status}`)
                 marker.setVisible(false);
                 this.lat = null;
                 this.lng = null;
