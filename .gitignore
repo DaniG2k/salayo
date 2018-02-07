@@ -18,6 +18,7 @@ vendor/
 
 .byebug_history
 .env
+.sekrets.key
 public/uploads/
 /public/packs
 /public/packs-test
