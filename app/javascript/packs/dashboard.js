@@ -110,15 +110,16 @@ document.addEventListener('DOMContentLoaded', () => {
           lng: listing.lng,
           description: listing.description,
           dropzoneOptions: {
-            url: 'https://httpbin.org/post',
+            url: '/listings',
+            method: 'post',
             autoProcessQueue: false, // Dropzone should wait for the user to click a button to upload
             parallelUploads: 15, // Dropzone should upload all files at once (including the form data) not all files individually
             maxFiles: 15, // this means that they shouldn't be split up in chunks
             addRemoveLinks: true,
             thumbnailWidth: 150,
             maxFilesize: 5,
-            dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Drop files here to upload",
-            headers: { "My-Awesome-Header": "header value" }
+            dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Drop files here to upload (max. 15 files)",
+            headers: { 'X-CSRF-Token': Vue.http.headers.common['X-CSRF-Token'] }
           }
         }
       },
@@ -133,8 +134,18 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
         this.checkedAmenities = newArray
+
+        // Dropzone actually performs the form submission.
+        // Make a PUT request if the listing id exists.
+        if(this.id !== null) {
+          this.dropzoneOptions['url'] = `/listings/${this.id}`
+          this.dropzoneOptions['method'] = 'put'
+        }
       },
       methods: {
+        listingRedirect: function(files, response) {
+          window.location = `/listings/${response.body.id}`
+        },
         validateClass: function(obj) {
           return {
             'form-control is-invalid': obj.$error,
@@ -171,25 +182,26 @@ document.addEventListener('DOMContentLoaded', () => {
             description: this.description
           }
 
-          if(this.id == null) {
-            // POST if it's a new listing
-            this.$http.post('/listings', {listing: listingObj}).then(
-              response => {
-                this.$refs.myVueDropzone.processQueue()
-                window.location = `/listings/${response.body.id}`
-            }, response => {
-              console.log(response)
-            })
-          } else {
-            // PUT if it's an existing listing
-            this.$http.put(`/listings/${this.id}`, {listing: listingObj}).then(
-              response => {
-                this.$refs.myVueDropzone.processQueue()
-                window.location = `/listings/${response.body.id}`
-            }, response => {
-              console.log(response)
-            })
-          }
+          this.$refs.listingDropzone.processQueue()
+          // if(this.id == null) {
+          //   // POST if it's a new listing
+          //   this.$http.post('/listings', {listing: listingObj}).then(
+          //     response => {
+          //       this.$refs.myVueDropzone.processQueue()
+          //       window.location = `/listings/${response.body.id}`
+          //   }, response => {
+          //     console.log(response)
+          //   })
+          // } else {
+          //   // PUT if it's an existing listing
+          //   this.$http.put(`/listings/${this.id}`, {listing: listingObj}).then(
+          //     response => {
+          //       this.$refs.myVueDropzone.processQueue()
+          //       window.location = `/listings/${response.body.id}`
+          //   }, response => {
+          //     console.log(response)
+          //   })
+          // }
         },
         updateLocation: function() {
           var fullAddress = '';
