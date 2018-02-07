@@ -34,6 +34,7 @@ import VueResource from 'vue-resource'
 import Vuelidate from 'vuelidate'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import vue2Dropzone from 'vue2-dropzone'
+//import 'vue2-dropzone/dist/vue2Dropzone.css'
 
 Vue.use(Vuelidate)
 Vue.use(VueResource)
