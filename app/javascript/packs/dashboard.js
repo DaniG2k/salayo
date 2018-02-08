@@ -112,6 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
           dropzoneOptions: {
             url: '/listings',
             method: 'post',
+            acceptedFiles: 'image/*',
+            uploadMultiple: true,
             autoProcessQueue: false, // Dropzone should wait for the user to click a button to upload
             parallelUploads: 15, // Dropzone should upload all files at once (including the form data) not all files individually
             maxFiles: 15, // this means that they shouldn't be split up in chunks
@@ -143,9 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       },
       methods: {
-        listingRedirect: function(files, response) {
-          window.location = `/listings/${response.body.id}`
-        },
         validateClass: function(obj) {
           return {
             'form-control is-invalid': obj.$error,
@@ -202,6 +201,9 @@ document.addEventListener('DOMContentLoaded', () => {
           //     console.log(response)
           //   })
           // }
+        },
+        listingRedirect: function(files, response) {
+          window.location = `/listings/${response.body.id}`
         },
         updateLocation: function() {
           var fullAddress = '';

@@ -12,7 +12,7 @@
     <h2>Basics</h2>
 
     <div class="row">
-      <div class="col-6">
+      <div class="col-md-6">
         <div class="form-group">
           <strong><%= f.label :name, 'Property name', class: 'required-field' %></strong><br>
           <%= f.text_field(:name,
@@ -24,7 +24,7 @@
           <div class="invalid-feedback" v-if="!$v.name.minLength">Name must have at least {{$v.name.$params.minLength.min}} letters.</div>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-md-6">
         <div class="form-group">
           <strong><%= f.label :property_type, class: 'required-field' %></strong><br>
           <%= f.select(:property_type, options_for_select(Listing::PROPERTY_TYPES.map do |type|
@@ -41,7 +41,7 @@
     </div>
 
     <div class="row">
-      <div class="col-6">
+      <div class="col-md-6">
         <div class="form-group">
           <strong><%= f.label :bedrooms, class: 'required-field' %></strong><br>
           <%= f.number_field :bedrooms, in: (0..10),
@@ -53,7 +53,7 @@
           <div class="invalid-feedback" v-if="!$v.bedrooms.between">Input must be between {{$v.bedrooms.$params.between.min}} and {{$v.bedrooms.$params.between.max}}</div>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-md-6">
         <div class="form-group">
           <strong><%= f.label :beds, class: 'required-field' %></strong><br>
           <%= f.number_field :beds, in: (0..10),
@@ -68,7 +68,7 @@
     </div>
 
     <div class="row">
-      <div class="col-6">
+      <div class="col-md-6">
         <div class="form-group">
           <strong><%= f.label :bathrooms, class: 'required-field' %></strong><br>
           <%= f.number_field :bathrooms, in: (0..10),
@@ -149,13 +149,13 @@
       <transition name="fade">
         <fieldset id="listing-location-child" name="coords" v-show="!byAddress">
           <div class="row">
-            <div class="col">
+            <div class="col-md-6">
               <div class="form-group">
                 <strong><%= f.label :lat, 'Latitude', class: 'required-field' %></strong><br>
                 <%= f.number_field :lat, in: -90.0..90.0, step: :any, class: 'form-control', 'v-model': 'lat', 'v-bind:readonly': 'byAddress' %>
               </div>
             </div>
-            <div class="col">
+            <div class="col-md-6">
               <div class="form-group">
                 <strong><%= f.label :lng, 'Longitude', class: 'required-field' %></strong><br>
                 <%= f.number_field :lng, in: -180.0..180.0, step: :any, class: 'form-control', 'v-model': 'lng', 'v-bind:readonly': 'byAddress' %>
