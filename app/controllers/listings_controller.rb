@@ -14,9 +14,9 @@ class ListingsController < ApplicationController
   end
 
   def create
-    listing_obj = JSON.parse(params[:listing])
-    @listing = Listing.new listing_obj
+    @listing = Listing.new(JSON.parse(params[:listing]))
     @listing.owner = current_user
+    @listing.pictures = params[:file].values.map {|file| Picture.new(image: file)}
 
     authorize @listing, :create?
     respond_to do |format|

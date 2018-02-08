@@ -181,11 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
             description: this.description,
             amenities: amenityNames
           })
-          
+
           formData.append('listing', listingObj)
         },
         listingRedirect: function(files, response) {
-          window.location = `/listings/${response.body.id}`
+          window.location = `/listings/${response.slug}`
         },
         updateLocation: function() {
           var fullAddress = '';
