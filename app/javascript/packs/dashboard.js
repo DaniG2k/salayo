@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       data: function () {
         return {
           id: listing.id,
+          slug: listing.slug,
           activeStep: 0,
           stepList: [
             {id: 0, text: 'Basics'},
@@ -136,25 +137,15 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
         this.checkedAmenities = newArray
-
-        // Dropzone actually performs the form submission.
-        // Make a PUT request if the listing id exists.
-        if(this.id !== null) {
-          this.dropzoneOptions['url'] = `/listings/${this.id}`
-          this.dropzoneOptions['method'] = 'put'
-        }
+        // // Dropzone actually performs the form submission.
+        // // Make a PUT request if the listing id exists.
+        // if(this.slug !== null) {
+        //   this.dropzoneOptions['url'] = `/listings/${this.slug}`
+        //   this.dropzoneOptions['method'] = 'put'
+        // }
       },
       methods: {
-        validateClass: function(obj) {
-          return {
-            'form-control is-invalid': obj.$error,
-            'form-control is-valid checkmark': (!obj.$error && obj.$dirty)
-          }
-        },
-        submitListing: function() {
-          this.$refs.listingDropzone.processQueue()
-        },
-        sendingEvent: function(file, xhr, formData) {
+        setupListingObj: function() {
           var amenityNames = []
           var checkedIndices = []
           this.checkedAmenities.forEach((elt, idx) => {
@@ -165,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
               amenityNames.push(amenity.text);
             }
           });
-          var listingObj = JSON.stringify({
+          var listingObj = {
             id: this.id,
             name: this.name,
             bedrooms: this.bedrooms,
@@ -180,9 +171,45 @@ document.addEventListener('DOMContentLoaded', () => {
             lng: this.lng,
             description: this.description,
             amenities: amenityNames
-          })
-
-          formData.append('listing', listingObj)
+          }
+          return listingObj
+        },
+        validateClass: function(obj) {
+          return {
+            'form-control is-invalid': obj.$error,
+            'form-control is-valid checkmark': (!obj.$error && obj.$dirty)
+          }
+        },
+        submitListing: function() {
+          var numFiles = this.$refs.listingDropzone.getAcceptedFiles().length
+          // If there are images to upload, use Dropzone
+          // Else submit the form normally.
+          if(numFiles > 0) {
+            this.$refs.listingDropzone.processQueue()
+          } else {
+            var listingObj = this.setupListingObj()
+            if(this.id === null) {
+              // POST if it's a new listing
+              this.$http.post('/listings', {listing: listingObj}).then(
+                response => {
+                  window.location = `/listings/${response.slug}`
+              }, response => {
+                console.log(response)
+              })
+            } else {
+              // PUT if it's an existing listing
+              this.$http.put(`/listings/${this.slug}`, {listing: listingObj}).then(
+                response => {
+                  window.location = `/listings/${response.slug}`
+              }, response => {
+                console.log(response)
+              })
+            }
+          }
+        },
+        sendingEvent: function(file, xhr, formData) {
+          var listingObj = this.setupListingObj()
+          formData.append('listing', JSON.stringify(listingObj))
         },
         listingRedirect: function(files, response) {
           window.location = `/listings/${response.slug}`

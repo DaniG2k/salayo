@@ -7,7 +7,7 @@
 
         <div class="card dashboard-card">
           <div class="card-block">
-            <h4 class="card-title"><%= link_to(fa_icon('user', text: "#{@advertisement.user.name} - #{@advertisement.title}"), advertisement_path(@advertisement)) %></h4>
+            <h4 class="card-title"><%= link_to(fa_icon('user', text: "#{@advertisement.user.first_name} - #{@advertisement.title}"), advertisement_path(@advertisement)) %></h4>
             <%= display_ad_type(@advertisement) %>
             <%= @advertisement.body %>
           </div>

@@ -19,6 +19,7 @@ class ListingsController < ApplicationController
     @listing.pictures = params[:file].values.map {|file| Picture.new(image: file)}
 
     authorize @listing, :create?
+
     respond_to do |format|
       if @listing.save
         current_user.add_role(:owner, @listing)
@@ -41,16 +42,25 @@ class ListingsController < ApplicationController
 
   def update
     authorize @listing, :update?
-    @listing.owner = current_user
 
     respond_to do |format|
-      if @listing.update(listing_params)
-        current_user.add_role(:owner, @listing)
-        format.html { redirect_to @listing, notice: 'Listing has been updated!' }
-        format.json { render :show, status: :ok, location: @listing }
+      if params[:file].nil?
+        # Use the normal update method since no images were uploaded.
+        if @listing.update(listing_params)
+          format.html { redirect_to @listing, notice: 'Listing has been updated!' }
+          format.json { render :show, status: :ok, location: @listing }
+        else
+          format.html { render :edit }
+          format.json { render json: @listing.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
+        # Append images and new data to @listing
+        if @listing.update_attributes(JSON.parse(params[:listing]))
+          @listing.pictures << params[:file].values.map {|file| Picture.new(image: file)}
+          format.json { render :show, status: :ok, location: @listing }
+        else
+          format.json { render json: @listing.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -65,12 +75,6 @@ class ListingsController < ApplicationController
         flash.now[:notice] = 'Listing was not destroyed.'
       end
     end
-  end
-
-  def add_picture
-    @listing = Listing.find params[:id]
-    @picture = @listing.pictures.create(image: params[:file])
-    @picture.save
   end
 
   private

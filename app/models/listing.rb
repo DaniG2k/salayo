@@ -1,5 +1,49 @@
+# == Schema Information
+#
+# Table name: listings
+#
+#  id            :integer          not null, primary key
+#  name          :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  property_type :string
+#  lat           :float
+#  lng           :float
+#  user_id       :integer
+#  address       :string
+#  city          :string
+#  state         :string
+#  amenities     :text             default([]), is an Array
+#  bathrooms     :integer          default(0)
+#  bedrooms      :integer          default(0)
+#  beds          :integer          default(0)
+#  description   :text
+#  slug          :string
+#
+
 class Listing < ApplicationRecord
   PROPERTY_TYPES = %w[apartment house bnb cabin villa castle dorm treehouse igloo lighthouse yurt tipi cave island chalet earthhouse hut tent loft townhouse condominium other].sort.freeze
+  AMENITIES = [
+    "Air conditioning",
+    "Buzzer/wireless intercom",
+    "Cable TV",
+    "Doorman",
+    "Dryer",
+    "Elevator",
+    "Essentials",
+    "Gym",
+    "Hair dryer",
+    "Hangers",
+    "Heating",
+    "Hot tub",
+    "Internet",
+    "Iron",
+    "Kitchen",
+    "Parking",
+    "Pool",
+    "TV",
+    "Washer"
+  ].freeze
 
   extend FriendlyId
   friendly_id :name, use: :slugged

@@ -15,7 +15,7 @@
         </div>
       </transition>
 
-      <%= link_to(fa_icon('chevron-down', text: current_user.name, right: true), '#', class: 'float-right', 'v-on:blur': 'showDropdown = false', 'v-on:click.prevent': 'showDropdown = true') %>
+      <%= link_to(fa_icon('chevron-down', text: current_user.full_name, right: true), '#', class: 'float-right', 'v-on:blur': 'showDropdown = false', 'v-on:click.prevent': 'showDropdown = true') %>
     </div>
 
   </div>

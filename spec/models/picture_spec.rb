@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: pictures
+#
+#  id             :integer          not null, primary key
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  image          :string
+#  description    :string
+#  imageable_type :string
+#  imageable_id   :integer
+#
+
 require 'rails_helper'
 
 RSpec.describe Picture, type: :model do

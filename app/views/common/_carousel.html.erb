@@ -1,14 +1,15 @@
 <% if obj.pictures.present? %>
+  <h3>Images</h3>
   <div id="salayo-carousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <% obj.pictures.each_with_index do |pic, idx| %>
-        <li data-target="#salayo-carousel" data-slide-to="<%= idx %>" class="<%= idx.zero? ? 'active' : '' %>"></li>
+        <li data-target="#salayo-carousel" data-slide-to="<%= idx %>" class="<%= 'active' if idx.zero? %>"></li>
       <% end %>
     </ol>
     <div class="carousel-inner">
       <% obj.pictures.each_with_index do |pic, idx| %>
-        <div class="carousel-item <%= idx.zero? ? 'active' : '' %>">
-          <%= image_tag pic.image_url, class: 'd-block' %>
+        <div class="carousel-item <%= 'active' if idx.zero? %>">
+          <%= image_tag pic.image_url, class: 'd-block w-100' %>
         </div>
       <% end %>
     </div>

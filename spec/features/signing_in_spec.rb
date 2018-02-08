@@ -11,6 +11,6 @@ RSpec.feature 'Registered users can sign in' do
 
     expect(page).to have_content 'Signed in successfully'
     expect(current_path).to eq dashboard_path
-    expect(page).to have_content user.name
+    expect(page).to have_content user.first_name
   end
 end

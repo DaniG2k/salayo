@@ -34,12 +34,7 @@ Rails.application.routes.draw do
     get 'users', to: 'users#index'
   end
 
-  resources :listings do
-    member do
-      post 'add_picture', to: 'listings#add_picture'
-    end
-    #resources :pictures, only: [:create]
-  end
+  resources :listings
 
   resources :advertisements do
     collection do
