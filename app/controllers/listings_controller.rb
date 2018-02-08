@@ -14,7 +14,8 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new listing_params
+    listing_obj = JSON.parse(params[:listing])
+    @listing = Listing.new listing_obj
     @listing.owner = current_user
 
     authorize @listing, :create?

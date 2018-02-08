@@ -152,55 +152,37 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         },
         submitListing: function() {
+          this.$refs.listingDropzone.processQueue()
+        },
+        sendingEvent: function(file, xhr, formData) {
           var amenityNames = []
           var checkedIndices = []
-
           this.checkedAmenities.forEach((elt, idx) => {
             if(elt === true){ checkedIndices.push(idx) }
           });
-
           this.amenities.map((amenity) => {
             if(checkedIndices.includes(amenity.id)){
               amenityNames.push(amenity.text);
             }
           });
-
-          var listingObj = {
+          var listingObj = JSON.stringify({
             id: this.id,
             name: this.name,
             bedrooms: this.bedrooms,
             beds: this.beds,
             bathrooms: this.bathrooms,
+            bedrooms: this.bedrooms,
             property_type: this.propertyType,
             city: this.city,
             state: this.state,
             address: this.address,
             lat: this.lat,
             lng: this.lng,
-            amenities: amenityNames,
-            description: this.description
-          }
-
-          this.$refs.listingDropzone.processQueue()
-          // if(this.id == null) {
-          //   // POST if it's a new listing
-          //   this.$http.post('/listings', {listing: listingObj}).then(
-          //     response => {
-          //       this.$refs.myVueDropzone.processQueue()
-          //       window.location = `/listings/${response.body.id}`
-          //   }, response => {
-          //     console.log(response)
-          //   })
-          // } else {
-          //   // PUT if it's an existing listing
-          //   this.$http.put(`/listings/${this.id}`, {listing: listingObj}).then(
-          //     response => {
-          //       this.$refs.myVueDropzone.processQueue()
-          //       window.location = `/listings/${response.body.id}`
-          //   }, response => {
-          //     console.log(response)
-          //   })
-          // }
+            description: this.description,
+            amenities: amenityNames
+          })
+          
+          formData.append('listing', listingObj)
         },
         listingRedirect: function(files, response) {
           window.location = `/listings/${response.body.id}`

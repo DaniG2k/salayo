@@ -88,6 +88,7 @@
         <vue-dropzone
           ref="listingDropzone"
           id="dropzone"
+          @vdropzone-sending-multiple="sendingEvent"
           @vdropzone-success-multiple="listingRedirect"
           :options="dropzoneOptions">
         </vue-dropzone>
