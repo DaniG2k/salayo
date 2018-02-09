@@ -4,6 +4,10 @@ class ListingsController < ApplicationController
   layout 'dashboard'
 
   def index
+    @listings = Listing.all
+  end
+
+  def mine
     @listings = policy_scope Listing
   end
 
@@ -69,7 +73,7 @@ class ListingsController < ApplicationController
     authorize @listing, :destroy?
     respond_to do |format|
       if @listing.destroy
-        format.html { redirect_to listings_path, notice: 'Listing was successfully deleted!' }
+        format.html { redirect_to my_listings_path, notice: 'Listing was successfully deleted!' }
         format.json { head :no_content }
       else
         flash.now[:notice] = 'Listing was not destroyed.'
@@ -79,27 +83,27 @@ class ListingsController < ApplicationController
 
   private
 
-    def listing_params
-      params.require(:listing).permit(
-        :name,
-        :bedrooms,
-        :beds,
-        :bathrooms,
-        :property_type,
-        :city,
-        :state,
-        :address,
-        :lat,
-        :lng,
-        :description,
-        :amenities => []
-      )
-    end
+  def listing_params
+    params.require(:listing).permit(
+      :name,
+      :bedrooms,
+      :beds,
+      :bathrooms,
+      :property_type,
+      :city,
+      :state,
+      :address,
+      :lat,
+      :lng,
+      :description,
+      :amenities => []
+    )
+  end
 
-    def set_listing
-      @listing = Listing.friendly.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:warning] = 'That listing does not appear to exist.'
-      redirect_to listings_path
-    end
+  def set_listing
+    @listing = Listing.friendly.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:warning] = 'That listing does not appear to exist.'
+    redirect_to listings_path
+  end
 end

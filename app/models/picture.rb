@@ -16,4 +16,8 @@ class Picture < ApplicationRecord
   belongs_to :imageable, polymorphic: true
 
   mount_uploader :image, ImageUploader
+
+  # Validations
+  validates :image, presence: true
+  validates_integrity_of :image
 end

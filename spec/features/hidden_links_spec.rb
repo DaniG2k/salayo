@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature 'Users can only see the appropriate links' do
   let(:user) {FactoryBot.create(:user)}
   let(:owner) {FactoryBot.create(:user, :owner)}

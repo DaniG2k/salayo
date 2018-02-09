@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: pictures
+# Table name: images
 #
 #  id             :integer          not null, primary key
 #  created_at     :datetime         not null

@@ -31,6 +31,7 @@
 
 import Vue from 'vue/dist/vue.esm'
 import VueResource from 'vue-resource'
+// import listingModal from '../components/listing_modal.vue'
 import Vuelidate from 'vuelidate'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import vue2Dropzone from 'vue2-dropzone'
@@ -40,7 +41,7 @@ Vue.use(Vuelidate)
 Vue.use(VueResource)
 
 document.addEventListener('DOMContentLoaded', () => {
-  if(document.getElementById('dashboard-topbar') != null) {
+  if(document.getElementById('dashboard-topbar') !== null) {
     const dashboard = new Vue({
       el: '#dashboard-topbar',
       data: {
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  if(document.getElementById('listing-multistep') != null) {
+  if(document.getElementById('listing-multistep') !== null) {
     Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('input[name="authenticity_token"]').getAttribute('value');
     var listingForm = document.getElementById('listing_form');
     var listing = JSON.parse(listingForm.dataset.listing);
@@ -192,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
               // POST if it's a new listing
               this.$http.post('/listings', {listing: listingObj}).then(
                 response => {
-                  window.location = `/listings/${response.slug}`
+                  window.location = `/listings/${response.body.slug}`
               }, response => {
                 console.log(response)
               })
@@ -200,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
               // PUT if it's an existing listing
               this.$http.put(`/listings/${this.slug}`, {listing: listingObj}).then(
                 response => {
-                  window.location = `/listings/${response.slug}`
+                  window.location = `/listings/${response.body.slug}`
               }, response => {
                 console.log(response)
               })
@@ -294,4 +295,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   }
+
+  // if(document.getElementById('listing-modal') !== null) {
+  //   Vue.component('listing-modal', {
+  //     template: '#modal-template'
+  //   })
+  //   const modal = new Vue({
+  //     el: '#listing-modal',
+  //     components: { listingModal },
+  //     data: { showModal: false }
+  //   })
+  // }
 })

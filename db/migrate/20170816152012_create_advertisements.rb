@@ -1,7 +1,9 @@
 class CreateAdvertisements < ActiveRecord::Migration[5.1]
   def change
     create_table :advertisements do |t|
-      t.string :type
+      t.string :title, null: false
+      t.string :ad_type, null: false
+      t.text :body, null: false
       t.references :user, foreign_key: true
 
       t.timestamps

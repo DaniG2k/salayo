@@ -3,20 +3,39 @@
 <div class="dashboard-main-content">
   <div class="container-fluid">
     <h1><%= "#{t('.title')} - #{@user.full_name}" %></h1>
-
+    <%= image_tag @user.pictures.first.image_url, class: 'rounded-circle' %>
     <div class="row">
       <div class="col-12">
 
         <div class="card dashboard-card">
           <div class="card-block">
-            <h4 class="card-title"><%= fa_icon('envelope', text: "#{t('.email')}: #{@user.email}") %></h4>
-            Your e-mail will not be visible to users.
+
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="card-title"><%= fa_icon('envelope', text: t('.email')) %></h4>
+                <%= @user.email %>
+              </div>
+              <div class="col-md-6">
+                <h4 class="card-title"><%= fa_icon('birthday-cake', text: t('.birth_date')) %></h4>
+                <%= @user.birth_date.strftime("%B %e, %Y") %>
+              </div>
+            </div>
+
             <hr />
-            <h4 class="card-title"><%= fa_icon('map-marker', text: "#{t('.location')}: Earth") %></h4>
-            Your general location.
-            <hr />
-            <h4 class="card-title"><%= fa_icon('globe', text: "#{t('.language')}: #{t('language')}") %></h4>
+
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="card-title"><%= fa_icon('globe', text: t('.timezone')) %></h4>
+                <%= @user.time_zone %>
+              </div>
+              <div class="col-md-6">
+                <h4 class="card-title"><%= fa_icon('language', text: t('.language')) %></h4>
+                <%= @language %>
+              </div>
+            </div>
+
           </div>
+
           <div class="card-footer">
             <small class="text-muted">Profile created <%= "#{time_ago_in_words(current_user.created_at)} #{t('time.ago')}" %></small>
           </div>

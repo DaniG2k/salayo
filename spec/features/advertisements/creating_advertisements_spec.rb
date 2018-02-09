@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Creating advertisements', type: :feature do
   let(:user){FactoryBot.create(:user)}
 

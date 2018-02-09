@@ -15,7 +15,8 @@ en:
     show:
       title: My profile
       email: Email
-      location: Location
+      birth_date: Birth date
+      timezone: Timezone
       language: Language
   contact_messages:
     new:

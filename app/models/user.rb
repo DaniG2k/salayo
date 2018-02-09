@@ -21,11 +21,14 @@
 #
 
 class User < ApplicationRecord
-  rolify
+  # Constants
+  GENDERS = %i[male female other].freeze
 
+  rolify
+  enum gender: GENDERS
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, #:registerable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Validations
@@ -37,6 +40,7 @@ class User < ApplicationRecord
   has_many :chatroom_users
   has_many :chatrooms, through: :chatroom_users
   has_many :messages
+  has_many :pictures, as: :imageable, dependent: :destroy
 
   # Callbacks
   after_create :assign_default_role
@@ -44,7 +48,7 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
-  
+
   private
 
   def assign_default_role

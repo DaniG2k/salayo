@@ -22,7 +22,8 @@
 
 FactoryBot.define do
   factory :user do
-    name { Faker::Name.name }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
     password 'supersecurep@ss'
     #locale I18n.available_locales.sample

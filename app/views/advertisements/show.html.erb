@@ -14,7 +14,7 @@
 
           <div class="card-block">
             <h3><%= fa_icon('upload', text: 'Add image') %></h3>
-            <%= form_tag add_picture_advertisement_path, method: 'post', id: 'picture-dropzone', class: :dropzone, multipart: true do |f| %>
+            <%= form_tag add_image_advertisement_path, method: 'post', id: 'image-dropzone', class: :dropzone, multipart: true do |f| %>
               <%= hidden_field_tag :image %>
             <% end %>
 

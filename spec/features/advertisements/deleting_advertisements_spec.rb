@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Deleting advertisements', type: :feature do
   let(:admin){FactoryBot.create(:user, :admin)}
   let(:user1){FactoryBot.create(:user)}

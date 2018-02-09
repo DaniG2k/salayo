@@ -61,4 +61,8 @@ class Listing < ApplicationRecord
   validates :bedrooms, numericality: { only_integer: true }, inclusion: { in: (0..10) }
   validates :beds, numericality: { only_integer: true }, inclusion: { in: (0..10) }
   validates :bathrooms, numericality: { only_integer: true }, inclusion: { in: (0..10) }
+
+  def should_generate_new_friendly_id?
+    name_changed? || super
+  end
 end

@@ -15,7 +15,8 @@ ko:
     show:
       title: '내 프로필'
       email: 이메일
-      location: 위치
+      birth_date: 생년월일
+      timezone: 시간대
       language: 언어
   contact_messages:
     new:

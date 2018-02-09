@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature 'Registered users can sign in' do
   let!(:user) {FactoryBot.create(:user)}
 

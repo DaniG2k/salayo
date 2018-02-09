@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Viewing the Terms and Conditions page', type: :feature do
   it 'exists' do
     visit terms_path

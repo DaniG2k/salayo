@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: pictures
+# Table name: images
 #
 #  id             :integer          not null, primary key
 #  created_at     :datetime         not null
@@ -12,7 +12,7 @@
 #
 
 FactoryBot.define do
-  factory :picture do
-    
+  factory :image do
+
   end
 end
