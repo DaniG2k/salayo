@@ -28,3 +28,6 @@ public/uploads/
 
 # Yarn
 .yarn-error.log
+
+config/database.yml
+config/secrets.yml
