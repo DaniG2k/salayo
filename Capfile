@@ -33,6 +33,7 @@ set :rvm_type, :user
 set :rvm_ruby_version, '2.5.0'
 
 require 'capistrano/rails'
+require 'capistrano/yarn'
 # require "capistrano/rbenv"
 # require "capistrano/chruby"
 # require "capistrano/bundler"
