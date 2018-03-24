@@ -31,16 +31,17 @@
 
 import Vue from 'vue/dist/vue.esm'
 import VueResource from 'vue-resource'
+// import listingModal from '../components/listing_modal.vue'
 import Vuelidate from 'vuelidate'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import vue2Dropzone from 'vue2-dropzone'
-import 'vue2-dropzone/dist/vue2Dropzone.css'
+//import 'vue2-dropzone/dist/vue2Dropzone.css'
 
 Vue.use(Vuelidate)
 Vue.use(VueResource)
 
 document.addEventListener('DOMContentLoaded', () => {
-  if(document.getElementById('dashboard-topbar') != null) {
+  if(document.getElementById('dashboard-topbar') !== null) {
     const dashboard = new Vue({
       el: '#dashboard-topbar',
       data: {
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  if(document.getElementById('listing-multistep') != null) {
+  if(document.getElementById('listing-multistep') !== null) {
     Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('input[name="authenticity_token"]').getAttribute('value');
     var listingForm = document.getElementById('listing_form');
     var listing = JSON.parse(listingForm.dataset.listing);
@@ -67,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       data: function () {
         return {
           id: listing.id,
+          slug: listing.slug,
           activeStep: 0,
           stepList: [
             {id: 0, text: 'Basics'},
@@ -110,11 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
           lng: listing.lng,
           description: listing.description,
           dropzoneOptions: {
-            url: 'https://httpbin.org/post',
+            url: '/listings',
+            method: 'post',
+            acceptedFiles: 'image/*',
+            uploadMultiple: true,
+            autoProcessQueue: false, // Dropzone should wait for the user to click a button to upload
+            parallelUploads: 15, // Dropzone should upload all files at once (including the form data) not all files individually
+            maxFiles: 15, // this means that they shouldn't be split up in chunks
+            addRemoveLinks: true,
             thumbnailWidth: 150,
             maxFilesize: 5,
-            dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Drop files here to upload",
-            headers: { "My-Awesome-Header": "header value" }
+            dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Drop files here to upload (max. 15 files)",
+            headers: { 'X-CSRF-Token': Vue.http.headers.common['X-CSRF-Token'] }
           }
         }
       },
@@ -129,8 +138,43 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
         this.checkedAmenities = newArray
+        // // Dropzone actually performs the form submission.
+        // // Make a PUT request if the listing id exists.
+        // if(this.slug !== null) {
+        //   this.dropzoneOptions['url'] = `/listings/${this.slug}`
+        //   this.dropzoneOptions['method'] = 'put'
+        // }
       },
       methods: {
+        setupListingObj: function() {
+          var amenityNames = []
+          var checkedIndices = []
+          this.checkedAmenities.forEach((elt, idx) => {
+            if(elt === true){ checkedIndices.push(idx) }
+          });
+          this.amenities.map((amenity) => {
+            if(checkedIndices.includes(amenity.id)){
+              amenityNames.push(amenity.text);
+            }
+          });
+          var listingObj = {
+            id: this.id,
+            name: this.name,
+            bedrooms: this.bedrooms,
+            beds: this.beds,
+            bathrooms: this.bathrooms,
+            bedrooms: this.bedrooms,
+            property_type: this.propertyType,
+            city: this.city,
+            state: this.state,
+            address: this.address,
+            lat: this.lat,
+            lng: this.lng,
+            description: this.description,
+            amenities: amenityNames
+          }
+          return listingObj
+        },
         validateClass: function(obj) {
           return {
             'form-control is-invalid': obj.$error,
@@ -138,60 +182,49 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         },
         submitListing: function() {
-          var amenityNames = []
-          var checkedIndices = []
-
-          this.checkedAmenities.forEach((elt, idx) => {
-            if(elt === true){ checkedIndices.push(idx) }
-          });
-
-          this.amenities.map((amenity) => {
-            if(checkedIndices.includes(amenity.id)){
-              amenityNames.push(amenity.text);
-            }
-          });
-
-          var listingObj = {
-            id: this.id,
-            name: this.name,
-            bedrooms: this.bedrooms,
-            beds: this.beds,
-            bathrooms: this.bathrooms,
-            property_type: this.propertyType,
-            city: this.city,
-            state: this.state,
-            address: this.address,
-            lat: this.lat,
-            lng: this.lng,
-            amenities: amenityNames,
-            description: this.description
-          }
-
-          if(this.id == null) {
-            // POST if it's a new listing
-            this.$http.post('/listings', {listing: listingObj}).then(
-              response => {
-                window.location = `/listings/${response.body.id}`
-            }, response => {
-              console.log(response)
-            })
+          var numFiles = this.$refs.listingDropzone.getAcceptedFiles().length
+          // If there are images to upload, use Dropzone
+          // Else submit the form normally.
+          if(numFiles > 0) {
+            this.$refs.listingDropzone.processQueue()
           } else {
-            // PUT if it's an existing listing
-            this.$http.put(`/listings/${this.id}`, {listing: listingObj}).then(
-              response => {
-                window.location = `/listings/${response.body.id}`
-            }, response => {
-              console.log(response)
-            })
+            var listingObj = this.setupListingObj()
+            if(this.id === null) {
+              // POST if it's a new listing
+              this.$http.post('/listings', {listing: listingObj}).then(
+                response => {
+                  window.location = `/listings/${response.body.slug}`
+              }, response => {
+                console.log(response)
+              })
+            } else {
+              // PUT if it's an existing listing
+              this.$http.put(`/listings/${this.slug}`, {listing: listingObj}).then(
+                response => {
+                  window.location = `/listings/${response.body.slug}`
+              }, response => {
+                console.log(response)
+              })
+            }
           }
         },
+        sendingEvent: function(file, xhr, formData) {
+          var listingObj = this.setupListingObj()
+          formData.append('listing', JSON.stringify(listingObj))
+        },
+        listingRedirect: function(files, response) {
+          window.location = `/listings/${response.slug}`
+        },
         updateLocation: function() {
-          var fullAddress = this.address;
-          if(this.city.length > 1) {
+          var fullAddress = '';
+          if(this.city !== null && this.city.length > 1) {
             fullAddress += (fullAddress.length > 1) ? `, ${this.city}` : this.city
           }
-          if(this.state.length > 1) {
+          if(this.state !== null && this.state.length > 1) {
             fullAddress += (fullAddress.length > 1) ?  `, ${this.state}` : this.state
+          }
+          if(this.address !== null && this.address.length > 1) {
+            fullAddress += (fullAddress.length > 1) ?  `, ${this.address}` : this.address
           }
 
           if (fullAddress == '') {
@@ -229,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 marker.setVisible(true);
                 marker.setPosition(newLatLng);
               } else {
-                console.log(`Status: ${status}`)
+                // console.log(`Status: ${status}`)
                 marker.setVisible(false);
                 this.lat = null;
                 this.lng = null;
@@ -262,4 +295,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   }
+
+  // if(document.getElementById('listing-modal') !== null) {
+  //   Vue.component('listing-modal', {
+  //     template: '#modal-template'
+  //   })
+  //   const modal = new Vue({
+  //     el: '#listing-modal',
+  //     components: { listingModal },
+  //     data: { showModal: false }
+  //   })
+  // }
 })

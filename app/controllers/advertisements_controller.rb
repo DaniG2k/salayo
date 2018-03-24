@@ -54,22 +54,16 @@ class AdvertisementsController < ApplicationController
     @advertisements = Advertisement.where(user: current_user).includes(:user)
   end
 
-  def add_picture
-    @advertisement = Advertisement.find params[:id]
-    @picture = @advertisement.pictures.create(image: params[:file])
-    @picture.save
-  end
-
   private
 
-    def set_advertisement
-      @advertisement = Advertisement.friendly.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:warning] = 'That advertisement does not appear to exist.'
-      redirect_to advertisements_path
-    end
+  def set_advertisement
+    @advertisement = Advertisement.friendly.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:warning] = 'That advertisement does not appear to exist.'
+    redirect_to advertisements_path
+  end
 
-    def advertisement_params
-      params.require(:advertisement).permit(:title, :body, :ad_type)
-    end
+  def advertisement_params
+    params.require(:advertisement).permit(:title, :body, :ad_type)
+  end
 end

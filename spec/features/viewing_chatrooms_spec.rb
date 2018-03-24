@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature 'Registered users can view chatrooms' do
   let(:user) {FactoryBot.create(:user)}
 

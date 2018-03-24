@@ -2,52 +2,58 @@
 
 <div class="dashboard-main-content">
   <div class="container-fluid">
-    <h1><%= @listing.name %></h1>
-    <ul>
-      <li>
-        <strong><%= fa_icon 'building', text: 'Property type' %></strong> <%= @listing.property_type %>
-      </li>
-      <li>
-        <strong><%= fa_icon 'location-arrow', text: 'Address' %></strong> <%= "#{@listing.address}, #{@listing.city}, #{@listing.state}" %>
-      </li>
-      <li>
+    <div class="row">
+      <div class="col-md-8">
+        <h1><%= @listing.name %></h1>
+
+        <div class="row">
+          <div class="col">
+            <%= fa_icon 'building', text: 'Property type:' %></strong> <%= @listing.property_type.capitalize %>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <%= fa_icon 'location-arrow', text: 'Address' %></strong> <%= "#{@listing.address}, #{@listing.city}, #{@listing.state}" %>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-lg-4">
+            <%= fa_icon('cubes', text: (@listing.bedrooms == 1 ? 'Bedroom' : 'Bedroom'.pluralize)) %>  <%= @listing.bedrooms %>
+          </div>
+          <div class="col-lg-4">
+            <%= fa_icon('bed', text: (@listing.beds == 1 ? 'Bed' : 'Bed'.pluralize)) %> <%= @listing.beds %>
+          </div>
+          <div class="col-lg-4">
+            <%= fa_icon('bath', text: (@listing.bathrooms == 1 ? 'Bathroom' : 'Bathroom'.pluralize)) %> <%= @listing.bathrooms %>
+          </div>
+        </div>
+        <hr />
+
+        <div class="row">
+          <div class="col">
+            <strong><%= fa_icon 'info-circle', text: 'Description:' %></strong>
+            <p>
+              <%= @listing.description %>
+            </p>
+          </div>
+        </div>
+        <hr />
+
         <strong><%= fa_icon 'cutlery', text: 'Amenities' %></strong>
-        <ul>
-          <% @listing.amenities.each do |amenity| %>
-            <li><%= amenity %></li>
-          <% end %>
-        </ul>
-      </li>
-      <li>
-        <strong><%= fa_icon 'cubes', text: 'Bedrooms' %></strong> <%= @listing.bedrooms %>
-      </li>
-      <li>
-        <strong><%= fa_icon 'bed', text: 'Beds' %></strong> <%= @listing.beds %>
-      </li>
-      <li>
-        <strong><%= fa_icon 'bath', text: 'Bathroom' %></strong> <%= @listing.bathrooms %>
-      </li>
-      <li>
-        <strong><%= fa_icon 'info-circle', text: 'Description' %></strong> <%= @listing.description %>
-      </li>
-    </ul>
+          <ul>
+            <% Listing::AMENITIES.each do |amenity| %>
+              <%= content_tag :li, amenity, class: (@listing.amenities.include?(amenity) ? '' : 'amenity-absent') %>
+            <% end %>
+          </ul>
+        <hr/>
+        <%= link_to fa_icon('pencil', text: 'Edit listing'), edit_listing_path(@listing) %>
+      </div>
+      <div class="col-md-4">
+        <%= render 'common/carousel', obj: @listing %>
+      </div>
+    </div>
 
-    <%= link_to fa_icon('pencil', text: 'Edit listing'), edit_listing_path(@listing) %>
-
-    <hr />
-    <h3><%= fa_icon('upload', text: 'Add image') %></h3>
-    <%= form_tag add_picture_listing_path, method: 'post', id: 'picture-dropzone', class: :dropzone, multipart: true do |f| %>
-      <%= hidden_field_tag :image %>
-    <% end %>
-
-    <% if @listing.pictures.present? %>
-      <hr />
-      <h3><%= fa_icon('file-image-o', text: 'Uploaded images')%></h3>
-      <% @listing.pictures.each do |pic| %>
-        <%= image_tag pic.image_url, width: '150px' %>
-      <% end %>
-    <% end %>
-    <hr />
-    <%= render 'common/carousel', obj: @listing %>
   </div>
 </div>

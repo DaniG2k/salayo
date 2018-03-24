@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature 'Viewing Listings' do
 
   let(:regular_user) {FactoryBot.create(:user)}

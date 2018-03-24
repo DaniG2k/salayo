@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature 'Registered users can view their details' do
   let(:user) {FactoryBot.create(:user)}
   let(:owner) {FactoryBot.create(:user, :owner)}

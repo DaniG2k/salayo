@@ -8,13 +8,15 @@
 
 users = [
   {
-    name: 'Daniele',
+    first_name: 'Daniele',
+    last_name: 'P',
     email: ENV['ADMIN_EMAIL'],
     password: 'test1234',
     admin: true
   },
   {
-    name: 'Bob',
+    first_name: 'Tom',
+    last_name: 'Clancy',
     email: 'test@test.com',
     password: 'test1234',
     admin: false
@@ -23,7 +25,8 @@ users = [
 
 users.each do |user|
   u = User.new(
-    name: user[:name],
+    first_name: user[:first_name],
+    last_name: user[:last_name],
     email: user[:email],
     password: user[:password],
     password_confirmation: user[:password]

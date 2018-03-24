@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature 'Listing authorizations' do
   let(:user) {FactoryBot.create(:user)}
   let(:another_user) {FactoryBot.create(:user)}

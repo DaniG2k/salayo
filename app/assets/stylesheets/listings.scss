@@ -75,7 +75,9 @@
   width: 100%;
 }
 
-#picture-dropzone {
+.amenity-absent { color: #d1d1d1; }
+
+#image-dropzone {
   border: 5px dashed #CCC;
   border-radius: 5px;
   padding: 2em;

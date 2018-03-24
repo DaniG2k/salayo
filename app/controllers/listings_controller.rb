@@ -4,6 +4,10 @@ class ListingsController < ApplicationController
   layout 'dashboard'
 
   def index
+    @listings = Listing.all
+  end
+
+  def mine
     @listings = policy_scope Listing
   end
 
@@ -14,10 +18,12 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new listing_params
+    @listing = Listing.new(JSON.parse(params[:listing]))
     @listing.owner = current_user
+    @listing.pictures = params[:file].values.map {|file| Picture.new(image: file)}
 
     authorize @listing, :create?
+
     respond_to do |format|
       if @listing.save
         current_user.add_role(:owner, @listing)
@@ -40,16 +46,25 @@ class ListingsController < ApplicationController
 
   def update
     authorize @listing, :update?
-    @listing.owner = current_user
 
     respond_to do |format|
-      if @listing.update(listing_params)
-        current_user.add_role(:owner, @listing)
-        format.html { redirect_to @listing, notice: 'Listing has been updated!' }
-        format.json { render :show, status: :ok, location: @listing }
+      if params[:file].nil?
+        # Use the normal update method since no images were uploaded.
+        if @listing.update(listing_params)
+          format.html { redirect_to @listing, notice: 'Listing has been updated!' }
+          format.json { render :show, status: :ok, location: @listing }
+        else
+          format.html { render :edit }
+          format.json { render json: @listing.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
+        # Append images and new data to @listing
+        if @listing.update_attributes(JSON.parse(params[:listing]))
+          @listing.pictures << params[:file].values.map {|file| Picture.new(image: file)}
+          format.json { render :show, status: :ok, location: @listing }
+        else
+          format.json { render json: @listing.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -58,7 +73,7 @@ class ListingsController < ApplicationController
     authorize @listing, :destroy?
     respond_to do |format|
       if @listing.destroy
-        format.html { redirect_to listings_path, notice: 'Listing was successfully deleted!' }
+        format.html { redirect_to my_listings_path, notice: 'Listing was successfully deleted!' }
         format.json { head :no_content }
       else
         flash.now[:notice] = 'Listing was not destroyed.'
@@ -66,35 +81,29 @@ class ListingsController < ApplicationController
     end
   end
 
-  def add_picture
-    @listing = Listing.find params[:id]
-    @picture = @listing.pictures.create(image: params[:file])
-    @picture.save
-  end
-
   private
 
-    def listing_params
-      params.require(:listing).permit(
-        :name,
-        :bedrooms,
-        :beds,
-        :bathrooms,
-        :property_type,
-        :city,
-        :state,
-        :address,
-        :lat,
-        :lng,
-        :description,
-        :amenities => []
-      )
-    end
+  def listing_params
+    params.require(:listing).permit(
+      :name,
+      :bedrooms,
+      :beds,
+      :bathrooms,
+      :property_type,
+      :city,
+      :state,
+      :address,
+      :lat,
+      :lng,
+      :description,
+      :amenities => []
+    )
+  end
 
-    def set_listing
-      @listing = Listing.friendly.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:warning] = 'That listing does not appear to exist.'
-      redirect_to listings_path
-    end
+  def set_listing
+    @listing = Listing.friendly.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:warning] = 'That listing does not appear to exist.'
+    redirect_to listings_path
+  end
 end

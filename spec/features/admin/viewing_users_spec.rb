@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature 'Admins can view registered users' do
   let(:admin) {FactoryBot.create(:user, :admin)}
   let!(:user) {FactoryBot.create(:user)}

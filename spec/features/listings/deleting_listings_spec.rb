@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature 'Listing owners can delete listings' do
   let(:user) {FactoryBot.create(:user)}
   let(:listing) {FactoryBot.create(:listing, owner: user)}

@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 20171005162830) do
   enable_extension "plpgsql"
 
   create_table "advertisements", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "ad_type", null: false
+    t.text "body", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "body"
-    t.string "ad_type"
-    t.string "title"
     t.string "slug"
     t.index ["slug"], name: "index_advertisements_on_slug", unique: true
     t.index ["user_id"], name: "index_advertisements_on_user_id"
@@ -55,21 +55,23 @@ ActiveRecord::Schema.define(version: 20171005162830) do
   end
 
   create_table "listings", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "property_type"
-    t.float "lat"
-    t.float "lng"
-    t.bigint "user_id"
-    t.string "address"
-    t.string "city"
-    t.string "state"
-    t.text "amenities", default: [], array: true
+    t.string "name", null: false
     t.integer "bathrooms", default: 0
     t.integer "bedrooms", default: 0
     t.integer "beds", default: 0
     t.text "description"
+    t.string "property_type"
+    t.float "lat", null: false
+    t.float "lng", null: false
+    t.string "country_name"
+    t.string "country_code"
+    t.string "state"
+    t.string "city"
+    t.string "address"
+    t.text "amenities", default: [], array: true
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["slug"], name: "index_listings_on_slug", unique: true
     t.index ["user_id"], name: "index_listings_on_user_id"
@@ -78,7 +80,7 @@ ActiveRecord::Schema.define(version: 20171005162830) do
   create_table "messages", force: :cascade do |t|
     t.bigint "chatroom_id"
     t.bigint "user_id"
-    t.text "body"
+    t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
@@ -86,12 +88,12 @@ ActiveRecord::Schema.define(version: 20171005162830) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "image"
     t.string "description"
     t.string "imageable_type"
     t.bigint "imageable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
   end
 
@@ -113,6 +115,12 @@ ActiveRecord::Schema.define(version: 20171005162830) do
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "locale", default: "en"
+    t.date "birth_date"
+    t.string "time_zone", default: "UTC", null: false
+    t.integer "gender"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -125,8 +133,6 @@ ActiveRecord::Schema.define(version: 20171005162830) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "locale", default: "en"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

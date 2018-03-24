@@ -1,2 +1,5 @@
+-f documentation
+--color
+--order rand
+--require rails_helper
 --require spec_helper
---format documentation

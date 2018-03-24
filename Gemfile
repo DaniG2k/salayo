@@ -36,9 +36,10 @@ gem 'rolify'
 gem 'pundit'
 gem 'rails-ujs'
 gem 'carrierwave', '~> 1.0'
-# gem 'dropzonejs-rails'
+gem 'mini_magick'
+
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 3.0'
+gem 'redis'
 gem 'sidekiq'
 gem 'webpacker', github: 'rails/webpacker'
 gem 'friendly_id', '~> 5.1.0'
@@ -58,6 +59,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'

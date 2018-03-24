@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Viewing roommate ads', type: :feature do
   let(:alice) {FactoryBot.create(:user)}
   let(:bob) {FactoryBot.create(:user)}

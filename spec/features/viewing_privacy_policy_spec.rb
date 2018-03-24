@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Viewing the Privacy Policy page', type: :feature do
   it 'exists' do
     visit privacy_policy_path

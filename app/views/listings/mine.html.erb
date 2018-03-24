@@ -1,0 +1,25 @@
+<% title('My listings') %>
+
+<div class="dashboard-main-content">
+
+  <div class="container-fluid">
+    <h1><%= fa_icon('home', text: 'My listings') %></h1>
+
+    <% @listings.in_groups_of(2) do |group| %>
+      <div class="row">
+        <% if group[1].nil? %>
+          <% listing = group.first %>
+          <div class="col">
+            <%= render 'card', listing: listing %>
+          </div>
+        <% else %>
+          <% group.each do |listing| %>
+            <div class="col-lg-6 col-xs-12">
+              <%= render 'card', listing: listing %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

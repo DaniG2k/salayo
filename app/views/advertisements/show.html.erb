@@ -7,14 +7,14 @@
 
         <div class="card dashboard-card">
           <div class="card-block">
-            <h4 class="card-title"><%= link_to(fa_icon('user', text: "#{@advertisement.user.name} - #{@advertisement.title}"), advertisement_path(@advertisement)) %></h4>
+            <h4 class="card-title"><%= link_to(fa_icon('user', text: "#{@advertisement.user.first_name} - #{@advertisement.title}"), advertisement_path(@advertisement)) %></h4>
             <%= display_ad_type(@advertisement) %>
             <%= @advertisement.body %>
           </div>
 
           <div class="card-block">
             <h3><%= fa_icon('upload', text: 'Add image') %></h3>
-            <%= form_tag add_picture_advertisement_path, method: 'post', id: 'picture-dropzone', class: :dropzone, multipart: true do |f| %>
+            <%= form_tag add_image_advertisement_path, method: 'post', id: 'image-dropzone', class: :dropzone, multipart: true do |f| %>
               <%= hidden_field_tag :image %>
             <% end %>
 
