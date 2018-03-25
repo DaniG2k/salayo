@@ -17,7 +17,13 @@ public/assets/*
 vendor/
 
 .byebug_history
+
+# Env files that could contain sensitive data
 .env
+.env.development
+.env.test
+.env.production
+
 public/uploads/
 /public/packs
 /public/packs-test

@@ -38,20 +38,12 @@ gem 'rails-ujs'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 
-gem 'capistrano', '~> 3.7', '>= 3.7.1'
-gem 'capistrano-rails', '~> 1.2'
-gem 'capistrano-passenger', '~> 0.2.0'
-gem 'capistrano-yarn'
-# Add this if you're using rbenv
-# gem 'capistrano-rbenv', '~> 2.1'
-# Add this if you're using rvm
-gem 'capistrano-rvm'
-
 # Use Redis adapter to run Action Cable in production
 gem 'redis'
 gem 'sidekiq'
 gem 'webpacker', github: 'rails/webpacker'
 gem 'friendly_id', '~> 5.1.0'
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -61,10 +53,10 @@ group :development, :test do
   gem 'capybara'
   gem 'selenium-webdriver', '2.53.4'
   gem 'database_cleaner'
-  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'bullet'
+  gem 'letter_opener'
 end
 
 group :development do
@@ -76,11 +68,16 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop'
-  # Use Capistrano for deployment
-  # gem 'capistrano', '~> 3.6'
-  # gem 'capistrano-rails', '~> 1.3'
-  # gem 'capistrano-rvm'
-  # gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+
+  gem 'capistrano', '~> 3.7', '>= 3.7.1'
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-yarn'
+  # Add this if you're using rbenv
+  # gem 'capistrano-rbenv', '~> 2.1'
+  # Add this if you're using rvm
+  gem 'capistrano-rvm'
+  gem 'capistrano-sidekiq'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

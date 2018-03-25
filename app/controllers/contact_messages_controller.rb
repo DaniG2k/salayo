@@ -6,13 +6,9 @@ class ContactMessagesController < ApplicationController
   def create
     @message = ContactMessage.new(contact_message_params)
 
-    if @message.valid?
-      SendContactMessageJob.perform_later(
-        name: @message.name,
-        email: @message.email,
-        body: @message.body
-      )
-      redirect_to new_contact_message_path, notice: 'Message received, thanks!'
+    if @message.save
+      SendContactMessageJob.perform_later(@message.id)
+      redirect_to new_contact_message_path, notice: I18n.t('contact_message_mailer.message_received')
     else
       render :new
     end
@@ -21,6 +17,10 @@ class ContactMessagesController < ApplicationController
   private
 
   def contact_message_params
-    params.require(:contact_message).permit(:name, :email, :body)
+    params.require(:contact_message).permit(
+      :name,
+      :email,
+      :body
+    )
   end
 end

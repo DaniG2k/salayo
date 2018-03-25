@@ -1,7 +1,0 @@
-.git/
-log/
-tmp/
-public/assets/
-*.dump
-Dockerfile
-README.rdoc

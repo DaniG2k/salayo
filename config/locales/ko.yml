@@ -2,6 +2,7 @@ ko:
   website: 'Salayo'
   slogan: 'Find housing in South Korea'
   language: 한국어
+  thanks_for_subscribing: "Thanks for subscribing. We'll let you know when we officially go live."
   common:
     actions:
       send: '보내기'
@@ -26,3 +27,7 @@ ko:
       message: '메시지'
   time:
     ago: 전에
+  contact_message_mailer:
+    message_received: 메시지가 송신되었습니다. 감사합니다
+    dispatch:
+      subject: Salayo - 새 연락처 메시지

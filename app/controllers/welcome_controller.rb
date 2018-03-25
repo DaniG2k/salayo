@@ -9,18 +9,16 @@ class WelcomeController < ApplicationController
     @subscribe_email = Subscription.new(subscription_params)
 
     if @subscribe_email.save
-      flash[:success] = "Thanks for subscribing. We'll let you know when we officially go live."
+      flash[:success] = I18n.t('.thanks_for_subscribing')
       redirect_to root_path(anchor: 's_form')
     else
       render :index
     end
   end
 
-  def privacy_policy
-  end
+  def privacy_policy; end
 
-  def terms
-  end
+  def terms; end
 
   private
 
