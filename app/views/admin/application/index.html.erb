@@ -6,7 +6,7 @@
     <h1><%= fa_icon('user-secret', text: 'Admin lounge') %></h1>
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-lg-6 col-xs-12">
         <div class="card dashboard-card">
           <div class="card-block">
             <h4 class="card-title"><%= link_to(fa_icon('home', text: 'All listings'), listings_path) %></h4>
@@ -14,6 +14,18 @@
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
+      </div>
+
+      <div class="col-lg-6 col-xs-12">
+
+        <div class="card dashboard-card">
+          <div class="card-block">
+            <h4 class="card-title"><%= link_to(fa_icon('users', text: 'Manage users'), admin_users_path) %></h4>
+            This is some text within a card block.
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -23,7 +35,7 @@
 
         <div class="card dashboard-card">
           <div class="card-block">
-            <h4 class="card-title"><%= link_to(fa_icon('users', text: 'Manage users'), admin_users_path) %></h4>
+            <h4 class="card-title"><%= link_to(fa_icon('envelope', text: 'Contact messages'), admin_contact_messages_path) %></h4>
             This is some text within a card block.
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>

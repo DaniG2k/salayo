@@ -31,10 +31,6 @@ RSpec.feature 'Users can only see the appropriate links' do
       expect(page).not_to have_link 'My listings'
     end
 
-    scenario 'cannot see the Subscriptions link' do
-      expect(page).not_to have_link 'Subscriptions'
-    end
-
     scenario 'cannot see the Sidekiq link' do
       expect(page).not_to have_link 'Sidekiq'
     end
@@ -54,10 +50,6 @@ RSpec.feature 'Users can only see the appropriate links' do
       expect(page).to have_link 'My listings'
     end
 
-    scenario 'cannot see the Subscriptions link' do
-      expect(page).not_to have_link 'Subscriptions'
-    end
-
     scenario 'cannot see the Sidekiq link' do
       expect(page).not_to have_link 'Sidekiq'
     end
@@ -75,10 +67,6 @@ RSpec.feature 'Users can only see the appropriate links' do
 
     scenario 'can see the My listings link' do
       expect(page).to have_link 'My listings'
-    end
-
-    scenario 'can see the Subscriptions link' do
-      expect(page).to have_link 'Subscriptions'
     end
 
     scenario 'can see the Sidekiq link' do

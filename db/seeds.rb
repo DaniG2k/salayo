@@ -31,6 +31,6 @@ users.each do |user|
     password: user[:password],
     password_confirmation: user[:password]
   )
+  u.role = :admin if user[:admin]
   u.save
-  u.add_role(:admin) if user[:admin]
 end

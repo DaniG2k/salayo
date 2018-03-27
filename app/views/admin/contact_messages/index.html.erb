@@ -1,0 +1,18 @@
+<% title t('.title') %>
+
+<div class="dashboard-main-content">
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12">
+        <h1><%= fa_icon('envelope', text: t('.title')) %></h1>
+        <% @contact_messages.each do |contact_message| %>
+          <ul>
+            <li><%= link_to contact_message.email, admin_contact_message_path(contact_message) %></li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

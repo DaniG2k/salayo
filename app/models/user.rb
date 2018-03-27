@@ -24,7 +24,7 @@ class User < ApplicationRecord
   # Constants
   GENDERS = %i[male female other].freeze
 
-  rolify
+  enum role: %i[admin user owner]
   enum gender: GENDERS
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -42,16 +42,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :pictures, as: :imageable, dependent: :destroy
 
-  # Callbacks
-  after_create :assign_default_role
-
   def full_name
     "#{first_name} #{last_name}"
-  end
-
-  private
-
-  def assign_default_role
-    self.add_role(:normal) if self.roles.blank?
   end
 end

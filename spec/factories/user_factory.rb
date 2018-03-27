@@ -28,17 +28,14 @@ FactoryBot.define do
     password 'supersecurep@ss'
     #locale I18n.available_locales.sample
     locale 'en'
+    role :user
 
     trait :owner do
-      after(:create) do |instance|
-        instance.add_role :owner
-      end
+      role :owner
     end
 
     trait :admin do
-      after(:create) do |instance|
-        instance.add_role :admin
-      end
+      role :admin
     end
   end
 end

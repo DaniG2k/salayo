@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   require 'sidekiq/web'
   Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
-  authenticate :user, lambda {|u| u.has_role?(:admin)} do
+  authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
@@ -31,7 +31,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'application#index'
     get 'subscriptions', to: 'subscriptions#index'
-    get 'users', to: 'users#index'
+    resources :users, only: %i[index destroy]
+    resources :contact_messages, only: %i[index show destroy]
   end
 
   resources :listings do

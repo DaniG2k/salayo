@@ -1,0 +1,16 @@
+<% title t('.title') %>
+
+<div class="card dashboard-card">
+  <div class="card-block">
+    <h4 class="card-title"><%= "#{@contact_message.name} - #{@contact_message.email}" %></h4>
+    <%= @contact_message.body %>
+  </div>
+
+  <div class="card-block d-flex justify-content-center">
+    <%= link_to(fa_icon('trash'), admin_contact_message_path(@contact_message), class: 'card-icon-group', method: :delete, data: {toggle: 'tooltip', placement: 'top', confirm: 'Are you sure you would like to delete this message?'}, title: 'Delete') %>
+  </div>
+
+  <div class="card-footer">
+    <small class="text-muted">Added <%= "#{time_ago_in_words(@contact_message.created_at)} #{t('time.ago')}" %></small>
+  </div>
+</div>

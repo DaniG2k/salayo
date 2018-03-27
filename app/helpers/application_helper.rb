@@ -31,12 +31,10 @@ module ApplicationHelper
   end
 
   def owners_only(&block)
-    if admin? || current_user.roles.pluck(:name).include?('owner')
-      block.call
-    end
+    block.call if admin? || current_user.owner?
   end
 
   def admin?
-    current_user.has_role?(:admin)
+    current_user.admin?
   end
 end

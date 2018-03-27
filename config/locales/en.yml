@@ -31,3 +31,9 @@ en:
     message_received: Message received, thanks!
     dispatch:
       subject: Salayo - New Contact Message
+  admin:
+    contact_messages:
+      index:
+        title: Contact messages
+      show:
+        title: Viewing contact message

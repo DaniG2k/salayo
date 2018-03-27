@@ -5,12 +5,12 @@ RSpec.feature 'Admins can view registered users' do
   context 'admin users' do
     before do
       login_as(admin)
-      visit '/admin/users'
+      visit admin_users_path
     end
 
     scenario "list registered users" do
-      expect(page).to have_content admin.email
-      expect(page).to have_content user.email
+      expect(page).not_to have_content admin.full_name
+      expect(page).to have_content user.full_name
     end
   end
 

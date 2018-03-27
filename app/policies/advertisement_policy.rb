@@ -26,6 +26,6 @@ class AdvertisementPolicy < ApplicationPolicy
   end
 
   def destroy?
-    show? && (record.user == user || user.has_role?(:admin))
+    show? && (record.user == user || user.admin?)
   end
 end
