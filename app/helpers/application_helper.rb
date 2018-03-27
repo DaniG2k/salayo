@@ -18,6 +18,10 @@ module ApplicationHelper
     fa_icon('copyright', text: "#{t('website')} #{years_since_foundation}")
   end
 
+  def user_language
+    I18n.t('language')
+  end
+
   def user_locale
     current_user.present? ? current_user.locale : 'en'
   end

@@ -3,7 +3,7 @@
 <div class="dashboard-main-content">
   <div class="container-fluid">
     <h1><%= "#{t('.title')} - #{@user.full_name}" %></h1>
-    <%= image_tag @user.pictures.first.image_url, class: 'rounded-circle' %>
+    <%# image_tag @user.pictures.first.profile_url, class: 'rounded-circle' %>
     <div class="row">
       <div class="col-12">
 
@@ -17,7 +17,11 @@
               </div>
               <div class="col-md-6">
                 <h4 class="card-title"><%= fa_icon('birthday-cake', text: t('.birth_date')) %></h4>
-                <%= @user.birth_date.strftime("%B %e, %Y") %>
+                <% if @user.birth_date.present? %>
+                  <%= @user.birth_date.strftime("%B %e, %Y") %>
+                <% else %>
+                  No birthdate entered
+                <% end %>
               </div>
             </div>
 
@@ -30,7 +34,7 @@
               </div>
               <div class="col-md-6">
                 <h4 class="card-title"><%= fa_icon('language', text: t('.language')) %></h4>
-                <%= @language %>
+                <%= user_language %>
               </div>
             </div>
 

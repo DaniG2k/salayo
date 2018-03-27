@@ -57,7 +57,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   protected
 
   def is_listing?(image)
-    # binding.pry
   end
 
   def is_user?(image)
