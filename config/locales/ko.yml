@@ -31,3 +31,9 @@ ko:
     message_received: 메시지가 송신되었습니다. 감사합니다
     dispatch:
       subject: Salayo - 새 연락처 메시지
+  admin:
+    contact_messages:
+      index:
+        title: 연락처 메시지
+      show:
+        title: 연락처 메시지 보기

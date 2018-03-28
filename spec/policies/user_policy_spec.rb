@@ -11,14 +11,9 @@ RSpec.describe UserPolicy do
   # end
 
   permissions :show? do
-    let(:user)  {FactoryBot.create(:user)}
-    let(:owner) {FactoryBot.create(:user, :owner)}
-    let(:admin) {FactoryBot.create(:user, :admin)}
-
-    before do
-      assign_role!(owner, :owner)
-      assign_role!(admin, :admin)
-    end
+    let(:user)  {create(:user)}
+    let(:owner) {create(:user, :owner)}
+    let(:admin) {create(:user, :admin)}
 
     it 'blocks anonymous users' do
       expect(subject).not_to permit(nil, user)

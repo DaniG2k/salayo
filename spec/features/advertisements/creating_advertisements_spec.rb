@@ -1,5 +1,5 @@
 RSpec.describe 'Creating advertisements', type: :feature do
-  let(:user){FactoryBot.create(:user)}
+  let(:user) { create(:user) }
 
   before do
     login_as user

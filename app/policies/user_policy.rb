@@ -7,6 +7,6 @@ class UserPolicy < ApplicationPolicy
 
   def show?
     return false if user.nil?
-    user.has_role?(:admin) || record.id == user.id
+    user.admin? || record.id == user.id
   end
 end

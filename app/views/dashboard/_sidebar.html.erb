@@ -1,50 +1,49 @@
 <div class="column-layout-top">
+  <div class="shrunk">
+    <ul class="nav flex-column">
+      <% sidebar_items.each do |item| %>
+        <% if item[:admins_only] %>
+          <% admins_only do %>
+            <li class="nav-item">
+              <%= link_to(item[:icon], item[:path], class: "nav-link #{item[:class]}") %>
+            </li>
+          <% end %>
+        <% elsif item[:owners_only] %>
+          <% owners_only do %>
+            <li class="nav-item">
+              <%= link_to(item[:icon], item[:path], class: "nav-link #{item[:class]}") %>
+            </li>
+          <% end %>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to(item[:icon], item[:path], class: "nav-link #{item[:class]}") %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 
-  <ul class="nav flex-column">
-    <li class="nav-item">
-      <%= link_to t('website'), dashboard_path, class: 'nav-link logo-text' %>
-    </li>
-
-    <% admins_only do %>
-      <li class="nav-item">
-        <%= link_to(fa_icon('user-secret', text: 'Admin lounge'), admin_root_path, class: "nav-link #{active_if(admin_root_path)}") %>
-      </li>
-
-      <li class="nav-item">
-        <%= link_to(fa_icon('check', text: 'Subscriptions'), admin_subscriptions_path, class: "nav-link #{active_if(admin_subscriptions_path)}") %>
-      </li>
-    <% end %>
-
-    <li class="nav-item">
-      <%= link_to(fa_icon('dashboard', text: 'Dashboard'), dashboard_path, class: "nav-link #{active_if(dashboard_path)}") %>
-    </li>
-
-    <% owners_only do %>
-      <li class="nav-item">
-        <%= link_to(fa_icon('home', text: 'My listings'), my_listings_path, class: "nav-link #{active_if(my_listings_path)}") %>
-      </li>
-
-      <li class="nav-item">
-        <%= link_to(fa_icon('plus', text: 'Add listing'), new_listing_path, class: "nav-link #{active_if(new_listing_path)}") %>
-      </li>
-    <% end %>
-
-    <li class="nav-item">
-      <%= link_to(fa_icon('search', text: 'Search listings'), search_path, class: "nav-link #{active_if(search_path)}") %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to(fa_icon('file-text', text: 'My ads'), my_advertisements_path, class: "nav-link #{active_if(my_advertisements_path)}") %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to(fa_icon('address-card', text: 'Roommate ads'), advertisements_path, class: "nav-link #{active_if(advertisements_path)}") %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to(fa_icon('paper-plane', text: 'Messages'), messages_path, class: "nav-link #{active_if(messages_path)}") %>
-    </li>
-
-  </ul>
-
+  <div class="enlarged">
+    <ul class="nav flex-column">
+      <% sidebar_items.each do |item| %>
+        <% if item[:admins_only] %>
+          <% admins_only do %>
+            <li class="nav-item">
+              <%= link_to(item[:icon_with_text], item[:path], class: "nav-link #{item[:class]}") %>
+            </li>
+          <% end %>
+        <% elsif item[:owners_only] %>
+          <% owners_only do %>
+            <li class="nav-item">
+              <%= link_to(item[:icon_with_text], item[:path], class: "nav-link #{item[:class]}") %>
+            </li>
+          <% end %>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to(item[:icon_with_text], item[:path], class: "nav-link #{item[:class]}") %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 </div>

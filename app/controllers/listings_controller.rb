@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :set_listing, only: %i[show edit update destroy]
   layout 'dashboard'
 
   def index
@@ -26,7 +26,6 @@ class ListingsController < ApplicationController
 
     respond_to do |format|
       if @listing.save
-        current_user.add_role(:owner, @listing)
         format.html { redirect_to listing_path(@listing), notice: 'Listing was created successfully!' }
         format.json { render :show, status: :created, location: @listing }
       else

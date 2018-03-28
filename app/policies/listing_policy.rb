@@ -2,8 +2,8 @@ class ListingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       return scope.none if user.nil?
-      return scope.all if user.has_role?(:admin)
-      
+      return scope.all if user.admin?
+
       scope.where(owner: user)
     end
   end
@@ -17,7 +17,7 @@ class ListingPolicy < ApplicationPolicy
   end
 
   def new?
-    show? && (user.has_role?(:admin) || user.has_role?(:owner))
+    show? && (user.admin? || user.owner?)
   end
 
   def update?
@@ -29,6 +29,6 @@ class ListingPolicy < ApplicationPolicy
   end
 
   def destroy?
-    show? && (user.has_role?(:admin) || user.has_role?(:owner, record))
+    show? && (user.admin? || (record.owner == user))
   end
 end

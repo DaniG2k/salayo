@@ -18,6 +18,10 @@ module ApplicationHelper
     fa_icon('copyright', text: "#{t('website')} #{years_since_foundation}")
   end
 
+  def user_language
+    I18n.t('language')
+  end
+
   def user_locale
     current_user.present? ? current_user.locale : 'en'
   end
@@ -27,12 +31,10 @@ module ApplicationHelper
   end
 
   def owners_only(&block)
-    if admin? || current_user.roles.pluck(:name).include?('owner')
-      block.call
-    end
+    block.call if admin? || current_user.owner?
   end
 
   def admin?
-    current_user.has_role?(:admin)
+    current_user.admin?
   end
 end
