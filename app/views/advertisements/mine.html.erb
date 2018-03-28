@@ -9,8 +9,14 @@
     </div>
 
     <div class="row">
-      <% @advertisements.each do |ad| %>
-        <%= render 'card', ad: ad %>
+      <% if @advertisements.present? %>
+        <% @advertisements.each do |ad| %>
+          <%= render 'card', ad: ad %>
+        <% end %>
+      <% else %>
+        <div class="col">
+          <div id="no-ads">No advertisements to display</div>
+        </div>
       <% end %>
     </div>
 

@@ -10,7 +10,8 @@
   padding: 15px 0;
 }
 
-#no-map {
+#no-map, #no-listings, #no-ads {
+  color: #CCC;
   border: 5px dashed #CCC;
   border-radius: 5px;
   padding: 2em;

@@ -15,8 +15,7 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @chatroom = Chatroom.new(chatroom_params)
