@@ -1,10 +1,10 @@
-<% title('My ads') %>
+<% title t('.title') %>
 
 <div class="dashboard-main-content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <h1><%= fa_icon('file-text-o', text: 'My ads') %></h1>
+        <h1><%= fa_icon('file-text-o', text: t('.title')) %></h1>
       </div>
     </div>
 
@@ -15,7 +15,7 @@
         <% end %>
       <% else %>
         <div class="col">
-          <div id="no-ads">No advertisements to display</div>
+          <div id="no-ads"><%= t('.none') %></div>
         </div>
       <% end %>
     </div>

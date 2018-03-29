@@ -3,10 +3,17 @@ ko:
   slogan: 'Find housing in South Korea'
   language: 한국어
   thanks_for_subscribing: "Thanks for subscribing. We'll let you know when we officially go live."
+  welcome:
+    how:
+      three_steps: 다음 숙소를 찾기 위한 세 단계
   common:
     actions:
       send: '보내기'
       submitting: '보내는 중...'
+    top_nav:
+      dashboard: 대시보드
+      log_out: 로그아웃
+      language: 언어
   meta:
     description: The easiest way to find housing or roommates in South Korea.
     keywords: '아파트, 숙소, 숙박 시설, 주택, 주택 상가, 원룸, 오피스텔, 투룸, 쓰리룸, 단기임대, 월세, 전세 임대 정보, 한국, 서울, 부산, 룸 메이트, 룸메이트'
@@ -37,3 +44,43 @@ ko:
         title: 연락처 메시지
       show:
         title: 연락처 메시지 보기
+  listings:
+    index:
+      title: 물건
+    new:
+      title: 물건 추가
+    mine:
+      title: 내 물건
+      none: 물건은 없습니다
+  advertisements:
+    mine:
+      title: 내 광고
+      none: 내 광고는 없습니다
+    index:
+      title: 룸 메이트 광고
+      none: 룸 메이트 광고는 없습니다
+  chatrooms:
+    messages:
+      title: '메시지'
+  dashboard:
+    index:
+      title: '대시보드'
+      hello: 안녕하세요
+      favorites: 즐겨찾기
+      my_listings: 내 물건
+      add_listing: 물건 추가
+      my_ads: 내 광고
+      create_ad: 광고 만들기
+      messages: 메시지
+      buddy_ups: 친구 추가
+    search:
+      title: 물건 검색
+    sidebar:
+      admin_lounge: 애드민 아레아
+      dashboard: '대시보드'
+      my_listings: '내 물건'
+      add_listing: '물건 추가'
+      search_listings: '물건 검색'
+      my_ads: '내 광고'
+      roommate_ads: '룸 메이트 광고'
+      messages: '메시지'

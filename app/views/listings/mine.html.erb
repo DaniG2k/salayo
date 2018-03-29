@@ -1,9 +1,9 @@
-<% title('My listings') %>
+<% title t('.title') %>
 
 <div class="dashboard-main-content">
 
   <div class="container-fluid">
-    <h1><%= fa_icon('home', text: 'My listings') %></h1>
+    <h1><%= fa_icon('home', text: t('.title')) %></h1>
     <% if @listing.present? %>
       <% @listings.in_groups_of(2) do |group| %>
         <div class="row">
@@ -22,7 +22,7 @@
         </div>
       <% end %>
     <% else %>
-      <div id="no-listings">No listings to display</div>
+      <div id="no-listings"><%= t('.none') %></div>
     <% end %>
 
   </div>

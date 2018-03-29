@@ -15,6 +15,15 @@ import { required, email } from 'vuelidate/lib/validators'
 Vue.use(Vuelidate)
 
 document.addEventListener('DOMContentLoaded', () => {
+  if(document.getElementById('lang-navbar') !== null) {
+    const dashboard = new Vue({
+      el: '#lang-navbar',
+      data: {
+        showDropdown: false
+      }
+    })
+  }
+
   if(document.getElementById('contact-us') != null) {
     const contactForm = new Vue({
       el: '#contact-us',

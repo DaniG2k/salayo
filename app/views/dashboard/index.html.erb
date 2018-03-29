@@ -1,4 +1,4 @@
-<% title('Dashboard') %>
+<% title t('.title') %>
 
 <div class="dashboard-main-content">
 
@@ -6,12 +6,12 @@
 
     <div class="row">
       <div class="col-12">
-        <h1>Hello, <%= current_user.first_name %>!</h1>
+        <h1><%= "#{t('.hello')} #{current_user.first_name}" %>!</h1>
 
         <div class="card dashboard-card">
           <%= image_tag('seoul-apartment', class: 'card-img-top opaque') %>
           <div class="card-block">
-            <h4 class="card-title"><%= fa_icon('star-o', text: 'Favorites') %></h4>
+            <h4 class="card-title"><%= fa_icon('star-o', text: t('.favorites')) %></h4>
             This is some text within a card block.
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
@@ -24,7 +24,7 @@
         <div class="col-lg-6 col-xs-12">
           <div class="card dashboard-card">
             <div class="card-block">
-              <h4 class="card-title"><%= link_to(fa_icon('home', text: 'My listings'), listings_path) %></h4>
+              <h4 class="card-title"><%= link_to(fa_icon('home', text: t('.my_listings')), listings_path) %></h4>
               This is some text within a card block.
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
@@ -33,7 +33,7 @@
         <div class="col-lg-6 col-xs-12">
           <div class="card dashboard-card">
             <div class="card-block">
-              <h4 class="card-title"><%= link_to fa_icon('plus', text: 'Add listing'), new_listing_path %></h4>
+              <h4 class="card-title"><%= link_to fa_icon('plus', text: t('.add_listing')), new_listing_path %></h4>
               This is some text within a card block.
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
@@ -42,35 +42,12 @@
       </div>
     <% end %>
 
-    <div class="row">
-      <div class="col-lg-6 col-xs-12">
-        <div class="card dashboard-card">
-          <div class="card-block">
-            <h4 class="card-title"><%= fa_icon('inbox', text: 'Messages') %></h4>
-            This is some text within a card block.
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-xs-12">
-        <div class="card dashboard-card">
-          <div class="card-block">
-            <h4 class="card-title"><%= fa_icon('smile-o', text: 'Buddy ups') %></h4>
-            This is some text within a card block.
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
     <!-- Ads -->
     <div class="row">
       <div class="col-lg-6 col-xs-12">
         <div class="card dashboard-card">
           <div class="card-block">
-            <h4 class="card-title"><%= link_to(fa_icon('file-text-o', text: 'My ads'), my_advertisements_path) %></h4>
+            <h4 class="card-title"><%= link_to(fa_icon('file-text-o', text: t('.my_ads')), my_advertisements_path) %></h4>
             All your advertisements.
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
@@ -80,7 +57,7 @@
       <div class="col-lg-6 col-xs-12">
         <div class="card dashboard-card">
           <div class="card-block">
-            <h4 class="card-title"><%= link_to(fa_icon('pencil-square-o', text: 'Create ad'), new_advertisement_path) %></h4>
+            <h4 class="card-title"><%= link_to(fa_icon('pencil-square-o', text: t('.create_ad')), new_advertisement_path) %></h4>
             Create an advertisement if you have a place to let, to rent or
             let people know if you are searching for a place to stay.
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -89,6 +66,27 @@
       </div>
     </div>
     <!-- End ads-->
+
+    <div class="row">
+      <div class="col-lg-6 col-xs-12">
+        <div class="card dashboard-card">
+          <div class="card-block">
+            <h4 class="card-title"><%= fa_icon('inbox', text: t('.messages')) %></h4>
+            This is some text within a card block.
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-xs-12">
+        <div class="card dashboard-card">
+          <div class="card-block">
+            <h4 class="card-title"><%= fa_icon('smile-o', text: t('.buddy_ups')) %></h4>
+            This is some text within a card block.
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>

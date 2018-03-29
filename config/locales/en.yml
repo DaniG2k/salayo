@@ -7,6 +7,13 @@ en:
     actions:
       send: Send
       submitting: 'Submitting...'
+    top_nav:
+      dashboard: Dashboard
+      log_out: Log out
+      language: Language
+  welcome:
+    how:
+      three_steps: 3 steps to finding your next accommodation
   meta:
     description: The easiest way to find housing or roommates in South Korea.
     keywords: 'apartments, housing, accomodation, South Korea, Seoul, Busan, room mate, roommate, flatmate, house mate, housemate'
@@ -37,3 +44,43 @@ en:
         title: Contact messages
       show:
         title: Viewing contact message
+  listings:
+    index:
+      title: Listings
+    new:
+      title: Add listing
+    mine:
+      title: My listings
+      none: No listings to display
+  advertisements:
+    mine:
+      title: My ads
+      none: No advertisements to display
+    index:
+      title: Roommate ads
+      none: No advertisements to display
+  chatrooms:
+    messages:
+      title: Messages
+  dashboard:
+    index:
+      title: Dashboard
+      hello: Hello
+      favorites: Favorites
+      my_listings: My listings
+      add_listing: Add listing
+      my_ads: My ads
+      create_ad: Create ad
+      messages: Messages
+      buddy_ups: Buddy ups
+    search:
+      title: Search listings
+    sidebar:
+      admin_lounge: 'Admin lounge'
+      dashboard: 'Dashboard'
+      my_listings: 'My listings'
+      add_listing: 'Add listing'
+      search_listings: 'Search listings'
+      my_ads: 'My ads'
+      roommate_ads: 'Roommate ads'
+      messages: 'Messages'
