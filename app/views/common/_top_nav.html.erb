@@ -1,4 +1,4 @@
-<%= content_tag :nav, class: 'navbar sticky-top navbar-light bg-faded salayo-nav transparent transparent', data: {transparent: @top_bar_transparent} do %>
+<%= content_tag :nav, class: 'navbar sticky-top navbar-light bg-faded salayo-nav transparent transparent', id: 'lang-navbar', data: {transparent: @top_bar_transparent} do %>
   <div class="container">
     <%= link_to root_path, class: 'navbar-brand navbar-item logo-text' do %>
       <%= image_tag('salayo-topnav.png', height: 35, id: 'logo', class: 'd-inline-block align-top') %>
@@ -8,12 +8,28 @@
     <ul>
       <% if user_signed_in? %>
       <li class="navbar-item">
-        <%= link_to(fa_icon('dashboard', text: 'Dashboard'), dashboard_path, class: 'navbar-link') %>
+        <%= link_to(fa_icon('dashboard', text: t('.dashboard')), dashboard_path, class: 'navbar-link') %>
       </li>
       <li class="navbar-item">
-        <%= link_to(fa_icon('unlock', text: 'Log out'), destroy_user_session_path, method: :delete, class: 'navbar-link float-right') %>
+        <%= link_to(fa_icon('unlock', text: t('.log_out')), destroy_user_session_path, method: :delete, class: 'navbar-link float-right') %>
       </li>
       <% end %>
+      <li class="navbar-item">
+        <%= link_to fa_icon('globe', text: t('.language')), '#', class: 'navbar-link', '@blur': 'showDropdown=false', '@click.prevent': 'showDropdown=true' %>
+        <transition name="fade">
+          <ul id="dropdown_box" v-show="showDropdown" v-cloak>
+            <% AVAILABLE_LANGUAGES.each do |locale, val| %>
+              <li>
+                <% if params[:locale] == locale %>
+                  <%= link_to fa_icon('check', text: val[:localized_name]), { locale: locale } %>
+                <% else %>
+                  <%= link_to val[:localized_name], { locale: locale } %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </transition>
+      </li>
     </ul>
   </div>
 <% end %>

@@ -70,7 +70,7 @@
             <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
               <div class="form-group">
                 <%= f.label :locale %><br />
-                <%= f.select(:locale, [['English', 'en'], ['한국어', 'ko']], {}, {selected: current_user.locale, class: 'custom-select'}) %>
+                <%= f.select(:locale, [['English', 'en'], ['日本語', 'ja'], ['한국어', 'ko']], {}, {selected: current_user.locale, class: 'custom-select'}) %>
               </div>
 
               <div class="form-group">

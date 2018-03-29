@@ -22,7 +22,7 @@
 #
 
 class Listing < ApplicationRecord
-  PROPERTY_TYPES = %w[apartment house bnb cabin villa castle dorm treehouse igloo lighthouse yurt tipi cave island chalet earthhouse hut tent loft townhouse condominium other].sort.freeze
+  PROPERTY_TYPES = %w[apartment house bnb cabin villa castle dormitory treehouse igloo lighthouse yurt tipi cave island chalet earthhouse hut tent loft townhouse condominium other sharehouse].sort.freeze
   AMENITIES = [
     "Air conditioning",
     "Buzzer/wireless intercom",

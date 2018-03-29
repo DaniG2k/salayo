@@ -1,0 +1,86 @@
+ja:
+  website: 'Salayo'
+  slogan: '住宅を探す'
+  language: 日本語
+  thanks_for_subscribing: "購読いただきありがとうございます。"
+  welcome:
+    how:
+      three_steps: 次の宿所を見つかるための三つの段階
+  common:
+    actions:
+      send: 送信
+      submitting: '送信中'
+    top_nav:
+      dashboard: ダッシュボード
+      log_out: ログ・アウト
+      language: 言語
+  meta:
+    description: The easiest way to find housing or roommates in South Korea.
+    keywords: 'アパート、住宅、宿泊施設、日本、東京、京都、韓国、ソウル、釜山、ルームメイト、フラットメイト、ハウスメイト'
+  users:
+    logout: ログアウト
+    edit_account: アカウント編集
+    show:
+      title: 私のプロフィール
+      email: Eメール
+      birth_date: 生年月日
+      timezone: 時間帯
+      language: 言語
+  contact_messages:
+    new:
+      title: お問い合わせ
+      name: 'お名前'
+      email: 'Eメール'
+      message: 'メッセージ'
+  time:
+    ago: 前
+  contact_message_mailer:
+    message_received: メッセージが届きました、ありがとうございます！
+    dispatch:
+      subject: Salayo - 新しい連絡メッセージ
+  admin:
+    contact_messages:
+      index:
+        title: 連絡メッセージ
+      show:
+        title: 連絡メッセージ表示
+  listings:
+    index:
+      title: 物件
+    new:
+      title: 物件追加
+    mine:
+      title: 私の物件
+      none: 物件はありません。
+  advertisements:
+    mine:
+      title: 私の広告
+      none: 広告はありません。
+    index:
+      title: ルームメイトの広告
+      none: 広告はありません。
+  chatrooms:
+    messages:
+      title: メッセージ
+  dashboard:
+    index:
+      title: ダッシュボード
+      hello: 今日は
+      favorites: お気に入り
+      my_listings: 私の物件
+      add_listing: 物件追加
+      my_ads: 私の広告
+      create_ad: 広告作成
+      messages: メッセージ
+      buddy_ups: 友達追加
+    search:
+      title: 物件検索
+    sidebar:
+      admin_lounge: 'アドミン・アレアー'
+      dashboard: ダッシュボード
+      my_listings: 私の物件
+      add_listing: 物件追加
+      search_listings: '物件検索'
+      my_ads: 私の広告
+      roommate_ads: ルームメイトの広告
+      messages: 'メッセージ'

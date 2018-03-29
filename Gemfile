@@ -36,6 +36,7 @@ gem 'pundit'
 gem 'rails-ujs'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
+gem 'countries'
 
 # Use Redis adapter to run Action Cable in production
 gem 'redis'

@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     dashboard_path
   end
 
+  def default_url_options(options = {})
+    { locale: I18n.locale }.merge options
+  end
+
   protected
 
   def configure_permitted_parameters
@@ -35,6 +39,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = current_user.try(:locale) || I18n.default_locale
+    I18n.locale = current_user.try(:locale) || params[:locale] || I18n.default_locale
   end
 end
