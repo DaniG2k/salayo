@@ -10,8 +10,10 @@
 // console.log('Hello World from Webpacker')
 
 import Vue from 'vue/dist/vue.esm';
-import Vuelidate from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import Vuelidate from 'vuelidate';
+import { required, email } from 'vuelidate/lib/validators';
+import Typed from 'typed.js';
+
 Vue.use(Vuelidate)
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,6 +22,28 @@ document.addEventListener('DOMContentLoaded', () => {
       el: '#lang-navbar',
       data: {
         showDropdown: false
+      }
+    })
+  }
+
+  if(document.getElementById('typed-element') !== null) {
+    const typed = new Vue({
+      el: '#typed-element',
+      mounted() {
+        var options = {
+          strings: [
+            "The easiest way to find housing in <strong>Tokyo</strong>.",
+            "The easiest way to find housing in <strong>Kyoto</strong>.",
+            "The easiest way to find housing in <strong>Seoul</strong>.",
+            "The easiest way to find housing in <strong>Osaka</strong>.",
+            "The easiest way to find housing in <strong>Busan</strong>."
+          ],
+          typeSpeed: 100,
+          shuffle: true,
+          startDelay: 100,
+          backDelay: 600
+        }
+        new Typed('#typed-element', options)
       }
     })
   }

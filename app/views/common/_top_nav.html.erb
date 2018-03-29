@@ -15,7 +15,7 @@
       </li>
       <% end %>
       <li class="navbar-item">
-        <%= link_to fa_icon('globe', text: t('.language')), '#', class: 'navbar-link', '@blur': 'showDropdown=false', '@click.prevent': 'showDropdown=true' %>
+        <%= link_to fa_icon('globe', text: t('.language')), '#', class: 'navbar-link', '@blur': 'showDropdown=false', '@click': 'showDropdown=true' %>
         <transition name="fade">
           <ul id="dropdown_box" v-show="showDropdown" v-cloak>
             <% AVAILABLE_LANGUAGES.each do |locale, val| %>

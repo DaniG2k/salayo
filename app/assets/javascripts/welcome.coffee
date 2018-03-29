@@ -15,15 +15,3 @@ $ ->
         $('nav').addClass 'transparent'
         $('nav').removeClass 'bg-faded'
       return
-
-  # Typed.js strings
-  $('.typed-element').typed
-    strings: [
-      "The easiest way to find housing in <strong>South Korea</strong>."
-    ]
-    typeSpeed: 50
-    shuffle: true
-    loopCount: 3
-    startDelay: 100
-    backDelay: 600
-  return
