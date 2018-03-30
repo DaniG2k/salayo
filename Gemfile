@@ -37,7 +37,7 @@ gem 'rails-ujs'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'countries'
-
+gem 'money-rails', '~>1'
 # Use Redis adapter to run Action Cable in production
 gem 'redis'
 gem 'sidekiq'

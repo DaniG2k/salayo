@@ -13,7 +13,7 @@ RSpec.feature 'Admins can destroy registered users' do
 
       within('.dashboard-main-content') do
         expect(page).not_to have_content admin.full_name
-        find(:css, "a[href=\"/admin/users/#{user.id}\"]").click
+        find(:css, "a[href=\"/#{I18n.locale}/admin/users/#{user.id}\"]").click
       end
 
       expect(page).to have_content 'User successfully destroyed.'

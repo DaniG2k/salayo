@@ -1,0 +1,18 @@
+<h2>Description</h2>
+
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <strong><%= f.label :description, 'Property description' %></strong><br>
+      <%= f.text_area :description, rows: 4, class: 'form-control', 'v-model': 'description' %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="actions">
+      <%= f.submit class: 'btn btn-success', 'v-on:click.prevent': 'submitListing' %>
+    </div>
+  </div>
+</div>

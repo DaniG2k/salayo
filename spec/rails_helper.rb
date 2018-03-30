@@ -60,4 +60,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers, type: :feature
   config.after(type: :feature) { Warden.test_reset! }
+  config.before(:each, type: :feature) do
+    default_url_options[:locale] = I18n.default_locale
+  end
 end

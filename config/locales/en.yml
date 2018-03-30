@@ -26,6 +26,9 @@ en:
       birth_date: Birth date
       timezone: Timezone
       language: Language
+      image_size: Image size
+      no_bio: No biography
+      no_profile_picture: No profile picture
   contact_messages:
     new:
       title: Contact us

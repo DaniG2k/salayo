@@ -105,6 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
           bedrooms: listing.bedrooms,
           beds: listing.beds,
           bathrooms: listing.bathrooms,
+          priceCents: listing.price_cents,
+          priceCurrency: listing.price_currency,
+          currencySymbol: '$',
+          pricePerWeek: 0.0,
+          pricePerMonth: 0.0,
           city: listing.city,
           state: listing.state,
           address: listing.address,
@@ -146,6 +151,22 @@ document.addEventListener('DOMContentLoaded', () => {
         // }
       },
       methods: {
+        weeklyPriceHandler: function() {
+          this.pricePerMonth = (this.pricePerWeek * 52.17857 / 12).toFixed(2)
+        },
+        monthlyPriceHandler: function() {
+          this.pricePerWeek = (this.pricePerMonth / 52.17857 * 12).toFixed(2)
+        },
+        switchCurrencySymbol: function() {
+          if (this.priceCurrency === 'jpy') {
+            this.currencySymbol = '¥'
+          }
+          else if (this.priceCurrency === 'krw') {
+            this.currencySymbol = '₩'
+          } else {
+            this.currencySymbol = '$'
+          }
+        },
         setupListingObj: function() {
           var amenityNames = []
           var checkedIndices = []
@@ -164,6 +185,8 @@ document.addEventListener('DOMContentLoaded', () => {
             beds: this.beds,
             bathrooms: this.bathrooms,
             bedrooms: this.bedrooms,
+            price_cents: listing.priceCents,
+            price_currency: listing.priceCurrency,
             property_type: this.propertyType,
             city: this.city,
             state: this.state,
@@ -291,19 +314,17 @@ document.addEventListener('DOMContentLoaded', () => {
         bathrooms: {
           required,
           between: between(0, 10)
+        },
+        pricePerWeek: {
+          required,
+          between: between(0, 10000)
+        },
+        pricePerMonth: {
+          required,
+          between: between(0, 10000)
         }
       }
     })
   }
 
-  // if(document.getElementById('listing-modal') !== null) {
-  //   Vue.component('listing-modal', {
-  //     template: '#modal-template'
-  //   })
-  //   const modal = new Vue({
-  //     el: '#listing-modal',
-  //     components: { listingModal },
-  //     data: { showModal: false }
-  //   })
-  // }
 })

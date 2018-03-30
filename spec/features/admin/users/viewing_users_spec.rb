@@ -1,6 +1,6 @@
 RSpec.feature 'Admins can view registered users' do
-  let(:admin) {FactoryBot.create(:user, :admin)}
-  let!(:user) {FactoryBot.create(:user)}
+  let(:admin) { create(:user, :admin) }
+  let!(:user) { create(:user) }
 
   context 'admin users' do
     before do
@@ -9,8 +9,10 @@ RSpec.feature 'Admins can view registered users' do
     end
 
     scenario "list registered users" do
-      expect(page).not_to have_content admin.full_name
-      expect(page).to have_content user.full_name
+      within('.dashboard-main-content') do
+        expect(page).not_to have_content admin.full_name
+        expect(page).to have_content user.full_name
+      end
     end
   end
 

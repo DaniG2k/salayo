@@ -45,6 +45,8 @@ class Listing < ApplicationRecord
     "Washer"
   ].freeze
 
+  attr_accessor :price_per_week, :price_per_month
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 
@@ -58,6 +60,11 @@ class Listing < ApplicationRecord
   validates :lat, numericality: true, inclusion: { in: (-90.0..90.0), message: 'is not in the range -90 to 90' }
   validates :lng, numericality: true, inclusion: { in: (-180.0..180.0), message: 'is not in the range -180 to 180' }
   validates :bedrooms, :bathrooms, :beds, numericality: { only_integer: true }, inclusion: { in: (0..10) }
+
+  monetize :price_cents, numericality: {
+    greater_than_or_equal_to: 0,
+    less_than_or_equal_to: 10000
+  }
 
   def should_generate_new_friendly_id?
     name_changed? || super

@@ -26,6 +26,9 @@ ko:
       birth_date: 생년월일
       timezone: 시간대
       language: 언어
+      image_size: 이미지 크기
+      no_bio: 자기 소개는 없습니다
+      no_profile_picture: 프로파일 사진은 없습니다
   contact_messages:
     new:
       title: 문의하기

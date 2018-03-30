@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_listing, only: %i[show edit update destroy]
+  before_action :set_currency_options, only: %i[new edit]
   layout 'dashboard'
 
   def index
@@ -97,6 +98,14 @@ class ListingsController < ApplicationController
       :description,
       :amenities => []
     )
+  end
+
+  def set_currency_options
+    @currency_options = [
+      ['$ - USD', 'usd'],
+      ['¥ - JPY', 'jpy'],
+      ['₩ - KRW', 'krw']
+    ]
   end
 
   def set_listing

@@ -40,7 +40,9 @@ class User < ApplicationRecord
   has_many :chatroom_users
   has_many :chatrooms, through: :chatroom_users
   has_many :messages
-  has_many :pictures, as: :imageable, dependent: :destroy
+
+  # Uploaders
+  mount_uploader :profile_picture, ProfilePictureUploader
 
   def full_name
     "#{first_name} #{last_name}"

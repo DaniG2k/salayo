@@ -15,16 +15,13 @@
       </li>
       <% end %>
       <li class="navbar-item">
-        <%= link_to fa_icon('globe', text: t('.language')), '#', class: 'navbar-link', '@blur': 'showDropdown=false', '@click': 'showDropdown=true' %>
+        <%= link_to fa_icon('globe', text: t('.language')), '#', class: 'navbar-link', '@blur': 'showDropdown=false', '@click.prevent': 'showDropdown=true' %>
         <transition name="fade">
           <ul id="dropdown_box" v-show="showDropdown" v-cloak>
             <% AVAILABLE_LANGUAGES.each do |locale, val| %>
               <li>
-                <% if params[:locale] == locale %>
-                  <%= link_to fa_icon('check', text: val[:localized_name]), { locale: locale } %>
-                <% else %>
-                  <%= link_to val[:localized_name], { locale: locale } %>
-                <% end %>
+                <% text = I18n.locale.to_s == locale ? fa_icon('check', text: val[:localized_name]) : val[:localized_name] %>
+                <%= link_to text, { locale: locale } %>
               </li>
             <% end %>
           </ul>

@@ -1,0 +1,18 @@
+<h2>Amenities</h2>
+
+<div class="row">
+  <div class="col-5">
+    <div class="form-group">
+      <div class="custom-controls-stacked">
+
+        <div v-for="(amenity, idx) in amenities">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" v-bind:id="amenity.text" v-model="checkedAmenities[idx]" :value="amenity.id">
+            <label class="custom-control-label" v-bind="{ 'for': amenity.text }" >{{ amenity.text }}</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

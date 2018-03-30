@@ -2,13 +2,40 @@
 
 <div class="dashboard-main-content">
   <div class="container-fluid">
-    <h1><%= "#{t('.title')} - #{@user.full_name}" %></h1>
-    <%# image_tag @user.pictures.first.profile_url, class: 'rounded-circle' %>
+    <h1><%= t('.title') %></h1>
+
     <div class="row">
       <div class="col-12">
 
         <div class="card dashboard-card">
           <div class="card-block">
+            <div class="row">
+              <div class="col-md-6">
+                <h2><%= @user.full_name %></h2>
+                <p>
+                  <% if @user.biography.present? %>
+                    <%= @user.biography %>
+                  <% else %>
+                    <%= t('.no_bio') %>
+                  <% end %>
+                </p>
+              </div>
+              <div class="col-md-6">
+                <% if @user.profile_picture.present? %>
+                  <%= image_tag @user.profile_picture.thumb.url, class: 'profile-picture rounded-circle' %>
+                    <p>
+                      (<%= "#{t('.image_size')}: #{number_to_human_size(current_user.profile_picture.size)}" %>)
+                    </p>
+                <% else %>
+                  <%= fa_icon('user-circle 5x') %>
+                  <p>
+                    <%= t('.no_profile_picture') %>
+                  </p>
+                <% end %>
+              </div>
+            </div>
+
+            <hr />
 
             <div class="row">
               <div class="col-md-6">

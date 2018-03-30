@@ -26,6 +26,9 @@ ja:
       birth_date: 生年月日
       timezone: 時間帯
       language: 言語
+      image_size: 画像サイズ
+      no_bio: 自己紹介はありません
+      no_profile_picture: プロファイル画像はありません
   contact_messages:
     new:
       title: お問い合わせ
