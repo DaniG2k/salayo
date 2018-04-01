@@ -1,0 +1,10 @@
+ko:
+  devise:
+    failure:
+      deleted_account: 계정을 삭제했습니다.
+    sessions:
+      new:
+        title: 어서 오세요!
+    registrations:
+      new:
+        title: 등록

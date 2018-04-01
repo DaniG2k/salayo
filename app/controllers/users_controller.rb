@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
   layout 'dashboard'
-
+  
   def show
     authorize @user, :show?
   end

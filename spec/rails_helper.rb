@@ -9,6 +9,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'pundit/rspec'
+require 'selenium/webdriver'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -32,7 +33,7 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
+  Capybara.javascript_driver = :headless_chrome
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -59,6 +60,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers, type: :feature
+  config.include RequestSpecHelper, type: :request
   config.after(type: :feature) { Warden.test_reset! }
   config.before(:each, type: :feature) do
     default_url_options[:locale] = I18n.default_locale

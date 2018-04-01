@@ -2,7 +2,7 @@ class AdvertisementsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_advertisement, only: %i[show edit update destroy]
   layout 'dashboard'
-
+  
   def index
     @advertisements = Advertisement.where
                                   .not(user: current_user)

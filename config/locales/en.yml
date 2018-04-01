@@ -52,6 +52,13 @@ en:
       title: Listings
     new:
       title: Add listing
+    form:
+      basics: Basics
+      price: Price
+      pictures: Listing pictures
+      location: Location
+      amenities: Amenities
+      description: Description
     mine:
       title: My listings
       none: No listings to display

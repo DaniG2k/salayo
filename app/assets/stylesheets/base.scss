@@ -39,11 +39,11 @@ a {
   &:hover { color: $blue; }
 }
 
-.login, .forgot_password {
+.login, .sign_up, .forgot_password {
   background-color: $body-gray;
   padding-bottom: 3em;
 }
-.login-container, .forgot_password_container {
+.login-container, .sign_up_container, .forgot_password_container {
   padding: 2em;
   border-radius: 6px;
   background-color: white;

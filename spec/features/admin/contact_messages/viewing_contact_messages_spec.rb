@@ -22,7 +22,7 @@ RSpec.feature 'Admins can view contact messages' do
     end
 
     it 'redirects safely if the contact message id is not found' do
-      visit '/admin/contact_messages/123123'
+      visit '/en/admin/contact_messages/123123'
 
       expect(page).to have_content 'Unable to find that contact message.'
     end

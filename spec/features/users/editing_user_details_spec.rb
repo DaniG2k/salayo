@@ -25,6 +25,15 @@ RSpec.feature 'Registered users can edit their details' do
       expect(page).to have_current_path(/\/users\/\d+/)
     end
 
+    scenario 'changing user role' do
+      fill_in 'Current password', with: user.password
+      select 'Property owner', from: 'user_role'
+      click_button 'Update'
+
+      expect(page).to have_content('Your account has been updated successfully.')
+      expect(page).to have_current_path(/\/users\/\d+/)
+    end
+
     scenario 'with an image' do
       fill_in 'First name', with: Faker::Name.first_name
       fill_in 'Last name', with: Faker::Name.last_name

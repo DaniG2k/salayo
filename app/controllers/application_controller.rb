@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
 
+  layout 'application'
+
   def after_sign_in_path_for(resource)
     dashboard_path
   end
@@ -17,29 +19,30 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name profile_picture])
+    registration_keys = %i[
+      first_name
+      last_name
+      locale
+      role
+      birth_date
+      biography
+      gender
+      time_zone
+      pictures
+      profile_picture
+      profile_picture_cache
+      remove_profile_picture
+    ]
     devise_parameter_sanitizer.permit(:sign_in, keys: %i[first_name last_name])
-    devise_parameter_sanitizer.permit(:account_update, keys:
-      %i[
-        first_name
-        last_name
-        locale
-        birth_date
-        biography
-        gender
-        time_zone
-        pictures
-        profile_picture
-        profile_picture_cache
-        remove_profile_picture
-      ]
-    )
+    devise_parameter_sanitizer.permit(:sign_up, keys: registration_keys)
+    devise_parameter_sanitizer.permit(:account_update, keys: registration_keys)
   end
 
   private
 
   def not_authorized
-    redirect_to dashboard_path, warning: 'You are not allowed to access that resource.'
+    flash[:warning] = 'You are not allowed to access that resource.'
+    redirect_to dashboard_path
   end
 
   def set_locale

@@ -8,7 +8,7 @@ RSpec.feature 'Admins can destroy registered users' do
       visit admin_users_path
     end
 
-    scenario "destroy a registered user" do
+    scenario "hard delete a registered user" do
       expect(User.all.count).to eq(2)
 
       within('.dashboard-main-content') do

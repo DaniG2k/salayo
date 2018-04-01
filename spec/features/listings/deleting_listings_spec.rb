@@ -10,7 +10,7 @@ RSpec.feature 'Listing owners can delete listings' do
   scenario 'successfully' do
     click_link 'Delete'
 
-    expect(page).to have_content 'Listing was successfully deleted!'
+    expect(page).to have_content 'Listing was successfully deleted.'
     expect(page.current_url).to eq my_listings_url
     expect(page).not_to have_content listing.name
   end

@@ -52,6 +52,13 @@ ja:
       title: 物件
     new:
       title: 物件追加
+    form:
+      basics: 基本
+      price: 価格
+      pictures: 物件写真
+      location: 位置
+      amenities: 設備
+      description: 解説
     mine:
       title: 私の物件
       none: 物件はありません。

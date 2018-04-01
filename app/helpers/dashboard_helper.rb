@@ -66,8 +66,8 @@ module DashboardHelper
         owners_only: false
       },
       {
-        icon: fa_icon('paper-plane'),
-        icon_with_text: fa_icon('paper-plane', text: I18n.t('dashboard.sidebar.messages')),
+        icon: fa_icon('inbox'),
+        icon_with_text: fa_icon('inbox', text: I18n.t('dashboard.sidebar.messages')),
         path: messages_path,
         class: active_if(messages_path),
         admins_only: false,

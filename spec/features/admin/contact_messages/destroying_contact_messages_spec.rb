@@ -14,7 +14,7 @@ RSpec.feature 'Admins can destroy contact messages' do
 
       click_link contact_message.email
       # Delete link has no text. Select it via css
-      page.find(:css, "a[href=\"/admin/contact_messages/#{contact_message.id}\"]").click
+      page.find(:css, "a[href=\"/#{I18n.locale}/admin/contact_messages/#{contact_message.id}\"]").click
 
       expect(page).to have_content 'Contact message successfully destroyed.'
       expect(ContactMessage.all.count).to eq(0)

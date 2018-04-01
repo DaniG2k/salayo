@@ -1,12 +1,16 @@
 <%= form_for(
   listing,
-  html: {
-    multipart: true,
-    id: 'listing_form',
+  html: { multipart: true, id: 'listing_form',
     data: {
-      listing: listing.to_json(except: [:user_id, :created_at, :updated_at])
+      listing: if listing.amenity_list.nil?
+        JSON.parse(listing.to_json(except: %i[user_id created_at updated_at])).merge(amenity_list_attributes: JSON.parse(listing.build_amenity_list.to_json(except: %i[id listing_id created_at updated_at])))
+      else
+        JSON.parse(listing.to_json(except: %i[user_id created_at updated_at])).merge(amenity_list_attributes: JSON.parse(listing.amenity_list.to_json(except: %i[id listing_id created_at updated_at])))
+      end
     }
   }) do |f| %>
+
+  <%= render 'listings/form/errors' %>
 
   <fieldset class="listing-step" v-show="activeStep === 0">
     <%= render 'listings/form/basics', f: f, listing: listing %>

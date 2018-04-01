@@ -3,19 +3,19 @@ class ChatroomsController < ApplicationController
   before_action :set_chatroom, only: %i[show edit update destroy]
   layout 'dashboard'
 
-  def index
-    @chatrooms = Chatroom.all
-  end
+  # def index
+  #   @chatrooms = Chatroom.all
+  # end
 
   def show
-    @messages = @chatroom.messages.includes(:user).order(created_at: :desc).reverse
+    @messages = @chatroom.messages.includes(:user).order(created_at: :asc)
   end
 
-  def new
-    @chatroom = Chatroom.new
-  end
+  # def new
+  #   @chatroom = Chatroom.new
+  # end
 
-  def edit; end
+  # def edit; end
 
   def create
     @chatroom = Chatroom.new(chatroom_params)
@@ -31,25 +31,25 @@ class ChatroomsController < ApplicationController
     end
   end
 
-  def update
-    respond_to do |format|
-      if @chatroom.update(chatroom_params)
-        format.html { redirect_to @chatroom, notice: 'Chatroom was successfully updated.' }
-        format.json { render :show, status: :ok, location: @chatroom }
-      else
-        format.html { render :edit }
-        format.json { render json: @chatroom.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @chatroom.destroy
-    respond_to do |format|
-      format.html { redirect_to chatrooms_url, notice: 'Chatroom was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @chatroom.update(chatroom_params)
+  #       format.html { redirect_to @chatroom, notice: 'Chatroom was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @chatroom }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @chatroom.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+  #
+  # def destroy
+  #   @chatroom.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to chatrooms_url, notice: 'Chatroom was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   def messages
     @chatrooms = Chatroom.all
@@ -59,6 +59,9 @@ class ChatroomsController < ApplicationController
 
   def set_chatroom
     @chatroom = Chatroom.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:warning] = 'Unable to find the specified conversation.'
+    redirect_to messages_path
   end
 
   def chatroom_params

@@ -13,8 +13,7 @@
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <strong><%= f.label :title %></strong>
-        <%= f.text_field :title, autofocus: true, class: 'form-control' %>
+        <%= f.text_field :title, placeholder: 'Title', autofocus: true, class: 'form-control' %>
       </div>
     </div>
   </div>
@@ -22,8 +21,7 @@
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <strong><%= f.label :body %></strong>
-        <%= f.text_area :body, class: 'form-control', rows: 6 %>
+        <%= f.text_area :body, placeholder: 'Body', class: 'form-control', rows: 6 %>
       </div>
     </div>
   </div>

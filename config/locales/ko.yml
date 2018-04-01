@@ -52,6 +52,13 @@ ko:
       title: 물건
     new:
       title: 물건 추가
+    form:
+      basics: 기본
+      price: 가격
+      pictures: 물건 사진
+      location: 위치
+      amenities: 설비
+      description: 해설
     mine:
       title: 내 물건
       none: 물건은 없습니다

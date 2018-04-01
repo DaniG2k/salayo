@@ -1,17 +1,17 @@
-<h2>Location</h2>
+<h2><%= t('listings.form.location') %></h2>
 
 <div class="row">
   <div class="col">
 
     <div class="form-check">
       <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="map_search" id="map_search_address" value="address" v-on:click="byAddress = true" checked>
+        <input class="form-check-input" type="radio" name="map_search" id="map_search_address" value="address" @click="byAddress = true" checked>
         Set by address
       </label>
     </div>
     <div class="form-check">
       <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="map_search" id="map_search_coords" value="coords" v-on:click="byAddress = false">
+        <input class="form-check-input" type="radio" name="map_search" id="map_search_coords" value="coords" @click="byAddress = false">
         Set by coordinates
       </label>
     </div>

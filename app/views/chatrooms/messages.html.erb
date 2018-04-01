@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <h1><%= fa_icon('paper-plane', text: t('.title')) %></h1>
+        <h1><%= fa_icon('inbox', text: t('.title')) %></h1>
       </div>
     </div>
     <div class="row">
@@ -21,7 +21,6 @@
               <tr>
                 <td><%= chatroom.name %></td>
                 <td><%= link_to 'Join', chatroom_chatroom_users_path(chatroom), method: :post %></td>
-                <td><%= link_to 'Leave', chatroom_chatroom_users_path(chatroom), method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
             <% end %>
           </tbody>

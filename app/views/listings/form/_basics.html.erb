@@ -1,4 +1,4 @@
-<h2>Basics</h2>
+<h2><%= t('listings.form.basics') %></h2>
 
 <div class="row">
   <div class="col-md-6">
@@ -71,12 +71,12 @@
   </div>
 </div>
 
-<h2>Price</h2>
+<h2><%= t('listings.form.price') %></h2>
 <div class="row">
   <div class="col-md-6">
     <div class="form-group">
       <strong><%= f.label :price_currency, text: 'Currency' %></strong><br>
-      <%= f.select(:price_currency, options_for_select(@currency_options), {}, { required: true, class: 'form-control', 'v-model': 'priceCurrency', '@change': 'switchCurrencySymbol()' }) %>
+      <%= f.select :price_currency, options_for_select(@currency_options), {}, { required: true, class: 'form-control', 'v-model': 'priceCurrency', '@change': 'switchCurrencySymbol()' } %>
     </div>
   </div>
 </div>
@@ -84,7 +84,7 @@
   <div class="col-md-6">
     <div class="form-group">
       <strong>
-        <%= f.label :price_per_week, class: 'required-field' %>
+        <%= f.label :price_cents, 'Price per week', class: 'required-field' %>
       </strong><br />
       <div class="input-group">
         <div class="input-group-prepend">
@@ -93,15 +93,15 @@
           </div>
         </div>
         <%= f.number_field(
-          :price_per_week,
-          in: (0.0..10000.0),
-          step: 0.01,
+          :price_cents,
+          in: (0.0..100000000.0),
+          step: 0.1,
           class: 'form-control',
-          'v-bind:class' => 'validateClass($v.pricePerWeek)',
-          'v-model' => 'pricePerWeek',
-          '@change': '$v.pricePerWeek.$touch(); weeklyPriceHandler()') %>
-        <div class="invalid-feedback" v-if="!$v.pricePerWeek.required && $v.pricePerWeek.$dirty">Field is required</div>
-        <div class="invalid-feedback" v-if="!$v.pricePerWeek.between">Input must be between {{$v.pricePerWeek.$params.between.min}} and {{$v.pricePerWeek.$params.between.max}}</div>
+          'v-bind:class' => 'validateClass($v.priceCents)',
+          'v-model.number' => 'priceCents',
+          '@change': '$v.priceCents.$touch(); weeklyPriceHandler()') %>
+        <div class="invalid-feedback" v-if="!$v.priceCents.required && $v.priceCents.$dirty">Field is required</div>
+        <div class="invalid-feedback" v-if="!$v.priceCents.between">Input must be between {{$v.priceCents.$params.between.min}} and {{$v.priceCents.$params.between.max}}</div>
       </div>
     </div>
   </div>
@@ -118,11 +118,11 @@
         </div>
         <%= f.number_field(
           :price_per_month,
-          in: (0.0..10000.0),
-          step: 0.01,
+          in: (0.0..100000000.0),
+          step: 0.1,
           class: 'form-control',
           'v-bind:class' => 'validateClass($v.pricePerMonth)',
-          'v-model' => 'pricePerMonth',
+          'v-model.number' => 'pricePerMonth',
           '@change': '$v.pricePerMonth.$touch(); monthlyPriceHandler()') %>
         <div class="invalid-feedback" v-if="!$v.pricePerMonth.required && $v.pricePerMonth.$dirty">Field is required</div>
         <div class="invalid-feedback" v-if="!$v.pricePerMonth.between">Input must be between {{$v.pricePerMonth.$params.between.min}} and {{$v.pricePerMonth.$params.between.max}}</div>
@@ -133,12 +133,13 @@
 
 <div class="row">
   <div class="col">
-    <h2>Listing pictures</h2>
+    <h2><%= t('listings.form.pictures') %></h2>
     <vue-dropzone
       ref="listingDropzone"
       id="dropzone"
       @vdropzone-sending-multiple="sendingEvent"
       @vdropzone-success-multiple="listingRedirect"
+      @vdropzone-error="verror"
       :options="dropzoneOptions">
     </vue-dropzone>
   </div>

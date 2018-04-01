@@ -51,12 +51,16 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.5'
   gem 'capybara'
-  gem 'selenium-webdriver', '2.53.4'
+  gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'bullet'
   gem 'letter_opener'
+end
+
+group :test do
+  gem 'capybara-selenium'
 end
 
 group :development do

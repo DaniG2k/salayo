@@ -26,6 +26,7 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
     password 'supersecurep@ss'
+    gender %w(male female other).sample
     #locale I18n.available_locales.sample
     locale 'en'
     role :user
