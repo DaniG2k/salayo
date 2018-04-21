@@ -8,7 +8,9 @@ class ChatroomsController < ApplicationController
   # end
 
   def show
-    @messages = @chatroom.messages.includes(:user).order(created_at: :asc)
+    @messages = @chatroom.messages.includes(:user).order(created_at: :desc)
+    # Get the other user's name. Useful for page title.
+    @other_user = @chatroom.users.where.not(id: current_user.id).first.first_name
   end
 
   # def new

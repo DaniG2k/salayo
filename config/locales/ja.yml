@@ -72,6 +72,8 @@ ja:
   chatrooms:
     messages:
       title: メッセージ
+    show:
+      title: '%{user}との会話'
   dashboard:
     index:
       title: ダッシュボード

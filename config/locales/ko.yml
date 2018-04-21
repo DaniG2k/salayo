@@ -72,6 +72,8 @@ ko:
   chatrooms:
     messages:
       title: '메시지'
+    show:
+      title: '%{user}과 대화'
   dashboard:
     index:
       title: '대시보드'

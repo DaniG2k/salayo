@@ -1,32 +1,31 @@
-<% title(@chatroom.name) %>
+<% title t('.title', user: @other_user) %>
 
 <div class="dashboard-main-content">
   <div class="container-fluid">
 
     <div class="row">
-      <div class="col-12">
-        <strong>Name:</strong>
-        <%= @chatroom.name %>
+      <div class="col">
+        <h2><%= fa_icon 'comments', text: t('.title', user: @other_user) %></h2>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-12">
-        <div data-behavior="messages" data-chatroom-id="<%= @chatroom.id %>">
-          <% @messages.each do |message| %>
-            <%= render message %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
+      <div class="col-8">
         <%= form_for [@chatroom, Message.new] do |f| %>
           <div class="form-group">
             <%= f.text_area :body, class: 'form-control', autofocus: true %>
           </div>
         <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-8">
+        <div data-behavior="messages" data-chatroom-id="<%= @chatroom.id %>">
+          <% @messages.each do |message| %>
+            <%= render message %>
+          <% end %>
+        </div>
       </div>
     </div>
 

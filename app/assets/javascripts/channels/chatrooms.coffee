@@ -1,5 +1,6 @@
 # Ensure users logged in
-if $("meta[name='current-user']").length > 0
+current_user = $("meta[name='current-user']")
+if current_user.length > 0
   App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
     connected: ->
       # Called when the subscription is ready for use on the server
@@ -11,7 +12,10 @@ if $("meta[name='current-user']").length > 0
       # Called when there's incoming data on the websocket for this channel
       active_chatroom = $("[data-behavior='messages'][data-chatroom-id='#{data.chatroom_id}']")
       if active_chatroom.length > 0
-        active_chatroom.append(data.message)
+        active_chatroom.prepend(data.message)
+        first_bubble = $('.bubble').first()
+        if first_bubble.attr('data-uid') != current_user.attr('data-id')
+          first_bubble.addClass('bubble-alt')
       else
         $("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}']").css("font-weight", "bold")
 

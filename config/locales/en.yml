@@ -72,6 +72,8 @@ en:
   chatrooms:
     messages:
       title: Messages
+    show:
+      title: 'Conversation with %{user}'
   dashboard:
     index:
       title: Dashboard
