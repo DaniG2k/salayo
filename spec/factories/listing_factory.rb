@@ -26,8 +26,12 @@ require 'securerandom'
 FactoryBot.define do
   factory :listing do
     name SecureRandom.hex
+    bedrooms 1
+    beds 1
+    bathrooms 1
     property_type 'apartment'
     lat 37.517235
     lng 127.047325
+    price_cents 10000
   end
 end

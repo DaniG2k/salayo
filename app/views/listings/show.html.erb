@@ -72,7 +72,11 @@
 
           </div>
           <div class="col-6">
-            <%= image_tag @owner.profile_picture.thumb.url, class: 'mx-auto d-block profile-picture-tiny rounded-circle' %>
+            <% if @owner.profile_picture.present? %>
+              <%= image_tag @owner.profile_picture.thumb.url, class: 'mx-auto d-block profile-picture-tiny rounded-circle' %>
+            <% else %>
+              <%= fa_icon('user-circle 5x') %>
+            <% end %>
           </div>
         </div>
         <% if @owner != current_user %>
