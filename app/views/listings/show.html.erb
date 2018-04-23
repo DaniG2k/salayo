@@ -69,19 +69,21 @@
               <%= @owner != current_user ? @owner.full_name : @owner.first_name %>
             </p>
             <strong>Languages</strong>
-            
+
           </div>
           <div class="col-6">
             <%= image_tag @owner.profile_picture.thumb.url, class: 'mx-auto d-block profile-picture-tiny rounded-circle' %>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <%= link_to '#', class: 'btn btn-secondary' do %>
-              <%= fa_icon('paper-plane', text: "Message #{@owner.first_name}") %>
-            <% end %>
+        <% if @owner != current_user %>
+          <div class="row">
+            <div class="col">
+              <%= link_to chatrooms_path(sender: current_user, receiver: @owner), method: :post, class: 'btn btn-secondary' do %>
+                <%= fa_icon('paper-plane', text: "Message #{@owner.first_name}") %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
         </div>
       </div>
     </div>

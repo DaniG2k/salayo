@@ -14,22 +14,27 @@ class ChatroomsController < ApplicationController
   end
 
   # def new
-  #   @chatroom = Chatroom.new
   # end
 
   # def edit; end
 
   def create
-    @chatroom = Chatroom.new(chatroom_params)
-
-    respond_to do |format|
+    sender = User.find params[:sender]
+    receiver = User.find params[:receiver]
+    # Check if there isn't already a chatroom between the two users
+    chatroom_intersection = ChatroomUser.where(user: sender).pluck(:chatroom_id) & ChatroomUser.where(user: receiver).pluck(:chatroom_id)
+    if chatroom_intersection.empty?
+      @chatroom = Chatroom.new
+      @chatroom.name = "Conversation between #{sender.first_name} and #{receiver.first_name}"
+      @chatroom.users << [sender, receiver]
       if @chatroom.save
-        format.html { redirect_to @chatroom, notice: 'Chatroom was successfully created.' }
-        format.json { render :show, status: :created, location: @chatroom }
+        redirect_to @chatroom
       else
-        format.html { render :new }
-        format.json { render json: @chatroom.errors, status: :unprocessable_entity }
+        render :new
       end
+    else
+      @chatroom = Chatroom.find(chatroom_intersection.first)
+      redirect_to @chatroom
     end
   end
 
@@ -66,7 +71,7 @@ class ChatroomsController < ApplicationController
     redirect_to messages_path
   end
 
-  def chatroom_params
-    params.require(:chatroom).permit(:name)
-  end
+  # def chatroom_params
+  #   params.require(:chatroom).permit(:name)
+  # end
 end
