@@ -1,5 +1,4 @@
 RSpec.feature 'Viewing Listings' do
-
   let(:regular_user) { create(:user) }
   let!(:user1) { create(:user, :owner) }
   let!(:user2) { create(:user, :admin) }

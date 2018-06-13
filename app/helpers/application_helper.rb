@@ -11,9 +11,9 @@ module ApplicationHelper
 
   def copyright
     years_since_foundation = if Time.zone.now.year > 2017
-      "2017-#{Time.zone.now.year}"
-    else
-      '2017'
+                               "2017-#{Time.zone.now.year}"
+                             else
+                               '2017'
     end
     fa_icon('copyright', text: "#{t('website')} #{years_since_foundation}")
   end
@@ -26,15 +26,13 @@ module ApplicationHelper
     current_user.present? ? current_user.locale : 'en'
   end
 
-  def admins_only(&block)
-    block.call if admin?
+  def admins_only
+    yield if admin?
   end
 
-  def owners_only(&block)
-    block.call if admin? || current_user.owner?
+  def owners_only
+    yield if admin? || current_user.owner?
   end
 
-  def admin?
-    current_user.admin?
-  end
+  delegate :admin?, to: :current_user
 end

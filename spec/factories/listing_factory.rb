@@ -32,6 +32,6 @@ FactoryBot.define do
     property_type 'apartment'
     lat 37.517235
     lng 127.047325
-    price_cents 10000
+    price_cents 10_000
   end
 end

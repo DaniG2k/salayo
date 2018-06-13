@@ -1,7 +1,7 @@
 RSpec.feature 'Visible links' do
-  let(:user) {create :user}
-  let(:owner) {create :user, :owner}
-  let(:admin) {create :user, :admin}
+  let(:user) { create :user }
+  let(:owner) { create :user, :owner }
+  let(:admin) { create :user, :admin }
 
   context 'Normal user' do
     before do

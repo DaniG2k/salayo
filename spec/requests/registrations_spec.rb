@@ -3,97 +3,97 @@ RSpec.describe 'Registrations' do
 
   let(:admin) { create(:user, :admin) }
   let(:user) { create(:user) }
-  let(:post_valid_attributes) {
+  let(:post_valid_attributes) do
     {
       locale: 'en',
-      "user" => {
-        "first_name" => "Mario",
-        "last_name" => "Draghi",
-        "email" => "test@user.com",
-        "password" => "test1234",
-        "password_confirmation" => "test1234",
-        "role" => "user",
-        "locale" => "en",
-        "birth_date" => 20.years.ago,
-        "gender" => "",
-        "time_zone" => "UTC",
-        "biography" => ""
+      'user' => {
+        'first_name' => 'Mario',
+        'last_name' => 'Draghi',
+        'email' => 'test@user.com',
+        'password' => 'test1234',
+        'password_confirmation' => 'test1234',
+        'role' => 'user',
+        'locale' => 'en',
+        'birth_date' => 20.years.ago,
+        'gender' => '',
+        'time_zone' => 'UTC',
+        'biography' => ''
       }
     }
-  }
-  let(:post_invalid_attributes) {
+  end
+  let(:post_invalid_attributes) do
     {
       locale: 'en',
-      "user" => {
-        "first_name" => "Mario",
-        "last_name" => "Draghi",
-        "email" => "test@user.com",
-        "password" => "test1234",
-        "password_confirmation" => "test1234",
-        "role" => "admin",
-        "locale" => "en",
-        "birth_date" => '',
-        "gender" => "",
-        "time_zone" => "UTC",
-        "biography" => ""
+      'user' => {
+        'first_name' => 'Mario',
+        'last_name' => 'Draghi',
+        'email' => 'test@user.com',
+        'password' => 'test1234',
+        'password_confirmation' => 'test1234',
+        'role' => 'admin',
+        'locale' => 'en',
+        'birth_date' => '',
+        'gender' => '',
+        'time_zone' => 'UTC',
+        'biography' => ''
       }
     }
-  }
-  let(:put_valid_attributes) {
+  end
+  let(:put_valid_attributes) do
     {
       locale: 'en',
-      "user" => {
-        "first_name" => user.first_name,
-        "last_name" => user.last_name,
-        "email" => user.email,
-        "current_password" => user.password,
-        "role" => "user",
-        "locale" => "en",
-        "birth_date" => 20.years.ago,
-        "gender" => "",
-        "time_zone" => "UTC",
-        "biography" => "A new biography"
+      'user' => {
+        'first_name' => user.first_name,
+        'last_name' => user.last_name,
+        'email' => user.email,
+        'current_password' => user.password,
+        'role' => 'user',
+        'locale' => 'en',
+        'birth_date' => 20.years.ago,
+        'gender' => '',
+        'time_zone' => 'UTC',
+        'biography' => 'A new biography'
       }
     }
-  }
-  let(:put_invalid_attributes) {
+  end
+  let(:put_invalid_attributes) do
     {
       locale: 'en',
-      "user" => {
-        "first_name" => user.first_name,
-        "last_name" => user.last_name,
-        "email" => user.email,
-        "current_password" => user.password,
-        "role" => "admin",
-        "locale" => "en",
-        "birth_date" => 20.years.ago,
-        "gender" => "",
-        "time_zone" => "UTC",
-        "biography" => "A new biography"
+      'user' => {
+        'first_name' => user.first_name,
+        'last_name' => user.last_name,
+        'email' => user.email,
+        'current_password' => user.password,
+        'role' => 'admin',
+        'locale' => 'en',
+        'birth_date' => 20.years.ago,
+        'gender' => '',
+        'time_zone' => 'UTC',
+        'biography' => 'A new biography'
       }
     }
-  }
-  let(:put_admin_invalid_attributes) {
+  end
+  let(:put_admin_invalid_attributes) do
     {
       locale: 'en',
-      "user" => {
-        "first_name" => admin.first_name,
-        "last_name" => admin.last_name,
-        "email" => admin.email,
-        "current_password" => admin.password,
-        "role" => "admin",
-        "locale" => "en",
-        "birth_date" => 20.years.ago,
-        "gender" => "",
-        "time_zone" => "UTC",
-        "biography" => "A new biography"
+      'user' => {
+        'first_name' => admin.first_name,
+        'last_name' => admin.last_name,
+        'email' => admin.email,
+        'current_password' => admin.password,
+        'role' => 'admin',
+        'locale' => 'en',
+        'birth_date' => 20.years.ago,
+        'gender' => '',
+        'time_zone' => 'UTC',
+        'biography' => 'A new biography'
       }
     }
-  }
+  end
 
-  describe "POST /:locale/user" do
+  describe 'POST /:locale/user' do
     context 'normal users' do
-      it "returns success" do
+      it 'returns success' do
         post user_registration_path(post_valid_attributes)
 
         expect(response).to redirect_to(dashboard_path)
@@ -109,9 +109,9 @@ RSpec.describe 'Registrations' do
     end
   end
 
-  describe "PUT /:locale/user" do
+  describe 'PUT /:locale/user' do
     context 'normal users' do
-      it "returns success" do
+      it 'returns success' do
         sign_in user
         # Update user details
         put user_registration_path(put_valid_attributes)

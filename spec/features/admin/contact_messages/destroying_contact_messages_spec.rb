@@ -9,7 +9,7 @@ RSpec.feature 'Admins can destroy contact messages' do
       click_link 'Contact messages'
     end
 
-    it "destroys the contact message successfully" do
+    it 'destroys the contact message successfully' do
       expect(ContactMessage.all.count).to eq(1)
 
       click_link contact_message.email

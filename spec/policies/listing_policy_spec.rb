@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ListingPolicy do
-
   let(:user) { User.new }
 
   subject { described_class }
@@ -13,8 +12,8 @@ RSpec.describe ListingPolicy do
   permissions 'policy_scope' do
     subject { Pundit.policy_scope(user, Listing) }
 
-    let(:user) {create(:user, :owner)}
-    let(:listing) {create(:listing, owner: user)}
+    let(:user) { create(:user, :owner) }
+    let(:listing) { create(:listing, owner: user) }
 
     it 'is empty for anonymous users' do
       expect(Pundit.policy_scope(nil, Listing)).to be_empty

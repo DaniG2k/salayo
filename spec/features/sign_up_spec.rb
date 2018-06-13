@@ -1,7 +1,7 @@
 RSpec.feature 'Users can sign up' do
-  let(:password) {'secur3p@ass'}
-  let(:email) {Faker::Internet.email}
-  let(:bio) {Faker::Lorem.paragraph(2)}
+  let(:password) { 'secur3p@ass' }
+  let(:email) { Faker::Internet.email }
+  let(:bio) { Faker::Lorem.paragraph(2) }
 
   before do
     visit new_user_registration_path
@@ -24,7 +24,7 @@ RSpec.feature 'Users can sign up' do
       fill_in 'About you', with: bio
       click_button 'Sign up'
 
-      user = User.find_by_email email
+      user = User.find_by email: email
 
       # Ensure additional params are passing.
       expect(user.gender).to eq('female')
@@ -50,7 +50,7 @@ RSpec.feature 'Users can sign up' do
       fill_in 'About you', with: bio
       click_button 'Sign up'
 
-      user = User.find_by_email email
+      user = User.find_by email: email
 
       # Ensure additional params are passing.
       expect(user.gender).to eq(nil)
@@ -75,7 +75,7 @@ RSpec.feature 'Users can sign up' do
       fill_in 'About you', with: bio
       click_button 'Sign up'
 
-      user = User.find_by_email email
+      user = User.find_by email: email
 
       # Ensure additional params are passing.
       expect(user.gender).to eq('male')

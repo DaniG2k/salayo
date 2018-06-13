@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe UserPolicy do
-
   let(:user) { User.new }
 
   subject { described_class }
@@ -11,9 +10,9 @@ RSpec.describe UserPolicy do
   # end
 
   permissions :show? do
-    let(:user)  {create(:user)}
-    let(:owner) {create(:user, :owner)}
-    let(:admin) {create(:user, :admin)}
+    let(:user)  { create(:user) }
+    let(:owner) { create(:user, :owner) }
+    let(:admin) { create(:user, :admin) }
 
     it 'blocks anonymous users' do
       expect(subject).not_to permit(nil, user)

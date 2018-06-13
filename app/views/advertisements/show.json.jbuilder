@@ -1,1 +1,1 @@
-json.partial! "advertisements/advertisement", advertisement: @advertisement
+json.partial! 'advertisements/advertisement', advertisement: @advertisement

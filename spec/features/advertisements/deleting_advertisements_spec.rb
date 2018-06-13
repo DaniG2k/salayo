@@ -1,9 +1,9 @@
 RSpec.describe 'Deleting advertisements' do
-  let(:admin){create(:user, :admin)}
-  let(:user1){create(:user)}
-  let(:user2){create(:user)}
-  let!(:advert){create(:advertisement, user: user1)}
-  let(:delete_link){"a[title='Delete']"}
+  let(:admin) { create(:user, :admin) }
+  let(:user1) { create(:user) }
+  let(:user2) { create(:user) }
+  let!(:advert) { create(:advertisement, user: user1) }
+  let(:delete_link) { "a[title='Delete']" }
 
   context 'regular users' do
     it 'can destroy their own ads' do

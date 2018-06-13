@@ -1,8 +1,8 @@
 RSpec.describe 'Viewing roommate ads' do
-  let(:alice) {create(:user)}
-  let(:bob) {create(:user)}
-  let!(:advertisement1) {create(:advertisement, user: alice)}
-  let!(:advertisement2) {create(:advertisement, user: bob)}
+  let(:alice) { create(:user) }
+  let(:bob) { create(:user) }
+  let!(:advertisement1) { create(:advertisement, user: alice) }
+  let!(:advertisement2) { create(:advertisement, user: bob) }
 
   context "a user's own ads" do
     before do

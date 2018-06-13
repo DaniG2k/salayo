@@ -9,7 +9,7 @@ RSpec.feature 'Admins can view contact messages' do
       click_link 'Contact messages'
     end
 
-    it "lists contact messages" do
+    it 'lists contact messages' do
       expect(page).to have_content contact_message.email
     end
 
@@ -27,5 +27,4 @@ RSpec.feature 'Admins can view contact messages' do
       expect(page).to have_content 'Unable to find that contact message.'
     end
   end
-
 end

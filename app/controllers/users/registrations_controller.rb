@@ -32,7 +32,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     set_flash_message :notice, :destroyed
     yield resource if block_given?
-    respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+    respond_with_navigational(resource) { redirect_to after_sign_out_path_for(resource_name) }
   end
 
   # GET /resource/cancel
@@ -71,7 +71,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def disallow_admin_role
-    unless %w(user owner).include?(params[:user][:role])
+    unless %w[user owner].include?(params[:user][:role])
       msg = 'The specified role is invalid.'
       if action_name == 'create'
         redirect_to new_user_registration_path

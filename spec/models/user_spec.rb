@@ -7,7 +7,7 @@ RSpec.describe User do
         email: Faker::Internet.email,
         password: 's3curep@ss',
         password_confirmation: 's3curep@ss',
-        gender: %w(male female).sample
+        gender: %w[male female].sample
       )
       expect(valid_user).to be_valid
 
@@ -17,7 +17,7 @@ RSpec.describe User do
         email: Faker::Internet.email,
         password: 's3curep@ss',
         password_confirmation: 's3curep@ss',
-        gender: %w(male female).sample
+        gender: %w[male female].sample
       )
       expect(invalid_user).not_to be_valid
     end

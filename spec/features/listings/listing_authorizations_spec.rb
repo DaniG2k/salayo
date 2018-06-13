@@ -1,9 +1,9 @@
 RSpec.feature 'Listing authorizations' do
-  let(:admin) {create(:user, :admin)}
-  let(:user) {create(:user)}
-  let(:owner) {create(:user, :owner)}
-  let(:listing) {create(:listing, owner: owner)}
-  let(:auth_msg) {'You are not allowed to access that resource.'}
+  let(:admin) { create(:user, :admin) }
+  let(:user) { create(:user) }
+  let(:owner) { create(:user, :owner) }
+  let(:listing) { create(:listing, owner: owner) }
+  let(:auth_msg) { 'You are not allowed to access that resource.' }
 
   context 'admins' do
     it "can access users' listings#edit" do

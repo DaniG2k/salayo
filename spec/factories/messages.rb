@@ -14,6 +14,6 @@ FactoryBot.define do
   factory :message do
     chatroom nil
     user nil
-    body "MyText"
+    body 'MyText'
   end
 end

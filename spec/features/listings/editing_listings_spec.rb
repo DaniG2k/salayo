@@ -21,5 +21,5 @@ RSpec.feature 'Listing owners can edit existing listings' do
     click_button 'Update Listing'
 
     expect(page).to have_content 'prohibited this listing from being saved'
-    end
+  end
 end

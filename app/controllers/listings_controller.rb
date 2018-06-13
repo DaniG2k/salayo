@@ -22,7 +22,7 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new params_hash
     @listing.owner = current_user
-    @listing.pictures = params[:file].values.map {|file| Picture.new(image: file)} if params[:file].present?
+    @listing.pictures = params[:file].values.map { |file| Picture.new(image: file) } if params[:file].present?
 
     authorize @listing, :create?
 
@@ -43,7 +43,7 @@ class ListingsController < ApplicationController
     authorize @listing, :show?
     @owner = @listing.owner
     @amenity_list_attributes = @listing.amenity_list.attributes.except(
-      *%w[id listing_id created_at updated_at]
+      'id', 'listing_id', 'created_at', 'updated_at'
     )
   end
 
@@ -56,7 +56,7 @@ class ListingsController < ApplicationController
 
     respond_to do |format|
       if @listing.update(params_hash)
-        @listing.pictures << params[:file].values.map {|file| Picture.new(image: file)} if params[:file].present?
+        @listing.pictures << params[:file].values.map { |file| Picture.new(image: file) } if params[:file].present?
         flash[:notice] = 'Listing has been updated successfully.'
         format.html { redirect_to @listing }
         format.json { render :show, status: :ok, location: @listing }

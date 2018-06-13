@@ -1,14 +1,14 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.10.1"
+lock '~> 3.10.1'
 
-set :application, "salayo"
-set :repo_url, "git@github.com:DaniG2k/salayo.git"
+set :application, 'salayo'
+set :repo_url, 'git@github.com:DaniG2k/salayo.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/home/deploy/salayo"
+set :deploy_to, '/home/deploy/salayo'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -24,7 +24,7 @@ set :deploy_to, "/home/deploy/salayo"
 append :linked_files, 'config/database.yml', 'config/secrets.yml', '.env'
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads"
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

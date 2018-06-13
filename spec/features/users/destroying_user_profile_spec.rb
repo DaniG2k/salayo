@@ -1,6 +1,6 @@
 RSpec.feature 'Registered users can soft delete their accounts' do
-  let(:user) {create(:user)}
-  let(:owner) {create(:user, :owner)}
+  let(:user) { create(:user) }
+  let(:owner) { create(:user, :owner) }
 
   context 'Normal user' do
     before do
