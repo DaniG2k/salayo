@@ -1,39 +1,45 @@
-<%= content_tag :nav, class: 'navbar sticky-top navbar-light bg-faded salayo-nav transparent transparent', id: 'lang-navbar', data: {transparent: @top_bar_transparent} do %>
+<%= content_tag :nav, class: 'navbar fixed-top navbar-expand-lg navbar-light salayo-nav', id: 'top-nav', 'v-bind:class': "{ transparent: (scrollPosition <= 50 && initTransparency), 'bg-faded': scrollPosition > 50 }", data: {transparent: @top_bar_transparent} do %>
   <div class="container">
     <%= link_to root_path, class: 'navbar-brand navbar-item logo-text' do %>
       <%= image_tag('salayo-topnav.png', height: 35, id: 'logo', class: 'd-inline-block align-top') %>
       <%= t('website') %>
     <% end %>
 
-    <ul>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDropdownContent" aria-controls="navbarDropdownContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarDropdownContent">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <% if user_signed_in? %>
-      <li class="navbar-item">
-        <%= link_to(fa_icon('dashboard', text: t('.dashboard')), dashboard_path, class: 'navbar-link') %>
-      </li>
-      <li class="navbar-item">
-        <%= link_to(fa_icon('sign-out', text: t('.log_out')), destroy_user_session_path, method: :delete, class: 'navbar-link float-right') %>
-      </li>
+        <li class="navbar-item">
+          <%= link_to(fa_icon('dashboard', text: t('.dashboard')), dashboard_path, class: 'nav-link') %>
+        </li>
+        <li class="navbar-item">
+          <%= link_to(fa_icon('sign-out', text: t('.log_out')), destroy_user_session_path, method: :delete, class: 'nav-link float-right') %>
+        </li>
       <% else %>
-      <li class="navbar-item">
-        <%= link_to(fa_icon('sign-in', text: 'Sign in'), new_user_session_path, class: 'navbar-link') %>
-      </li>
-      <li class="navbar-item">
-        <%= link_to(fa_icon('lock', text: 'Sign up'), new_user_registration_path, class: 'navbar-link') %>
-      </li>
+        <li class="navbar-item">
+          <%= link_to(fa_icon('sign-in', text: t('.sign_in')), new_user_session_path, class: 'nav-link') %>
+        </li>
+        <li class="navbar-item">
+          <%= link_to(fa_icon('lock', text: t('.sign_up')), new_user_registration_path, class: 'nav-link') %>
+        </li>
       <% end %>
-      <li class="navbar-item">
-        <%= link_to fa_icon('globe', text: t('.language')), '#', class: 'navbar-link', '@blur': 'showDropdown=false', '@click.prevent': 'showDropdown=true' %>
-        <transition name="fade">
-          <ul id="dropdown_box" v-show="showDropdown" v-cloak>
-            <% AVAILABLE_LANGUAGES.each do |locale, val| %>
-              <li>
-                <% text = I18n.locale.to_s == locale ? fa_icon('check', text: val[:localized_name]) : val[:localized_name] %>
-                <%= link_to text, { locale: locale } %>
-              </li>
-            <% end %>
-          </ul>
-        </transition>
-      </li>
-    </ul>
+        <li class="navbar-item">
+          <%= link_to fa_icon('globe', text: t('.language')), '#', class: 'nav-link', '@blur': 'showDropdown=false', '@click.prevent': 'showDropdown=true' %>
+          <transition name="fade">
+            <ul id="dropdown_box" v-show="showDropdown" v-cloak>
+              <% AVAILABLE_LANGUAGES.each do |locale, val| %>
+                <li>
+                  <% text = I18n.locale.to_s == locale ? fa_icon('check', text: val[:localized_name]) : val[:localized_name] %>
+                  <%= link_to text, { locale: locale } %>
+                </li>
+              <% end %>
+            </ul>
+          </transition>
+        </li>
+      </ul>
+    </div>
   </div>
 <% end %>

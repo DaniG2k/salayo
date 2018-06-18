@@ -9,6 +9,8 @@ en:
       submitting: 'Submitting...'
     top_nav:
       dashboard: Dashboard
+      sign_in: Sign in
+      sign_up: Sign up
       log_out: Log out
       language: Language
   welcome:

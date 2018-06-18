@@ -17,11 +17,21 @@ import Typed from 'typed.js';
 Vue.use(Vuelidate)
 
 document.addEventListener('DOMContentLoaded', () => {
-  if(document.getElementById('lang-navbar') !== null) {
+  if(document.getElementById('top-nav') !== null) {
     const dashboard = new Vue({
-      el: '#lang-navbar',
+      el: '#top-nav',
       data: {
+        initTransparency: document.getElementById('top-nav').getAttribute('data-transparent') == 'true',
+        scrollPosition: null,
         showDropdown: false
+      },
+      methods: {
+        updateScroll() {
+          this.scrollPosition = window.scrollY
+        }
+      },
+      mounted() {
+        window.addEventListener('scroll', this.updateScroll);
       }
     })
   }

@@ -12,6 +12,8 @@ ko:
       submitting: '보내는 중...'
     top_nav:
       dashboard: 대시보드
+      sign_in: 로그 인
+      sign_up: 등록
       log_out: 로그아웃
       language: 언어
   meta:

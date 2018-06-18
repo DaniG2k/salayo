@@ -12,7 +12,9 @@ ja:
       submitting: '送信中'
     top_nav:
       dashboard: ダッシュボード
-      log_out: ログ・アウト
+      sign_in: ログイン
+      sign_up: 登録
+      log_out: ログアウト
       language: 言語
   meta:
     description: The easiest way to find housing or roommates in South Korea.

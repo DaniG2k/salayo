@@ -48,17 +48,13 @@
   -moz-box-shadow: 0 0 1px rgba(0,65,94,0.2);
   box-shadow: 0 0 1px rgba(0,65,94,0.2);
   @include nav-transition(0.4s);
-  position: fixed;
-  height: 56px;
   width: 100%;
   background-color: white;
   padding: 0 !important;
   .navbar-item {
     line-height: 40px;
   }
-  .navbar-brand, .navbar-link { padding: 0.5rem 1rem; }
-  .navbar-link {
-    display: inline-block;
+  .nav-link {
     color: black;
   }
   ul {
@@ -82,7 +78,7 @@
   .navbar-brand {
     color: white;
   }
-  .navbar-link {
+  .nav-link {
     color: white;
   }
   ul {
