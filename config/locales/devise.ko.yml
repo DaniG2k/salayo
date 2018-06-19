@@ -5,6 +5,8 @@ ko:
     sessions:
       new:
         title: 어서 오세요!
+        email: 이메일
+        password: 비밀 번호
     registrations:
       new:
         title: 등록

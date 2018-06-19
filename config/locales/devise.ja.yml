@@ -5,6 +5,8 @@ ja:
     sessions:
       new:
         title: お帰りなさい！
+        email: Eメール
+        password: パスワード
     registrations:
       new:
         title: 登録

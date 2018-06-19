@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dashboard = new Vue({
       el: '#top-nav',
       data: {
-        initTransparency: document.getElementById('top-nav').getAttribute('data-transparent') == 'true',
+        initTransparency: document.getElementById('top-nav').getAttribute('data-transparent') === 'true',
         scrollPosition: null,
         showDropdown: false
       },
