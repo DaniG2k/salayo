@@ -95,6 +95,7 @@ ko:
       admin_lounge: 애드민 아레아
       dashboard: '대시보드'
       my_listings: '내 물건'
+      all_listings: '모든 물건'
       add_listing: '물건 추가'
       search_listings: '물건 검색'
       my_ads: '내 광고'
