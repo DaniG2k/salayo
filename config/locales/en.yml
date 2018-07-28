@@ -13,6 +13,8 @@ en:
       sign_up: Sign up
       log_out: Log out
       language: Language
+    carousel:
+      view_listing_images: View listing images
   welcome:
     how:
       three_steps: 3 steps to finding your next accommodation

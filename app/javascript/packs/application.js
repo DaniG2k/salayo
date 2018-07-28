@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  if(document.getElementById('contact-us') != null) {
+  if(document.getElementById('contact-us') !== null) {
     const contactForm = new Vue({
       el: '#contact-us',
       data() {

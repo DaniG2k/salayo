@@ -16,6 +16,8 @@ ja:
       sign_up: 登録
       log_out: ログアウト
       language: 言語
+    carousel:
+      view_listing_images: 物件画像を表示
   meta:
     description: The easiest way to find housing or roommates in South Korea.
     keywords: 'アパート、住宅、宿泊施設、日本、東京、京都、韓国、ソウル、釜山、ルームメイト、フラットメイト、ハウスメイト'
