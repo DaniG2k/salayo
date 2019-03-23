@@ -118,7 +118,7 @@
           </div>
 
           <div class="actions">
-            <%= f.submit t('.update'), class: 'btn btn-primary' %>
+            <%= f.submit t('.update'), class: 'btn btn-primary', data: { disable_with: t('common.actions.submitting') } %>
           </div>
         <% end %>
 
