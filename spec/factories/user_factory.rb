@@ -25,18 +25,18 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
-    password 'supersecurep@ss'
-    gender %w[male female other].sample
+    password { 'supersecurep@ss' }
+    gender { %w[male female other].sample }
     # locale I18n.available_locales.sample
-    locale 'en'
-    role :user
+    locale { 'en' }
+    role { :user }
 
     trait :owner do
-      role :owner
+      role { :owner }
     end
 
     trait :admin do
-      role :admin
+      role { :admin }
     end
   end
 end
