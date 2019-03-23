@@ -13,7 +13,7 @@
 #
 
 class Advertisement < ApplicationRecord
-  ALLOWED_TYPES = %w(rent let wanted).freeze
+  ALLOWED_TYPES = %w[rent let wanted].freeze
 
   extend FriendlyId
   friendly_id :title, use: :slugged

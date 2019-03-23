@@ -12,8 +12,8 @@
 
 FactoryBot.define do
   factory :message do
-    chatroom nil
-    user nil
-    body "MyText"
+    user
+    chatroom { nil }
+    body { Faker::Lorem.paragraph }
   end
 end

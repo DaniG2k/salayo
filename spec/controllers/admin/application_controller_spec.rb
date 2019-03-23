@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin::ApplicationController, type: :controller do
-  let(:user) {FactoryBot.create(:user)}
+  let(:user) { FactoryBot.create(:user) }
 
   before do
     allow(controller).to receive(:authenticate_user!)
@@ -13,7 +13,7 @@ RSpec.describe Admin::ApplicationController, type: :controller do
       get :index
 
       expect(response).to redirect_to dashboard_path
-      #expect(flash[:warning]).to eq 'You must be an admin to access that resource.'
+      # expect(flash[:warning]).to eq 'You must be an admin to access that resource.'
     end
   end
 end

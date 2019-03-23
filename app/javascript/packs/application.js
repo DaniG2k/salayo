@@ -17,11 +17,21 @@ import Typed from 'typed.js';
 Vue.use(Vuelidate)
 
 document.addEventListener('DOMContentLoaded', () => {
-  if(document.getElementById('lang-navbar') !== null) {
+  if(document.getElementById('top-nav') !== null) {
     const dashboard = new Vue({
-      el: '#lang-navbar',
+      el: '#top-nav',
       data: {
+        initTransparency: document.getElementById('top-nav').getAttribute('data-transparent') === 'true',
+        scrollPosition: null,
         showDropdown: false
+      },
+      methods: {
+        updateScroll() {
+          this.scrollPosition = window.scrollY
+        }
+      },
+      mounted() {
+        window.addEventListener('scroll', this.updateScroll);
       }
     })
   }
@@ -30,25 +40,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const typed = new Vue({
       el: '#typed-element',
       mounted() {
+        var strings = []
+        var cities = [
+          'Tokyo',
+          'Osaka',
+          'Nagoya',
+          'Kyoto',
+          'Sapporo',
+          'Kobe',
+          'Fukuoka',
+          'Seoul',
+          'Busan',
+          'Incheon',
+          'Daegu',
+          'Daejeon',
+          'Gwangju',
+          'Ulsan'
+        ]
+        var things = ['housing', 'roommates', 'co-working spaces']
+        cities.forEach(function(city) {
+          things.forEach(function(thing) {
+            strings.push(`Find ${thing} in <strong>${city}</strong>`);
+          });
+        });
+        var randomizedStrings = strings.sort(() => .5 - Math.random()).slice(0, 6);
         var options = {
-          strings: [
-            "The easiest way to find housing in <strong>Tokyo</strong>.",
-            "The easiest way to find housing in <strong>Kyoto</strong>.",
-            "The easiest way to find housing in <strong>Seoul</strong>.",
-            "The easiest way to find housing in <strong>Osaka</strong>.",
-            "The easiest way to find housing in <strong>Busan</strong>."
-          ],
-          typeSpeed: 100,
+          strings: randomizedStrings,
+          typeSpeed: 80,
           shuffle: true,
           startDelay: 100,
-          backDelay: 600
+          backDelay: 800
         }
         new Typed('#typed-element', options)
       }
     })
   }
 
-  if(document.getElementById('contact-us') != null) {
+  if(document.getElementById('contact-us') !== null) {
     const contactForm = new Vue({
       el: '#contact-us',
       data() {

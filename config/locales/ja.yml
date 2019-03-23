@@ -12,8 +12,12 @@ ja:
       submitting: '送信中'
     top_nav:
       dashboard: ダッシュボード
-      log_out: ログ・アウト
+      sign_in: ログイン
+      sign_up: 登録
+      log_out: ログアウト
       language: 言語
+    carousel:
+      view_listing_images: 物件画像を表示
   meta:
     description: The easiest way to find housing or roommates in South Korea.
     keywords: 'アパート、住宅、宿泊施設、日本、東京、京都、韓国、ソウル、釜山、ルームメイト、フラットメイト、ハウスメイト'
@@ -26,6 +30,9 @@ ja:
       birth_date: 生年月日
       timezone: 時間帯
       language: 言語
+      image_size: 画像サイズ
+      no_bio: 自己紹介はありません
+      no_profile_picture: プロファイル画像はありません
   contact_messages:
     new:
       title: お問い合わせ
@@ -49,6 +56,13 @@ ja:
       title: 物件
     new:
       title: 物件追加
+    form:
+      basics: 基本
+      price: 価格
+      pictures: 物件写真
+      location: 位置
+      amenities: 設備
+      description: 解説
     mine:
       title: 私の物件
       none: 物件はありません。
@@ -62,6 +76,8 @@ ja:
   chatrooms:
     messages:
       title: メッセージ
+    show:
+      title: '%{user}との会話'
   dashboard:
     index:
       title: ダッシュボード
@@ -79,6 +95,7 @@ ja:
       admin_lounge: 'アドミン・アレアー'
       dashboard: ダッシュボード
       my_listings: 私の物件
+      all_listings: 全ての物件
       add_listing: 物件追加
       search_listings: '物件検索'
       my_ads: 私の広告

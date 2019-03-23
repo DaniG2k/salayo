@@ -1,38 +1,30 @@
 <% if obj.pictures.present? %>
   <h3>Pictures</h3>
-  <div id="listing-modal">
-
-    <div id="salayo-carousel" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <% obj.pictures.each_with_index do |pic, idx| %>
-          <li data-target="#salayo-carousel" data-slide-to="<%= idx %>" class="<%= 'active' if idx.zero? %>"></li>
-        <% end %>
-      </ol>
-      <div class="carousel-inner">
-        <% obj.pictures.each_with_index do |pic, idx| %>
-          <div class="carousel-item <%= 'active' if idx.zero? %>">
-            <%= image_tag pic.image.carousel_view.url, class: 'd-block w-100' %>
-          </div>
-        <% end %>
-      </div>
-      <a class="carousel-control-prev" href="#salayo-carousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#salayo-carousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+  <div id="salayo-carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <% obj.pictures.each_with_index do |pic, idx| %>
+        <li data-target="#salayo-carousel" data-slide-to="<%= idx %>" class="<%= 'active' if idx.zero? %>"></li>
+      <% end %>
+    </ol>
+    <div class="carousel-inner">
+      <% obj.pictures.each_with_index do |pic, idx| %>
+        <div class="carousel-item <%= 'active' if idx.zero? %>">
+          <%= image_tag pic.image.carousel_view.url, class: 'd-block w-100' %>
+        </div>
+      <% end %>
     </div>
-    <br />
-
-    <button type="button" class="btn btn-secondary">View pictures</button>
-    <!-- <button type="button" class="btn btn-secondary" id="show-modal" @click="showModal = true">View pictures</button> -->
-    <!-- <listing-modal v-if="showModal" @close="showModal = false">
-      <h3 slot="header">Pictures</h3>
-      <div slot="body">
-
-      </div>
-    </listing-modal> -->
+    <a class="carousel-control-prev" href="#salayo-carousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#salayo-carousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
+  <br />
+
+  <button type="button" class="mx-auto d-block btn btn-secondary" data-toggle="modal" data-target="#viewListingImagesModal">
+    <%= t('.view_listing_images') %>
+  </button>
 <% end %>

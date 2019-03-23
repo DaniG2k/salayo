@@ -1,4 +1,4 @@
-RSpec.describe 'Creating advertisements', type: :feature do
+RSpec.describe 'Creating advertisements' do
   let(:user) { create(:user) }
 
   before do
@@ -10,7 +10,7 @@ RSpec.describe 'Creating advertisements', type: :feature do
   scenario 'successfully' do
     fill_in 'Title', with: 'This is my ad'
     fill_in 'Body', with: 'I am looking for a place to stay in Seoul.'
-    select 'Wanted', from: 'advertisement[ad_type]'
+    select 'Wanted', from: 'Ad type'
     click_button 'Create Advertisement'
 
     expect(page).to have_content('Advertisement was successfully created.')

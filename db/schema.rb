@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328021122) do
+ActiveRecord::Schema.define(version: 2018_04_05_151122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,33 @@ ActiveRecord::Schema.define(version: 20180328021122) do
     t.string "slug"
     t.index ["slug"], name: "index_advertisements_on_slug", unique: true
     t.index ["user_id"], name: "index_advertisements_on_user_id"
+  end
+
+  create_table "amenity_lists", force: :cascade do |t|
+    t.bigint "listing_id"
+    t.boolean "air_conditioning", default: false
+    t.boolean "intercom", default: false
+    t.boolean "cable_tv", default: false
+    t.boolean "doorman", default: false
+    t.boolean "dryer", default: false
+    t.boolean "elevator", default: false
+    t.boolean "essentials", default: false
+    t.boolean "gym", default: false
+    t.boolean "hair_dryer", default: false
+    t.boolean "hangers", default: false
+    t.boolean "heating", default: false
+    t.boolean "hot_tub", default: false
+    t.boolean "internet", default: false
+    t.boolean "iron", default: false
+    t.boolean "kitchen", default: false
+    t.boolean "parking", default: false
+    t.boolean "pool", default: false
+    t.boolean "refrigerator", default: false
+    t.boolean "tv", default: false
+    t.boolean "washer", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_amenity_lists_on_listing_id"
   end
 
   create_table "chatroom_users", force: :cascade do |t|
@@ -76,11 +103,12 @@ ActiveRecord::Schema.define(version: 20180328021122) do
     t.string "state"
     t.string "city"
     t.string "address"
-    t.text "amenities", default: [], array: true
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
     t.index ["slug"], name: "index_listings_on_slug", unique: true
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
@@ -131,11 +159,15 @@ ActiveRecord::Schema.define(version: 20180328021122) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 1, null: false
+    t.string "profile_picture"
+    t.text "biography"
+    t.datetime "deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "advertisements", "users"
+  add_foreign_key "amenity_lists", "listings"
   add_foreign_key "chatroom_users", "chatrooms"
   add_foreign_key "chatroom_users", "users"
   add_foreign_key "listings", "users"

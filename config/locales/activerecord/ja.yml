@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      listing: '物件'
+    attributes:
+      user:
+        first_name: 'お名前'
+        last_name: '姓'
+        lat: '緯度'
+        lng: '経度'
+        locale: '言語'

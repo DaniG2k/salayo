@@ -30,6 +30,15 @@
           </div>
         </div>
         <hr />
+        <div class="row">
+          <div class="col">
+            <strong><%= fa_icon 'money', text: 'Price:' %></strong>
+            <ul>
+              <li>Weekly: <%= humanized_money_with_symbol(@listing.price) %></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
 
         <div class="row">
           <div class="col">
@@ -43,8 +52,8 @@
 
         <strong><%= fa_icon 'cutlery', text: 'Amenities' %></strong>
           <ul>
-            <% Listing::AMENITIES.each do |amenity| %>
-              <%= content_tag :li, amenity, class: (@listing.amenities.include?(amenity) ? '' : 'amenity-absent') %>
+            <% @amenity_list_attributes.each do |attr_name, attr_value| %>
+              <%= content_tag :li, attr_name.humanize, class: (attr_value ? '' : 'amenity-absent') %>
             <% end %>
           </ul>
         <hr/>
@@ -52,8 +61,56 @@
       </div>
       <div class="col-md-4">
         <%= render 'common/carousel', obj: @listing %>
-      </div>
-    </div>
+        <hr />
+        <h3>Owner</h3>
+        <div class="row">
+          <div class="col-6">
+            <p>
+              <%= @owner != current_user ? @owner.full_name : @owner.first_name %>
+            </p>
+            <strong>Languages</strong>
 
+          </div>
+          <div class="col-6">
+            <% if @owner.profile_picture.present? %>
+              <%= image_tag @owner.profile_picture.thumb.url, class: 'mx-auto d-block profile-picture-tiny rounded-circle' %>
+            <% else %>
+              <%= fa_icon('user-circle 5x') %>
+            <% end %>
+          </div>
+        </div>
+        <% if @owner != current_user %>
+          <div class="row">
+            <div class="col">
+              <%= link_to chatrooms_path(sender: current_user, receiver: @owner), method: :post, class: 'btn btn-secondary' do %>
+                <%= fa_icon('paper-plane', text: "Message #{@owner.first_name}") %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        </div>
+    </div>
   </div>
 </div>
+
+<% content_for :bootstrap_modal do %>
+  <div class="modal fade" id="viewListingImagesModal" tabindex="-1" role="dialog" aria-labelledby="picturesModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="picturesModalTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-bottom: 0px;">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

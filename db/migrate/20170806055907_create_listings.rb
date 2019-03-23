@@ -14,7 +14,7 @@ class CreateListings < ActiveRecord::Migration[5.1]
       t.string :state
       t.string :city
       t.string :address
-      t.text :amenities, array:true, default: []
+      t.text :amenities, array: true, default: []
       t.references :user, foreign_key: true
 
       t.timestamps

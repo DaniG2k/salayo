@@ -1,0 +1,85 @@
+<h2><%= t('listings.form.location') %></h2>
+
+<div class="row">
+  <div class="col">
+
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="map_search" id="map_search_address" value="address" @click="byAddress = true" checked>
+        Set by address
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="map_search" id="map_search_coords" value="coords" @click="byAddress = false">
+        Set by coordinates
+      </label>
+    </div>
+
+  </div>
+</div>
+
+<div id="listing-location">
+  <transition name="fade">
+    <fieldset id="listing-location-child" name="address" v-show="byAddress">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <strong><%= f.label :city %></strong><br>
+            <%= f.text_field :city, class: 'form-control', 'v-model': 'city', 'v-bind:readonly': '!byAddress', 'v-on:change': 'updateLocation' %>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <strong><%= f.label :state %></strong><br>
+            <%= f.text_field :state, class: 'form-control', 'v-model': 'state', 'v-bind:readonly': '!byAddress', 'v-on:change': 'updateLocation' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <strong><%= f.label :address %></strong><br>
+            <%= f.text_field :address, class: 'form-control', 'v-model': 'address', 'v-bind:readonly': '!byAddress', 'v-on:change': 'updateLocation' %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </transition>
+
+  <transition name="fade">
+    <fieldset id="listing-location-child" name="coords" v-show="!byAddress">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <strong><%= f.label :lat, 'Latitude', class: 'required-field' %></strong><br>
+            <%= f.number_field :lat, in: -90.0..90.0, step: :any, class: 'form-control', 'v-model': 'lat', 'v-bind:readonly': 'byAddress' %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <strong><%= f.label :lng, 'Longitude', class: 'required-field' %></strong><br>
+            <%= f.number_field :lng, in: -180.0..180.0, step: :any, class: 'form-control', 'v-model': 'lng', 'v-bind:readonly': 'byAddress' %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </transition>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="form-group">
+      <strong>Map</strong><br>
+      <div v-show="displayMap">
+        <div id="map-container">
+          <div id='location-map'></div>
+        </div>
+      </div>
+      <div id="no-map" v-show="!displayMap">
+        No map to display
+      </div>
+    </div>
+  </div>
+</div>

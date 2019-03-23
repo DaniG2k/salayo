@@ -1,8 +1,8 @@
 RSpec.feature 'Registered users can view their details' do
-  let(:user) {FactoryBot.create(:user)}
-  let(:owner) {FactoryBot.create(:user, :owner)}
-  let(:admin) {FactoryBot.create(:user, :admin)}
-  let(:deny_msg) {'You are not allowed to access that resource.'}
+  let(:user) { create(:user) }
+  let(:owner) { create(:user, :owner) }
+  let(:admin) { create(:user, :admin) }
+  let(:deny_msg) { 'You are not allowed to access that resource.' }
 
   context 'anonymous users' do
     scenario 'cannot see the profile page' do

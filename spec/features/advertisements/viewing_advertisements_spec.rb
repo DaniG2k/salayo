@@ -1,14 +1,14 @@
-RSpec.describe 'Viewing roommate ads', type: :feature do
-  let(:alice) {FactoryBot.create(:user)}
-  let(:bob) {FactoryBot.create(:user)}
-  let!(:advertisement1) {FactoryBot.create(:advertisement, user: alice)}
-  let!(:advertisement2) {FactoryBot.create(:advertisement, user: bob)}
+RSpec.describe 'Viewing roommate ads' do
+  let(:alice) { create(:user) }
+  let(:bob) { create(:user) }
+  let!(:advertisement1) { create(:advertisement, user: alice) }
+  let!(:advertisement2) { create(:advertisement, user: bob) }
 
   context "a user's own ads" do
     before do
       login_as alice
       visit dashboard_path
-      within('.nav') do
+      within('.column-layout-left') do
         click_link 'My ads'
       end
     end
@@ -26,16 +26,16 @@ RSpec.describe 'Viewing roommate ads', type: :feature do
     before do
       login_as alice
       visit dashboard_path
-      within('.nav') do
+      within('.column-layout-left') do
         click_link 'Roommate ads'
       end
     end
 
     it 'shows a list of available roommate ads' do
       within('.dashboard-main-content') do
-        expect(page).not_to have_content(alice.name)
+        expect(page).not_to have_content(alice.first_name)
 
-        expect(page).to have_content(bob.name)
+        expect(page).to have_content(bob.first_name)
         expect(page).to have_content(advertisement2.ad_type)
         expect(page).to have_content(advertisement2.title)
         expect(page).to have_content(advertisement2.body)
@@ -49,7 +49,7 @@ RSpec.describe 'Viewing roommate ads', type: :feature do
     end
 
     it 'redirects safely on non-existing advertisements' do
-      visit '/advertisements/10000'
+      visit advertisement_path '10000'
 
       expect(page).to have_content('That advertisement does not appear to exist.')
     end

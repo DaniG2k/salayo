@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('input[name="authenticity_token"]').getAttribute('value');
     var listingForm = document.getElementById('listing_form');
     var listing = JSON.parse(listingForm.dataset.listing);
+    var locale = document.getElementsByTagName('html')[0].getAttribute('lang');
 
     Vue.component('step-item', {
       props: ['step', 'active'],
@@ -68,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
       data: function () {
         return {
           id: listing.id,
+          locale: locale,
           slug: listing.slug,
           activeStep: 0,
           stepList: [
@@ -76,28 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             {id: 2, text: 'Amenities'},
             {id: 3, text: 'Description'}
           ],
-          amenities: [
-            {id: 0, text: "Air conditioning"},
-            {id: 1, text: "Buzzer/wireless intercom"},
-            {id: 2, text: "Cable TV"},
-            {id: 3, text: "Doorman"},
-            {id: 4, text: "Dryer"},
-            {id: 5, text: "Elevator"},
-            {id: 6, text: "Essentials"},
-            {id: 7, text: "Gym"},
-            {id: 8, text: "Hair dryer"},
-            {id: 9, text: "Hangers"},
-            {id: 10, text: "Heating"},
-            {id: 11, text: "Hot tub"},
-            {id: 12, text: "Internet"},
-            {id: 13, text: "Iron"},
-            {id: 14, text: "Kitchen"},
-            {id: 15, text: "Parking"},
-            {id: 16, text: "Pool"},
-            {id: 17, text: "TV"},
-            {id: 18, text: "Washer"}
-          ],
-          checkedAmenities: listing.amenities,
           byAddress: true,
           propertyType: listing.property_type,
           displayMap: false,
@@ -105,15 +85,41 @@ document.addEventListener('DOMContentLoaded', () => {
           bedrooms: listing.bedrooms,
           beds: listing.beds,
           bathrooms: listing.bathrooms,
+          priceCents: listing.price_cents,
+          priceCurrency: listing.price_currency,
+          currencySymbol: '$',
+          pricePerMonth: (listing.price_cents * 52.17857 / 12).toFixed(2),
           city: listing.city,
           state: listing.state,
           address: listing.address,
           lat: listing.lat,
           lng: listing.lng,
           description: listing.description,
+          amenityList: {
+            air_conditioning: listing.amenity_list_attributes.air_conditioning,
+            intercom: listing.amenity_list_attributes.intercom,
+            cable_tv: listing.amenity_list_attributes.cable_tv,
+            doorman: listing.amenity_list_attributes.doorman,
+            dryer: listing.amenity_list_attributes.dryer,
+            elevator: listing.amenity_list_attributes.elevator,
+            essentials: listing.amenity_list_attributes.essentials,
+            gym: listing.amenity_list_attributes.gym,
+            hair_dryer: listing.amenity_list_attributes.hair_dryer,
+            hangers: listing.amenity_list_attributes.hangers,
+            heating: listing.amenity_list_attributes.heating,
+            hot_tub: listing.amenity_list_attributes.hot_tub,
+            internet: listing.amenity_list_attributes.internet,
+            iron: listing.amenity_list_attributes.iron,
+            kitchen: listing.amenity_list_attributes.kitchen,
+            parking: listing.amenity_list_attributes.parking,
+            pool: listing.amenity_list_attributes.pool,
+            refrigerator: listing.amenity_list_attributes.refrigerator,
+            tv: listing.amenity_list_attributes.tv,
+            washer: listing.amenity_list_attributes.washer,
+          },
           dropzoneOptions: {
-            url: '/listings',
-            method: 'post',
+            url: (listing.id === null ? `/${locale}/listings` : `/${locale}/listings/${listing.slug}`),
+            method: (listing.id === null ? 'post' : 'put'),
             acceptedFiles: 'image/*',
             uploadMultiple: true,
             autoProcessQueue: false, // Dropzone should wait for the user to click a button to upload
@@ -124,39 +130,57 @@ document.addEventListener('DOMContentLoaded', () => {
             maxFilesize: 5,
             dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Drop files here to upload (max. 15 files)",
             headers: { 'X-CSRF-Token': Vue.http.headers.common['X-CSRF-Token'] }
-          }
+          },
+          showErrors: false,
+          errorMessage: ''
         }
       },
-      mounted: function() {
-        // Reinitialize checkedAmenities with values from amenities.
-        var newArray = []
-        for(var i = 0; i < this.amenities.length; i++){
-          if(this.checkedAmenities.includes(this.amenities[i].text)) {
-            newArray.push(true)
-          } else {
-            newArray.push(false)
-          }
-        }
-        this.checkedAmenities = newArray
-        // // Dropzone actually performs the form submission.
-        // // Make a PUT request if the listing id exists.
-        // if(this.slug !== null) {
-        //   this.dropzoneOptions['url'] = `/listings/${this.slug}`
-        //   this.dropzoneOptions['method'] = 'put'
-        // }
+      mounted() {
+        this.adjustPriceToCurrency();
       },
       methods: {
-        setupListingObj: function() {
-          var amenityNames = []
-          var checkedIndices = []
-          this.checkedAmenities.forEach((elt, idx) => {
-            if(elt === true){ checkedIndices.push(idx) }
-          });
-          this.amenities.map((amenity) => {
-            if(checkedIndices.includes(amenity.id)){
-              amenityNames.push(amenity.text);
-            }
-          });
+        nonCentCurrency() {
+          var nonCentCurrencies = ['usd', 'eur', 'gbp'];
+          return nonCentCurrencies.includes(this.priceCurrency);
+        },
+        adjustPriceToCurrency() {
+          if (this.nonCentCurrency()) {
+            this.priceCents /= 100
+            this.weeklyPriceHandler();
+          }
+        },
+        weeklyPriceHandler() {
+          this.pricePerMonth = (this.priceCents * 52.18 / 12).toFixed(1)
+        },
+        monthlyPriceHandler() {
+          this.priceCents = (this.pricePerMonth / 52.18 * 12).toFixed(1)
+        },
+        switchCurrencySymbol() {
+          switch(this.priceCurrency) {
+            case 'eur':
+              this.currencySymbol = '€';
+              break;
+            case 'gbp':
+              this.currencySymbol = '£';
+              break;
+            case 'jpy':
+              this.currencySymbol = '¥';
+              break;
+            case 'krw':
+              this.currencySymbol = '₩';
+              break;
+            default:
+              this.currencySymbol = '$';
+          }
+        },
+        setupListingObj() {
+          var amenities = {}
+          Object.entries(this.amenityList).forEach(
+            ([key, value]) => amenities[key] = value
+          );
+          // Some currencies don't use cents are their base denomination.
+          // Multiply these x100
+          if (this.nonCentCurrency()) { this.priceCents *= 100 }
           var listingObj = {
             id: this.id,
             name: this.name,
@@ -164,6 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
             beds: this.beds,
             bathrooms: this.bathrooms,
             bedrooms: this.bedrooms,
+            price_cents: this.priceCents,
+            price_currency: this.priceCurrency,
             property_type: this.propertyType,
             city: this.city,
             state: this.state,
@@ -171,51 +197,73 @@ document.addEventListener('DOMContentLoaded', () => {
             lat: this.lat,
             lng: this.lng,
             description: this.description,
-            amenities: amenityNames
+            amenity_list_attributes: amenities
           }
           return listingObj
         },
-        validateClass: function(obj) {
+        validateClass(obj) {
           return {
             'form-control is-invalid': obj.$error,
             'form-control is-valid checkmark': (!obj.$error && obj.$dirty)
           }
         },
-        submitListing: function() {
+        submitListing() {
           var numFiles = this.$refs.listingDropzone.getAcceptedFiles().length
           // If there are images to upload, use Dropzone
           // Else submit the form normally.
-          if(numFiles > 0) {
+          if (numFiles > 0) {
             this.$refs.listingDropzone.processQueue()
           } else {
             var listingObj = this.setupListingObj()
+
             if(this.id === null) {
               // POST if it's a new listing
-              this.$http.post('/listings', {listing: listingObj}).then(
+              this.$http.post(`/${this.locale}/listings`, {listing: listingObj}).then(
                 response => {
-                  window.location = `/listings/${response.body.slug}`
+                  window.location = `/${this.locale}/listings/${response.body.slug}`
               }, response => {
-                console.log(response)
+                // error callback
+                this.showErrors = true
+                this.errorMessage = this.parseErrorObj(response.body)
               })
             } else {
               // PUT if it's an existing listing
-              this.$http.put(`/listings/${this.slug}`, {listing: listingObj}).then(
+              this.$http.put(`/${this.locale}/listings/${this.slug}`, {listing: listingObj}).then(
                 response => {
-                  window.location = `/listings/${response.body.slug}`
+                  window.location = `/${this.locale}/listings/${response.body.slug}`
               }, response => {
-                console.log(response)
+                // error callback
+                this.showErrors = true
+                this.errorMessage = this.parseErrorObj(response.body)
               })
             }
           }
         },
-        sendingEvent: function(file, xhr, formData) {
+        verror(file, msg, xhr) {
+          this.showErrors = true
+          this.errorMessage = this.parseErrorObj(msg)
+        },
+        parseErrorObj(obj) {
+          var msg = '<ul>'
+          Object.entries(obj).forEach(
+            ([key, values]) => {
+              for (var i=0, l = values.length; i < l; i++) {
+                msg += `<li>${key} ${values[i]}</li>`
+              }
+            }
+          );
+          msg += '</ul>'
+          return msg
+        },
+        sendingEvent(file, xhr, formData) {
+          // This function gets called by Dropzone upon form submission.
           var listingObj = this.setupListingObj()
           formData.append('listing', JSON.stringify(listingObj))
         },
-        listingRedirect: function(files, response) {
-          window.location = `/listings/${response.slug}`
+        listingRedirect(files, response) {
+          window.location = `/${this.locale}/listings/${response.slug}`
         },
-        updateLocation: function() {
+        updateLocation() {
           var fullAddress = '';
           if(this.city !== null && this.city.length > 1) {
             fullAddress += (fullAddress.length > 1) ? `, ${this.city}` : this.city
@@ -291,19 +339,17 @@ document.addEventListener('DOMContentLoaded', () => {
         bathrooms: {
           required,
           between: between(0, 10)
+        },
+        priceCents: {
+          required,
+          between: between(0, 100000000)
+        },
+        pricePerMonth: {
+          required,
+          between: between(0, 100000000)
         }
       }
     })
   }
 
-  // if(document.getElementById('listing-modal') !== null) {
-  //   Vue.component('listing-modal', {
-  //     template: '#modal-template'
-  //   })
-  //   const modal = new Vue({
-  //     el: '#listing-modal',
-  //     components: { listingModal },
-  //     data: { showModal: false }
-  //   })
-  // }
 })

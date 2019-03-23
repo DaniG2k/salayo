@@ -12,8 +12,12 @@ ko:
       submitting: '보내는 중...'
     top_nav:
       dashboard: 대시보드
+      sign_in: 로그 인
+      sign_up: 등록
       log_out: 로그아웃
       language: 언어
+    carousel:
+      view_listing_images: 목록 이미지보기
   meta:
     description: The easiest way to find housing or roommates in South Korea.
     keywords: '아파트, 숙소, 숙박 시설, 주택, 주택 상가, 원룸, 오피스텔, 투룸, 쓰리룸, 단기임대, 월세, 전세 임대 정보, 한국, 서울, 부산, 룸 메이트, 룸메이트'
@@ -26,6 +30,9 @@ ko:
       birth_date: 생년월일
       timezone: 시간대
       language: 언어
+      image_size: 이미지 크기
+      no_bio: 자기 소개는 없습니다
+      no_profile_picture: 프로파일 사진은 없습니다
   contact_messages:
     new:
       title: 문의하기
@@ -49,6 +56,13 @@ ko:
       title: 물건
     new:
       title: 물건 추가
+    form:
+      basics: 기본
+      price: 가격
+      pictures: 물건 사진
+      location: 위치
+      amenities: 설비
+      description: 해설
     mine:
       title: 내 물건
       none: 물건은 없습니다
@@ -62,6 +76,8 @@ ko:
   chatrooms:
     messages:
       title: '메시지'
+    show:
+      title: '%{user}과 대화'
   dashboard:
     index:
       title: '대시보드'
@@ -79,6 +95,7 @@ ko:
       admin_lounge: 애드민 아레아
       dashboard: '대시보드'
       my_listings: '내 물건'
+      all_listings: '모든 물건'
       add_listing: '물건 추가'
       search_listings: '물건 검색'
       my_ads: '내 광고'

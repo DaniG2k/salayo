@@ -1,50 +1,79 @@
-<div class="container-fluid top-padded">
+<div class="container-fluid top-padded sign_up">
   <div class="row justify-content-center">
-    <div class="col-5">
-      <h2><%= t('.sign_up') %></h2>
+    <div class="col-lg-6 col-md-8 col-sm-8 col-xs-12">
+      <div class="sign_up_container">
+        <h2 class="text-center"><%= t('.title') %></h2>
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render 'common/notices', obj: resource %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
 
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <%= f.label :first_name %><br />
-              <%= f.text_field :first_name, autofocus: true, class: 'form-control' %>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.text_field :first_name, autofocus: true, placeholder: 'First name', class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.text_field :last_name, placeholder: 'Last name', class: 'form-control' %>
+              </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <%= f.label :last_name %><br />
-              <%= f.text_field :last_name, class: 'form-control' %>
+
+          <div class="form-group">
+            <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <% placeholder = @minimum_password_length.present? ? "Password (#{@minimum_password_length} characters minimum)" : 'Password' %>
+            <%= f.password_field :password, autocomplete: "off", placeholder: placeholder, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Password confirmation', class: 'form-control' %>
+          </div>
+
+          <hr />
+          <div class="form-group">
+            <%= f.label :role, 'I am a...' %><br />
+            <%= f.select(:role, [['Regular user', 'user'], ['Property owner', 'owner']], {}, {class: 'custom-select'}) %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :locale %><br />
+            <%= f.select(:locale, [['English', 'en'], ['日本語', 'ja'], ['한국어', 'ko']], {}, {class: 'custom-select'}) %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :birth_date %><br />
+            <%= f.date_select :birth_date, { order: [:day, :month, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100 } %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :gender %><br />
+            <%= f.select :gender, options_for_select(User::GENDERS.map {|gen| [gen.capitalize, gen]}, selected: resource.gender), { prompt: 'Undisclosed' }, { class: 'custom-select' } %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :time_zone %><br />
+            <%= f.collection_select :time_zone, ActiveSupport::TimeZone.all.sort, :name, :name, {}, { class: 'custom-select' } %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_area :biography, class: 'form-control', placeholder: 'About you', rows: 3 %>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col actions">
+              <%= button_tag(class: 'w-100 btn btn-primary', data: {disable_with: t('common.actions.submitting')}) do %>
+                <%= fa_icon 'lock', text: t('.sign_up') %>
+              <% end %>
             </div>
           </div>
-        </div>
+        <% end %>
 
-        <div class="form-group">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :password %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
-          <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
-        </div>
-      <% end %>
-
-      <%= render "devise/shared/links" %>
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
   </div>
 </div>

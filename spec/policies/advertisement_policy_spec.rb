@@ -1,16 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe AdvertisementPolicy do
-
   subject { described_class }
 
   permissions :show? do
-    let(:user) {create(:user)}
-    let(:owner) {create(:user, :owner)}
-    let(:admin) {create(:user, :admin)}
-    let(:user_advertisement) {create(:advertisement, user: user)}
-    let(:owner_advertisement) {create(:advertisement, user: owner)}
-    let(:admin_advertisement) {create(:advertisement, user: admin)}
+    let(:user) { create(:user) }
+    let(:owner) { create(:user, :owner) }
+    let(:admin) { create(:user, :admin) }
+    let(:user_advertisement) { create(:advertisement, user: user) }
+    let(:owner_advertisement) { create(:advertisement, user: owner) }
+    let(:admin_advertisement) { create(:advertisement, user: admin) }
 
     it 'blocks anonymous users' do
       [user_advertisement, owner_advertisement, admin_advertisement].each do |ad_type|
@@ -24,7 +23,7 @@ RSpec.describe AdvertisementPolicy do
       end
     end
 
-    it "allows owners" do
+    it 'allows owners' do
       [user_advertisement, owner_advertisement, admin_advertisement].each do |ad_type|
         expect(subject).to permit(owner, ad_type)
       end
@@ -38,12 +37,12 @@ RSpec.describe AdvertisementPolicy do
   end
 
   permissions :create? do
-    let(:user) {create(:user)}
-    let(:owner) {create(:user, :owner)}
-    let(:admin) {create(:user, :admin)}
-    let(:user_advertisement) {create(:advertisement, user: user)}
-    let(:owner_advertisement) {create(:advertisement, user: owner)}
-    let(:admin_advertisement) {create(:advertisement, user: admin)}
+    let(:user) { create(:user) }
+    let(:owner) { create(:user, :owner) }
+    let(:admin) { create(:user, :admin) }
+    let(:user_advertisement) { create(:advertisement, user: user) }
+    let(:owner_advertisement) { create(:advertisement, user: owner) }
+    let(:admin_advertisement) { create(:advertisement, user: admin) }
 
     it 'blocks anonymous users' do
       expect(subject).not_to permit(nil, user_advertisement)
@@ -63,12 +62,12 @@ RSpec.describe AdvertisementPolicy do
   end
 
   permissions :update? do
-    let(:user) {create(:user)}
-    let(:owner) {create(:user, :owner)}
-    let(:admin) {create(:user, :admin)}
-    let(:user_advertisement) {create(:advertisement, user: user)}
-    let(:owner_advertisement) {create(:advertisement, user: owner)}
-    let(:admin_advertisement) {create(:advertisement, user: admin)}
+    let(:user) { create(:user) }
+    let(:owner) { create(:user, :owner) }
+    let(:admin) { create(:user, :admin) }
+    let(:user_advertisement) { create(:advertisement, user: user) }
+    let(:owner_advertisement) { create(:advertisement, user: owner) }
+    let(:admin_advertisement) { create(:advertisement, user: admin) }
 
     it 'blocks anonymous users' do
       [user_advertisement, owner_advertisement, admin_advertisement].each do |ad_type|
@@ -96,12 +95,12 @@ RSpec.describe AdvertisementPolicy do
   end
 
   permissions :destroy? do
-    let(:user) {create(:user)}
-    let(:owner) {create(:user, :owner)}
-    let(:admin) {create(:user, :admin)}
-    let(:user_advertisement) {create(:advertisement, user: user)}
-    let(:owner_advertisement) {create(:advertisement, user: owner)}
-    let(:admin_advertisement) {create(:advertisement, user: admin)}
+    let(:user) { create(:user) }
+    let(:owner) { create(:user, :owner) }
+    let(:admin) { create(:user, :admin) }
+    let(:user_advertisement) { create(:advertisement, user: user) }
+    let(:owner_advertisement) { create(:advertisement, user: owner) }
+    let(:admin_advertisement) { create(:advertisement, user: admin) }
 
     it 'blocks anonymous users' do
       [user_advertisement, owner_advertisement, admin_advertisement].each do |ad_type|

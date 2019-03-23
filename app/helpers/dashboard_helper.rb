@@ -34,6 +34,14 @@ module DashboardHelper
         owners_only: true
       },
       {
+        icon: fa_icon('building'),
+        icon_with_text: fa_icon('building', text: I18n.t('dashboard.sidebar.all_listings')),
+        path: listings_path,
+        class: active_if(listings_path),
+        admins_only: false,
+        owners_only: false
+      },
+      {
         icon: fa_icon('plus'),
         icon_with_text: fa_icon('plus', text: I18n.t('dashboard.sidebar.add_listing')),
         path: new_listing_path,
@@ -66,8 +74,8 @@ module DashboardHelper
         owners_only: false
       },
       {
-        icon: fa_icon('paper-plane'),
-        icon_with_text: fa_icon('paper-plane', text: I18n.t('dashboard.sidebar.messages')),
+        icon: fa_icon('inbox'),
+        icon_with_text: fa_icon('inbox', text: I18n.t('dashboard.sidebar.messages')),
         path: messages_path,
         class: active_if(messages_path),
         admins_only: false,

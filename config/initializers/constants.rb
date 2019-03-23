@@ -11,4 +11,4 @@ AVAILABLE_LANGUAGES = {
     name: 'Korean',
     localized_name: '한국어'
   }
-}
+}.freeze

@@ -1,7 +1,10 @@
 <div class="card dashboard-card">
-  <%= link_to listing_path(listing) do %>
-    <%# image_tag(listing.pictures.first.image.card.url, class: 'card-img-top') %>
+  <% if listing.pictures.present? %>
+    <%= link_to listing_path(listing) do %>
+      <%= image_tag(listing.pictures.first.image.card.url, class: 'card-img-top') %>
+    <% end %>
   <% end %>
+
   <div class="card-body text-center">
     <h4 class="card-title"><%= listing.name %></h4>
     This is some text within a card block.

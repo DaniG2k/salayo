@@ -1,0 +1,8 @@
+<div v-if='showErrors' class="alert alert-danger alert-dismissible fade show" role="alert" v-cloak>
+  <button @click='showErrors = false' type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>Error!</strong>
+  There was a problem while processing the form:
+  <div v-html='errorMessage'></div>
+</div>

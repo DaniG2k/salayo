@@ -23,9 +23,10 @@
 class User < ApplicationRecord
   # Constants
   GENDERS = %i[male female other].freeze
+  ROLES = %i[admin user owner].freeze
 
-  enum role: %i[admin user owner]
   enum gender: GENDERS
+  enum role: ROLES
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -40,9 +41,26 @@ class User < ApplicationRecord
   has_many :chatroom_users
   has_many :chatrooms, through: :chatroom_users
   has_many :messages
-  has_many :pictures, as: :imageable, dependent: :destroy
+
+  # Uploaders
+  mount_uploader :profile_picture, ProfilePictureUploader
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  # Instead of deleting, indicate the user requested a delete & timestamp it
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
+  end
+
+  # Ensure user account is active
+  def active_for_authentication?
+    super && !deleted_at
+  end
+
+  # Provide a custom message for a deleted account
+  def inactive_message
+    !deleted_at ? super : :deleted_account
   end
 end

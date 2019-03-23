@@ -1,0 +1,39 @@
+<h2><%= t('listings.form.amenities') %></h2>
+
+<div class="row">
+  <div class="col-5">
+    <div class="form-group">
+      <div class="custom-controls-stacked">
+        <%= f.fields_for :amenity_list do |ff| %>
+          <% %i[
+            air_conditioning
+            intercom
+            cable_tv
+            doorman
+            dryer
+            elevator
+            essentials
+            gym
+            hair_dryer
+            hangers
+            heating
+            hot_tub
+            internet
+            iron
+            kitchen
+            parking
+            pool
+            refrigerator
+            tv
+            washer
+          ].each do |amenity| %>
+          <div class="custom-control custom-checkbox">
+            <%= ff.check_box amenity, class: 'custom-control-input', 'v-model': "amenityList.#{amenity.to_s}" %>
+            <%= ff.label amenity, class: 'custom-control-label' %>
+          </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

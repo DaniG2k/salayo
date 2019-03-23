@@ -10,7 +10,7 @@
             <% admins_only do %>
               <%= content_tag(:li, link_to(fa_icon('bolt', text: 'Sidekiq'), sidekiq_web_path))%>
             <% end %>
-            <%= content_tag(:li, link_to(fa_icon('unlock', text: t('users.logout')), destroy_user_session_path, method: :delete)) %>
+            <%= content_tag(:li, link_to(fa_icon('sign-out', text: t('users.logout')), destroy_user_session_path, method: :delete)) %>
           </ul>
         </div>
       </transition>

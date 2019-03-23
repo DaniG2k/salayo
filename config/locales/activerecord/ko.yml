@@ -4,7 +4,8 @@ ko:
       listing: '리스팅'
     attributes:
       user:
-        name: '이름'
+        first_name: '이름'
+        last_name: '성'
         lat: '위도'
         lng: '경도'
         locale: '언어'

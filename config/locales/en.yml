@@ -9,8 +9,12 @@ en:
       submitting: 'Submitting...'
     top_nav:
       dashboard: Dashboard
+      sign_in: Sign in
+      sign_up: Sign up
       log_out: Log out
       language: Language
+    carousel:
+      view_listing_images: View listing images
   welcome:
     how:
       three_steps: 3 steps to finding your next accommodation
@@ -26,6 +30,9 @@ en:
       birth_date: Birth date
       timezone: Timezone
       language: Language
+      image_size: Image size
+      no_bio: No biography
+      no_profile_picture: No profile picture
   contact_messages:
     new:
       title: Contact us
@@ -49,6 +56,13 @@ en:
       title: Listings
     new:
       title: Add listing
+    form:
+      basics: Basics
+      price: Price
+      pictures: Listing pictures
+      location: Location
+      amenities: Amenities
+      description: Description
     mine:
       title: My listings
       none: No listings to display
@@ -62,6 +76,8 @@ en:
   chatrooms:
     messages:
       title: Messages
+    show:
+      title: 'Conversation with %{user}'
   dashboard:
     index:
       title: Dashboard
@@ -79,6 +95,7 @@ en:
       admin_lounge: 'Admin lounge'
       dashboard: 'Dashboard'
       my_listings: 'My listings'
+      all_listings: 'All listings'
       add_listing: 'Add listing'
       search_listings: 'Search listings'
       my_ads: 'My ads'

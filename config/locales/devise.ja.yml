@@ -1,0 +1,12 @@
+ja:
+  devise:
+    failure:
+      deleted_account: "アカウントを削除しました。"
+    sessions:
+      new:
+        title: お帰りなさい！
+        email: Eメール
+        password: パスワード
+    registrations:
+      new:
+        title: 登録

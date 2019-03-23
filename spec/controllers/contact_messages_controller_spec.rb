@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ContactMessagesController, type: :controller do
   describe 'GET new' do
     it 'renders the new template' do
-      get :new, params: {locale: 'en'}
+      get :new, params: { locale: 'en' }
 
       expect(response.status).to eq(200)
     end

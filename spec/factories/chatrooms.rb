@@ -10,6 +10,6 @@
 
 FactoryBot.define do
   factory :chatroom do
-    name "MyString"
+    name { Faker::FunnyName.two_word_name }
   end
 end

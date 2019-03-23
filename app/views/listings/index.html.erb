@@ -8,9 +8,8 @@
     <% @listings.in_groups_of(2) do |group| %>
       <div class="row">
         <% if group[1].nil? %>
-          <% listing = group.first %>
-          <div class="col">
-            <%= render 'card', listing: listing %>
+          <div class="col-lg-6 col-xs-12">
+            <%= render 'card', listing: group.first %>
           </div>
         <% else %>
           <% group.each do |listing| %>
@@ -21,5 +20,6 @@
         <% end %>
       </div>
     <% end %>
+    
   </div>
 </div>

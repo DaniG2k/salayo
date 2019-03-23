@@ -1,6 +1,6 @@
 RSpec.describe 'Viewing subscriptions', type: :feature do
-  let(:admin) {FactoryBot.create(:user, :admin)}
-  let!(:subscriber) {FactoryBot.create(:subscription)}
+  let(:admin) { FactoryBot.create(:user, :admin) }
+  let!(:subscriber) { FactoryBot.create(:subscription) }
 
   before :each do
     login_as admin
