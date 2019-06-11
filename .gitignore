@@ -24,6 +24,8 @@ vendor/
 .env.test
 .env.production
 
+dump.rdb
+
 public/uploads/
 /public/packs
 /public/packs-test
